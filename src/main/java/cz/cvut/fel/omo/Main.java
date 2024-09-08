@@ -1,7 +1,9 @@
-import house.Floor;
-import house.House;
-import house.Room;
-import house.RoomType;
+package cz.cvut.fel.omo;
+
+import cz.cvut.fel.omo.house.Floor;
+import cz.cvut.fel.omo.house.House;
+import cz.cvut.fel.omo.house.Room;
+import cz.cvut.fel.omo.house.RoomType;
 
 import java.util.ArrayList;
 import java.util.Arrays;

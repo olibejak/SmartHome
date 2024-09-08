@@ -1,4 +1,4 @@
-package house;
+package cz.cvut.fel.omo.house;
 
 public class Room implements ConfigurationReport {
     private final RoomType type;

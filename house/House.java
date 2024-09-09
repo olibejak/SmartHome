@@ -3,7 +3,11 @@ package house;
 import java.util.ArrayList;
 
 public class House implements ConfigurationReport {
+//    private String address;
+//    private String ownerName;
+
     private final ArrayList<Floor> floors;
+//    private final int floorCount;
 
     public House(ArrayList<Floor> floors) {
         this.floors = floors;

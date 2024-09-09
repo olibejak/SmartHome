@@ -8,8 +8,6 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello");
-
         Room kitchen = new Room(RoomType.KITCHEN);
         Room bathroom = new Room(RoomType.BATHROOM);
         Room bedroom = new Room(RoomType.BEDROOM);
@@ -18,8 +16,8 @@ public class Main {
         Room garage = new Room(RoomType.GARAGE);
         Room outside = new Room(RoomType.OUTSIDE);
 
-        Floor groundFloor = new Floor(new ArrayList<>(Arrays.asList(outside, garage, kitchen, toilet)));
-        Floor firstFloor = new Floor(new ArrayList<>(Arrays.asList(bedroom, livingRoom, bathroom)));
+        Floor groundFloor = new Floor(0, new ArrayList<>(Arrays.asList(outside, garage, kitchen, toilet)));
+        Floor firstFloor = new Floor(1, new ArrayList<>(Arrays.asList(bedroom, livingRoom, bathroom)));
 
         House house = new House(new ArrayList<>(Arrays.asList(groundFloor, firstFloor)));
 

@@ -2,6 +2,7 @@ package house;
 
 public class Room implements ConfigurationReport {
     private final RoomType type;
+//    todo private final ArrayList<Device> devices;
 
     public Room(RoomType type) {
         this.type = type;

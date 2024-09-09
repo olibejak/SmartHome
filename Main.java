@@ -18,11 +18,13 @@ public class Main {
         Room garage = new Room(RoomType.GARAGE);
         Room outside = new Room(RoomType.OUTSIDE);
 
-        Floor groundFloor = new Floor(new ArrayList<>(Arrays.asList(outside, garage, kitchen)));
-        Floor firstFloor = new Floor(new ArrayList<>(Arrays.asList(bedroom, livingRoom, bathroom, toilet)));
+        Floor groundFloor = new Floor(new ArrayList<>(Arrays.asList(outside, garage, kitchen, toilet)));
+        Floor firstFloor = new Floor(new ArrayList<>(Arrays.asList(bedroom, livingRoom, bathroom)));
 
         House house = new House(new ArrayList<>(Arrays.asList(groundFloor, firstFloor)));
 
         System.out.println(house);
+        System.out.println();
+        System.out.println(house.reportConfiguration());
     }
 }

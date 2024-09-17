@@ -13,6 +13,7 @@ public abstract class Entity {
 
     public void goTo(Room room) {
 
+        this.room = room;
     }
 
 //    public boolean handle(Event event) {

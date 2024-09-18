@@ -4,5 +4,4 @@ public class Window extends Device {
 
     private boolean hasOpenedCurtain;
 
-
 }

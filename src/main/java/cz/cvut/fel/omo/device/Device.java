@@ -1,8 +1,10 @@
 package cz.cvut.fel.omo.device;
 
 import cz.cvut.fel.omo.device.state.DeviceState;
+import lombok.Getter;
 
-public abstract class Device {
+@Getter
+public class Device implements DeviceInterface{
 
     private DeviceState state;
 //    private UserManual manual;
@@ -14,6 +16,10 @@ public abstract class Device {
 //    public Event generateEvent() {
 //
 //    }
+
+    public String reportConsumption(){
+        return "";
+    }
 
     public void changeState(DeviceState state) {
         this.state = state;

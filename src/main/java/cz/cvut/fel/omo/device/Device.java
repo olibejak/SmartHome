@@ -15,8 +15,20 @@ public abstract class Device {
 //
 //    }
 
-    public void plugIn() {}
-    public void plugOut() {}
-    public void turnOn() {}
-    public void turnOff() {}
+    public void changeState(DeviceState state) {
+        this.state = state;
+    }
+
+    public void plugIn() {
+        state.standBy();
+    }
+    public void plugOut() {
+        state.plugOut();
+    }
+    public void turnOn() {
+        state.turnOn();
+    }
+    public void turnOff() {
+        state.standBy();
+    }
 }

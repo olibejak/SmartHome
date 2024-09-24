@@ -1,5 +1,7 @@
 package cz.cvut.fel.omo.house;
 
+import cz.cvut.fel.omo.utils.RandomUtils;
+
 import java.util.ArrayList;
 
 public class House implements ConfigurationReport {
@@ -8,9 +10,21 @@ public class House implements ConfigurationReport {
 
     private final ArrayList<Floor> floors;
 //    private final int floorCount;
+    private int cycleCount = 0;
 
     public House(ArrayList<Floor> floors) {
         this.floors = floors;
+    }
+
+    public void nextCycle() {
+        cycleCount++;
+        System.out.println(cycleCount);
+    }
+
+    public void nextCycles(int count) {
+        for (int i = 0; i < count; i++) {
+            nextCycle();
+        }
     }
 
     @Override

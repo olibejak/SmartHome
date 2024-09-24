@@ -1,7 +1,8 @@
 package cz.cvut.fel.omo.house;
 
-public class Room {
+public class Room implements ConfigurationReport {
     private final RoomType type;
+//    todo private final ArrayList<Device> devices;
 
     public Room(RoomType type) {
         this.type = type;
@@ -12,5 +13,13 @@ public class Room {
         return "Room{" +
                 "type=" + type +
                 '}';
+    }
+
+    @Override
+    public String reportConfiguration() {
+        StringBuilder configurationReport = new StringBuilder();
+        configurationReport.append(type);
+//        todo device configuration
+        return configurationReport.toString();
     }
 }

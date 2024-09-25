@@ -1,8 +1,10 @@
 package cz.cvut.fel.omo.logger;
 
 import lombok.Setter;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
 
 public class GlobalLogger {
 
@@ -20,6 +22,10 @@ public class GlobalLogger {
             setInstance(new GlobalLogger());
         }
         return GlobalLogger.instance;
+    }
+
+    public void setLevel(String level) {
+        Configurator.setLevel(logger.getName(), Level.getLevel(level));
     }
 
     public void info(String message) {

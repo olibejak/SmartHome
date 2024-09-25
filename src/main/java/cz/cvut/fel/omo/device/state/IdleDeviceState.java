@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.device.state;
 
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 /**
@@ -10,16 +11,10 @@ import lombok.experimental.SuperBuilder;
 public class IdleDeviceState extends DeviceState {
 
     @Override
-    public void plugIn() {
-        // Already plugged in
-        logger.info(device.toString() + " is already plugged in");
-    }
-
-    @Override
     public void plugOut() {
         logger.info(device.toString() + " is plugged out");
         device.changeState(
-                OffDeviceState.builder()
+                OffDeiceState.builder()
                         .device(device)
                         .build()
         );
@@ -36,8 +31,8 @@ public class IdleDeviceState extends DeviceState {
     }
 
     @Override
-    public void turnOff() {
+    public void standBy() {
         // already idle
-        logger.info(device.toString() + " is already idle");
+        logger.info(device.toString() + " is already standing by");
     }
 }

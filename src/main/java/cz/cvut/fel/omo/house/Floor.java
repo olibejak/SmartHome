@@ -1,7 +1,10 @@
 package cz.cvut.fel.omo.house;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 
+@Getter
 public class Floor implements ConfigurationReport {
     private final int floorNumber;
     private final ArrayList<Room> rooms;

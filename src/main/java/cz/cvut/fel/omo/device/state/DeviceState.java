@@ -1,6 +1,7 @@
 package cz.cvut.fel.omo.device.state;
 
 import cz.cvut.fel.omo.device.Device;
+import cz.cvut.fel.omo.logger.GlobalLogger;
 import lombok.AllArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
@@ -13,6 +14,7 @@ import lombok.experimental.SuperBuilder;
 public abstract class DeviceState {
 
     protected Device device;
+    protected GlobalLogger logger = GlobalLogger.getInstance();
 
     /**
      * Change state to off

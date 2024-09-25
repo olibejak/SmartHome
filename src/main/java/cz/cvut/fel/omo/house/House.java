@@ -3,6 +3,9 @@ package cz.cvut.fel.omo.house;
 import cz.cvut.fel.omo.utils.RandomUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class House implements ConfigurationReport {
 //    private String address;
@@ -25,6 +28,27 @@ public class House implements ConfigurationReport {
         for (int i = 0; i < count; i++) {
             nextCycle();
         }
+    }
+
+    public ArrayList<Integer> getFloorNumbers() {
+        ArrayList<Integer> floorNumbers = new ArrayList<Integer>();
+        for (Floor floor : floors) {
+            floorNumbers.add(floor.getFloorNumber());
+        }
+        floorNumbers.sort(Comparator.comparingInt(n -> n));
+        return floorNumbers;
+    }
+
+    // todo functional programming - filters
+    public ArrayList<Integer> getRoomIds() {
+        ArrayList<Integer> roomIds = new ArrayList<Integer>();
+        for (Floor floor : floors) {
+            for (Room room : floor.getRooms()) {
+                roomIds.add(room.getId());
+            }
+        }
+        roomIds.sort(Comparator.comparingInt(id -> id));
+        return roomIds;
     }
 
     @Override

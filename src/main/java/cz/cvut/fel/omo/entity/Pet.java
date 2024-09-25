@@ -8,4 +8,9 @@ import lombok.Setter;
 public class Pet extends Entity {
 
     private PetType type;
+
+    public Pet(String name, int age, int roomID, PetType type) {
+        super(name, age, roomID);
+        this.type = type;
+    }
 }

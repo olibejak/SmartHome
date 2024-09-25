@@ -1,20 +1,18 @@
 package cz.cvut.fel.omo.entity;
 
 import cz.cvut.fel.omo.house.Room;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+@AllArgsConstructor
 @Getter
 @Setter
 public abstract class Entity {
     private String name;
     private int age;
-    private Room room;
+    private int roomID;
 
-    public void goTo(Room room) {
-
-        this.room = room;
-    }
 
 //    public boolean handle(Event event) {
 //        return false;

@@ -11,6 +11,7 @@ public class IdleDeviceState extends DeviceState {
 
     @Override
     public void plugOut() {
+        logger.info(device.toString() + " is plugged out");
         device.changeState(
                 OffDeviceState.builder()
                         .device(device)
@@ -20,6 +21,7 @@ public class IdleDeviceState extends DeviceState {
 
     @Override
     public void turnOn() {
+        logger.info(device.toString() + " is turned on");
         device.changeState(
                 ActiveDeviceState.builder()
                         .device(device)
@@ -30,5 +32,6 @@ public class IdleDeviceState extends DeviceState {
     @Override
     public void standBy() {
         // already idle
+        logger.info(device.toString() + " is already standing by");
     }
 }

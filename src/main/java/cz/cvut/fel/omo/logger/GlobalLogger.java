@@ -1,9 +1,14 @@
 package cz.cvut.fel.omo.logger;
 
 import lombok.Setter;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
 
+/**
+ * Singleton logger * config is located in resources/log4j2.xml
+ */
 public class GlobalLogger {
 
     @Setter
@@ -11,10 +16,17 @@ public class GlobalLogger {
 
     private final Logger logger;
 
+    /**
+     * Set log4j2 as logger
+     */
     private GlobalLogger() {
         this.logger = LogManager.getLogger();
     }
 
+    /**
+     * Singleton get instance
+     * @return GlobalLogger instance
+     */
     public static GlobalLogger getInstance() {
         if (instance == null) {
             setInstance(new GlobalLogger());
@@ -22,14 +34,34 @@ public class GlobalLogger {
         return GlobalLogger.instance;
     }
 
+    /**
+     * Set logger level
+     * @param level string value
+     */
+    public void setLevel(String level) {
+        Configurator.setLevel(logger.getName(), Level.getLevel(level));
+    }
+
+    /**
+     * Info log
+     * @param message
+     */
     public void info(String message) {
         logger.info(message);
     }
 
+    /**
+     * Error log
+     * @param message
+     */
     public void error(String message) {
         logger.error(message);
     }
 
+    /**
+     * Debug log
+     * @param message
+     */
     public void debug(String message) {
         logger.debug(message);
     }

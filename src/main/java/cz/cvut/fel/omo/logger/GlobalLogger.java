@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.config.Configurator;
 
 /**
- * Singleton logger
+ * Singleton logger * config is located in resources/log4j2.xml
  */
 public class GlobalLogger {
 

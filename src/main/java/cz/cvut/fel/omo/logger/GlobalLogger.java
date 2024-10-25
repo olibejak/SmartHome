@@ -9,7 +9,7 @@ import org.apache.logging.log4j.core.config.Configurator;
 /**
  * Singleton logger * config is located in resources/log4j2.xml
  */
-public class GlobalLogger {
+public final class GlobalLogger {
 
     @Setter
     private static GlobalLogger instance;
@@ -25,6 +25,7 @@ public class GlobalLogger {
 
     /**
      * Singleton get instance
+     * Not thread safe
      * @return GlobalLogger instance
      */
     public static GlobalLogger getInstance() {

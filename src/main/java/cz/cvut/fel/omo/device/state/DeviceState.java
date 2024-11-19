@@ -36,4 +36,12 @@ public abstract class DeviceState {
      * Change state to idle
      */
     public abstract void turnOff();
+
+    public void calculateConsumption() {
+
+    }
+
+    public void calculateDurability () {
+
+    }
 }

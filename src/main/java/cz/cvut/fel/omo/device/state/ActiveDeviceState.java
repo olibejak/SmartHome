@@ -1,7 +1,5 @@
 package cz.cvut.fel.omo.device.state;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 /**
@@ -14,7 +12,7 @@ public class ActiveDeviceState extends DeviceState {
     @Override
     public void plugOut() {
         device.changeState(
-                OffDeiceState.builder()
+                OffDeviceState.builder()
                         .device(device)
                         .build()
         );

@@ -7,7 +7,7 @@ import lombok.experimental.SuperBuilder;
  * Plugged out device state.
  */
 @SuperBuilder
-public class OffDeiceState extends DeviceState{
+public class OffDeviceState extends DeviceState{
 
     @Override
     public void plugOut() {

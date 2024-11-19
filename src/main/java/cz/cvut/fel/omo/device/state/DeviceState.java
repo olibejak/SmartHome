@@ -16,6 +16,12 @@ public abstract class DeviceState {
     protected Device device;
     protected GlobalLogger logger = GlobalLogger.getInstance();
 
+
+    /**
+     * Change state to idle
+     */
+    public abstract void plugIn();
+
     /**
      * Change state to off
      */
@@ -29,5 +35,13 @@ public abstract class DeviceState {
     /**
      * Change state to idle
      */
-    public abstract void standBy();
+    public abstract void turnOff();
+
+    public void calculateConsumption() {
+
+    }
+
+    public void calculateDurability () {
+
+    }
 }

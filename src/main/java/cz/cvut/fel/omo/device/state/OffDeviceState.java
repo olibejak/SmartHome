@@ -10,6 +10,16 @@ import lombok.experimental.SuperBuilder;
 public class OffDeviceState extends DeviceState{
 
     @Override
+    public void plugIn() {
+        logger.info(device.toString() + " is plugged in");
+        device.changeState(
+                IdleDeviceState.builder()
+                        .device(device)
+                        .build()
+        );
+    }
+
+    @Override
     public void plugOut() {
         // already plugged out
         logger.info(device.toString() + " already plugged out");
@@ -17,7 +27,7 @@ public class OffDeviceState extends DeviceState{
 
     @Override
     public void turnOn() {
-        logger.info(device.toString() + " turned on");
+        logger.info(device.toString() + " is turned on");
         device.changeState(
                 ActiveDeviceState.builder()
                         .device(device)
@@ -26,12 +36,8 @@ public class OffDeviceState extends DeviceState{
     }
 
     @Override
-    public void standBy() {
-        logger.info(device.toString() + " standby");
-        device.changeState(
-                IdleDeviceState.builder()
-                        .device(device)
-                        .build()
-        );
+    public void turnOff() {
+        // cannot turn off plugged out device
+        logger.info(device.toString() + " cannot turn off plugged out device");
     }
 }

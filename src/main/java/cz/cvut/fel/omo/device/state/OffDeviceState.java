@@ -34,4 +34,14 @@ public class OffDeiceState extends DeviceState{
                         .build()
         );
     }
+
+    @Override
+    public void calculateConsumption() {
+        // no consumption in off state
+    }
+
+    @Override
+    public void calculateDurability() {
+        device.setDurability(device.getDurability() - 1);
+    }
 }

@@ -35,4 +35,14 @@ public class IdleDeviceState extends DeviceState {
         // already idle
         logger.info(device.toString() + " is already standing by");
     }
+
+    @Override
+    public void calculateConsumption() {
+        deviceConsumption.addIdleElectricityConsumed();
+    }
+
+    @Override
+    public void calculateDurability() {
+        device.setDurability(device.getDurability() - 2);
+    }
 }

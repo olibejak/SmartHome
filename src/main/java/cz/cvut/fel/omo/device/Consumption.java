@@ -21,4 +21,20 @@ public class Consumption {
         this.gasRate = gasRate;
         this.waterRate = waterRate;
     }
+
+    public void addIdleElectricityConsumed() {
+        this.electricityConsumed += electricityIdleRate;
+    }
+
+    public void addActiveElectricityConsumed() {
+        this.electricityConsumed += electricityActiveRate;
+    }
+
+    public void addGasConsumed() {
+        this.gasConsumed += gasRate;
+    }
+
+    public void addWaterConsumed() {
+        this.waterConsumed += waterRate;
+    }
 }

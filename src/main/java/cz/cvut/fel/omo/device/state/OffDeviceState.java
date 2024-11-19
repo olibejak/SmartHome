@@ -40,4 +40,14 @@ public class OffDeviceState extends DeviceState{
         // cannot turn off plugged out device
         logger.info(device.toString() + " cannot turn off plugged out device");
     }
+
+    @Override
+    public void calculateConsumption() {
+        // no consumption in off state
+    }
+
+    @Override
+    public void calculateDurability() {
+        device.setDurability(device.getDurability() - 1);
+    }
 }

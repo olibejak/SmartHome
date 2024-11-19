@@ -39,4 +39,16 @@ public class ActiveDeviceState extends DeviceState {
                         .device(device)
                         .build());
     }
+
+    @Override
+    public void calculateConsumption() {
+        deviceConsumption.addGasConsumed();
+        deviceConsumption.addWaterConsumed();
+        deviceConsumption.addActiveElectricityConsumed();
+    }
+
+    @Override
+    public void calculateDurability() {
+        device.setDurability(device.getDurability() - 5);
+    }
 }

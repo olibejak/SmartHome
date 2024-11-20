@@ -1,11 +1,14 @@
 package cz.cvut.fel.omo.device;
 
 import cz.cvut.fel.omo.device.state.DeviceState;
+import cz.cvut.fel.omo.logger.GlobalLogger;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 public class Device implements DeviceInterface{
+
+    protected GlobalLogger logger = GlobalLogger.getInstance();
 
     private DeviceState state;
     private UserManual manual;
@@ -19,10 +22,6 @@ public class Device implements DeviceInterface{
 //    public Event generateEvent() {
 //
 //    }
-
-    public String reportConsumption(){
-        return "";
-    }
 
     /**
      * Change state of the device
@@ -43,5 +42,23 @@ public class Device implements DeviceInterface{
     }
     public void turnOff() {
         state.turnOff();
+    }
+
+    public String reportConsumption() {
+        return new StringBuilder()
+                .append("Device: ")
+                .append(this.toString())
+                .append("\n\tConsumption:\n\t\tElectricity: ")
+                .append(consumption.getElectricityConsumed())
+                .append(" kWh\n\t\tWater: ")
+                .append(consumption.getWaterConsumed())
+                .append(" l\n\t\tGas: ")
+                .append(consumption.getGasConsumed())
+                .append(" m3")
+                .toString();
+    }
+
+    public void update() {
+
     }
 }

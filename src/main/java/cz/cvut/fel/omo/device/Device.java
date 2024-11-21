@@ -2,11 +2,13 @@ package cz.cvut.fel.omo.device;
 
 import cz.cvut.fel.omo.device.state.DeviceState;
 import cz.cvut.fel.omo.logger.GlobalLogger;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+@AllArgsConstructor
 @Getter
-public class Device implements DeviceInterface{
+public class Device {
 
     protected GlobalLogger logger = GlobalLogger.getInstance();
 

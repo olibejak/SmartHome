@@ -1,22 +1,24 @@
 package cz.cvut.fel.omo.device.state;
 
-import cz.cvut.fel.omo.device.Consumption;
+import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.logger.GlobalLogger;
-import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 /**
  * State pattern class.
  * Parent class.
  */
-@AllArgsConstructor
-@SuperBuilder
 public abstract class DeviceState {
+
+    public DeviceState(Device device) {
+        this.device = device;
+        this.deviceConsumption = device.getConsumption();
+        this.logger = GlobalLogger.getInstance();
+    }
 
     protected Device device;
     protected Consumption deviceConsumption;
-    protected GlobalLogger logger = GlobalLogger.getInstance();
+    protected GlobalLogger logger;
 
 
     /**

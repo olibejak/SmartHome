@@ -1,6 +1,9 @@
 package cz.cvut.fel.omo.device;
 
 import cz.cvut.fel.omo.device.state.DeviceState;
+import cz.cvut.fel.omo.device.state.OffDeviceState;
+import cz.cvut.fel.omo.device.util.Consumption;
+import cz.cvut.fel.omo.device.util.UserManual;
 import cz.cvut.fel.omo.logger.GlobalLogger;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +15,7 @@ public class Device {
 
     protected GlobalLogger logger = GlobalLogger.getInstance();
 
-    private DeviceState state;
+    private DeviceState state = new OffDeviceState(this);
     private UserManual manual;
     private boolean isEssential;
     private boolean isBroken;

@@ -1,8 +1,9 @@
 package cz.cvut.fel.omo.device;
 
 import cz.cvut.fel.omo.device.state.DeviceState;
+import cz.cvut.fel.omo.device.util.Consumption;
+import cz.cvut.fel.omo.device.util.UserManual;
 import cz.cvut.fel.omo.logger.GlobalLogger;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter

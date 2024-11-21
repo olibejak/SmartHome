@@ -1,13 +1,23 @@
 package cz.cvut.fel.omo.device.state;
 
-import lombok.experimental.SuperBuilder;
+import cz.cvut.fel.omo.device.Device;
 
 /**
  * State pattern class.
  * Plugged out device state.
  */
-@SuperBuilder
-public class OffDeiceState extends DeviceState{
+public class OffDeviceState extends DeviceState{
+
+    public OffDeviceState(Device device) {
+        super(device);
+    }
+
+
+    @Override
+    public void plugIn() {
+        logger.info(device.toString() + " is plugged in");
+        device.changeState(new IdleDeviceState(device));
+    }
 
     @Override
     public void plugOut() {
@@ -17,22 +27,14 @@ public class OffDeiceState extends DeviceState{
 
     @Override
     public void turnOn() {
-        logger.info(device.toString() + " turned on");
-        device.changeState(
-                ActiveDeviceState.builder()
-                        .device(device)
-                        .build()
-        );
+        logger.info(device.toString() + " is turned on");
+        device.changeState(new ActiveDeviceState(device));
     }
 
     @Override
-    public void standBy() {
-        logger.info(device.toString() + " standby");
-        device.changeState(
-                IdleDeviceState.builder()
-                        .device(device)
-                        .build()
-        );
+    public void turnOff() {
+        // cannot turn off plugged out device
+        logger.info(device.toString() + " cannot turn off plugged out device");
     }
 
     @Override

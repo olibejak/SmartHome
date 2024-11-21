@@ -1,24 +1,26 @@
 package cz.cvut.fel.omo.device.state;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
+import cz.cvut.fel.omo.device.Device;
 
 /**
  * State pattern class.
  * Active device state.
  */
-@SuperBuilder
 public class ActiveDeviceState extends DeviceState {
+
+    public ActiveDeviceState(Device device) {
+        super(device);
+    }
+
+    @Override
+    public void plugIn() {
+        // Already plugged in
+        logger.info(device.toString() + " is already plugged in");
+    }
 
     @Override
     public void plugOut() {
-        logger.info(device.toString() + "is plugged out.");
-        device.changeState(
-                OffDeiceState.builder()
-                        .device(device)
-                        .build()
-        );
+        logger.info(device.toString() + " active device cannot be plugged out");
     }
 
     @Override
@@ -28,12 +30,9 @@ public class ActiveDeviceState extends DeviceState {
     }
 
     @Override
-    public void standBy() {
-        logger.info(device.toString() + " is standing by");
-        device.changeState(
-                IdleDeviceState.builder()
-                        .device(device)
-                        .build());
+    public void turnOff() {
+        logger.info(device.toString() + " is set to idle");
+        device.changeState(new IdleDeviceState(device));
     }
 
     @Override

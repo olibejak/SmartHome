@@ -1,6 +1,7 @@
 package cz.cvut.fel.omo.house;
 
 import cz.cvut.fel.omo.utils.RandomUtils;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +12,7 @@ public class House implements ConfigurationReport {
 //    private String address;
 //    private String ownerName;
 
+    @Getter
     private final ArrayList<Floor> floors;
 //    private final int floorCount;
     private int cycleCount = 0;

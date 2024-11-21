@@ -1,6 +1,7 @@
 package cz.cvut.fel.omo;
 
 import cz.cvut.fel.omo.device.Device;
+import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.house.Floor;
 import cz.cvut.fel.omo.house.House;
@@ -34,6 +35,20 @@ public class Main {
         System.out.println();
         System.out.println(house.reportConfiguration());
         System.out.println(ConsumptionReport.getConsumptionReport(house));
+        for (Device device: kitchen.getDevices()) {
+            device.changeState(new OffDeviceState(device));
+            device.update();
+        }System.out.println(ConsumptionReport.getConsumptionReport(house));
+        for (Device device: kitchen.getDevices()) {
+            device.turnOn();
+            device.update();
+        }System.out.println(ConsumptionReport.getConsumptionReport(house));
+        for (Device device: kitchen.getDevices()) {
+            device.update();
+            device.turnOff();
+        }for (Device device: kitchen.getDevices()) {
+            device.update();
+        }System.out.println(ConsumptionReport.getConsumptionReport(house));
 //        System.out.println(house.getFloorNumbers());
 //        System.out.println(house.getRoomIds());
 //

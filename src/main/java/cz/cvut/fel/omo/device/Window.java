@@ -5,19 +5,21 @@ import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.UserManual;
 import cz.cvut.fel.omo.logger.GlobalLogger;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 public class Window extends Device {
 
     private boolean hasOpenedCurtain;
     private boolean isOpen;
 
-    public Window(GlobalLogger logger, DeviceState state, UserManual manual, boolean isEssential, boolean isBroken,
-                  String warrantyCertificate, Consumption consumption, int durability) {
-        super(logger, state, manual, isEssential, isBroken, warrantyCertificate, consumption, durability);
-        this.hasOpenedCurtain = false;
-        this.isOpen = false;
-    }
+//    public Window(GlobalLogger logger, String name, DeviceState state, UserManual manual, boolean isEssential, boolean isBroken,
+//                  String warrantyCertificate, Consumption consumption, int durability) {
+//        super(logger, name, state, manual, isEssential, isBroken, warrantyCertificate, consumption, durability);
+//        this.hasOpenedCurtain = false;
+//        this.isOpen = false;
+//    }
 
     public void open() {
         if (!isOpen) {

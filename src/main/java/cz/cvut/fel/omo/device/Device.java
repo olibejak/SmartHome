@@ -1,32 +1,43 @@
 package cz.cvut.fel.omo.device;
 
 import cz.cvut.fel.omo.device.state.DeviceState;
+import cz.cvut.fel.omo.device.util.Consumption;
+import cz.cvut.fel.omo.device.util.UserManual;
+import cz.cvut.fel.omo.logger.GlobalLogger;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@NoArgsConstructor
 @Getter
-public class Device implements DeviceInterface{
+@Setter
+public class Device {
 
+    protected GlobalLogger logger;
+
+    private String name;
     private DeviceState state;
-//    private UserManual manual;
+    private UserManual manual;
     private boolean isEssential;
-    private boolean isBroken;
     private String warrantyCertificate;
-//    private Consumption consumption;
+    private Consumption consumption;
+    private int durability;
 
 //    public Event generateEvent() {
 //
 //    }
 
-    public String reportConsumption(){
-        return "";
-    }
-
+    /**
+     * Change state of the device
+     * @param state new state
+     */
     public void changeState(DeviceState state) {
         this.state = state;
     }
 
     public void plugIn() {
-        state.standBy();
+        state.plugIn();
     }
     public void plugOut() {
         state.plugOut();
@@ -35,6 +46,27 @@ public class Device implements DeviceInterface{
         state.turnOn();
     }
     public void turnOff() {
-        state.standBy();
+        state.turnOff();
     }
+
+    public String reportConsumption() {
+        return new StringBuilder()
+                .append("Device: ")
+                .append(this.toString())
+                .append("\n\tConsumption:\n\t\tElectricity: ")
+                .append(consumption.getElectricityConsumed())
+                .append(" kWh\n\t\tWater: ")
+                .append(consumption.getWaterConsumed())
+                .append(" l\n\t\tGas: ")
+                .append(consumption.getGasConsumed())
+                .append(" m3")
+                .toString();
+    }
+
+    public void update() {
+        state.calculateConsumption();
+        state.calculateDurability();
+    }
+
+
 }

@@ -1,18 +1,30 @@
 package cz.cvut.fel.omo.device.state;
 
+import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.Device;
-import lombok.AllArgsConstructor;
-import lombok.experimental.SuperBuilder;
+import cz.cvut.fel.omo.logger.GlobalLogger;
 
 /**
  * State pattern class.
  * Parent class.
  */
-@AllArgsConstructor
-@SuperBuilder
 public abstract class DeviceState {
 
+    public DeviceState(Device device) {
+        this.device = device;
+        this.deviceConsumption = device.getConsumption();
+        this.logger = GlobalLogger.getInstance();
+    }
+
     protected Device device;
+    protected Consumption deviceConsumption;
+    protected GlobalLogger logger;
+
+
+    /**
+     * Change state to idle
+     */
+    public abstract void plugIn();
 
     /**
      * Change state to off
@@ -27,5 +39,9 @@ public abstract class DeviceState {
     /**
      * Change state to idle
      */
-    public abstract void standBy();
+    public abstract void turnOff();
+
+    public abstract void calculateConsumption();
+
+    public abstract void calculateDurability ();
 }

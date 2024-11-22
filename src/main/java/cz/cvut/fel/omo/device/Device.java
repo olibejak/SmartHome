@@ -6,21 +6,22 @@ import cz.cvut.fel.omo.device.util.UserManual;
 import cz.cvut.fel.omo.logger.GlobalLogger;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
+@NoArgsConstructor
 @Getter
+@Setter
 public class Device {
 
     protected GlobalLogger logger;
 
+    private String name;
     private DeviceState state;
     private UserManual manual;
     private boolean isEssential;
-    private boolean isBroken;
     private String warrantyCertificate;
     private Consumption consumption;
-    @Setter
     private int durability;
 
 //    public Event generateEvent() {
@@ -66,4 +67,6 @@ public class Device {
         state.calculateConsumption();
         state.calculateDurability();
     }
+
+
 }

@@ -13,18 +13,10 @@ public abstract class Entity {
     private int age;
     private int roomID;
 
-
-//    public boolean handle(Event event) {
-//        return false;
-//    }
-
-    public void performActivity() {
-
+    public void goToRoom(int roomID) {
+        // TODO check if room exists
+        this.roomID = roomID;
     }
-
-//    public Event generate() {
-//        return null;
-//    }
 
     public void interactWith(Person person) {
 

@@ -5,12 +5,12 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class UserManual {
+public class DeviceDocumentation {
 
-    private String deviceID;
     private String model;
     private String manufacturer;
     private int standardDurability;
     private String manualContent;
     private boolean isFixable;
+    private String warrantyCertificate;
 }

@@ -15,7 +15,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Room kitchen = new Room(1, RoomType.KITCHEN, new ArrayList<>(Arrays.asList(new Device[]{new Device(null, null, null, true, true, "Fridge", new Consumption(150, 150, 150, 150), 100), new Device(null, null, null, true, true, "Oven", new Consumption(100, 100, 100, 100), 200)})));
 
 //        Room kitchen = new Room(1, RoomType.KITCHEN);
 //        Room bathroom = new Room(2, RoomType.BATHROOM);
@@ -25,30 +24,30 @@ public class Main {
 //        Room garage = new Room(6, RoomType.GARAGE);
 //        Room outside = new Room(7, RoomType.OUTSIDE);
 
-        Floor groundFloor = new Floor(0, new ArrayList<>(Arrays.asList(kitchen)));
+//        Floor groundFloor = new Floor(0, new ArrayList<>(Arrays.asList(kitchen)));
 //        Floor groundFloor = new Floor(0, new ArrayList<>(Arrays.asList(outside, garage, kitchen, toilet)));
 //        Floor firstFloor = new Floor(1, new ArrayList<>(Arrays.asList(bedroom, livingRoom, bathroom)));
 
 //        House house = new House(new ArrayList<>(Arrays.asList(groundFloor, firstFloor)));
-        House house = new House(new ArrayList<>(Arrays.asList(groundFloor)));
-        System.out.println(house);
-        System.out.println();
-        System.out.println(house.reportConfiguration());
-        System.out.println(ConsumptionReport.getConsumptionReport(house));
-        for (Device device: kitchen.getDevices()) {
-            device.changeState(new OffDeviceState(device));
-            device.update();
-        }System.out.println(ConsumptionReport.getConsumptionReport(house));
-        for (Device device: kitchen.getDevices()) {
-            device.turnOn();
-            device.update();
-        }System.out.println(ConsumptionReport.getConsumptionReport(house));
-        for (Device device: kitchen.getDevices()) {
-            device.update();
-            device.turnOff();
-        }for (Device device: kitchen.getDevices()) {
-            device.update();
-        }System.out.println(ConsumptionReport.getConsumptionReport(house));
+//        House house = new House(new ArrayList<>(Arrays.asList(groundFloor)));
+//        System.out.println(house);
+//        System.out.println();
+//        System.out.println(house.reportConfiguration());
+//        System.out.println(ConsumptionReport.getConsumptionReport(house));
+//        for (Device device: kitchen.getDevices()) {
+//            device.changeState(new OffDeviceState(device));
+//            device.update();
+//        }System.out.println(ConsumptionReport.getConsumptionReport(house));
+//        for (Device device: kitchen.getDevices()) {
+//            device.turnOn();
+//            device.update();
+//        }System.out.println(ConsumptionReport.getConsumptionReport(house));
+//        for (Device device: kitchen.getDevices()) {
+//            device.update();
+//            device.turnOff();
+//        }for (Device device: kitchen.getDevices()) {
+//            device.update();
+//        }System.out.println(ConsumptionReport.getConsumptionReport(house));
 //        System.out.println(house.getFloorNumbers());
 //        System.out.println(house.getRoomIds());
 //

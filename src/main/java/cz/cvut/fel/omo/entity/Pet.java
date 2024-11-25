@@ -6,7 +6,6 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Pet extends Entity {
-
     private PetType type;
 
     public Pet(String name, int age, int roomID, PetType type) {

@@ -1,5 +1,7 @@
 package cz.cvut.fel.omo.entity;
 
+import cz.cvut.fel.omo.equipment.SportEquipment;
+import cz.cvut.fel.omo.equipment.Vehicle;
 import cz.cvut.fel.omo.house.Room;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,24 +15,24 @@ public abstract class Entity {
     private int age;
     private int roomID;
 
-
-//    public boolean handle(Event event) {
-//        return false;
-//    }
-
-    public void performActivity() {
-
+    public void goToRoom(int roomID) {
+        // TODO check if room exists
+        this.roomID = roomID;
     }
-
-//    public Event generate() {
-//        return null;
-//    }
 
     public void interactWith(Person person) {
 
     }
 
     public void interactWith(Pet pet) {
+
+    }
+
+    public void interactWith(Vehicle vehicle) {
+
+    }
+
+    public void interactWith(SportEquipment sportEquipment) {
 
     }
 }

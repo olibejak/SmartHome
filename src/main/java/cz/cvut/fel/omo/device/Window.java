@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.device;
 
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
+import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -52,5 +53,10 @@ public class Window extends Device {
     @Override
     public String toString() {
         return "Window " + id;
+    }
+
+    @Override
+    public void accept(DeviceVisitor visitor) {
+        visitor.visitWindow(this);
     }
 }

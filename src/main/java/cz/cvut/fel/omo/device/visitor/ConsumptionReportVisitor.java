@@ -5,7 +5,7 @@ import cz.cvut.fel.omo.device.*;
 public class ConsumptionReportVisitor implements DeviceVisitor{
 
     @Override
-    public String visit(Dishwasher dishwasher) {
+    public String visitDishwasher(Dishwasher dishwasher) {
         return new StringBuilder()
                 .append("Device: ")
                 .append(dishwasher.toString())
@@ -20,7 +20,7 @@ public class ConsumptionReportVisitor implements DeviceVisitor{
     }
 
     @Override
-    public String visit(Fridge fridge) {
+    public String visitFridge(Fridge fridge) {
         return new StringBuilder()
                 .append("Device: ")
                 .append(fridge.toString())
@@ -35,7 +35,7 @@ public class ConsumptionReportVisitor implements DeviceVisitor{
     }
 
     @Override
-    public String visit(Range range) {
+    public String visitRange(Range range) {
         return new StringBuilder()
                 .append("Device: ")
                 .append(range.toString())
@@ -47,11 +47,10 @@ public class ConsumptionReportVisitor implements DeviceVisitor{
                 .append(range.getConsumption().getGasConsumed())
                 .append(" m3")
                 .toString();
-
     }
 
     @Override
-    public String visit(RecordPlayer recordPlayer) {
+    public String visitRecordPlayer(RecordPlayer recordPlayer) {
         return new StringBuilder()
                 .append("Device: ")
                 .append(recordPlayer.toString())
@@ -66,7 +65,7 @@ public class ConsumptionReportVisitor implements DeviceVisitor{
     }
 
     @Override
-    public String visit(Television television) {
+    public String visitTelevision(Television television) {
         return new StringBuilder()
                 .append("Device: ")
                 .append(television.toString())
@@ -81,7 +80,7 @@ public class ConsumptionReportVisitor implements DeviceVisitor{
     }
 
     @Override
-    public String visit(Thermostat thermostat) {
+    public String visitThermostat(Thermostat thermostat) {
         return new StringBuilder()
                 .append("Device: ")
                 .append(thermostat.toString())
@@ -96,7 +95,7 @@ public class ConsumptionReportVisitor implements DeviceVisitor{
     }
 
     @Override
-    public String visit(WashingMachine washingMachine) {
+    public String visitWashingMachine(WashingMachine washingMachine) {
         return new StringBuilder()
                 .append("Device: ")
                 .append(washingMachine.toString())
@@ -111,7 +110,7 @@ public class ConsumptionReportVisitor implements DeviceVisitor{
     }
 
     @Override
-    public String visit(Window window) {
+    public String visitWindow(Window window) {
         return new StringBuilder()
                 .append("Device: ")
                 .append(window.toString())

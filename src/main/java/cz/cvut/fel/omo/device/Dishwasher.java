@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.device;
 
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
+import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
@@ -27,6 +28,11 @@ public class Dishwasher extends Device {
     @Override
     public String toString() {
         return "DishWasher " + id;
+    }
+
+    @Override
+    public void accept(DeviceVisitor visitor) {
+        visitor.visitDishwasher(this);
     }
 
     @AllArgsConstructor

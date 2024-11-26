@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.device;
 
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
+import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -18,6 +19,11 @@ public class WashingMachine extends Device{
     @Override
     public String toString() {
         return "Washing machine " + id;
+    }
+
+    @Override
+    public void accept(DeviceVisitor visitor) {
+        visitor.visitWashingMachine(this);
     }
 
     @AllArgsConstructor

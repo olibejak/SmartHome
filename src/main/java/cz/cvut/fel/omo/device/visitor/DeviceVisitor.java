@@ -4,12 +4,12 @@ import cz.cvut.fel.omo.device.*;
 
 public interface DeviceVisitor {
 
-    String visit(Dishwasher dishwasher);
-    String visit(Fridge fridge);
-    String visit(Range range);
-    String visit(RecordPlayer recordPlayer);
-    String visit(Television television);
-    String visit(Thermostat thermostat);
-    String visit(WashingMachine washingMachine);
-    String visit(Window window);
+    String visitDishwasher(Dishwasher dishwasher);
+    String visitFridge(Fridge fridge);
+    String visitRange(Range range);
+    String visitRecordPlayer(RecordPlayer recordPlayer);
+    String visitTelevision(Television television);
+    String visitThermostat(Thermostat thermostat);
+    String visitWashingMachine(WashingMachine washingMachine);
+    String visitWindow(Window window);
 }

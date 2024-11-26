@@ -3,6 +3,7 @@ package cz.cvut.fel.omo.device;
 import cz.cvut.fel.omo.device.state.DeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
+import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import cz.cvut.fel.omo.logger.GlobalLogger;
 import lombok.Getter;
 import lombok.Setter;
@@ -51,23 +52,11 @@ public abstract class Device {
         state.turnOff();
     }
 
-    public String reportConsumption() {
-        return new StringBuilder()
-                .append("Device: ")
-                .append(this.toString())
-                .append("\n\tConsumption:\n\t\tElectricity: ")
-                .append(consumption.getElectricityConsumed())
-                .append(" kWh\n\t\tWater: ")
-                .append(consumption.getWaterConsumed())
-                .append(" l\n\t\tGas: ")
-                .append(consumption.getGasConsumed())
-                .append(" m3")
-                .toString();
-    }
-
     public void update() {
         state.calculateConsumption();
         state.calculateDurability();
     }
+
+    public abstract void accept(DeviceVisitor visitor);
 
 }

@@ -24,7 +24,10 @@ public class DishWasher extends Device {
         dishes.clear();
     }
 
-
+    @Override
+    public String toString() {
+        return "DishWasher " + id;
+    }
 
     @AllArgsConstructor
     private class Dish {

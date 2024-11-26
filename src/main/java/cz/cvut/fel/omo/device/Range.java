@@ -7,4 +7,9 @@ public class Range extends Device{
     public Range(int id, DeviceDocumentation documentation, Consumption consumption, int durability) {
         super(id, documentation, consumption, durability);
     }
+
+    @Override
+    public String toString() {
+        return "Range " + id;
+    }
 }

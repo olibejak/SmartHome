@@ -21,4 +21,9 @@ public class Fridge extends Device{
     protected class Food {
         private final String name;
     }
+
+    @Override
+    public String toString() {
+        return "Fridge " + id;
+    }
 }

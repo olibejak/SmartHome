@@ -48,4 +48,9 @@ public class Window extends Device {
         }
         logger.info(this.toString() + " curtain is already closed");
     }
+
+    @Override
+    public String toString() {
+        return "Window " + id;
+    }
 }

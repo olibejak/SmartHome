@@ -22,4 +22,9 @@ public class RecordPlayer extends Device{
         private final String name;
         private final String artist;
     }
+
+    @Override
+    public String toString() {
+        return "Record player " + id;
+    }
 }

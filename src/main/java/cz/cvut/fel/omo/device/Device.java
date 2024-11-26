@@ -4,9 +4,7 @@ import cz.cvut.fel.omo.device.state.DeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.logger.GlobalLogger;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
@@ -15,7 +13,7 @@ public abstract class Device {
 
     protected GlobalLogger logger;
 
-    private final int id;
+    protected final int id;
     private DeviceState state;
     private DeviceDocumentation documentation;
     private Consumption consumption;
@@ -71,6 +69,5 @@ public abstract class Device {
         state.calculateConsumption();
         state.calculateDurability();
     }
-
 
 }

@@ -15,6 +15,11 @@ public class WashingMachine extends Device{
         super(id, documentation, consumption, durability);
     }
 
+    @Override
+    public String toString() {
+        return "Washing machine " + id;
+    }
+
     @AllArgsConstructor
     @Getter
     protected class Wash {

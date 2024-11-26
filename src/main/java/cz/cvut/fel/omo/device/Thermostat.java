@@ -11,5 +11,8 @@ public class Thermostat extends Device{
         super(id, documentation, consumption, durability);
     }
 
-
+    @Override
+    public String toString() {
+        return "Thermostat " + id;
+    }
 }

@@ -6,11 +6,11 @@ import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
 
-public class DishWasher extends Device {
+public class Dishwasher extends Device {
 
     private final ArrayList<Dish> dishes;
 
-    public DishWasher(int id, DeviceDocumentation documentation, Consumption consumption, int durability, ArrayList<Dish> dishes) {
+    public Dishwasher(int id, DeviceDocumentation documentation, Consumption consumption, int durability, ArrayList<Dish> dishes) {
         super(id, documentation, consumption, durability);
         this.dishes = dishes;
     }

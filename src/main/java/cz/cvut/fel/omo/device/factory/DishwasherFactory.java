@@ -1,27 +1,26 @@
 package cz.cvut.fel.omo.device.factory;
 
 import cz.cvut.fel.omo.device.Device;
-import cz.cvut.fel.omo.device.DishWasher;
+import cz.cvut.fel.omo.device.Dishwasher;
 import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
-public class DishWasherFactory extends DeviceFactory {
+public class DishwasherFactory extends DeviceFactory {
 
         @Override
         public Device createDevice() {
-            DishWasher dishWasher = new DishWasher(
+            Dishwasher dishwasher = new Dishwasher(
                     ID++,
                     null,
                     createConsumption(),
                     5,
                     new ArrayList<>()
             );
-            dishWasher.changeState(new OffDeviceState(dishWasher));
-            return dishWasher;
+            dishwasher.changeState(new OffDeviceState(dishwasher));
+            return dishwasher;
         }
 
         @Override

@@ -17,7 +17,7 @@ public class DishwasherFactory extends DeviceFactory {
                     null,
                     createConsumption(),
                     5,
-                    new ArrayList<>()
+                    25
             );
             dishwasher.changeState(new OffDeviceState(dishwasher));
             return dishwasher;

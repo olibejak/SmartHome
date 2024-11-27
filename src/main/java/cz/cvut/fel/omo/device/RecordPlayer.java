@@ -9,6 +9,7 @@ import lombok.Getter;
 public class RecordPlayer extends Device{
 
     private Record currentRecord;
+
     public RecordPlayer(int id, DeviceDocumentation documentation, Consumption consumption, int durability) {
         super(id, documentation, consumption, durability);
     }

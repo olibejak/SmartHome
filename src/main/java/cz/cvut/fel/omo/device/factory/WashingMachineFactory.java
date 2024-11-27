@@ -19,7 +19,7 @@ public class WashingMachineFactory extends DeviceFactory {
                 null,
                 createConsumption(),
                 100,
-                new ArrayList<>()
+                20
         );
         washingMachine.changeState(new OffDeviceState(washingMachine));
         return washingMachine;

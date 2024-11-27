@@ -2,7 +2,7 @@ package cz.cvut.fel.omo.device.visitor;
 
 import cz.cvut.fel.omo.device.*;
 
-public class ConsumptionReportVisitor implements DeviceVisitor{
+public class DeviceConsumptionReportVisitor implements DeviceVisitor{
 
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {

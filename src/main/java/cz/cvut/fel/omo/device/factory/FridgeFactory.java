@@ -17,7 +17,9 @@ public class FridgeFactory extends DeviceFactory {
                 null,
                 createConsumption(),
                 10,
-                new ArrayList<>()
+                20,
+                0,
+                10
         );
         fridge.changeState(new OffDeviceState(fridge));
         return fridge;

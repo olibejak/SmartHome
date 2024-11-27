@@ -6,8 +6,16 @@ import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 
 public class Television extends Device{
 
-    public Television(int id, DeviceDocumentation documentation, Consumption consumption, int durability) {
+    private int channel;
+
+    public Television(int id, DeviceDocumentation documentation, Consumption consumption, int durability, int channel) {
         super(id, documentation, consumption, durability);
+        this.channel = channel;
+    }
+
+    public void setChannel(int channel) {
+        this.channel = channel;
+        logger.info(this.toString() + " channel set to " + channel);
     }
 
     @Override

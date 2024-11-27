@@ -6,10 +6,19 @@ import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 
 public class Thermostat extends Device{
 
-    private int temperature;
+    /**
+     * Temperature is in Celsius degrees
+     */
+    private double temperature;
 
-    public Thermostat(int id, DeviceDocumentation documentation, Consumption consumption, int durability) {
+    public Thermostat(int id, DeviceDocumentation documentation, Consumption consumption, int durability, double temperature) {
         super(id, documentation, consumption, durability);
+        this.temperature = temperature;
+    }
+
+    public void setTemperature(double temperature) {
+        this.temperature = temperature;
+        logger.info(this.toString() + " temperature set to " + temperature + "°C");
     }
 
     @Override

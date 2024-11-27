@@ -13,7 +13,9 @@ public class ThermostatFactory extends DeviceFactory {
                 ID,
                 createDocumentation(),
                 createConsumption(),
-                10);
+                10,
+                20
+        );
     }
 
     @Override

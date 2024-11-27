@@ -14,7 +14,8 @@ public class TelevisionFactory extends DeviceFactory {
                 ID++,
                 null,
                 createConsumption(),
-                10
+                10,
+                1
         );
         television.changeState(new OffDeviceState(television));
         return television;

@@ -3,18 +3,19 @@ package cz.cvut.fel.omo.device;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
-import java.util.ArrayList;
+public class Fridge extends StorageDevice<Fridge.Food> {
 
-public class Fridge extends Device{
+    private final double minTemperature;
+    private final double maxTemperature;
+    private double currentTemperature;
 
-    private final ArrayList<Food> foods;
-
-    public Fridge(int id, DeviceDocumentation documentation, Consumption consumption, int durability, ArrayList<Food> foods) {
-        super(id, documentation, consumption, durability);
-        this.foods = foods;
+    public Fridge(int id, DeviceDocumentation documentation, Consumption consumption, int durability, double maxLoad
+            , double minTemperature, double maxTemperature) {
+        super(id, documentation, consumption, durability, maxLoad);
+        this.minTemperature = minTemperature;
+        this.maxTemperature = maxTemperature;
+        this.currentTemperature = ( minTemperature + maxTemperature ) / 2;
     }
 
     @Override
@@ -22,14 +23,38 @@ public class Fridge extends Device{
         visitor.visitFridge(this);
     }
 
-    @AllArgsConstructor
-    @Getter
-    protected class Food {
-        private final String name;
+    @Override
+    public void addItem(String name, double load) {
+
+    }
+
+    @Override
+    public void removeAllItems() {
+
+    }
+
+    @Override
+    public void removeItem(Food item) {
+
+    }
+
+    public void setTemperature(double temperature) {
+        if (temperature < minTemperature || temperature > maxTemperature) {
+            logger.info(this.toString() + " :Temperature " + temperature + " out of range " +
+                    minTemperature + " - " + maxTemperature);
+        }
+        this.currentTemperature = temperature;
+        logger.info(this.toString() + " :Setting temperature to " + temperature + "°C");
     }
 
     @Override
     public String toString() {
         return "Fridge " + id;
+    }
+
+    protected class Food extends StorageItem {
+        public Food(String name, int load) {
+            super(name, load);
+        }
     }
 }

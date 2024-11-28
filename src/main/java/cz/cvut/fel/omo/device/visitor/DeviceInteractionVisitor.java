@@ -1,21 +1,17 @@
 package cz.cvut.fel.omo.device.visitor;
 
 import cz.cvut.fel.omo.device.*;
-import lombok.Getter;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class DeviceInteractionVisitor implements DeviceVisitor {
 
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {
         if (dishwasher.isClean()) {
-            dishwasher.removeDishes();
+            dishwasher.removeAllItems();
             return dishwasher.getId() + " dishes removed";
         }
         else if (dishwasher.getCurrentLoad() < dishwasher.getMaxLoad()) {
-            dishwasher.addDish("Plate", 4);
+            dishwasher.addItem("Plate", 4);
             return dishwasher.getId() + " added plate";
         }
         else {

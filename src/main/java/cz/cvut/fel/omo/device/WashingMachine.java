@@ -6,20 +6,32 @@ import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 
 public class WashingMachine extends StorageDevice<WashingMachine.Wash> {
 
-    private boolean isFinished;
+    private boolean isClean;
 
-     public WashingMachine(int id, DeviceDocumentation documentation, Consumption consumption, int durability,
+    public WashingMachine(int id, DeviceDocumentation documentation, Consumption consumption, int durability,
                            int maxLoad) {
         super(id, documentation, consumption, durability, maxLoad);
-        this.isFinished = false;
+        this.isClean = false;
     }
 
-    public void startWash(Wash wash) {
-        if (wash != null) {
-            logger.info(this.toString() + " started washing " + wash.getName());
-        } else {
-            logger.info(this.toString() + " cannot start washing, no wash selected");
+    @Override
+    public void turnOn() {
+        if (isClean) {
+            logger.info(this + " cannot start washing, washing machine is already clean");
+            return;
         }
+        if (this.currentLoad > 0) {
+            logger.info(this + " started washing ");
+            super.turnOn();
+            return;
+        }
+        logger.info(this + " cannot start washing, no wash selected");
+    }
+
+    @Override
+    public void turnOff() {
+        super.turnOff();
+        isClean = true;
     }
 
     @Override

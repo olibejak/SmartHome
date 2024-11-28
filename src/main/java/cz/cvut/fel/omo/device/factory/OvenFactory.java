@@ -1,24 +1,25 @@
 package cz.cvut.fel.omo.device.factory;
 
 import cz.cvut.fel.omo.device.Device;
-import cz.cvut.fel.omo.device.Range;
+import cz.cvut.fel.omo.device.Oven;
 import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 
-import java.util.UUID;
-
-public class RangeFactory extends DeviceFactory {
+public class OvenFactory extends DeviceFactory {
 
     @Override
     public Device createDevice() {
-        Range range = new Range(
+        Oven oven = new Oven(
                 ID++,
                 createDocumentation(),
                 createConsumption(),
-                10);
-        range.changeState(new OffDeviceState(range));
-        return range;
+                10,
+                null,
+                400
+        );
+        oven.changeState(new OffDeviceState(oven));
+        return oven;
     }
 
     @Override

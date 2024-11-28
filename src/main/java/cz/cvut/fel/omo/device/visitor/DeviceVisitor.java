@@ -6,7 +6,7 @@ public interface DeviceVisitor {
 
     String visitDishwasher(Dishwasher dishwasher);
     String visitFridge(Fridge fridge);
-    String visitRange(Range range);
+    String visitOven(Oven oven);
     String visitRecordPlayer(RecordPlayer recordPlayer);
     String visitTelevision(Television television);
     String visitThermostat(Thermostat thermostat);

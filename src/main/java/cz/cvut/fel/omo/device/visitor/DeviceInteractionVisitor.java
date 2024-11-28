@@ -26,7 +26,7 @@ public class DeviceInteractionVisitor implements DeviceVisitor {
     }
 
     @Override
-    public String visitRange(Range range) {
+    public String visitOven(Oven oven) {
         return "";
     }
 

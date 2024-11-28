@@ -35,16 +35,16 @@ public class DeviceConsumptionReportVisitor implements DeviceVisitor{
     }
 
     @Override
-    public String visitRange(Range range) {
+    public String visitOven(Oven oven) {
         return new StringBuilder()
                 .append("Device: ")
-                .append(range.toString())
+                .append(oven.toString())
                 .append("\n\tConsumption:\n\t\tElectricity: ")
-                .append(range.getConsumption().getElectricityConsumed())
+                .append(oven.getConsumption().getElectricityConsumed())
                 .append(" kWh\n\t\tWater: ")
-                .append(range.getConsumption().getWaterConsumed())
+                .append(oven.getConsumption().getWaterConsumed())
                 .append(" l\n\t\tGas: ")
-                .append(range.getConsumption().getGasConsumed())
+                .append(oven.getConsumption().getGasConsumed())
                 .append(" m3")
                 .toString();
     }

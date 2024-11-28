@@ -17,14 +17,14 @@ public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
 
     public void wash() {
         if (items.isEmpty()) {
-            logger.info(this.toString() + " :Cannot wash, no dishes in dishwasher");
+            logger.info(this + " :Cannot wash, no dishes in dishwasher");
             return;
         }
         if (isClean) {
-            logger.info(this.toString() + " :Cannot wash, dishwasher is already clean");
+            logger.info(this + " :Cannot wash, dishwasher is already clean");
             return;
         }
-        logger.info(this.toString() + " :Washing dishes...");
+        logger.info(this + " :Washing dishes...");
         this.isClean = true;
     }
 
@@ -36,11 +36,11 @@ public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
     @Override
     public void addItem(String name, double load) {
         if (this.currentLoad + load > this.maxLoad) {
-            logger.info(this.toString() + " :Cannot add " + name + ", dishwasher is full");
+            logger.info(this + " :Cannot add " + name + ", dishwasher is full");
             return;
         }
         if (isClean) {
-            logger.info(this.toString() + " :Cannot add " + name + ", dishwasher is clean");
+            logger.info(this + " :Cannot add " + name + ", dishwasher is clean");
             return;
         }
         items.add(new Dish(name, load));

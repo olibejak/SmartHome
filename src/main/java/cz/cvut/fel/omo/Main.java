@@ -1,6 +1,9 @@
 package cz.cvut.fel.omo;
 
 import cz.cvut.fel.omo.device.Device;
+import cz.cvut.fel.omo.device.factory.DeviceFactory;
+import cz.cvut.fel.omo.device.factory.OvenFactory;
+import cz.cvut.fel.omo.device.factory.TelevisionFactory;
 import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.house.Floor;
@@ -16,7 +19,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-//        Room kitchen = new Room(1, RoomType.KITCHEN);
+       ConsumptionReport ConsumptionReport = new ConsumptionReport();
+
+        Room kitchen = new Room(1, RoomType.KITCHEN, new ArrayList<Device>(Arrays.asList(new Device[]{new TelevisionFactory().createDevice(), new OvenFactory().createDevice()})));
 //        Room bathroom = new Room(2, RoomType.BATHROOM);
 //        Room bedroom = new Room(3, RoomType.BEDROOM);
 //        Room livingRoom = new Room(4, RoomType.LIVING_ROOM);
@@ -24,32 +29,32 @@ public class Main {
 //        Room garage = new Room(6, RoomType.GARAGE);
 //        Room outside = new Room(7, RoomType.OUTSIDE);
 
-//        Floor groundFloor = new Floor(0, new ArrayList<>(Arrays.asList(kitchen)));
+        Floor groundFloor = new Floor(0, new ArrayList<>(Arrays.asList(kitchen)));
 //        Floor groundFloor = new Floor(0, new ArrayList<>(Arrays.asList(outside, garage, kitchen, toilet)));
 //        Floor firstFloor = new Floor(1, new ArrayList<>(Arrays.asList(bedroom, livingRoom, bathroom)));
 
 //        House house = new House(new ArrayList<>(Arrays.asList(groundFloor, firstFloor)));
-//        House house = new House(new ArrayList<>(Arrays.asList(groundFloor)));
-//        System.out.println(house);
-//        System.out.println();
-//        System.out.println(house.reportConfiguration());
-//        System.out.println(ConsumptionReport.getConsumptionReport(house));
-//        for (Device device: kitchen.getDevices()) {
-//            device.changeState(new OffDeviceState(device));
-//            device.update();
-//        }System.out.println(ConsumptionReport.getConsumptionReport(house));
-//        for (Device device: kitchen.getDevices()) {
-//            device.turnOn();
-//            device.update();
-//        }System.out.println(ConsumptionReport.getConsumptionReport(house));
-//        for (Device device: kitchen.getDevices()) {
-//            device.update();
-//            device.turnOff();
-//        }for (Device device: kitchen.getDevices()) {
-//            device.update();
-//        }System.out.println(ConsumptionReport.getConsumptionReport(house));
-//        System.out.println(house.getFloorNumbers());
-//        System.out.println(house.getRoomIds());
+        House house = new House(new ArrayList<>(Arrays.asList(groundFloor)));
+        System.out.println(house);
+        System.out.println();
+        System.out.println(house.reportConfiguration());
+        System.out.println(ConsumptionReport.getConsumptionReport(house));
+        for (Device device: kitchen.getDevices()) {
+            device.changeState(new OffDeviceState(device));
+            device.update();
+        }System.out.println(ConsumptionReport.getConsumptionReport(house));
+        for (Device device: kitchen.getDevices()) {
+            device.turnOn();
+            device.update();
+        }System.out.println(ConsumptionReport.getConsumptionReport(house));
+        for (Device device: kitchen.getDevices()) {
+            device.update();
+            device.turnOff();
+        }for (Device device: kitchen.getDevices()) {
+            device.update();
+        }System.out.println(ConsumptionReport.getConsumptionReport(house));
+        System.out.println(house.getFloorNumbers());
+        System.out.println(house.getRoomIds());
 //
 
         // version 1 - user input

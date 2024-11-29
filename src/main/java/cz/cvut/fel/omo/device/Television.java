@@ -19,8 +19,8 @@ public class Television extends Device{
     }
 
     @Override
-    public void accept(DeviceVisitor visitor) {
-        visitor.visitTelevision(this);
+    public String accept(DeviceVisitor visitor) {
+        return visitor.visitTelevision(this);
     }
 
     @Override

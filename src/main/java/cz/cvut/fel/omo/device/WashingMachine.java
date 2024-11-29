@@ -35,8 +35,8 @@ public class WashingMachine extends StorageDevice<WashingMachine.Wash> {
     }
 
     @Override
-    public void accept(DeviceVisitor visitor) {
-        visitor.visitWashingMachine(this);
+    public String accept(DeviceVisitor visitor) {
+        return visitor.visitWashingMachine(this);
     }
 
     @Override

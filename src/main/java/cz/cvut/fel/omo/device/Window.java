@@ -56,7 +56,7 @@ public class Window extends Device {
     }
 
     @Override
-    public void accept(DeviceVisitor visitor) {
-        visitor.visitWindow(this);
+    public String accept(DeviceVisitor visitor) {
+        return visitor.visitWindow(this);
     }
 }

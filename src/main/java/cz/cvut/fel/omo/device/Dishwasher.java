@@ -29,8 +29,8 @@ public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
     }
 
     @Override
-    public void accept(DeviceVisitor visitor) {
-        visitor.visitDishwasher(this);
+    public String accept(DeviceVisitor visitor) {
+        return visitor.visitDishwasher(this);
     }
 
     @Override

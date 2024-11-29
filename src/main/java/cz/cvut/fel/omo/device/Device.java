@@ -57,6 +57,6 @@ public abstract class Device {
         state.calculateDurability();
     }
 
-    public abstract void accept(DeviceVisitor visitor);
+    public abstract String accept(DeviceVisitor visitor);
 
 }

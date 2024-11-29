@@ -34,8 +34,8 @@ public class Thermostat extends Device{
     }
 
     @Override
-    public void accept(DeviceVisitor visitor) {
-        visitor.visitThermostat(this);
+    public String accept(DeviceVisitor visitor) {
+        return visitor.visitThermostat(this);
     }
 
     @Override

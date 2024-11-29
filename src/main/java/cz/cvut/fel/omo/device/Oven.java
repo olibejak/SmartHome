@@ -19,8 +19,8 @@ public class Oven extends Device{
     }
 
     @Override
-    public void accept(DeviceVisitor visitor) {
-        visitor.visitOven(this);
+    public String accept(DeviceVisitor visitor) {
+        return visitor.visitOven(this);
     }
 
     public void setTemperature(int temperature) {

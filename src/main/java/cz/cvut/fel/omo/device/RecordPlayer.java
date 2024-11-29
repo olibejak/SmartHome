@@ -15,8 +15,8 @@ public class RecordPlayer extends Device{
     }
 
     @Override
-    public void accept(DeviceVisitor visitor) {
-        visitor.visitRecordPlayer(this);
+    public String accept(DeviceVisitor visitor) {
+        return visitor.visitRecordPlayer(this);
     }
 
     public void insertRecord(String name, String artist) {

@@ -21,8 +21,8 @@ public class Fridge extends StorageDevice<Fridge.Food> {
     }
 
     @Override
-    public void accept(DeviceVisitor visitor) {
-        visitor.visitFridge(this);
+    public String accept(DeviceVisitor visitor) {
+        return visitor.visitFridge(this);
     }
 
     @Override

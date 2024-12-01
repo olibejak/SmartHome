@@ -1,9 +1,12 @@
 package cz.cvut.fel.omo;
 
 import cz.cvut.fel.omo.device.Device;
+import cz.cvut.fel.omo.device.StorageDevice;
+import cz.cvut.fel.omo.device.WashingMachine;
 import cz.cvut.fel.omo.device.factory.DeviceFactory;
 import cz.cvut.fel.omo.device.factory.OvenFactory;
 import cz.cvut.fel.omo.device.factory.TelevisionFactory;
+import cz.cvut.fel.omo.device.factory.WashingMachineFactory;
 import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.house.Floor;
@@ -21,7 +24,10 @@ public class Main {
 
        ConsumptionReport ConsumptionReport = new ConsumptionReport();
 
-        Room kitchen = new Room(1, RoomType.KITCHEN, new ArrayList<Device>(Arrays.asList(new Device[]{new TelevisionFactory().createDevice(), new OvenFactory().createDevice()})));
+        Room kitchen = new Room(1, RoomType.KITCHEN, new ArrayList<>(Arrays.asList(new TelevisionFactory().createDevice(), new WashingMachineFactory().createDevice())));
+        StorageDevice<WashingMachine> washingMachine = (StorageDevice<WashingMachine>) kitchen.getDevices().get(1);
+        washingMachine.addItem("clothes", 1);
+        System.out.println(washingMachine.getItems());
 //        Room bathroom = new Room(2, RoomType.BATHROOM);
 //        Room bedroom = new Room(3, RoomType.BEDROOM);
 //        Room livingRoom = new Room(4, RoomType.LIVING_ROOM);

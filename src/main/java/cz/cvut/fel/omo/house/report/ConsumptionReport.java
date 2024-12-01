@@ -2,7 +2,6 @@ package cz.cvut.fel.omo.house.report;
 
 import cz.cvut.fel.omo.device.visitor.DeviceConsumptionReportVisitor;
 import cz.cvut.fel.omo.house.House;
-import cz.cvut.fel.omo.device.Device;
 
 import java.util.stream.Collectors;
 

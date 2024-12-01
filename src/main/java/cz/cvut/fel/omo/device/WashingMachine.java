@@ -42,19 +42,19 @@ public class WashingMachine extends StorageDevice<WashingMachine.Wash> {
     @Override
     public void addItem(String name, double load) {
         items.add(new Wash(name, load));
-        logger.info(this.toString() + " wash " + name + " added");
+        logger.info(this + " wash " + name + " added");
     }
 
     @Override
     public void removeAllItems() {
         items.clear();
-        logger.info(this.toString() + " all washes removed");
+        logger.info(this + " all washes removed");
     }
 
     @Override
     public void removeItem(Wash item) {
         items.remove(item);
-        logger.info(this.toString() + " wash " + item.getName() + " removed");
+        logger.info(this + " wash " + item.getName() + " removed");
     }
 
     @Override
@@ -62,8 +62,8 @@ public class WashingMachine extends StorageDevice<WashingMachine.Wash> {
         return "Washing machine " + id;
     }
 
-        public class Wash extends StorageItem {
-        public Wash(String name, double load) {
+    public class Wash extends StorageItem {
+        private Wash(String name, double load) {
             super(name, load);
         }
     }

@@ -25,6 +25,7 @@ public abstract class Device {
         this.documentation = documentation;
         this.consumption = consumption;
         this.durability = durability;
+        this.logger = GlobalLogger.getInstance();
     }
 
 //    public Event generateEvent() {

@@ -7,7 +7,6 @@ import cz.cvut.fel.omo.event.eventManager.EventQueue;
 
 public abstract class DeviceFactory {
 
-    protected int ID = 0;
     protected EventQueue eventQueue;
 
     public DeviceFactory(EventQueue eventQueue) {

@@ -1,25 +1,25 @@
 package cz.cvut.fel.omo.house;
 
 import cz.cvut.fel.omo.utils.RandomUtils;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
+@NoArgsConstructor
+@Setter
 public class House implements ConfigurationReport {
 //    private String address;
 //    private String ownerName;
 
     @Getter
-    private final ArrayList<Floor> floors;
-//    private final int floorCount;
+    private final ArrayList<Floor> floors = new ArrayList<>();
     private int cycleCount = 0;
-
-    public House(ArrayList<Floor> floors) {
-        this.floors = floors;
-    }
 
     public void nextCycle() {
         cycleCount++;

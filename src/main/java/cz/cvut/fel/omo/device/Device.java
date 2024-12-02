@@ -2,27 +2,31 @@ package cz.cvut.fel.omo.device;
 
 import cz.cvut.fel.omo.device.state.DeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
-import cz.cvut.fel.omo.device.util.UserManual;
+import cz.cvut.fel.omo.device.util.DeviceDocumentation;
+import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import cz.cvut.fel.omo.logger.GlobalLogger;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @Getter
 @Setter
-public class Device {
+public abstract class Device {
 
     protected GlobalLogger logger;
 
-    private String name;
+    protected final int id;
     private DeviceState state;
-    private UserManual manual;
-    private boolean isEssential;
-    private String warrantyCertificate;
+    private DeviceDocumentation documentation;
     private Consumption consumption;
     private int durability;
+
+    public Device(int id, DeviceDocumentation documentation, Consumption consumption, int durability) {
+        this.id = id;
+        this.documentation = documentation;
+        this.consumption = consumption;
+        this.durability = durability;
+        this.logger = GlobalLogger.getInstance();
+    }
 
 //    public Event generateEvent() {
 //
@@ -49,24 +53,11 @@ public class Device {
         state.turnOff();
     }
 
-    public String reportConsumption() {
-        return new StringBuilder()
-                .append("Device: ")
-                .append(this.toString())
-                .append("\n\tConsumption:\n\t\tElectricity: ")
-                .append(consumption.getElectricityConsumed())
-                .append(" kWh\n\t\tWater: ")
-                .append(consumption.getWaterConsumed())
-                .append(" l\n\t\tGas: ")
-                .append(consumption.getGasConsumed())
-                .append(" m3")
-                .toString();
-    }
-
     public void update() {
         state.calculateConsumption();
         state.calculateDurability();
     }
 
+    public abstract String accept(DeviceVisitor visitor);
 
 }

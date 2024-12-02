@@ -1,29 +1,28 @@
 package cz.cvut.fel.omo.device;
 
-import cz.cvut.fel.omo.device.state.DeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
-import cz.cvut.fel.omo.device.util.StorageItem;
-import cz.cvut.fel.omo.device.util.UserManual;
-import cz.cvut.fel.omo.logger.GlobalLogger;
+import cz.cvut.fel.omo.device.util.DeviceDocumentation;
+import lombok.Getter;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class StorageDevice extends Device {
+@Getter
+public abstract class StorageDevice<T> extends Device {
 
-    private final List<StorageItem> items;
+    protected final ArrayList<T> items;
+    protected final double maxLoad;
+    protected double currentLoad;
 
-    public StorageDevice(GlobalLogger logger, DeviceState state, UserManual manual, boolean isEssential,
-                         boolean isBroken, String warrantyCertificate, Consumption consumption, int durability,
-                         List<StorageItem> items) {
-        super(logger, state, manual, isEssential, isBroken, warrantyCertificate, consumption, durability);
-        this.items = items;
+    public StorageDevice(int id, DeviceDocumentation documentation, Consumption consumption, int durability,
+                         double maxLoad) {
+        super(id, documentation, consumption, durability);
+        this.maxLoad = maxLoad;
+        this.currentLoad = 0;
+        this.items = new ArrayList<>();
     }
 
-    public void addItem(StorageItem item) {
-        items.add(item);
-    }
+    public abstract void addItem(String name, double load);
+    public abstract void removeAllItems();
+    public abstract void removeItem(T item);
 
-    public void removeItem(StorageItem item) {
-        items.remove(item);
-    }
 }

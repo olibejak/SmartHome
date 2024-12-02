@@ -1,8 +1,8 @@
-package cz.cvut.fel.omo.BobTheBuilder.builder4builder;
+package cz.cvut.fel.omo.BobTheBuilder.houseBuilder;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceDTO;
 import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.house.Room;
+import cz.cvut.fel.omo.house.RoomType;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
@@ -14,6 +14,11 @@ public class RoomBuilder {
 
     public RoomBuilder addDevices(ArrayList<Device> devices) {
         room.getDevices().addAll(devices);
+        return this;
+    }
+
+    public RoomBuilder setRoomType(RoomType type) {
+        room.setType(type);
         return this;
     }
 

@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.BobTheBuilder.builder4builder;
+package cz.cvut.fel.omo.BobTheBuilder.houseBuilder;
 
 import cz.cvut.fel.omo.house.Floor;
 import cz.cvut.fel.omo.house.Room;

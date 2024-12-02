@@ -1,14 +1,10 @@
-package cz.cvut.fel.omo.device.factory;
+package cz.cvut.fel.omo.BobTheBuilder.deviceFactory;
 
 import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.device.WashingMachine;
 import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
-
-import java.util.ArrayList;
-
-import java.util.UUID;
 
 public class WashingMachineFactory extends DeviceFactory {
 

@@ -1,45 +1,44 @@
-package cz.cvut.fel.omo.device.factory;
+package cz.cvut.fel.omo.BobTheBuilder.deviceFactory;
 
 import cz.cvut.fel.omo.device.Device;
-import cz.cvut.fel.omo.device.Television;
+import cz.cvut.fel.omo.device.RecordPlayer;
 import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 
-public class TelevisionFactory extends DeviceFactory {
+public class RecordPlayerFactory extends DeviceFactory {
 
     @Override
     public Device createDevice(int id) {
-        Television television = new Television(
+        RecordPlayer recordPlayer = new RecordPlayer(
                 id,
                 null,
                 createConsumption(),
-                10,
-                1
+                10
         );
-        television.changeState(new OffDeviceState(television));
-        return television;
+        recordPlayer.insertRecord("Weezer", "Weezer");
+        recordPlayer.changeState(new OffDeviceState(recordPlayer));
+        return recordPlayer;
     }
 
     @Override
     public Consumption createConsumption() {
         return new Consumption(
+                0.1,
                 1,
-                2,
                 0,
-                0
-        );
+                0);
     }
 
     @Override
     public DeviceDocumentation createDocumentation() {
         return new DeviceDocumentation(
-                "model",
-                "manufacturer",
-                0,
-                "manualContent",
-                false,
-                "warrantyCertificate");
+                "Model",
+                "Manufacturer",
+                10,
+                "Manual",
+                true,
+                "Warranty");
     }
 
 

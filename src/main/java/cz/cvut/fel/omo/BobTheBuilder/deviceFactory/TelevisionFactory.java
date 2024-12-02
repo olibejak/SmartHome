@@ -1,44 +1,46 @@
-package cz.cvut.fel.omo.device.factory;
+package cz.cvut.fel.omo.BobTheBuilder.deviceFactory;
 
 import cz.cvut.fel.omo.device.Device;
-import cz.cvut.fel.omo.device.Oven;
+import cz.cvut.fel.omo.device.Television;
 import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 
-public class OvenFactory extends DeviceFactory {
+public class TelevisionFactory extends DeviceFactory {
 
     @Override
     public Device createDevice(int id) {
-        Oven oven = new Oven(
+        Television television = new Television(
                 id,
-                createDocumentation(),
+                null,
                 createConsumption(),
                 10,
-                null,
-                400
+                1
         );
-        oven.changeState(new OffDeviceState(oven));
-        return oven;
+        television.changeState(new OffDeviceState(television));
+        return television;
     }
 
     @Override
     public Consumption createConsumption() {
         return new Consumption(
-                0.5,
                 1,
-                1,
-                1);
+                2,
+                0,
+                0
+        );
     }
 
     @Override
     public DeviceDocumentation createDocumentation() {
         return new DeviceDocumentation(
-                "Model",
-                "Manufacturer",
-                10,
-                "Manual",
-                true,
-                "Warranty");
+                "model",
+                "manufacturer",
+                0,
+                "manualContent",
+                false,
+                "warrantyCertificate");
     }
+
+
 }

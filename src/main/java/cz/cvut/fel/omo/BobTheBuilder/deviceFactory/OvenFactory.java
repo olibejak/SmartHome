@@ -1,44 +1,41 @@
-package cz.cvut.fel.omo.device.factory;
+package cz.cvut.fel.omo.BobTheBuilder.deviceFactory;
 
 import cz.cvut.fel.omo.device.Device;
-import cz.cvut.fel.omo.device.Fridge;
+import cz.cvut.fel.omo.device.Oven;
 import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 
-import java.util.ArrayList;
-
-public class FridgeFactory extends DeviceFactory {
+public class OvenFactory extends DeviceFactory {
 
     @Override
     public Device createDevice(int id) {
-        Fridge fridge = new Fridge(
+        Oven oven = new Oven(
                 id,
-                null,
+                createDocumentation(),
                 createConsumption(),
                 10,
-                20,
-                0,
-                10
+                null,
+                400
         );
-        fridge.changeState(new OffDeviceState(fridge));
-        return fridge;
+        oven.changeState(new OffDeviceState(oven));
+        return oven;
     }
 
     @Override
     public Consumption createConsumption() {
         return new Consumption(
-                0.1,
                 0.5,
-                0.1,
-                0.5);
+                1,
+                1,
+                1);
     }
 
     @Override
     public DeviceDocumentation createDocumentation() {
         return new DeviceDocumentation(
-                "Fridge",
-                "Bosch",
+                "Model",
+                "Manufacturer",
                 10,
                 "Manual",
                 true,

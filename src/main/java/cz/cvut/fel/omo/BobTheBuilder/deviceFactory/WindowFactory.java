@@ -1,42 +1,45 @@
-package cz.cvut.fel.omo.device.factory;
+package cz.cvut.fel.omo.BobTheBuilder.deviceFactory;
 
 import cz.cvut.fel.omo.device.Device;
-import cz.cvut.fel.omo.device.Thermostat;
+import cz.cvut.fel.omo.device.Window;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 
-public class ThermostatFactory extends DeviceFactory {
+public class WindowFactory extends DeviceFactory {
 
     @Override
     public Device createDevice(int id) {
-        return new Thermostat(
+        return new Window(
                 id,
                 createDocumentation(),
                 createConsumption(),
                 100,
-                15,
-                25
+                false,
+                false
         );
     }
 
     @Override
     public Consumption createConsumption() {
         return new Consumption(
-                100,
-                100,
-                5,
-                0
+                0,
+                0,
+                0,
+        0
         );
     }
 
     @Override
     public DeviceDocumentation createDocumentation() {
         return new DeviceDocumentation(
-                "Thermostat",
-                "Honeywell",
-                10,
-                "Thermostat manual",
-                true,
-                "Thermostat warranty");
+                "Window",
+                "Window",
+                100,
+                "Window manual",
+                false,
+                "Window warranty"
+        );
     }
+
+
 }

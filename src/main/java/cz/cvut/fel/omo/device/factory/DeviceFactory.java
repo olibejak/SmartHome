@@ -10,7 +10,7 @@ public abstract class DeviceFactory {
 
     protected int ID = 0;
 
-    abstract Device createDevice();
+    abstract Device createDevice(int id);
     abstract Consumption createConsumption();
     abstract DeviceDocumentation createDocumentation();
 

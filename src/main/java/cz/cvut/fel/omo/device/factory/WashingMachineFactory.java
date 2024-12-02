@@ -13,9 +13,9 @@ import java.util.UUID;
 public class WashingMachineFactory extends DeviceFactory {
 
     @Override
-    public Device createDevice() {
+    public Device createDevice(int id) {
         WashingMachine washingMachine = new WashingMachine(
-                this.ID++,
+                id,
                 null,
                 createConsumption(),
                 100,

@@ -8,9 +8,9 @@ import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 public class WindowFactory extends DeviceFactory {
 
     @Override
-    public Device createDevice() {
+    public Device createDevice(int id) {
         return new Window(
-                ID,
+                id,
                 createDocumentation(),
                 createConsumption(),
                 100,

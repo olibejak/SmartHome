@@ -11,9 +11,9 @@ import java.util.ArrayList;
 public class FridgeFactory extends DeviceFactory {
 
     @Override
-    public Device createDevice() {
+    public Device createDevice(int id) {
         Fridge fridge = new Fridge(
-                ID++,
+                id,
                 null,
                 createConsumption(),
                 10,

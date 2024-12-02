@@ -1,0 +1,17 @@
+{
+  "floors": [
+    {
+      "rooms": [
+        {
+          "type": "LIVING_ROOM",
+          "devices": [
+            {
+              "id": 1,
+              "type": "WINDOW"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

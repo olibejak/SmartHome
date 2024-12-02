@@ -11,9 +11,9 @@ import java.util.ArrayList;
 public class DishwasherFactory extends DeviceFactory {
 
         @Override
-        public Device createDevice() {
+        public Device createDevice(int id) {
             Dishwasher dishwasher = new Dishwasher(
-                    ID++,
+                    id,
                     null,
                     createConsumption(),
                     5,

@@ -9,9 +9,9 @@ import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 public class TelevisionFactory extends DeviceFactory {
 
     @Override
-    public Device createDevice() {
+    public Device createDevice(int id) {
         Television television = new Television(
-                ID++,
+                id,
                 null,
                 createConsumption(),
                 10,

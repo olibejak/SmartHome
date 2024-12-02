@@ -1,17 +1,20 @@
 package cz.cvut.fel.omo.house;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 
+//@NoArgsConstructor(force = true)
 @Getter
+@Setter
 public class Floor implements ConfigurationReport {
     private final int floorNumber;
     private final ArrayList<Room> rooms;
 
-    public Floor(int floorNumber, ArrayList<Room> rooms) {
+    public Floor(int floorNumber) {
         this.floorNumber = floorNumber;
-        this.rooms = rooms;
+        this.rooms = new ArrayList<>();
     }
 
     @Override

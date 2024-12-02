@@ -9,9 +9,9 @@ import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 public class OvenFactory extends DeviceFactory {
 
     @Override
-    public Device createDevice() {
+    public Device createDevice(int id) {
         Oven oven = new Oven(
-                ID++,
+                id,
                 createDocumentation(),
                 createConsumption(),
                 10,

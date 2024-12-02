@@ -9,9 +9,9 @@ import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 public class RecordPlayerFactory extends DeviceFactory {
 
     @Override
-    public Device createDevice() {
+    public Device createDevice(int id) {
         RecordPlayer recordPlayer = new RecordPlayer(
-                ID++,
+                id,
                 null,
                 createConsumption(),
                 10

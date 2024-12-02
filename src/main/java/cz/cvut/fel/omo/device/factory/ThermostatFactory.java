@@ -8,9 +8,9 @@ import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 public class ThermostatFactory extends DeviceFactory {
 
     @Override
-    public Device createDevice() {
+    public Device createDevice(int id) {
         return new Thermostat(
-                ID,
+                id,
                 createDocumentation(),
                 createConsumption(),
                 100,

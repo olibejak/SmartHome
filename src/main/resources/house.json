@@ -11,6 +11,37 @@
               "durability": 100
             }
           ]
+        },
+        {
+          "type": "KITCHEN",
+          "devices": [
+            {
+              "id": 1,
+              "type": "WINDOW"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rooms": [
+        {
+          "type": "BEDROOM",
+          "devices": [
+            {
+              "id": 1,
+              "type": "WINDOW"
+            }
+          ]
+        },
+        {
+          "type": "TOILET",
+          "devices": [
+            {
+              "id": 1,
+              "type": "WINDOW"
+            }
+          ]
         }
       ]
     }

@@ -6,7 +6,7 @@ import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 
-public class WashingMachineFactory extends DeviceFactory {
+public class WashingMachineFactory implements DeviceFactory {
 
     @Override
     public Device createDevice(int id) {
@@ -22,7 +22,7 @@ public class WashingMachineFactory extends DeviceFactory {
     }
 
     @Override
-    Consumption createConsumption() {
+    public Consumption createConsumption() {
         return new Consumption(
                 0.1,
                 0.5,
@@ -32,7 +32,7 @@ public class WashingMachineFactory extends DeviceFactory {
     }
 
     @Override
-    DeviceDocumentation createDocumentation() {
+    public DeviceDocumentation createDocumentation() {
         return new DeviceDocumentation(
                 "WM-2023",
                 "WashingTech",

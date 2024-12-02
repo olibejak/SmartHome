@@ -5,7 +5,7 @@ import cz.cvut.fel.omo.device.Thermostat;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 
-public class ThermostatFactory extends DeviceFactory {
+public class ThermostatFactory implements DeviceFactory {
 
     @Override
     public Device createDevice(int id) {

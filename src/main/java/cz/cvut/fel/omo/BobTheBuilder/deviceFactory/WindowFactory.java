@@ -5,7 +5,7 @@ import cz.cvut.fel.omo.device.Window;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 
-public class WindowFactory extends DeviceFactory {
+public class WindowFactory implements DeviceFactory {
 
     @Override
     public Device createDevice(int id) {

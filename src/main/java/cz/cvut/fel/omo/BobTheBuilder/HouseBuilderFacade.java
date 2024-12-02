@@ -20,17 +20,23 @@ import java.util.ArrayList;
 
 import static java.util.Objects.nonNull;
 
+/**
+ * Facade for building a house using house, floor, room builders and device factory
+ */
 public class HouseBuilderFacade {
-
-    private final HouseLoader houseLoader = new HouseLoader();
 
     GlobalLogger logger = GlobalLogger.getInstance();
 
+    /**
+     * Builds a house from a JSON file
+     * @param filePath path to the JSON file
+     * @return house built from the JSON file
+     */
     public House buildHouseFromJson(@NonNull String filePath) {
         HouseDTO houseDTO;
 
         try {
-            houseDTO = houseLoader.loadHouseDTOFromJson(filePath);
+            houseDTO = HouseLoader.loadHouseDTOFromJson(filePath);
         } catch (IOException e) {
             logger.error("Error while building house from JSON file: " + e.getMessage());
             return null;
@@ -42,7 +48,12 @@ public class HouseBuilderFacade {
 
     }
 
-    private ArrayList<Floor> buildFloors(HouseDTO houseDTO) {
+    /**
+     * Builds floors from a house DTO
+     * @param houseDTO house DTO
+     * @return list of floors
+     */
+    private ArrayList<Floor> buildFloors(@NonNull HouseDTO houseDTO) {
         int floorNumber = -1;
         ArrayList<Floor> floors = new ArrayList<>();
         for (FloorDTO floorDTO : houseDTO.getFloors()) {
@@ -55,7 +66,13 @@ public class HouseBuilderFacade {
         return floors;
     }
 
-    private ArrayList<Room> buildRooms(FloorDTO floorDTO, int floorNumber) {
+    /**
+     * Builds rooms from a floor DTO
+     * @param floorDTO floor DTO
+     * @param floorNumber number of the floor
+     * @return list of rooms
+     */
+    private ArrayList<Room> buildRooms(@NonNull FloorDTO floorDTO, int floorNumber) {
         int roomId = (floorNumber * 100) - 1;
         ArrayList<Room> rooms = new ArrayList<>();
         for (RoomDTO roomDTO : floorDTO.getRooms()) {
@@ -69,7 +86,12 @@ public class HouseBuilderFacade {
         return rooms;
     }
 
-    private ArrayList<Device> buildDevices(RoomDTO roomDTO) {
+    /**
+     * Builds devices from a room DTO
+     * @param roomDTO room DTO
+     * @return list of devices
+     */
+    private ArrayList<Device> buildDevices(@NonNull RoomDTO roomDTO) {
         ArrayList<Device> devices = new ArrayList<>();
         for (DeviceDTO deviceDTO : roomDTO.getDevices()) {
             Device device = createDevice(deviceDTO);
@@ -80,6 +102,11 @@ public class HouseBuilderFacade {
         return devices;
     }
 
+    /**
+     * Creates a device from a device DTO
+     * @param deviceDTO device DTO
+     * @return device
+     */
     private Device createDevice(DeviceDTO deviceDTO) {
         switch (deviceDTO.getType()){
             case DISHWASHER -> {
@@ -107,7 +134,7 @@ public class HouseBuilderFacade {
                 return new WindowFactory().createDevice(deviceDTO.getId());
             }
             default -> {
-                logger.error("Unsupported device type");
+                logger.error("Unsupported device type occurred while building house");
                 return null;
             }
         }

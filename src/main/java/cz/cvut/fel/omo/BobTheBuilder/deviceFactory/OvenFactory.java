@@ -6,7 +6,7 @@ import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 
-public class OvenFactory extends DeviceFactory {
+public class OvenFactory implements DeviceFactory {
 
     @Override
     public Device createDevice(int id) {

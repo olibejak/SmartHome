@@ -6,7 +6,7 @@ import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 
-public class RecordPlayerFactory extends DeviceFactory {
+public class RecordPlayerFactory implements DeviceFactory {
 
     @Override
     public Device createDevice(int id) {

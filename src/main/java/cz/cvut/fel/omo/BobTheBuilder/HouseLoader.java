@@ -7,9 +7,18 @@ import lombok.NonNull;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Class for loading house from different sources
+ */
 public class HouseLoader {
 
-    public HouseDTO loadHouseDTOFromJson(@NonNull String filePath) throws IOException {
+    /**
+     * Load house from JSON file
+     * @param filePath path to JSON file
+     * @return HouseDTO object
+     * @throws IOException if file is not found
+     */
+    public static HouseDTO loadHouseDTOFromJson(@NonNull String filePath) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
             return objectMapper.readValue(new File(filePath), HouseDTO.class);
     }

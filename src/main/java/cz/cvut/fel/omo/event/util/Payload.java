@@ -25,4 +25,27 @@ public class Payload {
     public Payload(Integer roomID) {
         this.roomID = roomID;
     }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private Integer roomID;
+        private Integer deviceID;
+
+        public Builder roomID(Integer roomID) {
+            this.roomID = roomID;
+            return this;
+        }
+
+        public Builder deviceID(Integer deviceID) {
+            this.deviceID = deviceID;
+            return this;
+        }
+
+        public Payload build() {
+            return new Payload(roomID, deviceID);
+        }
+    }
 }

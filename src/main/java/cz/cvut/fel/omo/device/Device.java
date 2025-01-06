@@ -1,6 +1,7 @@
 package cz.cvut.fel.omo.device;
 
 import cz.cvut.fel.omo.device.state.DeviceState;
+import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
@@ -27,10 +28,6 @@ public abstract class Device {
         this.durability = durability;
         this.logger = GlobalLogger.getInstance();
     }
-
-//    public Event generateEvent() {
-//
-//    }
 
     /**
      * Change state of the device
@@ -59,5 +56,20 @@ public abstract class Device {
     }
 
     public abstract String accept(DeviceVisitor visitor);
+
+    public void setDurability(int durability) {
+        if (durability <= 0) {
+            this.durability = 0;
+            handleBreakage();
+        }
+        else
+           this.durability = durability;
+    }
+
+    private void handleBreakage() {
+        logger.info(this + " is broken");
+        changeState(new OffDeviceState(this));
+
+    }
 
 }

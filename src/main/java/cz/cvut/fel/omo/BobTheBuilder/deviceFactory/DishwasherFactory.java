@@ -5,10 +5,15 @@ import cz.cvut.fel.omo.device.Dishwasher;
 import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
+import cz.cvut.fel.omo.event.eventManager.EventQueue;
 
 public class DishwasherFactory extends DeviceFactory {
 
-        @Override
+    public DishwasherFactory(EventQueue eventQueue) {
+        super(eventQueue);
+    }
+
+    @Override
         public Device createDevice(int id) {
             Dishwasher dishwasher = new Dishwasher(
                     id,

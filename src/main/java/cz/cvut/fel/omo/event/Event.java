@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.event;
 
+import cz.cvut.fel.omo.event.util.Payload;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,8 +8,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public abstract class Event {
+public class Event {
 
-    private EventCreator creator;
     private EventType type;
+    private Payload payload;
 }

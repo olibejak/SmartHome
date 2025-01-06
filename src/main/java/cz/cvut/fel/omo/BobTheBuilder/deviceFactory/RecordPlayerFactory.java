@@ -5,8 +5,13 @@ import cz.cvut.fel.omo.device.RecordPlayer;
 import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
+import cz.cvut.fel.omo.event.eventManager.EventQueue;
 
 public class RecordPlayerFactory extends DeviceFactory {
+
+    public RecordPlayerFactory(EventQueue eventQueue) {
+        super(eventQueue);
+    }
 
     @Override
     public Device createDevice(int id) {

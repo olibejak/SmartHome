@@ -9,6 +9,8 @@ import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.FloorBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.HouseBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.RoomBuilder;
 import cz.cvut.fel.omo.device.Device;
+import cz.cvut.fel.omo.event.eventManager.EventManager;
+import cz.cvut.fel.omo.event.eventManager.EventQueue;
 import cz.cvut.fel.omo.house.Floor;
 import cz.cvut.fel.omo.house.House;
 import cz.cvut.fel.omo.house.Room;
@@ -23,6 +25,8 @@ import static java.util.Objects.nonNull;
 public class HouseBuilderFacade {
 
     private final HouseLoader houseLoader = new HouseLoader();
+    private final EventManager eventManager = new EventManager();
+    private final EventQueue eventQueue = new EventQueue(eventManager);
 
     GlobalLogger logger = GlobalLogger.getInstance();
 
@@ -83,28 +87,28 @@ public class HouseBuilderFacade {
     private Device createDevice(DeviceDTO deviceDTO) {
         switch (deviceDTO.getType()){
             case DISHWASHER -> {
-                return new DishwasherFactory().createDevice(deviceDTO.getId());
+                return new DishwasherFactory(eventQueue).createDevice(deviceDTO.getId());
             }
             case FRIDGE -> {
-                return new FridgeFactory().createDevice(deviceDTO.getId());
+                return new FridgeFactory(eventQueue).createDevice(deviceDTO.getId());
             }
             case OVEN -> {
-                return new OvenFactory().createDevice(deviceDTO.getId());
+                return new OvenFactory(eventQueue).createDevice(deviceDTO.getId());
             }
             case RECORD_PLAYER -> {
-                return new RecordPlayerFactory().createDevice(deviceDTO.getId());
+                return new RecordPlayerFactory(eventQueue).createDevice(deviceDTO.getId());
             }
             case TELEVISION -> {
-                return new TelevisionFactory().createDevice(deviceDTO.getId());
+                return new TelevisionFactory(eventQueue).createDevice(deviceDTO.getId());
             }
             case THERMOSTAT -> {
-                return new ThermostatFactory().createDevice(deviceDTO.getId());
+                return new ThermostatFactory(eventQueue).createDevice(deviceDTO.getId());
             }
             case WASHING_MACHINE -> {
-                return new WashingMachineFactory().createDevice(deviceDTO.getId());
+                return new WashingMachineFactory(eventQueue).createDevice(deviceDTO.getId());
             }
             case WINDOW -> {
-                return new WindowFactory().createDevice(deviceDTO.getId());
+                return new WindowFactory(eventQueue).createDevice(deviceDTO.getId());
             }
             default -> {
                 logger.error("Unsupported device type");

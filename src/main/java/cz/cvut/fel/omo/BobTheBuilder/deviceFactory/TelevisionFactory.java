@@ -5,8 +5,13 @@ import cz.cvut.fel.omo.device.Television;
 import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
+import cz.cvut.fel.omo.event.eventManager.EventQueue;
 
 public class TelevisionFactory extends DeviceFactory {
+
+    public TelevisionFactory(EventQueue eventQueue) {
+        super(eventQueue);
+    }
 
     @Override
     public Device createDevice(int id) {

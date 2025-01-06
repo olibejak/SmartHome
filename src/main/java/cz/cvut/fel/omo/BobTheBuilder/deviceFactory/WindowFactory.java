@@ -4,8 +4,13 @@ import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.device.Window;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
+import cz.cvut.fel.omo.event.eventManager.EventQueue;
 
 public class WindowFactory extends DeviceFactory {
+
+    public WindowFactory(EventQueue eventQueue) {
+        super(eventQueue);
+    }
 
     @Override
     public Device createDevice(int id) {

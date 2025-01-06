@@ -14,14 +14,37 @@ public class EventManager {
 
     private HashMap<EventType, ArrayList<EventListener>> listeners;
 
-    public void addListener(EventType eventType, EventListener listener) {
+    /**
+     * Add a listener to the event manager.
+     * @param type the type of event to listen to
+     * @param listener the listener to add
+     */
+    public void subscribe(EventType type, EventListener listener) {
+        listeners.computeIfAbsent(type, k -> new ArrayList<>()).add(listener);
     }
 
-    public void removeListener(EventType eventType, EventListener listener) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    /**
+     * Remove a listener from the event manager.
+     * @param type the type of event to stop listening to
+     * @param listener the listener to remove
+     */
+    public void unsubscribe(EventType type, EventListener listener) {
+        ArrayList<EventListener> eventListeners = listeners.get(type);
+        if (eventListeners != null) {
+            eventListeners.remove(listener);
+        }
     }
 
-    public void notify(Event event) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    /**
+     * Dispatch an event to all listeners based on the event type.
+     * @param event the event to dispatch
+     */
+    public void dispatch(Event event) {
+        ArrayList<EventListener> eventListeners = listeners.get(event.getType());
+        if (eventListeners != null) {
+            for (EventListener listener : eventListeners) {
+                listener.handleEvent(event);
+            }
+        }
     }
 }

@@ -6,6 +6,9 @@ import lombok.Getter;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * Represents a queue of events that are waiting to be dispatched by the EventManager.
+ */
 @Getter
 public class EventQueue {
 
@@ -22,7 +25,7 @@ public class EventQueue {
 
     public synchronized void dispatchEvents() {
         while (!events.isEmpty()) {
-            eventManager.notify(events.poll());
+            eventManager.dispatch(events.poll());
         }
     }
 }

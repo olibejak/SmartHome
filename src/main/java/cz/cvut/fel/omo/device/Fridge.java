@@ -1,24 +1,18 @@
 package cz.cvut.fel.omo.device;
 
-import cz.cvut.fel.omo.device.util.Consumption;
-import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
+@Getter
+@NoArgsConstructor
 public class Fridge extends StorageDevice<Fridge.Food> {
 
-    private final double minTemperature;
-    private final double maxTemperature;
-    @Getter
+    private double minTemperature;
+    private double maxTemperature;
     private double currentTemperature;
-
-    public Fridge(int id, DeviceDocumentation documentation, Consumption consumption, int durability, double maxLoad,
-                  double minTemperature, double maxTemperature) {
-        super(id, documentation, consumption, durability, maxLoad);
-        this.minTemperature = minTemperature;
-        this.maxTemperature = maxTemperature;
-        this.currentTemperature = ( minTemperature + maxTemperature ) / 2;
-    }
 
     @Override
     public String accept(DeviceVisitor visitor) {

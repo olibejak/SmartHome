@@ -7,8 +7,6 @@ import java.util.ArrayList;
 public abstract class StorageDeviceBuilder<T extends StorageDeviceBuilder<T, D>, D extends StorageDevice>
         extends DeviceBuilder<T, D> {
 
-    protected StorageDevice<D> device;
-
     public StorageDeviceBuilder() {
         reset();
     }

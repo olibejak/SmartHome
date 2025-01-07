@@ -4,16 +4,15 @@ import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
+@NoArgsConstructor
 public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
 
     private boolean isClean;
-
-    public Dishwasher(int id, DeviceDocumentation documentation, Consumption consumption, int durability, int maxLoad) {
-        super(id, documentation, consumption, durability, maxLoad);
-        this.isClean = false;
-    }
 
     public void wash() {
         if (items.isEmpty()) {

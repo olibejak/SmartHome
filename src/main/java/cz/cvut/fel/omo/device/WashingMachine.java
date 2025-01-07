@@ -3,16 +3,16 @@ package cz.cvut.fel.omo.device;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
+@Getter
+@NoArgsConstructor
 public class WashingMachine extends StorageDevice<WashingMachine.Wash> {
 
     private boolean isClean;
-
-    public WashingMachine(int id, DeviceDocumentation documentation, Consumption consumption, int durability,
-                           int maxLoad) {
-        super(id, documentation, consumption, durability, maxLoad);
-        this.isClean = false;
-    }
 
     @Override
     public void turnOn() {

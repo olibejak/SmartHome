@@ -1,49 +1,50 @@
-package cz.cvut.fel.omo.BobTheBuilder.deviceFactory;
+package cz.cvut.fel.omo.BobTheBuilder.deviceCreator.strategy;
 
 import cz.cvut.fel.omo.device.Device;
-import cz.cvut.fel.omo.device.RecordPlayer;
+import cz.cvut.fel.omo.device.Television;
 import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
 
-public class RecordPlayerFactory implements DeviceFactory {
+public class TelevisionFactory implements DeviceFactory {
 
-    public RecordPlayerFactory(EventQueue eventQueue) {
+    public TelevisionFactory(EventQueue eventQueue) {
         super(eventQueue);
     }
 
     @Override
     public Device createDevice(int id) {
-        RecordPlayer recordPlayer = new RecordPlayer(
+        Television television = new Television(
                 id,
                 null,
                 createConsumption(),
-                10
+                10,
+                1
         );
-        recordPlayer.insertRecord("Weezer", "Weezer");
-        recordPlayer.changeState(new OffDeviceState(recordPlayer));
-        return recordPlayer;
+        television.changeState(new OffDeviceState(television));
+        return television;
     }
 
     @Override
     public Consumption createConsumption() {
         return new Consumption(
-                0.1,
                 1,
+                2,
                 0,
-                0);
+                0
+        );
     }
 
     @Override
     public DeviceDocumentation createDocumentation() {
         return new DeviceDocumentation(
-                "Model",
-                "Manufacturer",
-                10,
-                "Manual",
-                true,
-                "Warranty");
+                "model",
+                "manufacturer",
+                0,
+                "manualContent",
+                false,
+                "warrantyCertificate");
     }
 
 

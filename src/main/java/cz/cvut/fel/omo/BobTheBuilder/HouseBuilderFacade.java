@@ -4,7 +4,8 @@ import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.FloorDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.HouseDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.RoomDTO;
-import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.*;
+import cz.cvut.fel.omo.BobTheBuilder.deviceCreator.*;
+import cz.cvut.fel.omo.BobTheBuilder.deviceCreator.strategy.*;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.FloorBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.HouseBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.RoomBuilder;
@@ -30,6 +31,7 @@ public class HouseBuilderFacade {
     private final HouseLoader houseLoader = new HouseLoader();
     private final EventManager eventManager = new EventManager();
     private final EventQueue eventQueue = new EventQueue(eventManager);
+    private final DeviceFactoryRegistry deviceFactoryRegistry = new DeviceFactoryRegistry(eventQueue);
 
     GlobalLogger logger = GlobalLogger.getInstance();
 

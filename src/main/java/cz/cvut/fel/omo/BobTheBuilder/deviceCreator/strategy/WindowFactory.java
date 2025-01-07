@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.BobTheBuilder.deviceFactory;
+package cz.cvut.fel.omo.BobTheBuilder.deviceCreator.strategy;
 
 import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.device.Window;

@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
+package cz.cvut.fel.omo.BobTheBuilder.deviceCreator.deviceBuilder;
 
 import cz.cvut.fel.omo.device.Television;
 

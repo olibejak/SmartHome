@@ -1,9 +1,10 @@
-package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
+package cz.cvut.fel.omo.BobTheBuilder.deviceCreator.deviceBuilder;
 
 import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.device.state.DeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
+import cz.cvut.fel.omo.event.eventManager.EventQueue;
 
 public abstract class DeviceBuilder<T extends DeviceBuilder <T,D>, D extends Device> {
 
@@ -11,6 +12,11 @@ public abstract class DeviceBuilder<T extends DeviceBuilder <T,D>, D extends Dev
 
     public DeviceBuilder() {
         reset();
+    }
+
+    public T eventQueue(EventQueue eventQueue) {
+        device.setEventQueue(eventQueue);
+        return self();
     }
 
     public T id(int id) {

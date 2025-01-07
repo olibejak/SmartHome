@@ -5,6 +5,7 @@ import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
+import cz.cvut.fel.omo.event.eventManager.EventQueue;
 import cz.cvut.fel.omo.logger.GlobalLogger;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ import lombok.Setter;
 public abstract class Device {
 
     protected GlobalLogger logger = GlobalLogger.getInstance();
+    protected EventQueue eventQueue;
 
     protected int id;
     private DeviceState state;

@@ -1,30 +1,24 @@
-package cz.cvut.fel.omo.BobTheBuilder.deviceFactory;
+package cz.cvut.fel.omo.BobTheBuilder.deviceCreator.strategy;
 
+import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceDTO;
+import cz.cvut.fel.omo.BobTheBuilder.deviceCreator.deviceBuilder.DishwasherBuilder;
 import cz.cvut.fel.omo.device.Device;
-import cz.cvut.fel.omo.device.Dishwasher;
-import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
-import cz.cvut.fel.omo.event.eventManager.EventQueue;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class DishwasherFactory implements DeviceFactory {
 
-    public DishwasherFactory(EventQueue eventQueue) {
-        super(eventQueue);
-    }
-
     @Override
-        public Device createDevice(int id) {
-            Dishwasher dishwasher = new Dishwasher(
-                    id,
-                    null,
-                    createConsumption(),
-                    5,
-                    25
-            );
-            dishwasher.changeState(new OffDeviceState(dishwasher));
-            return dishwasher;
-        }
+    public Device createDevice(DeviceDTO deviceDTO) {
+        return new DishwasherBuilder()
+                .id(deviceDTO.getId())
+                .consumption(createConsumption())
+                .documentation(createDocumentation())
+
+                .build();
+    }
 
         @Override
         public Consumption createConsumption() {

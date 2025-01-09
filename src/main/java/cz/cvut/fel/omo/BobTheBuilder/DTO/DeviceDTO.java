@@ -15,5 +15,4 @@ public class DeviceDTO {
 
     private int id;
     private DeviceType type;
-    private Map<String, Object> specificConfig;
 }

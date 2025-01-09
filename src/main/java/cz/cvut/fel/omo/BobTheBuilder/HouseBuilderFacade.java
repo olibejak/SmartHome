@@ -5,7 +5,6 @@ import cz.cvut.fel.omo.BobTheBuilder.DTO.FloorDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.HouseDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.RoomDTO;
 import cz.cvut.fel.omo.BobTheBuilder.deviceCreator.*;
-import cz.cvut.fel.omo.BobTheBuilder.deviceCreator.strategy.*;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.FloorBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.HouseBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.RoomBuilder;
@@ -28,10 +27,15 @@ import static java.util.Objects.nonNull;
  */
 public class HouseBuilderFacade {
 
-    private final HouseLoader houseLoader = new HouseLoader();
-    private final EventManager eventManager = new EventManager();
-    private final EventQueue eventQueue = new EventQueue(eventManager);
-    private final DeviceFactoryRegistry deviceFactoryRegistry = new DeviceFactoryRegistry(eventQueue);
+    private final EventManager eventManager;
+    private final EventQueue eventQueue;
+    private final DeviceFactoryRegistry deviceFactoryRegistry;
+
+    public HouseBuilderFacade() {
+        this.eventManager = new EventManager();
+        this.eventQueue = new EventQueue(eventManager);
+        this.deviceFactoryRegistry = HouseLoader.populateDeviceFactoryRegistry(new DeviceFactoryRegistry(eventQueue));
+    }
 
     GlobalLogger logger = GlobalLogger.getInstance();
 
@@ -87,7 +91,7 @@ public class HouseBuilderFacade {
                 rooms.add(
                     new RoomBuilder().reset(roomId++)
                             .setRoomType(roomDTO.getType())
-                            .addDevices(buildDevices(roomDTO))
+                            .addDevices(buildDevices(roomId, roomDTO))
                             .build()
             );
         }
@@ -99,10 +103,10 @@ public class HouseBuilderFacade {
      * @param roomDTO room DTO
      * @return list of devices
      */
-    private ArrayList<Device> buildDevices(@NonNull RoomDTO roomDTO) {
+    private ArrayList<Device> buildDevices(int roomId, @NonNull RoomDTO roomDTO) {
         ArrayList<Device> devices = new ArrayList<>();
         for (DeviceDTO deviceDTO : roomDTO.getDevices()) {
-            Device device = createDevice(deviceDTO);
+            Device device = createDevice(deviceDTO, roomId);
             if (nonNull(device)) {
                 devices.add(device);
             }
@@ -113,38 +117,10 @@ public class HouseBuilderFacade {
     /**
      * Creates a device from a device DTO
      * @param deviceDTO device DTO
+     * @param roomId ID of the room were the device is placed
      * @return device
      */
-    private Device createDevice(DeviceDTO deviceDTO) {
-        switch (deviceDTO.getType()){
-            case DISHWASHER -> {
-                return new DishwasherFactory(eventQueue).createDevice(deviceDTO.getId());
-            }
-            case FRIDGE -> {
-                return new FridgeFactory(eventQueue).createDevice(deviceDTO.getId());
-            }
-            case OVEN -> {
-                return new OvenFactory(eventQueue).createDevice(deviceDTO.getId());
-            }
-            case RECORD_PLAYER -> {
-                return new RecordPlayerFactory(eventQueue).createDevice(deviceDTO.getId());
-            }
-            case TELEVISION -> {
-                return new TelevisionFactory(eventQueue).createDevice(deviceDTO.getId());
-            }
-            case THERMOSTAT -> {
-                return new ThermostatFactory(eventQueue).createDevice(deviceDTO.getId());
-            }
-            case WASHING_MACHINE -> {
-                return new WashingMachineFactory(eventQueue).createDevice(deviceDTO.getId());
-            }
-            case WINDOW -> {
-                return new WindowFactory(eventQueue).createDevice(deviceDTO.getId());
-            }
-            default -> {
-                logger.error("Unsupported device type occurred while building house");
-                return null;
-            }
-        }
+    private Device createDevice(DeviceDTO deviceDTO, int roomId) {
+        return deviceFactoryRegistry.createDevice(deviceDTO, roomId);
     }
 }

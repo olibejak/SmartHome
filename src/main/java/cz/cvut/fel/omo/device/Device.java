@@ -21,9 +21,10 @@ public abstract class Device {
 
     protected int id;
     private DeviceState state;
-    private DeviceDocumentation documentation;
     private Consumption consumption;
     private int durability;
+    private boolean isRepairable;
+    private int roomID;
 
     /**
      * Change state of the device

@@ -7,6 +7,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class SportEquipment {
-    private SportType type;
+public abstract class SportEquipment {
+    protected boolean isAvailable;
+    protected int usageCount;
+
+    public abstract String accept(SportEquipmentVisitor visitor);
 }

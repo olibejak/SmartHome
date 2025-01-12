@@ -1,15 +1,22 @@
 package cz.cvut.fel.omo.equipment;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@AllArgsConstructor
 @Getter
 @Setter
-public class Vehicle {
-    private String model;
-    private int yearOfManufacturing;
-    private String color;
-    private VehicleType type;
+public abstract class Vehicle {
+    protected String model;
+    protected int yearOfManufacturing;
+    protected String color;
+    protected boolean isAvailable;
+
+    public Vehicle(String model, int yearOfManufacturing, String color) {
+        this.model = model;
+        this.yearOfManufacturing = yearOfManufacturing;
+        this.color = color;
+        this.isAvailable = true;
+    }
+
+    public abstract String accept(VehicleVisitor visitor);
 }

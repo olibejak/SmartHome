@@ -1,14 +1,8 @@
 package cz.cvut.fel.omo;
 
-import cz.cvut.fel.omo.BobTheBuilder.HouseBuilderFacade;
-import cz.cvut.fel.omo.BobTheBuilder.DTO.HouseDTO;
-import cz.cvut.fel.omo.device.Device;
-import cz.cvut.fel.omo.entity.Dog;
-import cz.cvut.fel.omo.entity.Mom;
-import cz.cvut.fel.omo.house.House;
-import cz.cvut.fel.omo.house.report.ConsumptionReport;
+import cz.cvut.fel.omo.entity.pet.Dog;
+import cz.cvut.fel.omo.entity.person.Mom;
 
-import static java.util.Objects.nonNull;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -84,24 +78,21 @@ public class Main {
 //            }
 //        }
 
-        // Initialize entities
-        Mom mom = new Mom("Alice", 35, 1); // Name, age, roomID
-        Dog dog = new Dog("Buddy", 3, 1);
+        // Entity interaction showcase
+        Mom alice = new Mom("Alice", 35, 1);
+        Mom sarah = new Mom("Sarah", 30, 1);
+        Dog buddy = new Dog("Buddy", 3, 1);
+        Dog max = new Dog("Max", 5, 1);
 
-        // Mom interacts with Dog
-        System.out.println("Mom interacts with Dog:");
-        mom.interactWith(dog);
+        alice.interactWith(alice);
+        alice.interactWith(sarah);
+        alice.interactWith(buddy);
 
-        // Dog interacts with Mom
-        System.out.println("Dog interacts with Mom:");
-        dog.interactWith(mom);
+        buddy.interactWith(buddy);
+        buddy.interactWith(max);
+        buddy.interactWith(alice);
 
-        // Self-interaction checks
-        System.out.println("Mom tries to interact with herself:");
-        mom.interactWith(mom);
 
-        System.out.println("Dog tries to interact with itself:");
-        dog.interactWith(dog);
 
     }
 }

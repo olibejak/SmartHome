@@ -1,6 +1,7 @@
-package cz.cvut.fel.omo.entity;
+package cz.cvut.fel.omo.entity.person;
 
 import cz.cvut.fel.omo.device.*;
+import cz.cvut.fel.omo.entity.pet.*;
 
 public class Mom extends Person {
     public Mom(String name, int age, int roomID) {
@@ -21,8 +22,43 @@ public class Mom extends Person {
     }
 
     @Override
+    public String visitDad(Dad dad) {
+        return "";
+    }
+
+    @Override
+    public String visitSon(Son son) {
+        return "";
+    }
+
+    @Override
+    public String visitDaughter(Daughter daughter) {
+        return "";
+    }
+
+    @Override
+    public String visitGrandma(Grandma grandma) {
+        return "";
+    }
+
+    @Override
+    public String visitGrandpa(Grandpa grandpa) {
+        return "";
+    }
+
+    @Override
     public String visitDog(Dog dog) {
         return "Mom pets the dog";
+    }
+
+    @Override
+    public String visitCat(Cat cat) {
+        return "";
+    }
+
+    @Override
+    public String visitHamster(Hamster hamster) {
+        return "";
     }
 
     @Override

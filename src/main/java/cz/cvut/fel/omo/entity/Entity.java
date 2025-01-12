@@ -1,5 +1,9 @@
 package cz.cvut.fel.omo.entity;
 
+import cz.cvut.fel.omo.entity.person.Person;
+import cz.cvut.fel.omo.entity.person.PersonVisitor;
+import cz.cvut.fel.omo.entity.pet.Pet;
+import cz.cvut.fel.omo.entity.pet.PetVisitor;
 import cz.cvut.fel.omo.equipment.SportEquipment;
 import cz.cvut.fel.omo.equipment.Vehicle;
 import cz.cvut.fel.omo.logger.GlobalLogger;

@@ -9,14 +9,12 @@ public abstract class Vehicle {
     protected String model;
     protected int yearOfManufacturing;
     protected String color;
-    protected VehicleType type;
     protected boolean isAvailable;
 
-    public Vehicle(String model, int yearOfManufacturing, String color, VehicleType type) {
+    public Vehicle(String model, int yearOfManufacturing, String color) {
         this.model = model;
         this.yearOfManufacturing = yearOfManufacturing;
         this.color = color;
-        this.type = type;
         this.isAvailable = true;
     }
 

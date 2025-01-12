@@ -6,8 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Bicycle extends Vehicle {
-    public Bicycle(String model, int yearOfManufacturing, String color, VehicleType type) {
-        super(model, yearOfManufacturing, color, type);
+    private int gearCount;
+
+    public Bicycle(String model, int yearOfManufacturing, String color, int gearCount) {
+        super(model, yearOfManufacturing, color);
+        this.gearCount = gearCount;
     }
 
     @Override

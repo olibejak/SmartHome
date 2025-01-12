@@ -3,6 +3,8 @@ package cz.cvut.fel.omo;
 import cz.cvut.fel.omo.BobTheBuilder.HouseBuilderFacade;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.HouseDTO;
 import cz.cvut.fel.omo.device.Device;
+import cz.cvut.fel.omo.entity.Dog;
+import cz.cvut.fel.omo.entity.Mom;
 import cz.cvut.fel.omo.house.House;
 import cz.cvut.fel.omo.house.report.ConsumptionReport;
 
@@ -13,22 +15,22 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class Main {
     public static void main(String[] args) {
 
-       ConsumptionReport ConsumptionReport = new ConsumptionReport();
-       HouseBuilderFacade HouseBuilder = new HouseBuilderFacade();
+//       ConsumptionReport ConsumptionReport = new ConsumptionReport();
+//       HouseBuilderFacade HouseBuilder = new HouseBuilderFacade();
+//
+//       House house = HouseBuilder.buildHouseFromJson("src/main/resources/house.json");
+//
+//       if(nonNull(house)) {
+//           System.out.println(house);
+//           System.out.println();
+////           System.out.println(house.reportConfiguration());
+////           System.out.println(ConsumptionReport.getConsumptionReport(house));
+//       }
 
-       House house = HouseBuilder.buildHouseFromJson("src/main/resources/house.json");
-
-       if(nonNull(house)) {
-           System.out.println(house);
-           System.out.println();
-//           System.out.println(house.reportConfiguration());
-//           System.out.println(ConsumptionReport.getConsumptionReport(house));
-       }
-
-        System.out.println(house);
-        System.out.println();
-        System.out.println(house.reportConfiguration());
-        System.out.println(ConsumptionReport.getConsumptionReport(house));
+//        System.out.println(house);
+//        System.out.println();
+//        System.out.println(house.reportConfiguration());
+//        System.out.println(ConsumptionReport.getConsumptionReport(house));
 //        for (Device device: kitchen.getDevices()) {
 //            device.changeState(new OffDeviceState(device));
 //            device.update();
@@ -43,9 +45,9 @@ public class Main {
 //        }for (Device device: kitchen.getDevices()) {
 //            device.update();
 //        }
-        System.out.println(ConsumptionReport.getConsumptionReport(house));
-        System.out.println(house.getFloorNumbers());
-        System.out.println(house.getRoomIds());
+//        System.out.println(ConsumptionReport.getConsumptionReport(house));
+//        System.out.println(house.getFloorNumbers());
+//        System.out.println(house.getRoomIds());
 
 
         // version 1 - user input
@@ -81,6 +83,25 @@ public class Main {
 //                break;
 //            }
 //        }
+
+        // Initialize entities
+        Mom mom = new Mom("Alice", 35, 1); // Name, age, roomID
+        Dog dog = new Dog("Buddy", 3, 1);
+
+        // Mom interacts with Dog
+        System.out.println("Mom interacts with Dog:");
+        mom.interactWith(dog);
+
+        // Dog interacts with Mom
+        System.out.println("Dog interacts with Mom:");
+        dog.interactWith(mom);
+
+        // Self-interaction checks
+        System.out.println("Mom tries to interact with herself:");
+        mom.interactWith(mom);
+
+        System.out.println("Dog tries to interact with itself:");
+        dog.interactWith(dog);
 
     }
 }

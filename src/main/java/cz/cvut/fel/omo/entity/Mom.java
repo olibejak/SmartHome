@@ -14,12 +14,15 @@ public class Mom extends Person {
     @Override
     public String visitMom(Mom mom) {
         // check if the entity is interacting with itself
-        return "";
+        if (this.equals(mom)) {
+            return "Mom cannot interact with herself";
+        }
+        return "Mom tells hi to other mom";
     }
 
     @Override
     public String visitDog(Dog dog) {
-        return "";
+        return "Mom pets the dog";
     }
 
     @Override

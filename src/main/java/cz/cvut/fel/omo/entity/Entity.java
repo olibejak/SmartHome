@@ -28,11 +28,11 @@ public abstract class Entity implements PersonVisitor, PetVisitor {
     }
 
     public void interactWith(Person person) {
-        person.accept(this);
+        logger.info(person.accept(this));
     }
 
     public void interactWith(Pet pet) {
-        pet.accept(this);
+        logger.info(pet.accept(this));
     }
 
     public void interactWith(Vehicle vehicle) {}

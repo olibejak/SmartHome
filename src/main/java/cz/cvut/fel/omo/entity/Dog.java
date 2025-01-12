@@ -11,12 +11,15 @@ public class Dog extends Pet {
 
     @Override
     public String visitMom(Mom mom) {
-        return "";
+        return "Dog wiggles its tail at mom";
     }
 
     @Override
     public String visitDog(Dog dog) {
         // check if the entity is interacting with itself
-        return "";
+        if (this.equals(dog)) {
+            return "Dog cannot interact with itself";
+        }
+        return "Dog barks at other dog";
     }
 }

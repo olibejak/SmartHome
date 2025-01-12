@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public abstract class Entity {
+public abstract class Entity implements PersonVisitor, PetVisitor {
     protected GlobalLogger logger;
 
     private String name;
@@ -28,18 +28,14 @@ public abstract class Entity {
     }
 
     public void interactWith(Person person) {
-
+        person.accept(this);
     }
 
     public void interactWith(Pet pet) {
-
+        pet.accept(this);
     }
 
-    public void interactWith(Vehicle vehicle) {
+    public void interactWith(Vehicle vehicle) {}
 
-    }
-
-    public void interactWith(SportEquipment sportEquipment) {
-
-    }
+    public void interactWith(SportEquipment sportEquipment) {}
 }

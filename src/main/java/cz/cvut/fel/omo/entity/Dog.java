@@ -9,4 +9,14 @@ public class Dog extends Pet {
     public String accept(PetVisitor visitor) {return visitor.visitDog(this);}
 
 
+    @Override
+    public String visitMom(Mom mom) {
+        return "";
+    }
+
+    @Override
+    public String visitDog(Dog dog) {
+        // check if the entity is interacting with itself
+        return "";
+    }
 }

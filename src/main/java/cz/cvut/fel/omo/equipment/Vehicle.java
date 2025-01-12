@@ -6,11 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public abstract class Vehicle {
-    private String model;
-    private int yearOfManufacturing;
-    private String color;
-    private VehicleType type;
-    private boolean isAvailable;
+    protected String model;
+    protected int yearOfManufacturing;
+    protected String color;
+    protected VehicleType type;
+    protected boolean isAvailable;
 
     public Vehicle(String model, int yearOfManufacturing, String color, VehicleType type) {
         this.model = model;
@@ -19,4 +19,6 @@ public abstract class Vehicle {
         this.type = type;
         this.isAvailable = true;
     }
+
+    public abstract String accept(VehicleVisitor visitor);
 }

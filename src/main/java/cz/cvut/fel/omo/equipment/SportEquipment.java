@@ -1,13 +1,15 @@
 package cz.cvut.fel.omo.equipment;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+@AllArgsConstructor
 @Getter
 @Setter
 public abstract class SportEquipment {
-    private boolean isAvailable;
-    private int usageCount;
+    protected boolean isAvailable;
+    protected int usageCount;
 
     public SportEquipment() {
         this.isAvailable = true;

@@ -8,7 +8,13 @@ import lombok.Setter;
 public class Skis extends SportEquipment {
     private String color;
 
+    public Skis(boolean isAvailable, int usageCount, String color) {
+        super(isAvailable, usageCount);
+        this.color = color;
+    }
+
     public Skis(String color) {
+        super(true, 0);
         this.color = color;
     }
 

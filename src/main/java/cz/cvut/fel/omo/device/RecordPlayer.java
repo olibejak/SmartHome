@@ -13,8 +13,6 @@ import lombok.Setter;
 public class RecordPlayer extends Device{
 
     private Record currentRecord;
-    @Setter
-    private int speed;
 
     @Override
     public String accept(DeviceVisitor visitor) {

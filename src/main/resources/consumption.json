@@ -1,0 +1,60 @@
+{
+  "consumption": [
+    {
+      "type": "DISHWASHER",
+      "electricityIdleRate": 0.1,
+      "electricityActiveRate": 0.5,
+      "gasRate": 0.0,
+      "waterRate": 0.5
+    },
+    {
+      "type": "FRIDGE",
+      "electricityIdleRate": 0.1,
+      "electricityActiveRate": 0.5,
+      "gasRate": 0.0,
+      "waterRate": 0.0
+    },
+    {
+      "type": "OVEN",
+      "electricityIdleRate": 0.1,
+      "electricityActiveRate": 0.5,
+      "gasRate": 0.5,
+      "waterRate": 0.0
+    },
+    {
+      "type": "RECORD_PLAYER",
+      "electricityIdleRate": 0.1,
+      "electricityActiveRate": 0.5,
+      "gasRate": 0.0,
+      "waterRate": 0.0
+    },
+    {
+      "type": "TELEVISION",
+      "electricityIdleRate": 0.1,
+      "electricityActiveRate": 0.5,
+      "gasRate": 0.0,
+      "waterRate": 0.0
+    },
+    {
+      "type": "THERMOSTAT",
+      "electricityIdleRate": 0.1,
+      "electricityActiveRate": 0.5,
+      "gasRate": 0.5,
+      "waterRate": 0.0
+    },
+    {
+      "type": "WASHING_MACHINE",
+      "electricityIdleRate": 0.1,
+      "electricityActiveRate": 0.5,
+      "gasRate": 0.0,
+      "waterRate": 0.5
+    },
+    {
+      "type": "WINDOW",
+      "electricityIdleRate": 0.1,
+      "electricityActiveRate": 0.5,
+      "gasRate": 0.0,
+      "waterRate": 0.0
+    }
+  ]
+}

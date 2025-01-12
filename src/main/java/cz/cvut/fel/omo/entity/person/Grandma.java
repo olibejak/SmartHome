@@ -14,47 +14,50 @@ public class Grandma extends Person {
 
     @Override
     public String visitMom(Mom mom) {
-        return "";
+        return "Grandma thanks Mom for keeping the house lively";
     }
 
     @Override
     public String visitDad(Dad dad) {
-        return "";
+        return "Grandma shares a nostalgic story with Dad";
     }
 
     @Override
     public String visitSon(Son son) {
-        return "";
+        return "Grandma knits something special for Son";
     }
 
     @Override
     public String visitDaughter(Daughter daughter) {
-        return "";
+        return "Grandma admires Daughter's enthusiasm";
     }
 
     @Override
     public String visitGrandma(Grandma grandma) {
-        return "";
+        if (this.equals(grandma)) {
+            return "Grandma cannot interact with herself";
+        }
+        return "Grandma tells hi to other Grandma";
     }
 
     @Override
     public String visitGrandpa(Grandpa grandpa) {
-        return "";
+        return "Grandma reminisces with Grandpa about the past";
     }
 
     @Override
     public String visitDog(Dog dog) {
-        return "";
+        return "Grandma gently scratches the Dog behind its ears";
     }
 
     @Override
     public String visitCat(Cat cat) {
-        return "";
+        return "Grandma watches the Cat curl up on her lap";
     }
 
     @Override
     public String visitHamster(Hamster hamster) {
-        return "";
+        return "Grandma chuckles at the Hamster's antics";
     }
 
     @Override

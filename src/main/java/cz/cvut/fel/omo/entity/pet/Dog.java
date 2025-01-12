@@ -13,50 +13,49 @@ public class Dog extends Pet {
 
     @Override
     public String visitMom(Mom mom) {
-        return "Dog wiggles its tail at mom";
+        return "Dog wags its tail happily at Mom";
     }
 
     @Override
     public String visitDad(Dad dad) {
-        return "";
+        return "Dog barks excitedly at Dad";
     }
 
     @Override
     public String visitSon(Son son) {
-        return "";
+        return "Dog jumps on Son playfully";
     }
 
     @Override
     public String visitDaughter(Daughter daughter) {
-        return "";
+        return "Dog follows Daughter around eagerly";
     }
 
     @Override
     public String visitGrandma(Grandma grandma) {
-        return "";
+        return "Dog rests its head on Grandma's lap";
     }
 
     @Override
     public String visitGrandpa(Grandpa grandpa) {
-        return "";
+        return "Dog brings a ball to Grandpa";
     }
 
     @Override
     public String visitDog(Dog dog) {
-        // check if the entity is interacting with itself
         if (this.equals(dog)) {
             return "Dog cannot interact with itself";
         }
-        return "Dog barks at other dog";
+        return "Dog barks at other Dog";
     }
 
     @Override
     public String visitCat(Cat cat) {
-        return "";
+        return "Dog sniffs the Cat curiously";
     }
 
     @Override
     public String visitHamster(Hamster hamster) {
-        return "";
+        return "Dog watches the Hamster with great interest";
     }
 }

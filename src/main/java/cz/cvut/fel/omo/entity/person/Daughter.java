@@ -14,47 +14,50 @@ public class Daughter extends Person {
 
     @Override
     public String visitMom(Mom mom) {
-        return "";
+        return "Daughter shares her plans with Mom excitedly";
     }
 
     @Override
     public String visitDad(Dad dad) {
-        return "";
+        return "Daughter asks Dad for help with a puzzle";
     }
 
     @Override
     public String visitSon(Son son) {
-        return "";
+        return "Daughter laughs at Son's silly joke";
     }
 
     @Override
     public String visitDaughter(Daughter daughter) {
-        return "";
+        if (this.equals(daughter)) {
+            return "Daughter cannot interact with herself";
+        }
+        return "Daughter tells hi to other Daughter";
     }
 
     @Override
     public String visitGrandma(Grandma grandma) {
-        return "";
+        return "Daughter listens to Grandma's fascinating story";
     }
 
     @Override
     public String visitGrandpa(Grandpa grandpa) {
-        return "";
+        return "Daughter asks Grandpa to teach her something new";
     }
 
     @Override
     public String visitDog(Dog dog) {
-        return "";
+        return "Daughter gives the Dog a big hug";
     }
 
     @Override
     public String visitCat(Cat cat) {
-        return "";
+        return "Daughter tries to make the Cat chase a string";
     }
 
     @Override
     public String visitHamster(Hamster hamster) {
-        return "";
+        return "Daughter watches the Hamster climb its cage";
     }
 
     @Override

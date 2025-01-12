@@ -14,47 +14,50 @@ public class Son extends Person {
 
     @Override
     public String visitMom(Mom mom) {
-        return "";
+        return "Son tells Mom about his latest adventure";
     }
 
     @Override
     public String visitDad(Dad dad) {
-        return "";
+        return "Son challenges Dad to a playful game";
     }
 
     @Override
     public String visitSon(Son son) {
-        return "";
+        if (this.equals(son)) {
+            return "Son cannot interact with himself";
+        }
+        return "Son tells hi to other Son";
     }
 
     @Override
     public String visitDaughter(Daughter daughter) {
-        return "";
+        return "Son teases Daughter with a mischievous grin";
     }
 
     @Override
     public String visitGrandma(Grandma grandma) {
-        return "";
+        return "Son shows Grandma his latest drawing";
     }
 
     @Override
     public String visitGrandpa(Grandpa grandpa) {
-        return "";
+        return "Son asks Grandpa to share a fun story";
     }
 
     @Override
     public String visitDog(Dog dog) {
-        return "";
+        return "Son plays fetch with the Dog";
     }
 
     @Override
     public String visitCat(Cat cat) {
-        return "";
+        return "Son chases the Cat playfully around the room";
     }
 
     @Override
     public String visitHamster(Hamster hamster) {
-        return "";
+        return "Son feeds the Hamster a tiny snack";
     }
 
     @Override

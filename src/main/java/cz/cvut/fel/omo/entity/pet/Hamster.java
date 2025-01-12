@@ -13,46 +13,49 @@ public class Hamster extends Pet {
 
     @Override
     public String visitMom(Mom mom) {
-        return "";
+        return "Hamster squeaks softly as Mom approaches";
     }
 
     @Override
     public String visitDad(Dad dad) {
-        return "";
+        return "Hamster scurries around its cage as Dad watches";
     }
 
     @Override
     public String visitSon(Son son) {
-        return "";
+        return "Hamster takes a treat from Son's hand";
     }
 
     @Override
     public String visitDaughter(Daughter daughter) {
-        return "";
+        return "Hamster climbs onto Daughter's palm";
     }
 
     @Override
     public String visitGrandma(Grandma grandma) {
-        return "";
+        return "Hamster peers out of its tiny house at Grandma";
     }
 
     @Override
     public String visitGrandpa(Grandpa grandpa) {
-        return "";
+        return "Hamster spins on its wheel while Grandpa chuckles";
     }
 
     @Override
     public String visitDog(Dog dog) {
-        return "";
+        return "Hamster stays still as the Dog sniffs the cage";
     }
 
     @Override
     public String visitCat(Cat cat) {
-        return "";
+        return "Hamster hides as the Cat watches intently";
     }
 
     @Override
     public String visitHamster(Hamster hamster) {
-        return "";
+        if (this.equals(hamster)) {
+            return "Hamster cannot interact with itself";
+        }
+        return "Hamster looks at other Hamster";
     }
 }

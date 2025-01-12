@@ -13,46 +13,49 @@ public class Cat extends Pet {
 
     @Override
     public String visitMom(Mom mom) {
-        return "";
+        return "Cat purrs contentedly at Mom's touch";
     }
 
     @Override
     public String visitDad(Dad dad) {
-        return "";
+        return "Cat brushes past Dad's legs";
     }
 
     @Override
     public String visitSon(Son son) {
-        return "";
+        return "Cat gives Son a curious look before running off";
     }
 
     @Override
     public String visitDaughter(Daughter daughter) {
-        return "";
+        return "Cat lets Daughter pick it up briefly";
     }
 
     @Override
     public String visitGrandma(Grandma grandma) {
-        return "";
+        return "Cat naps peacefully near Grandma";
     }
 
     @Override
     public String visitGrandpa(Grandpa grandpa) {
-        return "";
+        return "Cat climbs onto Grandpa's lap and settles down";
     }
 
     @Override
     public String visitDog(Dog dog) {
-        return "";
+        return "Cat bats at the Dog's nose playfully";
     }
 
     @Override
     public String visitCat(Cat cat) {
-        return "";
+        if (this.equals(cat)) {
+            return "Cat cannot interact with itself";
+        }
+        return "Cat meows at other Cat";
     }
 
     @Override
     public String visitHamster(Hamster hamster) {
-        return "";
+        return "Cat watches the Hamster with keen eyes";
     }
 }

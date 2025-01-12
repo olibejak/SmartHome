@@ -14,51 +14,50 @@ public class Mom extends Person {
 
     @Override
     public String visitMom(Mom mom) {
-        // check if the entity is interacting with itself
         if (this.equals(mom)) {
             return "Mom cannot interact with herself";
         }
-        return "Mom tells hi to other mom";
+        return "Mom tells hi to other Mom";
     }
 
     @Override
     public String visitDad(Dad dad) {
-        return "";
+        return "Mom shares a smile with Dad";
     }
 
     @Override
     public String visitSon(Son son) {
-        return "";
+        return "Mom gives Son a gentle hug";
     }
 
     @Override
     public String visitDaughter(Daughter daughter) {
-        return "";
+        return "Mom compliments Daughter's creative idea";
     }
 
     @Override
     public String visitGrandma(Grandma grandma) {
-        return "";
+        return "Mom asks Grandma about her favorite memories";
     }
 
     @Override
     public String visitGrandpa(Grandpa grandpa) {
-        return "";
+        return "Mom listens to Grandpa's wise advice";
     }
 
     @Override
     public String visitDog(Dog dog) {
-        return "Mom pets the dog";
+        return "Mom pets the Dog lovingly";
     }
 
     @Override
     public String visitCat(Cat cat) {
-        return "";
+        return "Mom admires the Cat's graceful movements";
     }
 
     @Override
     public String visitHamster(Hamster hamster) {
-        return "";
+        return "Mom watches the Hamster run on its wheel";
     }
 
     @Override

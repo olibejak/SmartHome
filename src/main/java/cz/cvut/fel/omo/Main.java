@@ -1,7 +1,9 @@
 package cz.cvut.fel.omo;
 
+import cz.cvut.fel.omo.entity.person.*;
+import cz.cvut.fel.omo.entity.pet.Cat;
 import cz.cvut.fel.omo.entity.pet.Dog;
-import cz.cvut.fel.omo.entity.person.Mom;
+import cz.cvut.fel.omo.entity.pet.Hamster;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -92,7 +94,27 @@ public class Main {
         buddy.interactWith(max);
         buddy.interactWith(alice);
 
+        // Family
+        Mom mom = new Mom("Jane", 39, 1);
+        Dad dad = new Dad("John", 41, 1);
+        Son son = new Son("Jake", 9, 1);
+        Daughter daughter = new Daughter("Jessica", 7, 1);
+        Grandma grandma = new Grandma("Janet", 68, 1);
+        Grandpa grandpa = new Grandpa("Joe", 71, 1);
 
+        Dog dog = new Dog("Max", 4, 1);
+        Cat cat = new Cat("Coots", 3, 1);
+        Hamster hamster = new Hamster("Jerry", 2, 1);
+
+        mom.interactWith(dad);
+        dad.interactWith(son);
+        son.interactWith(daughter);
+        daughter.interactWith(grandma);
+        grandma.interactWith(grandpa);
+        grandma.interactWith(dog);
+        dog.interactWith(cat);
+        cat.interactWith(hamster);
+        hamster.interactWith(mom);
 
     }
 }

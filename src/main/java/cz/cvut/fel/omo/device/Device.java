@@ -11,6 +11,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.lang.annotation.Documented;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,6 +24,7 @@ public abstract class Device {
     protected int id;
     private DeviceState state;
     private Consumption consumption;
+    private DeviceDocumentation documentation;
     private int durability;
     private boolean isRepairable;
     private int roomID;
@@ -54,6 +57,8 @@ public abstract class Device {
 
     public abstract String accept(DeviceVisitor visitor);
 
+    protected abstract DeviceDocumentation loadDocumentation();
+
     public void setDurability(int durability) {
         if (durability <= 0) {
             this.durability = 0;
@@ -66,7 +71,13 @@ public abstract class Device {
     private void handleBreakage() {
         logger.info(this + " is broken");
         changeState(new OffDeviceState(this));
-
     }
 
+    public DeviceDocumentation getDocumentation() {
+        if (this.documentation == null) {
+            this.documentation = loadDocumentation();
+            logger.info("Looking for DOCUMENTATION for " + this + '\n' + this.documentation);
+        }
+        return this.documentation;
+    }
 }

@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.BobTheBuilder.deviceCreator.deviceBuilder;
+package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
 
 import cz.cvut.fel.omo.device.StorageDevice;
 

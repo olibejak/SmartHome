@@ -4,13 +4,14 @@ import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.FloorDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.HouseDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.RoomDTO;
-import cz.cvut.fel.omo.BobTheBuilder.deviceCreator.*;
+import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.*;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.FloorBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.HouseBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.RoomBuilder;
 import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.event.eventManager.EventManager;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
+import cz.cvut.fel.omo.exception.MyException;
 import cz.cvut.fel.omo.house.Floor;
 import cz.cvut.fel.omo.house.House;
 import cz.cvut.fel.omo.house.Room;
@@ -30,14 +31,14 @@ public class HouseBuilderFacade {
     private final EventManager eventManager;
     private final EventQueue eventQueue;
     private final DeviceFactoryRegistry deviceFactoryRegistry;
+    private final GlobalLogger logger;
 
     public HouseBuilderFacade() {
         this.eventManager = new EventManager();
         this.eventQueue = new EventQueue(eventManager);
         this.deviceFactoryRegistry = HouseLoader.populateDeviceFactoryRegistry(new DeviceFactoryRegistry(eventQueue));
+        this.logger = GlobalLogger.getInstance();
     }
-
-    GlobalLogger logger = GlobalLogger.getInstance();
 
     /**
      * Builds a house from a JSON file
@@ -51,7 +52,7 @@ public class HouseBuilderFacade {
             houseDTO = HouseLoader.loadHouseDTOFromJson(filePath);
         } catch (IOException e) {
             logger.error("Error while building house from JSON file: " + e.getMessage());
-            return null;
+            throw new MyException("Error while building house from JSON file: " + e.getMessage());
         }
 
         return new HouseBuilder().reset()

@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.BobTheBuilder.deviceCreator.deviceBuilder.stateSetter;
+package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder.stateSetter;
 
 import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.device.state.ActiveDeviceState;

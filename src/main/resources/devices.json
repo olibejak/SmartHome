@@ -1,71 +1,61 @@
 {
-  "devices": [
+  "DISHWASHER":
     {
-      "type": "DISHWASHER",
       "state": "OFF",
       "durability": 100,
-      "isRepairable": true,
       "isClean": false
     },
+  "FRIDGE":
     {
-      "type": "FRIDGE",
       "state": "OFF",
       "durability": 100,
-      "isRepairable": true,
       "maxLoad": 10,
       "currentLoad": 0,
       "minTemperature": 2,
       "maxTemperature": 8,
       "currentTemperature": 5
     },
+  "OVEN":
     {
-      "type": "OVEN",
       "state": "OFF",
       "durability": 100,
-      "isRepairable": true,
       "setting": "BAKE",
       "maxTemperature": 250,
       "currentTemperature": 0
     },
+  "RECORD_PLAYER":
     {
-      "type": "RECORD_PLAYER",
       "state": "OFF",
       "durability": 100,
-      "isRepairable": true,
       "currentRecord": {"name": "Buddy Holly", "artist": "Weezer"}
     },
+  "TELEVISION":
     {
-      "type": "TELEVISION",
       "state": "OFF",
       "durability": 100,
-      "isRepairable": true,
       "channel": 1
     },
+  "THERMOSTAT":
     {
-      "type": "THERMOSTAT",
       "state": "OFF",
       "durability": 100,
-      "isRepairable": true,
       "minTemperature": 20,
       "maxTemperature": 25,
       "currentTemperature": 22
     },
+  "WASHING_MACHINE":
     {
-      "type": "WASHING_MACHINE",
       "state": "OFF",
       "durability": 100,
-      "isRepairable": true,
       "maxLoad": 10,
       "currentLoad": 0,
       "isClean": false
     },
+  "WINDOW":
     {
-      "type": "WINDOW",
       "state": "OFF",
       "durability": 100,
-      "isRepairable": true,
       "hasOpenedCurtain": false,
       "isOpen": false
     }
-  ]
 }

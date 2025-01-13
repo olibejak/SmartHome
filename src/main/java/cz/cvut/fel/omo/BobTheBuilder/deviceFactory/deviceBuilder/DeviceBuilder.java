@@ -1,10 +1,9 @@
-package cz.cvut.fel.omo.BobTheBuilder.deviceCreator.deviceBuilder;
+package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
 
-import cz.cvut.fel.omo.BobTheBuilder.deviceCreator.deviceBuilder.stateSetter.StateSetter;
+import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder.stateSetter.OffStateSetter;
+import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder.stateSetter.StateSetter;
 import cz.cvut.fel.omo.device.Device;
-import cz.cvut.fel.omo.device.state.DeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
-import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
 
 public abstract class DeviceBuilder<T extends DeviceBuilder<T,D>, D extends Device> {

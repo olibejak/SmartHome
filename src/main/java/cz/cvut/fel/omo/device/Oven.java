@@ -1,5 +1,8 @@
 package cz.cvut.fel.omo.device;
 
+import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceType;
+import cz.cvut.fel.omo.device.util.DeviceDocumentation;
+import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,6 +34,11 @@ public class Oven extends Device{
     public void setSetting(RangeSettingType setting) {
         this.setting = setting;
         logger.info(this + " :Setting to " + setting);
+    }
+
+    @Override
+    protected DeviceDocumentation loadDocumentation() {
+        return DeviceDocumentationLoader.getDocumentation(DeviceType.OVEN);
     }
 
     @Override

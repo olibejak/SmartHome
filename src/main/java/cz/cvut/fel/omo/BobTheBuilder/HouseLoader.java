@@ -1,19 +1,23 @@
 package cz.cvut.fel.omo.BobTheBuilder;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceType;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.HouseDTO;
-import cz.cvut.fel.omo.BobTheBuilder.deviceCreator.DeviceFactoryRegistry;
-import cz.cvut.fel.omo.BobTheBuilder.deviceCreator.factoryMethod.*;
+import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.DeviceFactoryRegistry;
+import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.factoryMethod.*;
 import lombok.NonNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Class for loading house and utility from different sources
  */
 public class HouseLoader {
+
+    public static ObjectMapper mapper = new ObjectMapper();
 
     /**
      * Load house from JSON file
@@ -24,6 +28,32 @@ public class HouseLoader {
     public static HouseDTO loadHouseDTOFromJson(@NonNull String filePath) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
             return objectMapper.readValue(new File(filePath), HouseDTO.class);
+    }
+
+    /**
+     * Load utility from JSON file
+     * @param filePath path to JSON file
+     * @return HouseDTO object
+     * @throws IOException if file is not found
+     */
+    public static Map<DeviceType, Map<String, Object>> loadDeviceConfig(@NonNull String filePath) throws IOException {
+        return mapper.readValue(
+                new File(filePath),
+                new TypeReference<>() {}
+        );
+    }
+
+    /**
+     * Load utility from JSON file
+     * @param filePath path to JSON file
+     * @return HouseDTO object
+     * @throws IOException if file is not found
+     */
+    public static Map<DeviceType, Map<String, Integer>> loadDeviceConsumptionConfig(@NonNull String filePath) throws IOException {
+        return mapper.readValue(
+                new File(filePath),
+                new TypeReference<>() {}
+        );
     }
 
     /**

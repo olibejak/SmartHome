@@ -35,9 +35,7 @@ public class House implements ConfigurationReport {
 
     @Override
     public String toString() {
-        return "House{" +
-                "floors=" + floors +
-                '}';
+        return "House{" + "floors=" + floors + '}';
     }
 
     public String reportConfiguration() {

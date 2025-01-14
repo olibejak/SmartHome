@@ -18,78 +18,79 @@ public class Son extends Person {
 
     @Override
     public String visitMom(Mom mom) {
-        return "Son tells Mom about his latest adventure";
+        return "Son " + this.name + " excitedly tells Mom " + mom.getName() + " about his latest adventure in the backyard.";
     }
 
     @Override
     public String visitDad(Dad dad) {
-        return "Son challenges Dad to a playful game";
+        return "Son " + this.name + " challenges Dad " + dad.getName() + " to a playful game of tag.";
     }
 
     @Override
     public String visitSon(Son son) {
         if (this.equals(son)) {
-            return "Son cannot interact with himself";
+            return "Son " + this.name + " cannot interact with himself.";
         }
-        return "Son tells hi to other Son";
+        return "Son " + this.name + " greets his buddy Son " + son.getName() + " with a friendly high-five.";
     }
 
     @Override
     public String visitDaughter(Daughter daughter) {
-        return "Son teases Daughter with a mischievous grin";
+        return "Son " + this.name + " teases Daughter " + daughter.getName() + " with a mischievous grin and runs away.";
     }
 
     @Override
     public String visitGrandma(Grandma grandma) {
-        return "Son shows Grandma his latest drawing";
+        return "Son " + this.name + " proudly shows Grandma " + grandma.getName() + " his latest drawing of a rocket ship.";
     }
 
     @Override
     public String visitGrandpa(Grandpa grandpa) {
-        return "Son asks Grandpa to share a fun story";
+        return "Son " + this.name + " asks Grandpa " + grandpa.getName() + " to share one of his favorite childhood stories.";
     }
 
     @Override
     public String visitDog(Dog dog) {
-        return "Son plays fetch with the Dog";
+        return "Son " + this.name + " plays a lively game of fetch with Dog " + dog.getName() + ", laughing as they race for the ball.";
     }
 
     @Override
     public String visitCat(Cat cat) {
-        return "Son chases the Cat playfully around the room";
+        return "Son " + this.name + " chases Cat " + cat.getName() + " around the room until the Cat leaps to a high perch.";
     }
 
     @Override
     public String visitHamster(Hamster hamster) {
-        return "Son feeds the Hamster a tiny snack";
+        return "Son " + this.name + " carefully feeds Hamster " + hamster.getName() + " a small snack and watches it nibble away.";
     }
 
     @Override
     public String visitSkis(Skis skis) {
         skis.setAvailable(false);
-        return "Son attempts a daring jump on the skis";
+        return "Son " + this.name + " attempts a daring jump on the " + skis.getColor() + " skis, cheering as he lands safely.";
     }
 
     @Override
     public String visitWeights(Weights weights) {
         weights.setAvailable(false);
-        return "Son tests the weights, dreaming of becoming the strongest in the family";
+        return "Son " + this.name + " tests the weights, imagining himself as the strongest person in the family.";
     }
 
     @Override
     public String visitBicycle(Bicycle bicycle) {
         bicycle.setAvailable(false);
-        return "Son pops wheelies and shows off tricks on the bicycle";
+        return "Son " + this.name + " pops wheelies and shows off cool tricks on the " + bicycle.getColor() + " bicycle.";
     }
 
     @Override
     public String visitCar(Car car) {
         if (this.hasDriversLicense) {
             car.setAvailable(false);
-            return "Son drives the shop to pick up some groceries";
+            return "Son " + this.name + " drives the " + car.getColor() + " car to the store to pick up some snacks.";
         }
-        return "Son does not have drivers license";
+        return "Son " + this.name + " does not have a driver's license and cannot drive the car.";
     }
+
 
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {

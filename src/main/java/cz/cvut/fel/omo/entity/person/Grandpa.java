@@ -18,87 +18,88 @@ public class Grandpa extends Person {
 
     @Override
     public String visitMom(Mom mom) {
-        return "Grandpa praises Mom for her dedication";
+        return "Grandpa " + this.name + " praises Mom " + mom.getName() + " for her unwavering dedication to the family.";
     }
 
     @Override
     public String visitDad(Dad dad) {
-        return "Grandpa shares wisdom with Dad over a casual chat";
+        return "Grandpa " + this.name + " shares some timeless wisdom with Dad " + dad.getName() + " over a casual chat.";
     }
 
     @Override
     public String visitSon(Son son) {
-        return "Grandpa teaches Son how to whistle";
+        return "Grandpa " + this.name + " teaches Son " + son.getName() + " how to whistle a cheerful tune.";
     }
 
     @Override
     public String visitDaughter(Daughter daughter) {
-        return "Grandpa tells Daughter an exciting tale";
+        return "Grandpa " + this.name + " tells Daughter " + daughter.getName() + " an exciting tale from his adventurous past.";
     }
 
     @Override
     public String visitGrandma(Grandma grandma) {
-        return "Grandpa compliments Grandma's kindness";
+        return "Grandpa " + this.name + " compliments Grandma " + grandma.getName() + "'s kindness and thoughtfulness.";
     }
 
     @Override
     public String visitGrandpa(Grandpa grandpa) {
         if (this.equals(grandpa)) {
-            return "Grandpa cannot interact with himself";
+            return "Grandpa " + this.name + " cannot interact with himself.";
         }
-        return "Grandpa tells hi to other Grandpa";
+        return "Grandpa " + this.name + " exchanges greetings with Grandpa " + grandpa.getName() + " and shares a laugh.";
     }
 
     @Override
     public String visitDog(Dog dog) {
-        return "Grandpa calls the Dog for a playful pat";
+        return "Grandpa " + this.name + " calls Dog " + dog.getName() + " over for a playful pat and scratches behind its ears.";
     }
 
     @Override
     public String visitCat(Cat cat) {
-        return "Grandpa observes the Cat's curious behavior";
+        return "Grandpa " + this.name + " observes Cat " + cat.getName() + "'s curious behavior with amusement.";
     }
 
     @Override
     public String visitHamster(Hamster hamster) {
-        return "Grandpa peers into the Hamster's cage with interest";
+        return "Grandpa " + this.name + " peers into Hamster " + hamster.getName() + "'s cage, marveling at its energy.";
     }
 
     @Override
     public String visitSkis(Skis skis) {
         if (this.age > 80) {
-            return "Grandpa is too old to use the skis";
+            return "Grandpa " + this.name + " smiles fondly, reminiscing about his younger days while holding the " + skis.getColor() + " skis.";
         }
         skis.setAvailable(false);
-        return "Grandpa checks the ski bindings for safety before using them";
+        return "Grandpa " + this.name + " carefully checks the bindings of the " + skis.getColor() + " skis before taking a safe ride.";
     }
 
     @Override
     public String visitWeights(Weights weights) {
         if (this.age > 80) {
-            return "Grandpa is too old to use the weights";
+            return "Grandpa " + this.name + " decides to skip using the weights, remembering his limits.";
         }
         weights.setAvailable(false);
-        return "Grandpa demonstrates his old-school lifting techniques with the weights";
+        return "Grandpa " + this.name + " demonstrates his old-school lifting techniques with the weights, impressing everyone.";
     }
 
     @Override
     public String visitBicycle(Bicycle bicycle) {
         if (this.age > 80) {
-            return "Grandpa is too old to use the bicycle";
+            return "Grandpa " + this.name + " decides not to ride the bicycle but tunes it up for someone else to enjoy.";
         }
         bicycle.setAvailable(false);
-        return "Grandpa repairs and tunes the bicycle before taking it for a spin";
+        return "Grandpa " + this.name + " repairs and tunes the " + bicycle.getColor() + " bicycle before taking it for a leisurely spin.";
     }
 
     @Override
     public String visitCar(Car car) {
         if (this.hasDriversLicense) {
             car.setAvailable(false);
-            return "Grandpa checks the car’s oil and tire pressure before driving";
+            return "Grandpa " + this.name + " checks the oil and tire pressure of the " + car.getColor() + " car before heading out for a comfortable drive.";
         }
-        return "Grandpa does not have drivers license";
+        return "Grandpa " + this.name + " does not have a driver's license and cannot drive the car.";
     }
+
 
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {

@@ -17,73 +17,73 @@ public class Cat extends Pet {
 
     @Override
     public String visitMom(Mom mom) {
-        return "Cat purrs contentedly at Mom's touch";
+        return "Cat " + this.name + " purrs contentedly as Mom " + mom.getName() + " gently strokes its fur.";
     }
 
     @Override
     public String visitDad(Dad dad) {
-        return "Cat brushes past Dad's legs";
+        return "Cat " + this.name + " brushes past Dad " + dad.getName() + "'s legs, looking for attention.";
     }
 
     @Override
     public String visitSon(Son son) {
-        return "Cat gives Son a curious look before running off";
+        return "Cat " + this.name + " gives Son " + son.getName() + " a curious look before darting off to a quiet corner.";
     }
 
     @Override
     public String visitDaughter(Daughter daughter) {
-        return "Cat lets Daughter pick it up briefly";
+        return "Cat " + this.name + " lets Daughter " + daughter.getName() + " pick it up briefly before wriggling free.";
     }
 
     @Override
     public String visitGrandma(Grandma grandma) {
-        return "Cat naps peacefully near Grandma";
+        return "Cat " + this.name + " naps peacefully near Grandma " + grandma.getName() + "'s rocking chair.";
     }
 
     @Override
     public String visitGrandpa(Grandpa grandpa) {
-        return "Cat climbs onto Grandpa's lap and settles down";
+        return "Cat " + this.name + " climbs onto Grandpa " + grandpa.getName() + "'s lap and curls up, purring softly.";
     }
 
     @Override
     public String visitDog(Dog dog) {
-        return "Cat bats at the Dog's nose playfully";
+        return "Cat " + this.name + " playfully bats at Dog " + dog.getName() + "'s nose, then leaps to a high perch.";
     }
 
     @Override
     public String visitCat(Cat cat) {
         if (this.equals(cat)) {
-            return "Cat cannot interact with itself";
+            return "Cat " + this.name + " cannot interact with itself.";
         }
-        return "Cat meows at other Cat";
+        return "Cat " + this.name + " meows at Cat " + cat.getName() + ", staring with mild curiosity.";
     }
 
     @Override
     public String visitHamster(Hamster hamster) {
-        return "Cat watches the Hamster with keen eyes";
+        return "Cat " + this.name + " crouches low, watching Hamster " + hamster.getName() + " with keen, focused eyes.";
     }
 
     @Override
     public String visitSkis(Skis skis) {
         skis.setAvailable(false);
-        return "The cat sits on the skis, claiming them as its new throne";
+        return "Cat " + this.name + " sits regally on the " + skis.getColor() + " skis, claiming them as its throne.";
     }
 
     @Override
     public String visitWeights(Weights weights) {
         weights.setAvailable(false);
-        return "The cat tries to nap on the weights, ignoring the activity around it";
+        return "Cat " + this.name + " curls up on the weights, making them its cozy resting spot.";
     }
 
     @Override
     public String visitBicycle(Bicycle bicycle) {
         bicycle.setAvailable(false);
-        return "The cat perches in the bicycle basket";
+        return "Cat " + this.name + " perches elegantly in the basket of the " + bicycle.getColor() + " bicycle, surveying the room.";
     }
 
     @Override
     public String visitCar(Car car) {
         car.setAvailable(false);
-        return "The cat hides below the car";
+        return "Cat " + this.name + " hides beneath the " + car.getColor() + " car, watching the world quietly from the shadows.";
     }
 }

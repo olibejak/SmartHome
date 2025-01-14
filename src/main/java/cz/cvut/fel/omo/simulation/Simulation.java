@@ -65,4 +65,6 @@ public class Simulation {
             nextCycle();
         }
     }
+
+    // todo run method - next cycle every specified interval ??
 }

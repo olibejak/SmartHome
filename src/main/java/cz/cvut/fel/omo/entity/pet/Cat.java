@@ -1,5 +1,9 @@
 package cz.cvut.fel.omo.entity.pet;
 
+import cz.cvut.fel.omo.activity.equipment.Skis;
+import cz.cvut.fel.omo.activity.equipment.Weights;
+import cz.cvut.fel.omo.activity.vehicle.Bicycle;
+import cz.cvut.fel.omo.activity.vehicle.Car;
 import cz.cvut.fel.omo.entity.person.*;
 
 public class Cat extends Pet {
@@ -57,5 +61,29 @@ public class Cat extends Pet {
     @Override
     public String visitHamster(Hamster hamster) {
         return "Cat watches the Hamster with keen eyes";
+    }
+
+    @Override
+    public String visitSkis(Skis skis) {
+        skis.setAvailable(false);
+        return "The cat sits on the skis, claiming them as its new throne";
+    }
+
+    @Override
+    public String visitWeights(Weights weights) {
+        weights.setAvailable(false);
+        return "The cat tries to nap on the weights, ignoring the activity around it";
+    }
+
+    @Override
+    public String visitBicycle(Bicycle bicycle) {
+        bicycle.setAvailable(false);
+        return "The cat perches in the bicycle basket";
+    }
+
+    @Override
+    public String visitCar(Car car) {
+        car.setAvailable(false);
+        return "The cat hides below the car";
     }
 }

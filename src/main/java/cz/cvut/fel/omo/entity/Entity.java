@@ -17,9 +17,9 @@ import lombok.Setter;
 public abstract class Entity implements PersonVisitor, PetVisitor, VehicleVisitor, SportEquipmentVisitor {
     protected GlobalLogger logger;
 
-    private String name;
-    private int age;
-    private int roomID;
+    protected String name;
+    protected int age;
+    protected int roomID;
 
     public Entity(String name, int age, int roomID) {
         this.name = name;

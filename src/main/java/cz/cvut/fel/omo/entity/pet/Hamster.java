@@ -1,5 +1,9 @@
 package cz.cvut.fel.omo.entity.pet;
 
+import cz.cvut.fel.omo.activity.equipment.Skis;
+import cz.cvut.fel.omo.activity.equipment.Weights;
+import cz.cvut.fel.omo.activity.vehicle.Bicycle;
+import cz.cvut.fel.omo.activity.vehicle.Car;
 import cz.cvut.fel.omo.entity.person.*;
 
 public class Hamster extends Pet {
@@ -57,5 +61,25 @@ public class Hamster extends Pet {
             return "Hamster cannot interact with itself";
         }
         return "Hamster looks at other Hamster";
+    }
+
+    @Override
+    public String visitSkis(Skis skis) {
+        return "Hamster cannot interact with skis";
+    }
+
+    @Override
+    public String visitWeights(Weights weights) {
+        return "Hamster cannot interact with weights";
+    }
+
+    @Override
+    public String visitBicycle(Bicycle bicycle) {
+        return "Hamster cannot interact with bicycle";
+    }
+
+    @Override
+    public String visitCar(Car car) {
+        return "Hamster cannot interact with car";
     }
 }

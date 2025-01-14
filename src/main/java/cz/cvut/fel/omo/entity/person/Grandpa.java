@@ -1,11 +1,15 @@
 package cz.cvut.fel.omo.entity.person;
 
+import cz.cvut.fel.omo.activity.equipment.Skis;
+import cz.cvut.fel.omo.activity.equipment.Weights;
+import cz.cvut.fel.omo.activity.vehicle.Bicycle;
+import cz.cvut.fel.omo.activity.vehicle.Car;
 import cz.cvut.fel.omo.device.*;
 import cz.cvut.fel.omo.entity.pet.*;
 
 public class Grandpa extends Person {
-    public Grandpa(String name, int age, int roomID) {
-        super(name, age, roomID);
+    public Grandpa(String name, int age, int roomID, boolean hasDriversLicense) {
+        super(name, age, roomID, hasDriversLicense);
     }
 
     @Override
@@ -58,6 +62,42 @@ public class Grandpa extends Person {
     @Override
     public String visitHamster(Hamster hamster) {
         return "Grandpa peers into the Hamster's cage with interest";
+    }
+
+    @Override
+    public String visitSkis(Skis skis) {
+        if (this.age > 80) {
+            return "Grandpa is too old to use the skis";
+        }
+        skis.setAvailable(false);
+        return "Grandpa checks the ski bindings for safety before using them";
+    }
+
+    @Override
+    public String visitWeights(Weights weights) {
+        if (this.age > 80) {
+            return "Grandpa is too old to use the weights";
+        }
+        weights.setAvailable(false);
+        return "Grandpa demonstrates his old-school lifting techniques with the weights";
+    }
+
+    @Override
+    public String visitBicycle(Bicycle bicycle) {
+        if (this.age > 80) {
+            return "Grandpa is too old to use the bicycle";
+        }
+        bicycle.setAvailable(false);
+        return "Grandpa repairs and tunes the bicycle before taking it for a spin";
+    }
+
+    @Override
+    public String visitCar(Car car) {
+        if (this.hasDriversLicense) {
+            car.setAvailable(false);
+            return "Grandpa checks the car’s oil and tire pressure before driving";
+        }
+        return "Grandpa does not have drivers license";
     }
 
     @Override

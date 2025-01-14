@@ -8,8 +8,8 @@ import cz.cvut.fel.omo.activity.equipment.Skis;
 import cz.cvut.fel.omo.activity.equipment.Weights;
 
 public class Mom extends Person {
-    public Mom(String name, int age, int roomID) {
-        super(name, age, roomID);
+    public Mom(String name, int age, int roomID, boolean hasDriversLicense) {
+        super(name, age, roomID, hasDriversLicense);
     }
 
     @Override
@@ -66,22 +66,29 @@ public class Mom extends Person {
 
     @Override
     public String visitSkis(Skis skis) {
-        return "";
+        skis.setAvailable(false);
+        return "Mom gracefully glides down the slope on the skis";
     }
 
     @Override
     public String visitWeights(Weights weights) {
-        return "";
+        weights.setAvailable(false);
+        return "Mom lifts the weights with perfect form, focusing on her fitness";
     }
 
     @Override
     public String visitBicycle(Bicycle bicycle) {
-        return "";
+        bicycle.setAvailable(false);
+        return "Mom takes the bicycle for a relaxing ride through the park";
     }
 
     @Override
     public String visitCar(Car car) {
-        return "";
+        if (this.hasDriversLicense) {
+            car.setAvailable(false);
+            return "Mom drives the car to run errands";
+        }
+        return "Mom does not have drivers license";
     }
 
     @Override

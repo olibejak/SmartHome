@@ -1,11 +1,15 @@
 package cz.cvut.fel.omo.entity.person;
 
+import cz.cvut.fel.omo.activity.equipment.Skis;
+import cz.cvut.fel.omo.activity.equipment.Weights;
+import cz.cvut.fel.omo.activity.vehicle.Bicycle;
+import cz.cvut.fel.omo.activity.vehicle.Car;
 import cz.cvut.fel.omo.device.*;
 import cz.cvut.fel.omo.entity.pet.*;
 
 public class Daughter extends Person {
-    public Daughter(String name, int age, int roomID) {
-        super(name, age, roomID);
+    public Daughter(String name, int age, int roomID, boolean hasDriversLicense) {
+        super(name, age, roomID, hasDriversLicense);
     }
 
     @Override
@@ -58,6 +62,33 @@ public class Daughter extends Person {
     @Override
     public String visitHamster(Hamster hamster) {
         return "Daughter watches the Hamster climb its cage";
+    }
+
+    @Override
+    public String visitSkis(Skis skis) {
+        skis.setAvailable(false);
+        return "Daughter practices smooth, controlled skiing on the skis";
+    }
+
+    @Override
+    public String visitWeights(Weights weights) {
+        weights.setAvailable(false);
+        return "Daughter uses the weights for her daily strength workout";
+    }
+
+    @Override
+    public String visitBicycle(Bicycle bicycle) {
+        bicycle.setAvailable(false);
+        return "Daughter cycles to her favorite scenic spot on the bicycle";
+    }
+
+    @Override
+    public String visitCar(Car car) {
+        if (this.hasDriversLicense) {
+            car.setAvailable(false);
+            return "Daughter practices parking the car perfectly in the driveway";
+        }
+        return "Daughter does not have drivers license";
     }
 
     @Override

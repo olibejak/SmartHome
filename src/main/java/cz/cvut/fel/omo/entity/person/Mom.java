@@ -26,7 +26,7 @@ public class Mom extends Person {
 
     @Override
     public String visitDad(Dad dad) {
-        return "Mom " + this.name + " shares a smile with Dad" + dad.getName() + ".";
+        return "Mom " + this.name + " shares a smile with Dad " + dad.getName() + ".";
     }
 
     @Override

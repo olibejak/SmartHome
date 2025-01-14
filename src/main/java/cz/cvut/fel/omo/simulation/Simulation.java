@@ -21,27 +21,21 @@ public class Simulation {
     private House house;
     private ArrayList<Person> family;
     private ArrayList<Pet> pets;
-    private ArrayList<Vehicle> vehicles;
-    private ArrayList<SportEquipment> equipment;
 
     private int cycleCount;
 
-    public Simulation(House house, ArrayList<Person> family, ArrayList<Pet> pets, ArrayList<Vehicle> vehicles, ArrayList<SportEquipment> equipment) {
+    public Simulation(House house, ArrayList<Person> family, ArrayList<Pet> pets) {
         this.house = house;
         this.family = family;
         this.pets = pets;
-        this.vehicles = vehicles;
-        this.equipment = equipment;
         this.cycleCount = 0;
         this.logger = GlobalLogger.getInstance();
     }
 
-    public Simulation(House house, ArrayList<Person> family, ArrayList<Pet> pets, ArrayList<Vehicle> vehicles, ArrayList<SportEquipment> equipment, int cycleCount) {
+    public Simulation(House house, ArrayList<Person> family, ArrayList<Pet> pets, int cycleCount) {
         this.house = house;
         this.family = family;
         this.pets = pets;
-        this.vehicles = vehicles;
-        this.equipment = equipment;
         this.cycleCount = cycleCount;
         this.logger = GlobalLogger.getInstance();
     }

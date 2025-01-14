@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.equipment;
+package cz.cvut.fel.omo.activity.vehicle;
 
 import lombok.Getter;
 import lombok.Setter;

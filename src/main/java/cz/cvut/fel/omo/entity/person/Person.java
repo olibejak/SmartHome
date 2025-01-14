@@ -9,8 +9,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public abstract class Person extends Entity implements DeviceVisitor {
-    public Person(String name, int age, int roomID) {
+    protected boolean hasDriversLicense;
+
+    public Person(String name, int age, int roomID, boolean hasDriversLicense) {
         super(name, age, roomID);
+        this.hasDriversLicense = hasDriversLicense;
     }
 
     public abstract String accept(PersonVisitor visitor);

@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.equipment;
+package cz.cvut.fel.omo.activity.vehicle;
 
 public interface VehicleVisitor {
     String visitBicycle(Bicycle bicycle);

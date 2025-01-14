@@ -1,5 +1,10 @@
 package cz.cvut.fel.omo;
 
+import cz.cvut.fel.omo.activity.equipment.Skis;
+import cz.cvut.fel.omo.activity.equipment.Weights;
+import cz.cvut.fel.omo.activity.vehicle.Bicycle;
+import cz.cvut.fel.omo.activity.vehicle.Car;
+import cz.cvut.fel.omo.activity.vehicle.EngineType;
 import cz.cvut.fel.omo.entity.person.*;
 import cz.cvut.fel.omo.entity.pet.Cat;
 import cz.cvut.fel.omo.entity.pet.Dog;
@@ -81,8 +86,8 @@ public class Main {
 //        }
 
         // Entity interaction showcase
-        Mom alice = new Mom("Alice", 35, 1);
-        Mom sarah = new Mom("Sarah", 30, 1);
+        Mom alice = new Mom("Alice", 35, 1, true);
+        Mom sarah = new Mom("Sarah", 30, 1, true);
         Dog buddy = new Dog("Buddy", 3, 1);
         Dog max = new Dog("Max", 5, 1);
 
@@ -95,16 +100,22 @@ public class Main {
         buddy.interactWith(alice);
 
         // Family
-        Mom mom = new Mom("Jane", 39, 1);
-        Dad dad = new Dad("John", 41, 1);
-        Son son = new Son("Jake", 9, 1);
-        Daughter daughter = new Daughter("Jessica", 7, 1);
-        Grandma grandma = new Grandma("Janet", 68, 1);
-        Grandpa grandpa = new Grandpa("Joe", 71, 1);
+        Mom mom = new Mom("Jane", 39, 1, true);
+        Dad dad = new Dad("John", 41, 1, true);
+        Son son = new Son("Jake", 9, 1, false);
+        Daughter daughter = new Daughter("Jessica", 7, 1, false);
+        Grandma grandma = new Grandma("Janet", 68, 1, false);
+        Grandpa grandpa = new Grandpa("Joe", 71, 1, true);
 
         Dog dog = new Dog("Max", 4, 1);
         Cat cat = new Cat("Coots", 3, 1);
         Hamster hamster = new Hamster("Jerry", 2, 1);
+
+        Skis skis = new Skis(true, 0, "Blue");
+        Weights weights = new Weights(true, 0);
+
+        Bicycle bicycle = new Bicycle("Wheels", 2012, "Red", 6);
+        Car car = new Car("Skoda", 2008, "White", EngineType.PETROL);
 
         mom.interactWith(dad);
         dad.interactWith(son);
@@ -115,6 +126,11 @@ public class Main {
         dog.interactWith(cat);
         cat.interactWith(hamster);
         hamster.interactWith(mom);
+
+        dad.interactWith(skis);
+        dad.interactWith(weights);
+        dad.interactWith(bicycle);
+        dad.interactWith(car);
 
     }
 }

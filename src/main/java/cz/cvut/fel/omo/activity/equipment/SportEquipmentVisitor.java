@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.equipment;
+package cz.cvut.fel.omo.activity.equipment;
 
 public interface SportEquipmentVisitor {
     String visitSkis(Skis skis);

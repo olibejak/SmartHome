@@ -2,10 +2,14 @@ package cz.cvut.fel.omo.entity.person;
 
 import cz.cvut.fel.omo.device.*;
 import cz.cvut.fel.omo.entity.pet.*;
+import cz.cvut.fel.omo.activity.vehicle.Bicycle;
+import cz.cvut.fel.omo.activity.vehicle.Car;
+import cz.cvut.fel.omo.activity.equipment.Skis;
+import cz.cvut.fel.omo.activity.equipment.Weights;
 
 public class Mom extends Person {
-    public Mom(String name, int age, int roomID) {
-        super(name, age, roomID);
+    public Mom(String name, int age, int roomID, boolean hasDriversLicense) {
+        super(name, age, roomID, hasDriversLicense);
     }
 
     @Override
@@ -15,49 +19,76 @@ public class Mom extends Person {
     @Override
     public String visitMom(Mom mom) {
         if (this.equals(mom)) {
-            return "Mom cannot interact with herself";
+            return "Mom " + this.name + " cannot interact with herself.";
         }
-        return "Mom tells hi to other Mom";
+        return "Mom " + this.name + " tells hi to other Mom " + mom.getName() + ".";
     }
 
     @Override
     public String visitDad(Dad dad) {
-        return "Mom shares a smile with Dad";
+        return "Mom " + this.name + " shares a smile with Dad " + dad.getName() + ".";
     }
 
     @Override
     public String visitSon(Son son) {
-        return "Mom gives Son a gentle hug";
+        return "Mom " + this.name + " gives Son " + son.getName() + " a gentle hug.";
     }
 
     @Override
     public String visitDaughter(Daughter daughter) {
-        return "Mom compliments Daughter's creative idea";
+        return "Mom " + this.name + " compliments Daughter " + daughter.getName() + "'s creative idea.";
     }
 
     @Override
     public String visitGrandma(Grandma grandma) {
-        return "Mom asks Grandma about her favorite memories";
+        return "Mom " + this.name + " asks Grandma " + grandma.getName() + " about her favorite memories.";
     }
 
     @Override
     public String visitGrandpa(Grandpa grandpa) {
-        return "Mom listens to Grandpa's wise advice";
+        return "Mom " + this.name + " listens to Grandpa " + grandpa.getName() + "'s wise advice.";
     }
 
     @Override
     public String visitDog(Dog dog) {
-        return "Mom pets the Dog lovingly";
+        return "Mom " + this.name + " pets the Dog " + dog.getName() + " lovingly.";
     }
 
     @Override
     public String visitCat(Cat cat) {
-        return "Mom admires the Cat's graceful movements";
+        return "Mom " + this.name + " admires the Cat " + cat.getName() + "'s graceful movements.";
     }
 
     @Override
     public String visitHamster(Hamster hamster) {
-        return "Mom watches the Hamster run on its wheel";
+        return "Mom " + this.name + " watches the Hamster " + hamster.getName() + " run on its wheel.";
+    }
+
+    @Override
+    public String visitSkis(Skis skis) {
+        skis.setAvailable(false);
+        return "Mom " + this.name + " gracefully glides down the slope on the " + skis.getColor() + " skis.";
+    }
+
+    @Override
+    public String visitWeights(Weights weights) {
+        weights.setAvailable(false);
+        return "Mom " + this.name + " lifts the weights with perfect form, focusing on her fitness.";
+    }
+
+    @Override
+    public String visitBicycle(Bicycle bicycle) {
+        bicycle.setAvailable(false);
+        return "Mom " + this.name + " takes the " + bicycle.getColor() + " bicycle for a relaxing ride through the park.";
+    }
+
+    @Override
+    public String visitCar(Car car) {
+        if (this.hasDriversLicense) {
+            car.setAvailable(false);
+            return "Mom " + this.name + " drives the " + car.getColor() + " car to run errands.";
+        }
+        return "Mom " + this.name + " cannot drive the car because she doesn't have a driver's license.";
     }
 
     @Override

@@ -10,7 +10,6 @@ import java.util.ArrayList;
 @Getter
 @Setter
 public class Room implements ConfigurationReport {
-
     private final int id;
     private RoomType type;
     private final ArrayList<Device> devices = new ArrayList<>();

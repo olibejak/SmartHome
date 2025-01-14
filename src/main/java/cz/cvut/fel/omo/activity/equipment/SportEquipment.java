@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.equipment;
+package cz.cvut.fel.omo.activity.equipment;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

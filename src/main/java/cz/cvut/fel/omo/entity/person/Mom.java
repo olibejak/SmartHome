@@ -2,6 +2,10 @@ package cz.cvut.fel.omo.entity.person;
 
 import cz.cvut.fel.omo.device.*;
 import cz.cvut.fel.omo.entity.pet.*;
+import cz.cvut.fel.omo.activity.vehicle.Bicycle;
+import cz.cvut.fel.omo.activity.vehicle.Car;
+import cz.cvut.fel.omo.activity.equipment.Skis;
+import cz.cvut.fel.omo.activity.equipment.Weights;
 
 public class Mom extends Person {
     public Mom(String name, int age, int roomID) {
@@ -58,6 +62,26 @@ public class Mom extends Person {
     @Override
     public String visitHamster(Hamster hamster) {
         return "Mom watches the Hamster run on its wheel";
+    }
+
+    @Override
+    public String visitSkis(Skis skis) {
+        return "";
+    }
+
+    @Override
+    public String visitWeights(Weights weights) {
+        return "";
+    }
+
+    @Override
+    public String visitBicycle(Bicycle bicycle) {
+        return "";
+    }
+
+    @Override
+    public String visitCar(Car car) {
+        return "";
     }
 
     @Override

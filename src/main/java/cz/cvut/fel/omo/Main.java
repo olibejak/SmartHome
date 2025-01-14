@@ -1,5 +1,10 @@
 package cz.cvut.fel.omo;
 
+import cz.cvut.fel.omo.activity.equipment.Skis;
+import cz.cvut.fel.omo.activity.equipment.Weights;
+import cz.cvut.fel.omo.activity.vehicle.Bicycle;
+import cz.cvut.fel.omo.activity.vehicle.Car;
+import cz.cvut.fel.omo.activity.vehicle.EngineType;
 import cz.cvut.fel.omo.entity.person.*;
 import cz.cvut.fel.omo.entity.pet.Cat;
 import cz.cvut.fel.omo.entity.pet.Dog;
@@ -106,6 +111,12 @@ public class Main {
         Cat cat = new Cat("Coots", 3, 1);
         Hamster hamster = new Hamster("Jerry", 2, 1);
 
+        Skis skis = new Skis(true, 0, "Blue");
+        Weights weights = new Weights(true, 0);
+
+        Bicycle bicycle = new Bicycle("Wheels", 2012, "Red", 6);
+        Car car = new Car("Skoda", 2008, "White", EngineType.PETROL);
+
         mom.interactWith(dad);
         dad.interactWith(son);
         son.interactWith(daughter);
@@ -115,6 +126,11 @@ public class Main {
         dog.interactWith(cat);
         cat.interactWith(hamster);
         hamster.interactWith(mom);
+
+        dad.interactWith(skis);
+        dad.interactWith(weights);
+        dad.interactWith(bicycle);
+        dad.interactWith(car);
 
     }
 }

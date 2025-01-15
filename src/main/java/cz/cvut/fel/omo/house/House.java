@@ -1,36 +1,17 @@
 package cz.cvut.fel.omo.house;
 
-import cz.cvut.fel.omo.utils.RandomUtils;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 
 @NoArgsConstructor
+@Getter
 @Setter
 public class House implements ConfigurationReport {
-//    private String address;
-//    private String ownerName;
-
-    @Getter
     private final ArrayList<Floor> floors = new ArrayList<>();
-    private int cycleCount = 0;
-
-    public void nextCycle() {
-        cycleCount++;
-        System.out.println(cycleCount);
-    }
-
-    public void nextCycles(int count) {
-        for (int i = 0; i < count; i++) {
-            nextCycle();
-        }
-    }
 
     public ArrayList<Integer> getFloorNumbers() {
         ArrayList<Integer> floorNumbers = new ArrayList<Integer>();
@@ -41,7 +22,6 @@ public class House implements ConfigurationReport {
         return floorNumbers;
     }
 
-    // todo functional programming - filters
     public ArrayList<Integer> getRoomIds() {
         ArrayList<Integer> roomIds = new ArrayList<Integer>();
         for (Floor floor : floors) {
@@ -55,9 +35,7 @@ public class House implements ConfigurationReport {
 
     @Override
     public String toString() {
-        return "House{" +
-                "floors=" + floors +
-                '}';
+        return "House{" + "floors=" + floors + '}';
     }
 
     public String reportConfiguration() {
@@ -66,9 +44,7 @@ public class House implements ConfigurationReport {
         for (Floor floor : floors) {
             configurationReport.append(floor.reportConfiguration()).append("\n");
         }
-        configurationReport.append("Entity Configuration:\n");
-//        todo entities configuration
-        configurationReport.append("todo");
         return configurationReport.toString();
     }
 }
+

@@ -19,10 +19,7 @@ public class Floor implements ConfigurationReport {
 
     @Override
     public String toString() {
-        return "Floor{" +
-                "floorNumber=" + floorNumber +
-                ", rooms=" + rooms +
-                '}';
+        return "Floor{" + "floorNumber=" + floorNumber + ", rooms=" + rooms + '}';
     }
 
     public String reportConfiguration() {

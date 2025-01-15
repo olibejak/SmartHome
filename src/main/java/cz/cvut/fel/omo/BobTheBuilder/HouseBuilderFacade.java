@@ -22,13 +22,18 @@ import java.util.ArrayList;
 
 import static java.util.Objects.nonNull;
 
+
 public class HouseBuilderFacade {
 
     private final HouseLoader houseLoader = new HouseLoader();
-    private final EventManager eventManager = new EventManager();
-    private final EventQueue eventQueue = new EventQueue(eventManager);
+    private final EventQueue eventQueue;
 
-    GlobalLogger logger = GlobalLogger.getInstance();
+    private final GlobalLogger logger;
+
+    public HouseBuilderFacade(EventQueue eventQueue) {
+        this.eventQueue = eventQueue;
+        logger = GlobalLogger.getInstance();
+    }
 
     public House buildHouseFromJson(@NonNull String filePath) {
         HouseDTO houseDTO;

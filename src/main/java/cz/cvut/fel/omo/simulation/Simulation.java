@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.simulation;
 
 import cz.cvut.fel.omo.entity.person.Person;
 import cz.cvut.fel.omo.entity.pet.Pet;
+import cz.cvut.fel.omo.event.eventManager.EventQueue;
 import cz.cvut.fel.omo.house.House;
 import cz.cvut.fel.omo.logger.GlobalLogger;
 import lombok.AllArgsConstructor;
@@ -20,22 +21,24 @@ public class Simulation {
     private ArrayList<Person> family;
     private ArrayList<Pet> pets;
 
-    // todo add eventQueue ??
+    private EventQueue eventQueue;
 
     private int cycleCount;
 
-    public Simulation(House house, ArrayList<Person> family, ArrayList<Pet> pets) {
+    public Simulation(House house, ArrayList<Person> family, ArrayList<Pet> pets, EventQueue eventQueue) {
         this.house = house;
         this.family = family;
         this.pets = pets;
+        this.eventQueue = eventQueue;
         this.cycleCount = 0;
         this.logger = GlobalLogger.getInstance();
     }
 
-    public Simulation(House house, ArrayList<Person> family, ArrayList<Pet> pets, int cycleCount) {
+    public Simulation(House house, ArrayList<Person> family, ArrayList<Pet> pets, EventQueue eventQueue, int cycleCount) {
         this.house = house;
         this.family = family;
         this.pets = pets;
+        this.eventQueue = eventQueue;
         this.cycleCount = cycleCount;
         this.logger = GlobalLogger.getInstance();
     }

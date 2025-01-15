@@ -6,33 +6,37 @@ import cz.cvut.fel.omo.activity.equipment.Weights;
 import cz.cvut.fel.omo.activity.vehicle.Bicycle;
 import cz.cvut.fel.omo.activity.vehicle.Car;
 import cz.cvut.fel.omo.activity.vehicle.EngineType;
-import cz.cvut.fel.omo.device.Device;
-import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.entity.person.*;
 import cz.cvut.fel.omo.entity.pet.Cat;
 import cz.cvut.fel.omo.entity.pet.Dog;
 import cz.cvut.fel.omo.entity.pet.Hamster;
-import cz.cvut.fel.omo.house.House;
-import cz.cvut.fel.omo.house.report.ConsumptionReport;
+import cz.cvut.fel.omo.event.eventManager.EventManager;
+import cz.cvut.fel.omo.event.eventManager.EventQueue;
 
-import static java.util.Objects.nonNull;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class Main {
     public static void main(String[] args) {
 
-       ConsumptionReport ConsumptionReport = new ConsumptionReport();
-       HouseBuilderFacade HouseBuilder = new HouseBuilderFacade();
+        // eventManager
+        // eventQueue
+        EventManager eventManager = new EventManager();
+        EventQueue eventQueue = new EventQueue(eventManager);
 
-       House house = HouseBuilder.buildHouseFromJson("src/main/resources/house.json");
+        HouseBuilderFacade HouseBuilder = new HouseBuilderFacade(eventQueue);
 
-       if(nonNull(house)) {
-           System.out.println(house);
-           System.out.println();
-           System.out.println(house.reportConfiguration());
-//           System.out.println(ConsumptionReport.getConsumptionReport(house));
-       }
+//       ConsumptionReport ConsumptionReport = new ConsumptionReport();
+//       HouseBuilderFacade HouseBuilder = new HouseBuilderFacade();
+//
+//       House house = HouseBuilder.buildHouseFromJson("src/main/resources/house.json");
+//
+//       if(nonNull(house)) {
+//           System.out.println(house);
+//           System.out.println();
+////           System.out.println(house.reportConfiguration());
+////           System.out.println(ConsumptionReport.getConsumptionReport(house));
+//       }
 
 //        System.out.println(house);
 //        System.out.println();
@@ -97,13 +101,13 @@ public class Main {
         Dog buddy = new Dog("Buddy", 3, 1);
         Dog max = new Dog("Max", 5, 1);
 
-//        alice.interactWith(alice);
-//        alice.interactWith(sarah);
-//        alice.interactWith(buddy);
-//
-//        buddy.interactWith(buddy);
-//        buddy.interactWith(max);
-//        buddy.interactWith(alice);
+        alice.interactWith(alice);
+        alice.interactWith(sarah);
+        alice.interactWith(buddy);
+
+        buddy.interactWith(buddy);
+        buddy.interactWith(max);
+        buddy.interactWith(alice);
 
         // Family
         Mom mom = new Mom("Jane", 39, 1, true);
@@ -123,20 +127,20 @@ public class Main {
         Bicycle bicycle = new Bicycle("Wheels", 2012, "Red", 6);
         Car car = new Car("Skoda", 2008, "White", EngineType.PETROL);
 
-//        mom.interactWith(dad);
-//        dad.interactWith(son);
-//        son.interactWith(daughter);
-//        daughter.interactWith(grandma);
-//        grandma.interactWith(grandpa);
-//        grandma.interactWith(dog);
-//        dog.interactWith(cat);
-//        cat.interactWith(hamster);
-//        hamster.interactWith(mom);
-//
-//        dad.interactWith(skis);
-//        dad.interactWith(weights);
-//        dad.interactWith(bicycle);
-//        dad.interactWith(car);
+        mom.interactWith(dad);
+        dad.interactWith(son);
+        son.interactWith(daughter);
+        daughter.interactWith(grandma);
+        grandma.interactWith(grandpa);
+        grandma.interactWith(dog);
+        dog.interactWith(cat);
+        cat.interactWith(hamster);
+        hamster.interactWith(mom);
+
+        dad.interactWith(skis);
+        dad.interactWith(weights);
+        dad.interactWith(bicycle);
+        dad.interactWith(car);
 
     }
 }

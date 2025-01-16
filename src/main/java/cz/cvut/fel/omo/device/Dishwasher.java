@@ -15,6 +15,11 @@ public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
         this.isClean = false;
     }
 
+    @Override
+    public String accept(DeviceVisitor visitor) {
+        return visitor.visitDishwasher(this);
+    }
+
     public void wash() {
         if (items.isEmpty()) {
             logger.info(this + " :Cannot wash, no dishes in dishwasher");
@@ -25,12 +30,8 @@ public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
             return;
         }
         logger.info(this + " :Washing dishes...");
+        turnOn();
         this.isClean = true;
-    }
-
-    @Override
-    public String accept(DeviceVisitor visitor) {
-        return visitor.visitDishwasher(this);
     }
 
     @Override
@@ -58,14 +59,15 @@ public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
     public void removeItem(Dish item) {
         items.remove(item);
         this.currentLoad =- item.getLoad();
-        if (currentLoad == 0) {
+        if (currentLoad == 0 || currentLoad < 0) {
+            this.currentLoad = 0;
             isClean = false;
         }
     }
 
     @Override
     public String toString() {
-        return "DishWasher " + id;
+        return "Dishwasher " + id;
     }
 
     public class Dish extends StorageItem {

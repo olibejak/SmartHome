@@ -10,16 +10,16 @@ import cz.cvut.fel.omo.logger.GlobalLogger;
  */
 public abstract class DeviceState {
 
+    protected Device device;
+    protected Consumption deviceConsumption;
+
+    protected GlobalLogger logger;
+
     public DeviceState(Device device) {
         this.device = device;
         this.deviceConsumption = device.getConsumption();
         this.logger = GlobalLogger.getInstance();
     }
-
-    protected Device device;
-    protected Consumption deviceConsumption;
-    protected GlobalLogger logger;
-
 
     /**
      * Change state to idle
@@ -32,7 +32,7 @@ public abstract class DeviceState {
     public abstract void plugOut();
 
     /**
-     * Change state to Active
+     * Change state to active
      */
     public abstract void turnOn();
 

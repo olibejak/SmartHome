@@ -1,7 +1,6 @@
 package cz.cvut.fel.omo.device;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceType;
-import cz.cvut.fel.omo.device.util.Consumption;
+import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
@@ -12,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class WashingMachine extends StorageDevice<WashingMachine.Wash> {
+public class WashingMachine extends StorageDevice {
 
     private boolean isClean;
 
@@ -43,7 +42,7 @@ public class WashingMachine extends StorageDevice<WashingMachine.Wash> {
 
     @Override
     public void addItem(String name, double load) {
-        items.add(new Wash(name, load));
+        items.add(new StorageItem(name, load));
         logger.info(this + " wash " + name + " added");
     }
 
@@ -54,7 +53,7 @@ public class WashingMachine extends StorageDevice<WashingMachine.Wash> {
     }
 
     @Override
-    public void removeItem(Wash item) {
+    public void removeItem(StorageItem item) {
         items.remove(item);
         logger.info(this + " wash " + item.getName() + " removed");
     }
@@ -67,11 +66,5 @@ public class WashingMachine extends StorageDevice<WashingMachine.Wash> {
     @Override
     public String toString() {
         return "Washing machine " + id;
-    }
-
-    public class Wash extends StorageItem {
-        private Wash(String name, double load) {
-            super(name, load);
-        }
     }
 }

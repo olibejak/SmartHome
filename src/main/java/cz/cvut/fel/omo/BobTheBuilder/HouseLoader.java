@@ -2,7 +2,8 @@ package cz.cvut.fel.omo.BobTheBuilder;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceType;
+import cz.cvut.fel.omo.BobTheBuilder.DTO.ConsumptionDTO;
+import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.HouseDTO;
 import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.DeviceFactoryRegistry;
 import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.factoryMethod.*;
@@ -36,20 +37,7 @@ public class HouseLoader {
      * @return HouseDTO object
      * @throws IOException if file is not found
      */
-    public static Map<DeviceType, Map<String, Object>> loadDeviceConfig(@NonNull String filePath) throws IOException {
-        return mapper.readValue(
-                new File(filePath),
-                new TypeReference<>() {}
-        );
-    }
-
-    /**
-     * Load utility from JSON file
-     * @param filePath path to JSON file
-     * @return HouseDTO object
-     * @throws IOException if file is not found
-     */
-    public static Map<DeviceType, Map<String, Integer>> loadDeviceConsumptionConfig(@NonNull String filePath) throws IOException {
+    public static Map<DeviceType, ConsumptionDTO> loadDeviceConsumptionConfig(@NonNull String filePath) throws IOException {
         return mapper.readValue(
                 new File(filePath),
                 new TypeReference<>() {}
@@ -61,7 +49,7 @@ public class HouseLoader {
      * @param deviceFactoryRegistry device factory registry for deciding which factory to use based on device type
      * @return device factory registry with supported device factories
      */
-    public static DeviceFactoryRegistry populateDeviceFactoryRegistry(DeviceFactoryRegistry deviceFactoryRegistry) {
+    public static DeviceFactoryRegistry populateDeviceFactoryRegistry(@NonNull DeviceFactoryRegistry deviceFactoryRegistry) {
         deviceFactoryRegistry.registerFactory(DeviceType.DISHWASHER, new DishwasherFactory());
         deviceFactoryRegistry.registerFactory(DeviceType.FRIDGE, new FridgeFactory());
         deviceFactoryRegistry.registerFactory(DeviceType.OVEN, new OvenFactory());

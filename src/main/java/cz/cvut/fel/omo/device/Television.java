@@ -1,12 +1,15 @@
 package cz.cvut.fel.omo.device;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceType;
-import cz.cvut.fel.omo.device.util.Consumption;
+import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
+@Getter
 @NoArgsConstructor
 public class Television extends Device{
 
@@ -14,7 +17,7 @@ public class Television extends Device{
 
     public void changeChannel(int channel) {
         this.channel = channel;
-        logger.info(this.toString() + " channel set to " + channel);
+        logger.info(this + " channel set to " + channel);
     }
 
     @Override

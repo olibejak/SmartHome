@@ -1,7 +1,7 @@
 package cz.cvut.fel.omo.device;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceType;
-import cz.cvut.fel.omo.device.util.Consumption;
+import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
+import cz.cvut.fel.omo.BobTheBuilder.eventFactory.DeviceMalfunctionEvent;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
+public class Dishwasher extends StorageDevice {
 
     private boolean isClean;
 
@@ -49,8 +49,11 @@ public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
             logger.info(this + " :Cannot add " + name + ", dishwasher is clean");
             return;
         }
-        items.add(new Dish(name, load));
+        items.add(new StorageItem(name, load));
         this.currentLoad += load;
+        if (currentLoad == maxLoad) {
+            eventQueue.addEvent(new DeviceMalfunctionEvent().createEvent(id, getRoomID()));
+        }
     }
 
     @Override
@@ -61,7 +64,7 @@ public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
     }
 
     @Override
-    public void removeItem(Dish item) {
+    public void removeItem(StorageItem item) {
         items.remove(item);
         this.currentLoad =- item.getLoad();
         if (currentLoad == 0) {
@@ -72,11 +75,5 @@ public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
     @Override
     public String toString() {
         return "DishWasher " + id;
-    }
-
-    public class Dish extends StorageItem {
-        public Dish(String name, double load) {
-            super(name, load);
-        }
     }
 }

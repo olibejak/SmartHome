@@ -1,7 +1,6 @@
 package cz.cvut.fel.omo.device;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceType;
-import cz.cvut.fel.omo.device.util.Consumption;
+import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;

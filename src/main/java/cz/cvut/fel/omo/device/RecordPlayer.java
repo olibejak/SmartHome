@@ -1,14 +1,11 @@
 package cz.cvut.fel.omo.device;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceType;
-import cz.cvut.fel.omo.device.util.Consumption;
+import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @NoArgsConstructor
@@ -35,10 +32,5 @@ public class RecordPlayer extends Device{
         return DeviceDocumentationLoader.getDocumentation(DeviceType.RECORD_PLAYER);
     }
 
-    @AllArgsConstructor
-    @Getter
-    protected class Record {
-        private final String name;
-        private final String artist;
-    }
+    protected record Record(String name, String artist) {}
 }

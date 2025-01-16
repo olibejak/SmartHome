@@ -1,6 +1,6 @@
 package cz.cvut.fel.omo.device;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceType;
+import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class Fridge extends StorageDevice<Fridge.Food> {
+public class Fridge extends StorageDevice {
 
     private double minTemperature;
     private double maxTemperature;
@@ -28,7 +28,7 @@ public class Fridge extends StorageDevice<Fridge.Food> {
             logger.info(this + " :Cannot add " + name + ", fridge is full");
             return;
         }
-        items.add(new Food(name, load));
+        items.add(new StorageItem(name, load));
         this.currentLoad += load;
         logger.info(this + " :Food " + name + " added");
     }
@@ -41,7 +41,7 @@ public class Fridge extends StorageDevice<Fridge.Food> {
     }
 
     @Override
-    public void removeItem(Food item) {
+    public void removeItem(StorageItem item) {
         items.remove(item);
         this.currentLoad -= item.getLoad();
         logger.info(this + " :Food " + item.getName() + " removed");
@@ -64,11 +64,5 @@ public class Fridge extends StorageDevice<Fridge.Food> {
     @Override
     public String toString() {
         return "Fridge " + id;
-    }
-
-    public class Food extends StorageItem {
-        public Food(String name, double load) {
-            super(name, load);
-        }
     }
 }

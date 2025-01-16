@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public abstract class StorageItem {
+public class StorageItem {
 
     protected final String name;
     protected final double load;

@@ -42,4 +42,12 @@ public class DeviceStatusReportVisitor implements DeviceVisitor {
     public String visitWindow(Window window) {
         return "";
     }
+
+    public void visitDevice(WashingMachine washingMachine) {
+        return;
+    }
+
+    public void visitDevice(Thermostat thermostat) {
+        return;
+    }
 }

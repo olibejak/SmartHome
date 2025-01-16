@@ -13,11 +13,6 @@ public class RecordPlayerBuilder extends DeviceBuilder<RecordPlayerBuilder, Reco
         return self();
     }
 
-    public RecordPlayerBuilder speed(int speed) {
-        device.setSpeed(speed);
-        return this;
-    }
-
     @Override
     public RecordPlayerBuilder self() {
         return this;

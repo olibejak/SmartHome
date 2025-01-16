@@ -1,9 +1,10 @@
 package cz.cvut.fel.omo.BobTheBuilder.eventFactory;
 
 import cz.cvut.fel.omo.event.Event;
-import cz.cvut.fel.omo.event.util.Payload;
+
+import java.util.UUID;
 
 public interface EventFactory {
 
-    Event createEvent(Payload payload);
+    Event createEvent(UUID deviceID, Integer roomID);
 }

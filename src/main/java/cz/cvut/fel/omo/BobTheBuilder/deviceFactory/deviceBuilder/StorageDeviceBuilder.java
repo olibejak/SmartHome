@@ -1,6 +1,7 @@
 package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
 
 import cz.cvut.fel.omo.device.StorageDevice;
+import cz.cvut.fel.omo.device.StorageItem;
 
 import java.util.ArrayList;
 
@@ -11,7 +12,7 @@ public abstract class StorageDeviceBuilder<T extends StorageDeviceBuilder<T, D>,
         reset();
     }
 
-    public T items(ArrayList<D> items) {
+    public T items(ArrayList<StorageItem> items) {
         device.setItems(items);
         return self();
     }

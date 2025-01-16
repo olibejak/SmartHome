@@ -1,14 +1,10 @@
 package cz.cvut.fel.omo;
 
 import cz.cvut.fel.omo.BobTheBuilder.HouseBuilderFacade;
-import cz.cvut.fel.omo.BobTheBuilder.DTO.HouseDTO;
-import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.house.House;
 import cz.cvut.fel.omo.house.report.ConsumptionReport;
 
 import static java.util.Objects.nonNull;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class Main {
     public static void main(String[] args) {

@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.lang.annotation.Documented;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -21,12 +21,11 @@ public abstract class Device {
     protected GlobalLogger logger = GlobalLogger.getInstance();
     protected EventQueue eventQueue;
 
-    protected int id;
+    protected UUID id;
     private DeviceState state;
     private Consumption consumption;
     private DeviceDocumentation documentation;
     private int durability;
-    private boolean isRepairable;
     private int roomID;
 
     /**

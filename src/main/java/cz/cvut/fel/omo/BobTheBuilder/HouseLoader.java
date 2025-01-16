@@ -60,4 +60,12 @@ public class HouseLoader {
         deviceFactoryRegistry.registerFactory(DeviceType.WINDOW, new WindowFactory());
         return deviceFactoryRegistry;
     }
+
+    /**
+     * Get default house DTO.
+     * @return default house DTO
+     */
+    public static HouseDTO getDefaultHouseDTO() {
+        return new HouseDTO();
+    }
 }

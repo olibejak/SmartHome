@@ -35,7 +35,7 @@ public class HouseBuilderFacade {
     public HouseBuilderFacade(EventQueue eventQueue) {
         this.eventQueue = eventQueue;
         this.deviceFactoryRegistry = new DeviceFactoryRegistry(eventQueue);
-        populateDeviceFactoryRegistry(new DeviceFactoryRegistry(eventQueue));
+        populateDeviceFactoryRegistry(deviceFactoryRegistry);
         logger = GlobalLogger.getInstance();
     }
 
@@ -52,7 +52,7 @@ public class HouseBuilderFacade {
             houseDTO = HouseLoader.loadHouseDTOFromJson(filePath);
         } catch (IOException e) {
             logger.error("Error while building house from JSON file: " + e.getMessage());
-            throw new MyException("Error while building house from JSON file: " + e.getMessage());
+            houseDTO = HouseLoader.getDefaultHouseDTO();
         }
 
         return new HouseBuilder().reset()

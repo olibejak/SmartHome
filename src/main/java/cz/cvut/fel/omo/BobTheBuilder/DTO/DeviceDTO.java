@@ -1,5 +1,7 @@
 package cz.cvut.fel.omo.BobTheBuilder.DTO;
 
+import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
+import cz.cvut.fel.omo.BobTheBuilder.DTO.type.StateType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +13,7 @@ import lombok.Setter;
 @Setter
 public class DeviceDTO {
 
-    private int id;
     private DeviceType type;
+    private StateType state;
+    private Integer durability;
 }

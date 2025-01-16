@@ -1,0 +1,58 @@
+{
+  "DISHWASHER":
+    {
+      "electricityIdleRate": 0.1,
+      "electricityActiveRate": 0.5,
+      "gasRate": 0.0,
+      "waterRate": 0.5
+    },
+  "FRIDGE":
+    {
+      "electricityIdleRate": 0.1,
+      "electricityActiveRate": 0.5,
+      "gasRate": 0.0,
+      "waterRate": 0.0
+    },
+  "OVEN":
+    {
+      "electricityIdleRate": 0.1,
+      "electricityActiveRate": 0.5,
+      "gasRate": 0.5,
+      "waterRate": 0.0
+    },
+  "RECORD_PLAYER":
+    {
+      "electricityIdleRate": 0.1,
+      "electricityActiveRate": 0.5,
+      "gasRate": 0.0,
+      "waterRate": 0.0
+    },
+  "TELEVISION":
+    {
+      "electricityIdleRate": 0.1,
+      "electricityActiveRate": 0.5,
+      "gasRate": 0.0,
+      "waterRate": 0.0
+    },
+  "THERMOSTAT":
+    {
+      "electricityIdleRate": 0.1,
+      "electricityActiveRate": 0.5,
+      "gasRate": 0.5,
+      "waterRate": 0.0
+    },
+  "WASHING_MACHINE":
+    {
+      "electricityIdleRate": 0.1,
+      "electricityActiveRate": 0.5,
+      "gasRate": 0.0,
+      "waterRate": 0.5
+    },
+  "WINDOW":
+    {
+      "electricityIdleRate": 0.1,
+      "electricityActiveRate": 0.5,
+      "gasRate": 0.0,
+      "waterRate": 0.0
+    }
+}

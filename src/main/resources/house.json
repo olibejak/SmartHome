@@ -6,8 +6,9 @@
           "type": "LIVING_ROOM",
           "devices": [
             {
-              "id": 1,
-              "type": "WINDOW"
+              "type": "WINDOW",
+              "state": "IDLE",
+              "durability": 100
             }
           ]
         }

@@ -4,15 +4,17 @@ import cz.cvut.fel.omo.event.Event;
 import cz.cvut.fel.omo.event.EventType;
 import cz.cvut.fel.omo.event.util.Payload;
 
+import java.util.UUID;
+
 public class DeviceMalfunctionEvent implements EventFactory {
 
     @Override
-    public Event createEvent(Payload payload) {
+    public Event createEvent(UUID deviceID, Integer roomID) {
         return new Event(
                 EventType.DEVICE_MALFUNCTION,
                 Payload.builder()
-                        .deviceID(payload.getDeviceID())
-                        .roomID(payload.getRoomID())
+                        .deviceID(deviceID)
+                        .roomID(roomID)
                         .build()
         );
     }

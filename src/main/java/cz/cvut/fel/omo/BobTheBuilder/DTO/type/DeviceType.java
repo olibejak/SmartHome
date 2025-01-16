@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.BobTheBuilder.DTO;
+package cz.cvut.fel.omo.BobTheBuilder.DTO.type;
 
 public enum DeviceType {
 
@@ -9,5 +9,5 @@ public enum DeviceType {
     TELEVISION,
     THERMOSTAT,
     WASHING_MACHINE,
-    WINDOW;
+    WINDOW
 }

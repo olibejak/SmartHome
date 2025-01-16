@@ -1,18 +1,19 @@
 package cz.cvut.fel.omo.device;
 
-import cz.cvut.fel.omo.device.util.Consumption;
+import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
+import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-public class WashingMachine extends StorageDevice<WashingMachine.Wash> {
+@Setter
+@Getter
+@NoArgsConstructor
+public class WashingMachine extends StorageDevice {
 
     private boolean isClean;
-
-    public WashingMachine(int id, DeviceDocumentation documentation, Consumption consumption, int durability,
-                           int maxLoad) {
-        super(id, documentation, consumption, durability, maxLoad);
-        this.isClean = false;
-    }
 
     @Override
     public void turnOn() {
@@ -41,7 +42,7 @@ public class WashingMachine extends StorageDevice<WashingMachine.Wash> {
 
     @Override
     public void addItem(String name, double load) {
-        items.add(new Wash(name, load));
+        items.add(new StorageItem(name, load));
         logger.info(this + " wash " + name + " added");
     }
 
@@ -52,19 +53,18 @@ public class WashingMachine extends StorageDevice<WashingMachine.Wash> {
     }
 
     @Override
-    public void removeItem(Wash item) {
+    public void removeItem(StorageItem item) {
         items.remove(item);
         logger.info(this + " wash " + item.getName() + " removed");
     }
 
     @Override
-    public String toString() {
-        return "Washing machine " + id;
+    protected DeviceDocumentation loadDocumentation() {
+        return DeviceDocumentationLoader.getDocumentation(DeviceType.WASHING_MACHINE);
     }
 
-    public class Wash extends StorageItem {
-        private Wash(String name, double load) {
-            super(name, load);
-        }
+    @Override
+    public String toString() {
+        return "Washing machine " + id;
     }
 }

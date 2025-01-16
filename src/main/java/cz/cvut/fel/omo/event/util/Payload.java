@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 /**
  * Used to store data that are sent with the event.
  */
@@ -20,7 +22,7 @@ public class Payload {
     /**
      * Null if the event is not related to a specific device.
      */
-    Integer deviceID;
+    UUID deviceID;
 
     public Payload(Integer roomID) {
         this.roomID = roomID;
@@ -32,14 +34,14 @@ public class Payload {
 
     public static class Builder {
         private Integer roomID;
-        private Integer deviceID;
+        private UUID deviceID;
 
         public Builder roomID(Integer roomID) {
             this.roomID = roomID;
             return this;
         }
 
-        public Builder deviceID(Integer deviceID) {
+        public Builder deviceID(UUID deviceID) {
             this.deviceID = deviceID;
             return this;
         }

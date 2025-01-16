@@ -94,7 +94,16 @@ public class Dad extends Person {
 
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {
-        return "";
+        if (dishwasher.isClean()) {
+            return "Dad " + this.name + " ignores clean Dishwasher " + dishwasher.getId();
+        }
+        else if (dishwasher.getCurrentLoad() < dishwasher.getMaxLoad()) {
+            dishwasher.addItem("Plate", 4);
+            return "Dad " + this.name + " added many dishes to Dishwasher " + dishwasher.getId();
+        }
+        else {
+            return "Dad " + this.name + " ignores full Dishwasher " + dishwasher.getId();
+        }
     }
 
     @Override

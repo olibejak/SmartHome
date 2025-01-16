@@ -103,7 +103,16 @@ public class Grandpa extends Person {
 
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {
-        return "";
+        if (dishwasher.isClean()) {
+            return "Grandpa " + this.name + " ignores clean Dishwasher " + dishwasher.getId();
+        }
+        else if (dishwasher.getCurrentLoad() < dishwasher.getMaxLoad()) {
+            dishwasher.addItem("Plate", 3);
+            return "Grandpa " + this.name + " added many dishes to Dishwasher " + dishwasher.getId();
+        }
+        else {
+            return "Grandpa " + this.name + " ignores full Dishwasher " + dishwasher.getId();
+        }
     }
 
     @Override

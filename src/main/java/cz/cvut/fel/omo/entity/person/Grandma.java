@@ -96,7 +96,17 @@ public class Grandma extends Person {
 
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {
-        return "";
+        if (dishwasher.isClean()) {
+            dishwasher.removeAllItems();
+            return "Grandma " + this.name + " removed the dishes from Dishwasher " + dishwasher.getId();
+        }
+        else if (dishwasher.getCurrentLoad() < dishwasher.getMaxLoad()) {
+            return "Grandma " + this.name + " added no dishes to Dishwasher " + dishwasher.getId();
+        }
+        else {
+            dishwasher.wash();
+            return "Grandma " + this.name + " started Dishwasher " + dishwasher.getId();
+        }
     }
 
     @Override

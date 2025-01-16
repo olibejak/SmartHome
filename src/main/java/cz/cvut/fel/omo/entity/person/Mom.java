@@ -93,7 +93,19 @@ public class Mom extends Person {
 
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {
-        return "";
+        dishwasher.plugIn();
+        if (dishwasher.isClean()) {
+            dishwasher.removeAllItems();
+            return "Mom " + this.name + " removed the dishes from Dishwasher " + dishwasher.getId();
+        }
+        else if (dishwasher.getCurrentLoad() < dishwasher.getMaxLoad()) {
+            dishwasher.addItem("Plate", 2);
+            return "Mom " + this.name + " added some dishes to Dishwasher " + dishwasher.getId();
+        }
+        else {
+            dishwasher.wash();
+            return "Mom " + this.name + " started Dishwasher " + dishwasher.getId();
+        }
     }
 
     @Override

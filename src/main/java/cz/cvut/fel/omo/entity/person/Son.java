@@ -94,7 +94,16 @@ public class Son extends Person {
 
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {
-        return "";
+        if (dishwasher.isClean()) {
+            return "Son " + this.name + " notices that Dishwasher " + dishwasher.getId() + " is clean";
+        }
+        else if (dishwasher.getCurrentLoad() < dishwasher.getMaxLoad()) {
+            dishwasher.addItem("Plate", 1);
+            return "Son " + this.name + " added 1 dish to Dishwasher " + dishwasher.getId();
+        }
+        else {
+            return "Son " + this.name + " notices that Dishwasher " + dishwasher.getId() + " is full";
+        }
     }
 
     @Override

@@ -1,30 +1,48 @@
 package cz.cvut.fel.omo;
 
 import cz.cvut.fel.omo.BobTheBuilder.HouseBuilderFacade;
+import cz.cvut.fel.omo.activity.equipment.Skis;
+import cz.cvut.fel.omo.activity.equipment.SportEquipment;
+import cz.cvut.fel.omo.activity.equipment.Weights;
+import cz.cvut.fel.omo.activity.vehicle.Bicycle;
+import cz.cvut.fel.omo.activity.vehicle.Car;
+import cz.cvut.fel.omo.activity.vehicle.EngineType;
+import cz.cvut.fel.omo.activity.vehicle.Vehicle;
+import cz.cvut.fel.omo.entity.person.*;
+import cz.cvut.fel.omo.entity.pet.Cat;
+import cz.cvut.fel.omo.entity.pet.Dog;
+import cz.cvut.fel.omo.entity.pet.Hamster;
+import cz.cvut.fel.omo.entity.pet.Pet;
+import cz.cvut.fel.omo.event.eventManager.EventManager;
+import cz.cvut.fel.omo.event.eventManager.EventQueue;
 import cz.cvut.fel.omo.house.House;
-import cz.cvut.fel.omo.house.report.ConsumptionReport;
+import cz.cvut.fel.omo.simulation.Simulation;
+
+import java.util.ArrayList;
 
 import static java.util.Objects.nonNull;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class Main {
     public static void main(String[] args) {
 
-       ConsumptionReport ConsumptionReport = new ConsumptionReport();
-       HouseBuilderFacade HouseBuilder = new HouseBuilderFacade();
+//       ConsumptionReport ConsumptionReport = new ConsumptionReport();
+//       HouseBuilderFacade HouseBuilder = new HouseBuilderFacade();
+//
+//       House house = HouseBuilder.buildHouseFromJson("src/main/resources/house.json");
+//
+//       if(nonNull(house)) {
+//           System.out.println(house);
+//           System.out.println();
+////           System.out.println(house.reportConfiguration());
+////           System.out.println(ConsumptionReport.getConsumptionReport(house));
+//       }
 
-       House house = HouseBuilder.buildHouseFromJson("src/main/resources/house.json");
-
-       if(nonNull(house)) {
-           System.out.println(house);
-           System.out.println();
-//           System.out.println(house.reportConfiguration());
-//           System.out.println(ConsumptionReport.getConsumptionReport(house));
-       }
-
-        System.out.println(house);
-        System.out.println();
-        System.out.println(house.reportConfiguration());
-        System.out.println(ConsumptionReport.getConsumptionReport(house));
+//        System.out.println(house);
+//        System.out.println();
+//        System.out.println(house.reportConfiguration());
+//        System.out.println(ConsumptionReport.getConsumptionReport(house));
 //        for (Device device: kitchen.getDevices()) {
 //            device.changeState(new OffDeviceState(device));
 //            device.update();
@@ -39,9 +57,9 @@ public class Main {
 //        }for (Device device: kitchen.getDevices()) {
 //            device.update();
 //        }
-        System.out.println(ConsumptionReport.getConsumptionReport(house));
-        System.out.println(house.getFloorNumbers());
-        System.out.println(house.getRoomIds());
+//        System.out.println(ConsumptionReport.getConsumptionReport(house));
+//        System.out.println(house.getFloorNumbers());
+//        System.out.println(house.getRoomIds());
 
 
         // version 1 - user input
@@ -78,5 +96,81 @@ public class Main {
 //            }
 //        }
 
+        // Entity interaction showcase
+//        Mom alice = new Mom("Alice", 35, 1, true);
+//        Mom sarah = new Mom("Sarah", 30, 1, true);
+//        Dog buddy = new Dog("Buddy", 3, 1);
+//        Dog max = new Dog("Max", 5, 1);
+
+//        alice.interactWith(alice);
+//        alice.interactWith(sarah);
+//        alice.interactWith(buddy);
+//
+//        buddy.interactWith(buddy);
+//        buddy.interactWith(max);
+//        buddy.interactWith(alice);
+
+        // Family
+        Mom mom = new Mom("Jane", 39, 1, true);
+        Dad dad = new Dad("John", 41, 1, true);
+        Son son = new Son("Jake", 9, 1, false);
+        Daughter daughter = new Daughter("Jessica", 7, 1, false);
+        Grandma grandma = new Grandma("Janet", 68, 1, false);
+        Grandpa grandpa = new Grandpa("Joe", 71, 1, true);
+
+        ArrayList<Person> family = new ArrayList<>();
+        family.add(mom);
+        family.add(dad);
+        family.add(daughter);
+        family.add(son);
+        family.add(grandma);
+        family.add(grandpa);
+
+        Dog dog = new Dog("Max", 4, 1);
+        Cat cat = new Cat("Coots", 3, 1);
+        Hamster hamster = new Hamster("Jerry", 2, 1);
+
+        ArrayList<Pet> pets = new ArrayList<>();
+        pets.add(dog);
+        pets.add(cat);
+        pets.add(hamster);
+
+        Skis skis = new Skis(true, 0, "Blue");
+        Weights weights = new Weights(true, 0);
+
+        Bicycle bicycle = new Bicycle("Wheels", 2012, "Red", 6);
+        Car car = new Car("Skoda", 2008, "White", EngineType.PETROL);
+
+//        mom.interactWith(dad);
+//        dad.interactWith(son);
+//        son.interactWith(daughter);
+//        daughter.interactWith(grandma);
+//        grandma.interactWith(grandpa);
+//        grandma.interactWith(dog);
+//        dog.interactWith(cat);
+//        cat.interactWith(hamster);
+//        hamster.interactWith(mom);
+//
+//        dad.interactWith(skis);
+//        dad.interactWith(weights);
+//        dad.interactWith(bicycle);
+//        dad.interactWith(car);
+
+        EventManager eventManager = new EventManager();
+        EventQueue eventQueue = new EventQueue(eventManager);
+
+        HouseBuilderFacade HouseBuilder = new HouseBuilderFacade(eventQueue);
+
+        House house = HouseBuilder.buildHouseFromJson("src/main/resources/house.json");
+
+        if(nonNull(house)) {
+           System.out.println(house);
+           System.out.println();
+//           System.out.println(house.reportConfiguration());
+//           System.out.println(ConsumptionReport.getConsumptionReport(house));
+       }
+
+        Simulation simulation = new Simulation(house, family, pets, eventQueue);
+        simulation.nextCycle();
     }
 }

@@ -1,0 +1,134 @@
+package cz.cvut.fel.omo.entity.person;
+
+import cz.cvut.fel.omo.activity.equipment.Skis;
+import cz.cvut.fel.omo.activity.equipment.Weights;
+import cz.cvut.fel.omo.activity.vehicle.Bicycle;
+import cz.cvut.fel.omo.activity.vehicle.Car;
+import cz.cvut.fel.omo.device.*;
+import cz.cvut.fel.omo.entity.pet.*;
+
+public class Son extends Person {
+    public Son(String name, int age, int roomID, boolean hasDriversLicense) {
+        super(name, age, roomID, hasDriversLicense);
+    }
+
+    @Override
+    public String accept(PersonVisitor visitor) {return visitor.visitSon(this);}
+
+
+    @Override
+    public String visitMom(Mom mom) {
+        return "Son " + this.name + " excitedly tells Mom " + mom.getName() + " about his latest adventure in the backyard.";
+    }
+
+    @Override
+    public String visitDad(Dad dad) {
+        return "Son " + this.name + " challenges Dad " + dad.getName() + " to a playful game of tag.";
+    }
+
+    @Override
+    public String visitSon(Son son) {
+        if (this.equals(son)) {
+            return "Son " + this.name + " cannot interact with himself.";
+        }
+        return "Son " + this.name + " greets his buddy Son " + son.getName() + " with a friendly high-five.";
+    }
+
+    @Override
+    public String visitDaughter(Daughter daughter) {
+        return "Son " + this.name + " teases Daughter " + daughter.getName() + " with a mischievous grin and runs away.";
+    }
+
+    @Override
+    public String visitGrandma(Grandma grandma) {
+        return "Son " + this.name + " proudly shows Grandma " + grandma.getName() + " his latest drawing of a rocket ship.";
+    }
+
+    @Override
+    public String visitGrandpa(Grandpa grandpa) {
+        return "Son " + this.name + " asks Grandpa " + grandpa.getName() + " to share one of his favorite childhood stories.";
+    }
+
+    @Override
+    public String visitDog(Dog dog) {
+        return "Son " + this.name + " plays a lively game of fetch with Dog " + dog.getName() + ", laughing as they race for the ball.";
+    }
+
+    @Override
+    public String visitCat(Cat cat) {
+        return "Son " + this.name + " chases Cat " + cat.getName() + " around the room until the Cat leaps to a high perch.";
+    }
+
+    @Override
+    public String visitHamster(Hamster hamster) {
+        return "Son " + this.name + " carefully feeds Hamster " + hamster.getName() + " a small snack and watches it nibble away.";
+    }
+
+    @Override
+    public String visitSkis(Skis skis) {
+        skis.setAvailable(false);
+        return "Son " + this.name + " attempts a daring jump on the " + skis.getColor() + " skis, cheering as he lands safely.";
+    }
+
+    @Override
+    public String visitWeights(Weights weights) {
+        weights.setAvailable(false);
+        return "Son " + this.name + " tests the weights, imagining himself as the strongest person in the family.";
+    }
+
+    @Override
+    public String visitBicycle(Bicycle bicycle) {
+        bicycle.setAvailable(false);
+        return "Son " + this.name + " pops wheelies and shows off cool tricks on the " + bicycle.getColor() + " bicycle.";
+    }
+
+    @Override
+    public String visitCar(Car car) {
+        if (this.hasDriversLicense) {
+            car.setAvailable(false);
+            return "Son " + this.name + " drives the " + car.getColor() + " car to the store to pick up some snacks.";
+        }
+        return "Son " + this.name + " does not have a driver's license and cannot drive the car.";
+    }
+
+
+    @Override
+    public String visitDishwasher(Dishwasher dishwasher) {
+        return "";
+    }
+
+    @Override
+    public String visitFridge(Fridge fridge) {
+        return "";
+    }
+
+    @Override
+    public String visitOven(Oven oven) {
+        return "";
+    }
+
+    @Override
+    public String visitRecordPlayer(RecordPlayer recordPlayer) {
+        return "";
+    }
+
+    @Override
+    public String visitTelevision(Television television) {
+        return "";
+    }
+
+    @Override
+    public String visitThermostat(Thermostat thermostat) {
+        return "";
+    }
+
+    @Override
+    public String visitWashingMachine(WashingMachine washingMachine) {
+        return "";
+    }
+
+    @Override
+    public String visitWindow(Window window) {
+        return "";
+    }
+}

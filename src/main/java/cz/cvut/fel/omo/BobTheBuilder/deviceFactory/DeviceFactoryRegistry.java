@@ -46,6 +46,10 @@ public class DeviceFactoryRegistry {
 
     public Device createDevice(DeviceDTO deviceDTO, int roomID) {
         DeviceFactory<?> factory = factoryMethods.get(deviceDTO.getType());
+        if (factory == null) {
+            logger.error("No factory found for device type " + deviceDTO.getType());
+            return null;
+        }
         ConsumptionDTO consumptionDTO = deviceConsumptionConfig.getOrDefault(
                 deviceDTO.getType(), getDefaultConsumptionDTO(deviceDTO.getType())
         );

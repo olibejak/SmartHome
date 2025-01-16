@@ -9,7 +9,6 @@ import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.FloorBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.HouseBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.RoomBuilder;
 import cz.cvut.fel.omo.device.Device;
-import cz.cvut.fel.omo.event.eventManager.EventManager;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
 import cz.cvut.fel.omo.exception.MyException;
 import cz.cvut.fel.omo.house.Floor;
@@ -21,6 +20,7 @@ import lombok.NonNull;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static cz.cvut.fel.omo.BobTheBuilder.HouseLoader.populateDeviceFactoryRegistry;
 import static java.util.Objects.nonNull;
 
 /**
@@ -28,17 +28,17 @@ import static java.util.Objects.nonNull;
  */
 public class HouseBuilderFacade {
 
-    private final EventManager eventManager;
     private final EventQueue eventQueue;
     private final DeviceFactoryRegistry deviceFactoryRegistry;
     private final GlobalLogger logger;
 
-    public HouseBuilderFacade() {
-        this.eventManager = new EventManager();
-        this.eventQueue = new EventQueue(eventManager);
-        this.deviceFactoryRegistry = HouseLoader.populateDeviceFactoryRegistry(new DeviceFactoryRegistry(eventQueue));
-        this.logger = GlobalLogger.getInstance();
+    public HouseBuilderFacade(EventQueue eventQueue) {
+        this.eventQueue = eventQueue;
+        this.deviceFactoryRegistry = new DeviceFactoryRegistry(eventQueue);
+        populateDeviceFactoryRegistry(new DeviceFactoryRegistry(eventQueue));
+        logger = GlobalLogger.getInstance();
     }
+
 
     /**
      * Builds a house from a JSON file

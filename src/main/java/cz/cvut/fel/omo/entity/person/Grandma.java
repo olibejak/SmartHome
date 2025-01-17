@@ -138,7 +138,9 @@ public class Grandma extends Person {
 
     @Override
     public String visitThermostat(Thermostat thermostat) {
-        return "";
+        thermostat.setTemperature(thermostat.getCurrentTemperature() + 3);
+        thermostat.turnOn();
+        return "Grandma " + this.name + " tries to turn up the temperature on Thermostat " + thermostat.getId();
     }
 
     @Override

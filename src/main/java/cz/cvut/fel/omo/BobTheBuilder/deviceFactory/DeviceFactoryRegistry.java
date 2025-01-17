@@ -51,13 +51,12 @@ public class DeviceFactoryRegistry {
             return null;
         }
         ConsumptionDTO consumptionDTO = deviceConsumptionConfig.getOrDefault(
-                deviceDTO.getType(), getDefaultConsumptionDTO(deviceDTO.getType())
+                deviceDTO.getType(), getDefaultConsumptionDTO()
         );
         return factory.createDevice(deviceDTO, consumptionDTO, roomID, eventQueue);
     }
 
-    private ConsumptionDTO getDefaultConsumptionDTO(DeviceType type) {
-        logger.info("No consumption configuration found for device type " + type + ", using default values.");
+    private ConsumptionDTO getDefaultConsumptionDTO() {
         return new ConsumptionDTO(
                 2,
                 5,

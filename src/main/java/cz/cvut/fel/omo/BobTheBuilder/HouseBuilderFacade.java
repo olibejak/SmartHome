@@ -4,13 +4,18 @@ import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.FloorDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.HouseDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.RoomDTO;
+import cz.cvut.fel.omo.BobTheBuilder.DTO.equipmentDTO.SportEquipmentDTO;
+import cz.cvut.fel.omo.BobTheBuilder.DTO.vehicleDTO.VehicleDTO;
 import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.*;
+import cz.cvut.fel.omo.BobTheBuilder.equipmentFactory.EquipmentFactoryRegistry;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.FloorBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.HouseBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.RoomBuilder;
+import cz.cvut.fel.omo.BobTheBuilder.vehicleFactory.VehicleFactoryRegistry;
+import cz.cvut.fel.omo.activity.equipment.SportEquipment;
+import cz.cvut.fel.omo.activity.vehicle.Vehicle;
 import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
-import cz.cvut.fel.omo.exception.MyException;
 import cz.cvut.fel.omo.house.Floor;
 import cz.cvut.fel.omo.house.House;
 import cz.cvut.fel.omo.house.Room;
@@ -19,8 +24,9 @@ import lombok.NonNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.function.Function;
 
-import static cz.cvut.fel.omo.BobTheBuilder.HouseLoader.populateDeviceFactoryRegistry;
+import static cz.cvut.fel.omo.BobTheBuilder.HouseLoader.*;
 import static java.util.Objects.nonNull;
 
 /**
@@ -30,12 +36,15 @@ public class HouseBuilderFacade {
 
     private final EventQueue eventQueue;
     private final DeviceFactoryRegistry deviceFactoryRegistry;
+    private final EquipmentFactoryRegistry sportEquipmentFactoryRegistry;
+    private final VehicleFactoryRegistry vehicleFactoryRegistry;
     private final GlobalLogger logger;
 
     public HouseBuilderFacade(EventQueue eventQueue) {
         this.eventQueue = eventQueue;
-        this.deviceFactoryRegistry = new DeviceFactoryRegistry(eventQueue);
-        populateDeviceFactoryRegistry(new DeviceFactoryRegistry(eventQueue));
+        this.deviceFactoryRegistry = populateDeviceFactoryRegistry(new DeviceFactoryRegistry(eventQueue));
+        this.sportEquipmentFactoryRegistry = populateSportEquipmentFactoryRegistry(new EquipmentFactoryRegistry());
+        this.vehicleFactoryRegistry = populateVehicleFactoryRegistry(new VehicleFactoryRegistry());
         logger = GlobalLogger.getInstance();
     }
 
@@ -52,7 +61,7 @@ public class HouseBuilderFacade {
             houseDTO = HouseLoader.loadHouseDTOFromJson(filePath);
         } catch (IOException e) {
             logger.error("Error while building house from JSON file: " + e.getMessage());
-            throw new MyException("Error while building house from JSON file: " + e.getMessage());
+            houseDTO = HouseLoader.getDefaultHouseDTO();
         }
 
         return new HouseBuilder().reset()
@@ -86,13 +95,16 @@ public class HouseBuilderFacade {
      * @return list of rooms
      */
     private ArrayList<Room> buildRooms(@NonNull FloorDTO floorDTO, int floorNumber) {
-        int roomId = (floorNumber * 100) - 1;
+        int baseRoomId = (floorNumber * 100) - 1;
         ArrayList<Room> rooms = new ArrayList<>();
         for (RoomDTO roomDTO : floorDTO.getRooms()) {
+            int roomId = ++baseRoomId;
                 rooms.add(
-                    new RoomBuilder().reset(roomId++)
+                    new RoomBuilder().reset(roomId)
                             .setRoomType(roomDTO.getType())
-                            .addDevices(buildDevices(roomId, roomDTO))
+                            .addDevices(buildItems(roomDTO.getDevices(), deviceDTO -> createDevice(roomId, deviceDTO)))
+                            .addVehicles(buildItems(roomDTO.getVehicles(), this::createVehicle))
+                            .addSportEquipment(buildItems(roomDTO.getEquipment(), this::createSportEquipment))
                             .build()
             );
         }
@@ -100,19 +112,25 @@ public class HouseBuilderFacade {
     }
 
     /**
-     * Builds devices from a room DTO
-     * @param roomDTO room DTO
-     * @return list of devices
+     * Builds items from an array of DTOs
+     * @param dtoArr array of DTOs
+     * @param createItem function to create an item from a DTO
+     * @return list of items
+     * @param <D> DTO type
+     * @param <T> returned item type
      */
-    private ArrayList<Device> buildDevices(int roomId, @NonNull RoomDTO roomDTO) {
-        ArrayList<Device> devices = new ArrayList<>();
-        for (DeviceDTO deviceDTO : roomDTO.getDevices()) {
-            Device device = createDevice(deviceDTO, roomId);
-            if (nonNull(device)) {
-                devices.add(device);
+    private <D, T> ArrayList<T> buildItems(D[] dtoArr, Function<D, T> createItem) {
+        if (dtoArr == null || dtoArr.length == 0) {
+            return new ArrayList<>();
+        }
+        ArrayList<T> items = new ArrayList<>();
+        for (D dto : dtoArr) {
+            T item = createItem.apply(dto);
+            if (nonNull(item)) {
+                items.add(item);
             }
         }
-        return devices;
+        return items;
     }
 
     /**
@@ -121,7 +139,19 @@ public class HouseBuilderFacade {
      * @param roomId ID of the room were the device is placed
      * @return device
      */
-    private Device createDevice(DeviceDTO deviceDTO, int roomId) {
+    private Device createDevice(Integer roomId, @NonNull DeviceDTO deviceDTO) {
+        if (deviceDTO.getType() == null) {
+            logger.info("DeviceDTO type is null, skipping to next device");
+            return null;
+        }
         return deviceFactoryRegistry.createDevice(deviceDTO, roomId);
+    }
+
+    private Vehicle createVehicle(@NonNull VehicleDTO vehicleDTO) {
+        return vehicleFactoryRegistry.createVehicle(vehicleDTO);
+    }
+
+    private SportEquipment createSportEquipment(@NonNull SportEquipmentDTO sportEquipmentDTO) {
+        return sportEquipmentFactoryRegistry.createSportEquipment(sportEquipmentDTO);
     }
 }

@@ -125,7 +125,14 @@ public class Son extends Person {
 
     @Override
     public String visitTelevision(Television television) {
-        return "";
+        if (RandomUtils.isWithinPercentage(80)) {
+            television.setChannel(3);
+            television.turnOn();
+            return "Son " + this.name + " turned on the TV " + television.getId();
+        } else {
+            television.turnOff();
+            return "Son " + this.name + " turned off the TV " + television.getId();
+        }
     }
 
     @Override

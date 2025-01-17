@@ -133,7 +133,14 @@ public class Grandpa extends Person {
 
     @Override
     public String visitTelevision(Television television) {
-        return "";
+        if (RandomUtils.isWithinPercentage(80)) {
+            television.setChannel(6);
+            television.turnOn();
+            return "Grandpa " + this.name + " turned on the TV " + television.getId();
+        } else {
+            television.turnOff();
+            return "Grandpa " + this.name + " turned off the TV " + television.getId();
+        }
     }
 
     @Override

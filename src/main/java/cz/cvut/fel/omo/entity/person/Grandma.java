@@ -126,7 +126,14 @@ public class Grandma extends Person {
 
     @Override
     public String visitTelevision(Television television) {
-        return "";
+        if (RandomUtils.isWithinPercentage(50)) {
+            television.setChannel(5);
+            television.turnOn();
+            return "Grandma " + this.name + " turned on the TV " + television.getId();
+        } else {
+            television.turnOff();
+            return "Grandma " + this.name + " turned off the TV " + television.getId();
+        }
     }
 
     @Override

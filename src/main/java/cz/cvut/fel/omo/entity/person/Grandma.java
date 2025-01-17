@@ -6,6 +6,7 @@ import cz.cvut.fel.omo.activity.vehicle.Bicycle;
 import cz.cvut.fel.omo.activity.vehicle.Car;
 import cz.cvut.fel.omo.device.*;
 import cz.cvut.fel.omo.entity.pet.*;
+import cz.cvut.fel.omo.utils.RandomUtils;
 
 public class Grandma extends Person {
     public Grandma(String name, int age, int roomID, boolean hasDriversLicense) {
@@ -96,16 +97,14 @@ public class Grandma extends Person {
 
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {
-        if (dishwasher.isClean()) {
-            dishwasher.removeAllItems();
-            return "Grandma " + this.name + " removed the dishes from Dishwasher " + dishwasher.getId();
-        }
-        else if (dishwasher.getCurrentLoad() < dishwasher.getMaxLoad()) {
-            return "Grandma " + this.name + " added no dishes to Dishwasher " + dishwasher.getId();
+        if (dishwasher.getCurrentLoad() < dishwasher.getMaxLoad()) {
+            int availableSpace = (int) (dishwasher.getMaxLoad() - dishwasher.getCurrentLoad());
+            int maxDishes = Math.min(2, availableSpace);
+            dishwasher.addItem("Plate", RandomUtils.getRandomNumber(1, maxDishes));
+            return "Grandma " + this.name + " added plates to Dishwasher " + dishwasher.getId();
         }
         else {
-            dishwasher.wash();
-            return "Grandma " + this.name + " started Dishwasher " + dishwasher.getId();
+            return "Grandma " + this.name + " notices full Dishwasher " + dishwasher.getId();
         }
     }
 

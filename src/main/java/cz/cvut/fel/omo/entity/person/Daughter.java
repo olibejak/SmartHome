@@ -6,6 +6,7 @@ import cz.cvut.fel.omo.activity.vehicle.Bicycle;
 import cz.cvut.fel.omo.activity.vehicle.Car;
 import cz.cvut.fel.omo.device.*;
 import cz.cvut.fel.omo.entity.pet.*;
+import cz.cvut.fel.omo.utils.RandomUtils;
 
 public class Daughter extends Person {
     public Daughter(String name, int age, int roomID, boolean hasDriversLicense) {
@@ -94,17 +95,14 @@ public class Daughter extends Person {
 
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {
-        if (dishwasher.isClean()) {
-            dishwasher.removeAllItems();
-            return "Daughter " + this.name + " removed the dishes from Dishwasher " + dishwasher.getId();
-        }
-        else if (dishwasher.getCurrentLoad() < dishwasher.getMaxLoad()) {
-            dishwasher.addItem("Plate", 1);
-            return "Daughter " + this.name + " added 1 dish to Dishwasher " + dishwasher.getId();
+        if (dishwasher.getCurrentLoad() < dishwasher.getMaxLoad()) {
+            int availableSpace = (int) (dishwasher.getMaxLoad() - dishwasher.getCurrentLoad());
+            int maxDishes = Math.min(3, availableSpace);
+            dishwasher.addItem("Mug", RandomUtils.getRandomNumber(1, maxDishes));
+            return "Daughter " + this.name + " added mugs to Dishwasher " + dishwasher.getId();
         }
         else {
-            dishwasher.wash();
-            return "Daughter " + this.name + " started Dishwasher " + dishwasher.getId();
+            return "Daughter " + this.name + " notices full Dishwasher " + dishwasher.getId();
         }
     }
 

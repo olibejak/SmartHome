@@ -6,6 +6,7 @@ import cz.cvut.fel.omo.activity.vehicle.Bicycle;
 import cz.cvut.fel.omo.activity.vehicle.Car;
 import cz.cvut.fel.omo.device.*;
 import cz.cvut.fel.omo.entity.pet.*;
+import cz.cvut.fel.omo.utils.RandomUtils;
 
 public class Dad extends Person {
     public Dad(String name, int age, int roomID, boolean hasDriversLicense) {
@@ -94,12 +95,11 @@ public class Dad extends Person {
 
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {
-        if (dishwasher.isClean()) {
-            return "Dad " + this.name + " ignores clean Dishwasher " + dishwasher.getId();
-        }
-        else if (dishwasher.getCurrentLoad() < dishwasher.getMaxLoad()) {
-            dishwasher.addItem("Plate", 4);
-            return "Dad " + this.name + " added many dishes to Dishwasher " + dishwasher.getId();
+        if (dishwasher.getCurrentLoad() < dishwasher.getMaxLoad()) {
+            int availableSpace = (int) (dishwasher.getMaxLoad() - dishwasher.getCurrentLoad());
+            int maxDishes = Math.min(3, availableSpace);
+            dishwasher.addItem("Plate", RandomUtils.getRandomNumber(1, maxDishes));
+            return "Dad " + this.name + " added plates to Dishwasher " + dishwasher.getId();
         }
         else {
             return "Dad " + this.name + " ignores full Dishwasher " + dishwasher.getId();

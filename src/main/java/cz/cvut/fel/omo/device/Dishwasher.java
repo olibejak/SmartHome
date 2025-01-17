@@ -36,16 +36,19 @@ public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
 
     @Override
     public void addItem(String name, double load) {
-        if (this.currentLoad + load > this.maxLoad) {
-            logger.info(this + " :Cannot add " + name + ", dishwasher is full");
-            return;
-        }
         if (isClean) {
             logger.info(this + " :Cannot add " + name + ", dishwasher is clean");
             return;
         }
+        if (this.currentLoad + load > this.maxLoad) {
+            logger.info(this + " :Cannot add the whole load of " + name + ", dishwasher would be full");
+            return;
+        }
         items.add(new Dish(name, load));
         this.currentLoad += load;
+        if (this.currentLoad == this.maxLoad) {
+            // todo generate event
+        }
     }
 
     @Override

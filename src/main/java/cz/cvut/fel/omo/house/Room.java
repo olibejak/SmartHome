@@ -15,7 +15,7 @@ public class Room implements ConfigurationReport {
     private final int id;
     private RoomType type;
     private final ArrayList<Device> devices = new ArrayList<>();
-    private final ArrayList<SportEquipment> equipment = new ArrayList<>();
+    private final ArrayList<SportEquipment> SportEquipment = new ArrayList<>();
     private final ArrayList<Vehicle> vehicles = new ArrayList<>();
 
     public Room(int id) {

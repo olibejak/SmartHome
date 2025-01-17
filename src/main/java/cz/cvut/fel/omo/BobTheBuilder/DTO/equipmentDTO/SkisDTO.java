@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class SkisDTO {
+public class SkisDTO extends SportEquipmentDTO {
 
     private String color;
 }

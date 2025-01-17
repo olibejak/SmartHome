@@ -4,10 +4,20 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.ConsumptionDTO;
+import cz.cvut.fel.omo.BobTheBuilder.DTO.equipmentDTO.SkisDTO;
+import cz.cvut.fel.omo.BobTheBuilder.DTO.equipmentDTO.WeightsDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.HouseDTO;
+import cz.cvut.fel.omo.BobTheBuilder.DTO.vehicleDTO.BicycleDTO;
+import cz.cvut.fel.omo.BobTheBuilder.DTO.vehicleDTO.CarDTO;
 import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.DeviceFactoryRegistry;
 import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.factoryMethod.*;
+import cz.cvut.fel.omo.BobTheBuilder.equipmentFactory.EquipmentFactoryRegistry;
+import cz.cvut.fel.omo.BobTheBuilder.equipmentFactory.SkisFactory;
+import cz.cvut.fel.omo.BobTheBuilder.equipmentFactory.WeightsFactory;
+import cz.cvut.fel.omo.BobTheBuilder.vehicleFactory.BicycleFactory;
+import cz.cvut.fel.omo.BobTheBuilder.vehicleFactory.CarFactory;
+import cz.cvut.fel.omo.BobTheBuilder.vehicleFactory.VehicleFactoryRegistry;
 import lombok.NonNull;
 
 import java.io.File;
@@ -62,6 +72,19 @@ public class HouseLoader {
         deviceFactoryRegistry.registerFactory(DeviceType.WASHING_MACHINE, new WashingMachineFactory());
         deviceFactoryRegistry.registerFactory(DeviceType.WINDOW, new WindowFactory());
         return deviceFactoryRegistry;
+    }
+
+    public static VehicleFactoryRegistry populateVehicleFactoryRegistry(@NonNull VehicleFactoryRegistry vehicleFactoryRegistry) {
+        vehicleFactoryRegistry.registerFactory(CarDTO.class, new CarFactory());
+        vehicleFactoryRegistry.registerFactory(BicycleDTO.class, new BicycleFactory());
+        return vehicleFactoryRegistry;
+    }
+
+    public static EquipmentFactoryRegistry populateSportEquipmentFactoryRegistry(@NonNull EquipmentFactoryRegistry equipmentFactoryRegistry) {
+        equipmentFactoryRegistry.registerFactory(WeightsDTO.class, new WeightsFactory());
+        equipmentFactoryRegistry.registerFactory(SkisDTO.class, new SkisFactory());
+        return equipmentFactoryRegistry;
+
     }
 
     /**

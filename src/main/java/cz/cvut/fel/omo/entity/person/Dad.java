@@ -118,7 +118,9 @@ public class Dad extends Person {
 
     @Override
     public String visitRecordPlayer(RecordPlayer recordPlayer) {
-        return "";
+        recordPlayer.insertRecord("Africa", "Toto");
+        recordPlayer.turnOn();
+        return "Dad " + this.name + " turned on the Record Player " + recordPlayer.getId();
     }
 
     @Override

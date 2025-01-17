@@ -117,7 +117,9 @@ public class Mom extends Person {
 
     @Override
     public String visitRecordPlayer(RecordPlayer recordPlayer) {
-        return "";
+        recordPlayer.insertRecord("Mamma Mia", "ABBA");
+        recordPlayer.turnOn();
+        return "Mom " + this.name + " turned on the Record Player " + recordPlayer.getId();
     }
 
     @Override

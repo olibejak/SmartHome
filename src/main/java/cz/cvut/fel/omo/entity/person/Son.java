@@ -118,7 +118,9 @@ public class Son extends Person {
 
     @Override
     public String visitRecordPlayer(RecordPlayer recordPlayer) {
-        return "";
+        recordPlayer.insertRecord("The Fox", "Ylvis");
+        recordPlayer.turnOn();
+        return "Dad " + this.name + " turned on the Record Player " + recordPlayer.getId();
     }
 
     @Override

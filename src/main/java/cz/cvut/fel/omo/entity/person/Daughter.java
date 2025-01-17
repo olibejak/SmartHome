@@ -118,7 +118,9 @@ public class Daughter extends Person {
 
     @Override
     public String visitRecordPlayer(RecordPlayer recordPlayer) {
-        return "";
+        recordPlayer.insertRecord("Dark Horse", "Katy Perry");
+        recordPlayer.turnOn();
+        return "Daughter " + this.name + " turned on the Record Player " + recordPlayer.getId();
     }
 
     @Override

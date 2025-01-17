@@ -120,7 +120,8 @@ public class Grandma extends Person {
 
     @Override
     public String visitRecordPlayer(RecordPlayer recordPlayer) {
-        return "";
+        recordPlayer.turnOff();
+        return "Grandma " + this.name + " turned off the Record Player " + recordPlayer.getId();
     }
 
     @Override

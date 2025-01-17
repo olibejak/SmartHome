@@ -127,7 +127,8 @@ public class Grandpa extends Person {
 
     @Override
     public String visitRecordPlayer(RecordPlayer recordPlayer) {
-        return "";
+        recordPlayer.turnOff();
+        return "Grandpa " + this.name + " turned off the Record Player " + recordPlayer.getId();
     }
 
     @Override

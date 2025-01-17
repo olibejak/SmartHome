@@ -29,6 +29,7 @@ public abstract class BaseDeviceFactory<T extends DeviceBuilder<T, D>, D extends
     public abstract D createDevice(DeviceDTO deviceDTO, ConsumptionDTO consumptionDTO, int roomID, EventQueue eventQueue);
 
     protected T setupBuilder(T builder, int roomID, DeviceDTO deviceDTO, ConsumptionDTO consumptionDTO, EventQueue eventQueue) {
+        replaceNullValues(deviceDTO);
         return builder
                 .id(UUID.randomUUID())
                 .consumption(createConsumption(consumptionDTO))
@@ -37,6 +38,13 @@ public abstract class BaseDeviceFactory<T extends DeviceBuilder<T, D>, D extends
                 .durability(deviceDTO.getDurability())
                 .eventQueue(eventQueue)
                 .documentation(null);
+    }
+
+    protected void replaceNullValues(DeviceDTO deviceDTO) {
+        if (deviceDTO.getDurability() == null)
+            deviceDTO.setDurability(100);
+        if (deviceDTO.getState() == null)
+            deviceDTO.setState(StateType.IDLE);
     }
 
     @Override

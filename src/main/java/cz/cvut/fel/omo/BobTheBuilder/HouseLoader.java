@@ -1,6 +1,7 @@
 package cz.cvut.fel.omo.BobTheBuilder;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.ConsumptionDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
@@ -28,7 +29,9 @@ public class HouseLoader {
      */
     public static HouseDTO loadHouseDTOFromJson(@NonNull String filePath) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.readValue(new File(filePath), HouseDTO.class);
+        // Ignore unknown properties
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        return objectMapper.readValue(new File(filePath), HouseDTO.class);
     }
 
     /**

@@ -10,7 +10,6 @@ import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.HouseBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.RoomBuilder;
 import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
-import cz.cvut.fel.omo.exception.MyException;
 import cz.cvut.fel.omo.house.Floor;
 import cz.cvut.fel.omo.house.House;
 import cz.cvut.fel.omo.house.Room;
@@ -121,7 +120,11 @@ public class HouseBuilderFacade {
      * @param roomId ID of the room were the device is placed
      * @return device
      */
-    private Device createDevice(DeviceDTO deviceDTO, int roomId) {
+    private Device createDevice(@NonNull DeviceDTO deviceDTO, int roomId) {
+        if (deviceDTO.getType() == null) {
+            logger.info("DeviceDTO type is null, skipping to next device");
+            return null;
+        }
         return deviceFactoryRegistry.createDevice(deviceDTO, roomId);
     }
 }

@@ -1,20 +1,14 @@
 package cz.cvut.fel.omo.BobTheBuilder;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.FloorDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.HouseDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.RoomDTO;
-import cz.cvut.fel.omo.BobTheBuilder.DTO.equipmentDTO.SportEquipmentDTO;
-import cz.cvut.fel.omo.BobTheBuilder.DTO.vehicleDTO.VehicleDTO;
 import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.*;
 import cz.cvut.fel.omo.BobTheBuilder.equipmentFactory.EquipmentFactoryRegistry;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.FloorBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.HouseBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.RoomBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.vehicleFactory.VehicleFactoryRegistry;
-import cz.cvut.fel.omo.activity.equipment.SportEquipment;
-import cz.cvut.fel.omo.activity.vehicle.Vehicle;
-import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
 import cz.cvut.fel.omo.house.Floor;
 import cz.cvut.fel.omo.house.House;
@@ -102,9 +96,19 @@ public class HouseBuilderFacade {
                 rooms.add(
                     new RoomBuilder().reset(roomId)
                             .setRoomType(roomDTO.getType())
-                            .addDevices(buildItems(roomDTO.getDevices(), deviceDTO -> createDevice(roomId, deviceDTO)))
-                            .addVehicles(buildItems(roomDTO.getVehicles(), this::createVehicle))
-                            .addSportEquipment(buildItems(roomDTO.getEquipment(), this::createSportEquipment))
+                            .addDevices(
+                                    buildItems(roomDTO.getDevices(),
+                                    deviceDTO -> createObject(roomId, deviceDTO, deviceFactoryRegistry)
+                                    ))
+                            .addVehicles(
+                                    buildItems(roomDTO.getVehicles(),
+                                    vehicleDTO -> createObject(roomId, vehicleDTO, vehicleFactoryRegistry)
+                                    ))
+                            .addSportEquipment(
+                                    buildItems(
+                                            roomDTO.getEquipment(),
+                                            equipmentDTO -> createObject(roomId, equipmentDTO, sportEquipmentFactoryRegistry)
+                                    ))
                             .build()
             );
         }
@@ -135,23 +139,11 @@ public class HouseBuilderFacade {
 
     /**
      * Creates a device from a device DTO
-     * @param deviceDTO device DTO
+     * @param dto device DTO
      * @param roomId ID of the room were the device is placed
      * @return device
      */
-    private Device createDevice(Integer roomId, @NonNull DeviceDTO deviceDTO) {
-        if (deviceDTO.getType() == null) {
-            logger.info("DeviceDTO type is null, skipping to next device");
-            return null;
-        }
-        return deviceFactoryRegistry.createDevice(deviceDTO, roomId);
-    }
-
-    private Vehicle createVehicle(@NonNull VehicleDTO vehicleDTO) {
-        return vehicleFactoryRegistry.createVehicle(vehicleDTO);
-    }
-
-    private SportEquipment createSportEquipment(@NonNull SportEquipmentDTO sportEquipmentDTO) {
-        return sportEquipmentFactoryRegistry.createSportEquipment(sportEquipmentDTO);
+    private <T, D> T createObject(Integer roomId, @NonNull D dto, @NonNull FactoryRegistry<T,D> factoryRegistry) {
+        return factoryRegistry.createObject(dto, roomId);
     }
 }

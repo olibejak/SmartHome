@@ -9,6 +9,10 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 
+/**
+ * Factory for creating Fridge devices.
+ * Part of the Factory Method design pattern.
+ */
 @NoArgsConstructor
 public class FridgeFactory extends BaseDeviceFactory<FridgeBuilder, Fridge> {
 

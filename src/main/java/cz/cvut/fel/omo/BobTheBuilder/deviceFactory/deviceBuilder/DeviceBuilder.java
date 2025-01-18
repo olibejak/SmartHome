@@ -8,6 +8,10 @@ import cz.cvut.fel.omo.event.eventManager.EventQueue;
 
 import java.util.UUID;
 
+/**
+ * Abstract class for building devices.
+ * Part of the Builder design pattern.
+ */
 public abstract class DeviceBuilder<T extends DeviceBuilder<T,D>, D extends Device> {
 
     protected D device;

@@ -2,6 +2,10 @@ package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
 
 import cz.cvut.fel.omo.device.Television;
 
+/**
+ * Builder for Television.
+ * Part of the Builder design pattern.
+ */
 public class TelevisionBuilder extends DeviceBuilder<TelevisionBuilder, Television> {
 
     public TelevisionBuilder() {

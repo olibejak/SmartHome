@@ -1,16 +1,14 @@
 package cz.cvut.fel.omo.BobTheBuilder.equipmentFactory;
 
 import cz.cvut.fel.omo.BobTheBuilder.DTO.equipmentDTO.SportEquipmentDTO;
-import cz.cvut.fel.omo.BobTheBuilder.DTO.vehicleDTO.VehicleDTO;
-import cz.cvut.fel.omo.BobTheBuilder.vehicleFactory.VehicleFactory;
+import cz.cvut.fel.omo.BobTheBuilder.FactoryRegistry;
 import cz.cvut.fel.omo.activity.equipment.SportEquipment;
-import cz.cvut.fel.omo.activity.vehicle.Vehicle;
 import cz.cvut.fel.omo.logger.GlobalLogger;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class EquipmentFactoryRegistry {
+public class EquipmentFactoryRegistry implements FactoryRegistry<SportEquipment, SportEquipmentDTO> {
 
     private final Map<Class<? extends SportEquipmentDTO>, SportEquipmentFactory<? extends SportEquipment, ? extends SportEquipmentDTO>> equipmentFactories;
     private final GlobalLogger logger = GlobalLogger.getInstance();
@@ -23,7 +21,8 @@ public class EquipmentFactoryRegistry {
         equipmentFactories.put(dtoClass, vehicleFactory);
     }
 
-    public <D extends SportEquipmentDTO> SportEquipment createSportEquipment(D dto) {
+    @Override
+    public SportEquipment createObject(SportEquipmentDTO dto, int roomId) {
         SportEquipmentFactory factory = equipmentFactories.get(dto.getClass());
         if (factory == null) {
             logger.info("No factory found for vehicle type " + dto.getClass());

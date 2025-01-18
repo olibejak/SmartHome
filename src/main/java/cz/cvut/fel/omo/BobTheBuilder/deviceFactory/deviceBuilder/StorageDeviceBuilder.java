@@ -5,6 +5,10 @@ import cz.cvut.fel.omo.device.StorageItem;
 
 import java.util.ArrayList;
 
+/**
+ * Abstract builder for StorageDevice.
+ * Part of the Builder design pattern.
+ */
 public abstract class StorageDeviceBuilder<T extends StorageDeviceBuilder<T, D>, D extends StorageDevice>
         extends DeviceBuilder<T, D> {
 

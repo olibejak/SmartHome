@@ -2,6 +2,10 @@ package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
 
 import cz.cvut.fel.omo.device.Window;
 
+/**
+ * Builder for Window.
+ * Part of the Builder design pattern.
+ */
 public class WindowBuilder extends DeviceBuilder<WindowBuilder, Window> {
 
     public WindowBuilder() {

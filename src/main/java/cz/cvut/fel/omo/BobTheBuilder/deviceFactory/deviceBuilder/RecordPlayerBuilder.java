@@ -2,6 +2,10 @@ package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
 
 import cz.cvut.fel.omo.device.RecordPlayer;
 
+/**
+ * Builder for RecordPlayer.
+ * Part of the Builder design pattern.
+ */
 public class RecordPlayerBuilder extends DeviceBuilder<RecordPlayerBuilder, RecordPlayer> {
 
     public RecordPlayerBuilder() {

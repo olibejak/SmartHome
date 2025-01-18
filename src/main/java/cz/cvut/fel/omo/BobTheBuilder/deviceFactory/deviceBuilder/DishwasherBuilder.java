@@ -2,6 +2,10 @@ package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
 
 import cz.cvut.fel.omo.device.Dishwasher;
 
+/**
+ * Builder for Dishwasher.
+ * Part of the Builder design pattern.
+ */
 public class DishwasherBuilder extends StorageDeviceBuilder<DishwasherBuilder, Dishwasher> {
 
     public DishwasherBuilder() {

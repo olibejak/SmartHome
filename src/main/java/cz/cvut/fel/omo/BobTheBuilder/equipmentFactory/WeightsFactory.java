@@ -3,6 +3,9 @@ package cz.cvut.fel.omo.BobTheBuilder.equipmentFactory;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.equipmentDTO.WeightsDTO;
 import cz.cvut.fel.omo.activity.equipment.Weights;
 
+/**
+ * Factory for creating weights
+ */
 public class WeightsFactory implements SportEquipmentFactory<Weights, WeightsDTO> {
 
     @Override

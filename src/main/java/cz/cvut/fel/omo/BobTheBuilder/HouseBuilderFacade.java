@@ -98,16 +98,16 @@ public class HouseBuilderFacade {
                             .setRoomType(roomDTO.getType())
                             .addDevices(
                                     buildItems(roomDTO.getDevices(),
-                                    deviceDTO -> createObject(roomId, deviceDTO, deviceFactoryRegistry)
+                                    deviceDTO -> createRoomObject(roomId, deviceDTO, deviceFactoryRegistry)
                                     ))
                             .addVehicles(
                                     buildItems(roomDTO.getVehicles(),
-                                    vehicleDTO -> createObject(roomId, vehicleDTO, vehicleFactoryRegistry)
+                                    vehicleDTO -> createRoomObject(roomId, vehicleDTO, vehicleFactoryRegistry)
                                     ))
                             .addSportEquipment(
                                     buildItems(
                                             roomDTO.getEquipment(),
-                                            equipmentDTO -> createObject(roomId, equipmentDTO, sportEquipmentFactoryRegistry)
+                                            equipmentDTO -> createRoomObject(roomId, equipmentDTO, sportEquipmentFactoryRegistry)
                                     ))
                             .build()
             );
@@ -138,12 +138,12 @@ public class HouseBuilderFacade {
     }
 
     /**
-     * Creates a device from a device DTO
+     * Creates a room object from a device DTO
      * @param dto device DTO
      * @param roomId ID of the room were the device is placed
      * @return device
      */
-    private <T, D> T createObject(Integer roomId, @NonNull D dto, @NonNull FactoryRegistry<T,D> factoryRegistry) {
+    private <T, D> T createRoomObject(Integer roomId, @NonNull D dto, @NonNull FactoryRegistry<T,D> factoryRegistry) {
         return factoryRegistry.createObject(dto, roomId);
     }
 }

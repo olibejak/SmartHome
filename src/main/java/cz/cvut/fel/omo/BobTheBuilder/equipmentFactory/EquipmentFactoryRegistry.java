@@ -8,6 +8,9 @@ import cz.cvut.fel.omo.logger.GlobalLogger;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Registry for equipment factories
+ */
 public class EquipmentFactoryRegistry implements FactoryRegistry<SportEquipment, SportEquipmentDTO> {
 
     private final Map<Class<? extends SportEquipmentDTO>, SportEquipmentFactory<? extends SportEquipment, ? extends SportEquipmentDTO>> equipmentFactories;
@@ -17,6 +20,11 @@ public class EquipmentFactoryRegistry implements FactoryRegistry<SportEquipment,
         equipmentFactories = new HashMap<>();
     }
 
+    /**
+     * Registers a factory for a specific equipment type
+     * @param dtoClass class of the equipment DTO
+     * @param vehicleFactory factory for the equipment
+     */
     public void registerFactory(Class<? extends SportEquipmentDTO> dtoClass, SportEquipmentFactory<?,?> vehicleFactory) {
         equipmentFactories.put(dtoClass, vehicleFactory);
     }

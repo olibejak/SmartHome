@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Registry for device factories.
+ */
 public class DeviceFactoryRegistry implements FactoryRegistry<Device, DeviceDTO> {
 
     private final GlobalLogger logger = GlobalLogger.getInstance();
@@ -29,6 +32,11 @@ public class DeviceFactoryRegistry implements FactoryRegistry<Device, DeviceDTO>
         deviceConsumptionConfig = loadDeviceConsumptionConfig("src/main/resources/device_consumption.json");
     }
 
+    /**
+     * Loads device consumption config from a file.
+     * @param path path to the file
+     * @return map of device types and their consumption values
+     */
     private Map<DeviceType, ConsumptionDTO> loadDeviceConsumptionConfig(@NonNull String path) {
         try {
             return HouseLoader.loadDeviceConsumptionConfig(path);
@@ -41,10 +49,19 @@ public class DeviceFactoryRegistry implements FactoryRegistry<Device, DeviceDTO>
         }
     }
 
+    /**
+     * Registers a factory method for a device type.
+     * @param type device type
+     * @param factoryMethod factory method
+     */
     public void registerFactory(DeviceType type, DeviceFactory<?> factoryMethod) {
         factoryMethods.put(type, factoryMethod);
     }
 
+    /**
+     * Returns default consumption values.
+     * @return default consumption values
+     */
     private ConsumptionDTO getDefaultConsumptionDTO() {
         return new ConsumptionDTO(
                 2,

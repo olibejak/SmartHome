@@ -6,6 +6,10 @@ import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder.OvenBuilder;
 import cz.cvut.fel.omo.device.Oven;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
 
+/**
+ * Factory for creating Oven devices.
+ * Part of the Factory Method design pattern.
+ */
 public class OvenFactory extends BaseDeviceFactory<OvenBuilder, Oven> {
 
     @Override

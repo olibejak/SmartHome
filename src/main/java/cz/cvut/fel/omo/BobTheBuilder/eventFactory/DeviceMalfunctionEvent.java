@@ -6,6 +6,9 @@ import cz.cvut.fel.omo.event.util.Payload;
 
 import java.util.UUID;
 
+/**
+ * Factory for creating device malfunction events
+ */
 public class DeviceMalfunctionEvent implements EventFactory {
 
     @Override

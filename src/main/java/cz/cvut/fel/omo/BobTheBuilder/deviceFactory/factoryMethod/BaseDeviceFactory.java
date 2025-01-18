@@ -15,8 +15,15 @@ import cz.cvut.fel.omo.event.eventManager.EventQueue;
 import java.util.HashMap;
 import java.util.UUID;
 
+/**
+ * Abstract class for creating devices.
+ * Part of the Factory Method design pattern.
+ */
 public abstract class BaseDeviceFactory<T extends DeviceBuilder<T, D>, D extends Device> implements DeviceFactory<D> {
 
+    /**
+     * The strategies for setting the state of the device.
+     */
     protected HashMap<StateType, StateSetter> stateStrategies = new HashMap<>();
 
     public BaseDeviceFactory() {
@@ -28,6 +35,16 @@ public abstract class BaseDeviceFactory<T extends DeviceBuilder<T, D>, D extends
     @Override
     public abstract D createDevice(DeviceDTO deviceDTO, ConsumptionDTO consumptionDTO, int roomID, EventQueue eventQueue);
 
+    /**
+     * Sets up the builder with the given parameters.
+     *
+     * @param builder         the builder to set up
+     * @param roomID          the room ID
+     * @param deviceDTO       the device DTO
+     * @param consumptionDTO  the consumption DTO
+     * @param eventQueue      the event queue
+     * @return the builder
+     */
     protected T setupBuilder(T builder, int roomID, DeviceDTO deviceDTO, ConsumptionDTO consumptionDTO, EventQueue eventQueue) {
         replaceNullValues(deviceDTO);
         return builder
@@ -40,6 +57,11 @@ public abstract class BaseDeviceFactory<T extends DeviceBuilder<T, D>, D extends
                 .documentation(null);
     }
 
+    /**
+     * Replaces null values in the device DTO with default values.
+     *
+     * @param deviceDTO the device DTO
+     */
     protected void replaceNullValues(DeviceDTO deviceDTO) {
         if (deviceDTO.getDurability() == null)
             deviceDTO.setDurability(100);

@@ -6,6 +6,11 @@ import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
 
+/**
+ * Interface for creating devices and consumptions.
+ * Part of the Factory Method design pattern.
+ * @param <D> type of device
+ */
 public interface DeviceFactory<D extends Device> {
 
     /**

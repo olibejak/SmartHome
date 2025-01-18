@@ -2,6 +2,10 @@ package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
 
 import cz.cvut.fel.omo.device.Oven;
 
+/**
+ * Builder for Oven.
+ * Part of the Builder design pattern.
+ */
 public class OvenBuilder extends DeviceBuilder<OvenBuilder, Oven> {
 
     public OvenBuilder() {

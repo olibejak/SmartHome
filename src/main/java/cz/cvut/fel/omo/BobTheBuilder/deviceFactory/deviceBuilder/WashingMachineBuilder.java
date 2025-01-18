@@ -2,6 +2,10 @@ package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
 
 import cz.cvut.fel.omo.device.WashingMachine;
 
+/**
+ * Builder for WashingMachine.
+ * Part of the Builder design pattern.
+ */
 public class WashingMachineBuilder extends StorageDeviceBuilder<WashingMachineBuilder, WashingMachine> {
 
     public WashingMachineBuilder() {

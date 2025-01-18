@@ -3,6 +3,9 @@ package cz.cvut.fel.omo.BobTheBuilder.equipmentFactory;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.equipmentDTO.SkisDTO;
 import cz.cvut.fel.omo.activity.equipment.Skis;
 
+/**
+ * Factory for creating skis
+ */
 public class SkisFactory implements SportEquipmentFactory<Skis, SkisDTO> {
 
     @Override

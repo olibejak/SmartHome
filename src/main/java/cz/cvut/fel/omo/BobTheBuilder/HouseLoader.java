@@ -74,12 +74,22 @@ public class HouseLoader {
         return deviceFactoryRegistry;
     }
 
+    /**
+     * Populate vehicle factory registry with supported vehicle factories
+     * @param vehicleFactoryRegistry vehicle factory registry for deciding which factory to use based on vehicle type
+     * @return vehicle factory registry with supported vehicle factories
+     */
     public static VehicleFactoryRegistry populateVehicleFactoryRegistry(@NonNull VehicleFactoryRegistry vehicleFactoryRegistry) {
         vehicleFactoryRegistry.registerFactory(CarDTO.class, new CarFactory());
         vehicleFactoryRegistry.registerFactory(BicycleDTO.class, new BicycleFactory());
         return vehicleFactoryRegistry;
     }
 
+    /**
+     * Populate sport equipment factory registry with supported sport equipment factories
+     * @param equipmentFactoryRegistry equipment factory registry for deciding which factory to use based on sport equipment type
+     * @return equipment factory registry with supported sport equipment factories
+     */
     public static EquipmentFactoryRegistry populateSportEquipmentFactoryRegistry(@NonNull EquipmentFactoryRegistry equipmentFactoryRegistry) {
         equipmentFactoryRegistry.registerFactory(WeightsDTO.class, new WeightsFactory());
         equipmentFactoryRegistry.registerFactory(SkisDTO.class, new SkisFactory());

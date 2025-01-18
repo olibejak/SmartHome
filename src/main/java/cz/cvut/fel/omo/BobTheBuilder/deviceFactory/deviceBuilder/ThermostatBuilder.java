@@ -2,6 +2,10 @@ package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
 
 import cz.cvut.fel.omo.device.Thermostat;
 
+/**
+ * Builder for Thermostat.
+ * Part of the Builder design pattern.
+ */
 public class ThermostatBuilder extends DeviceBuilder<ThermostatBuilder, Thermostat> {
 
     public ThermostatBuilder() {

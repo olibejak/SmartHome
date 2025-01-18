@@ -9,6 +9,10 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 
+/**
+ * Factory for creating Dishwasher devices.
+ * Part of the Factory Method design pattern.
+ */
 @NoArgsConstructor
 public class DishwasherFactory extends BaseDeviceFactory<DishwasherBuilder, Dishwasher> {
 

@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 
+/**
+ * Builder for creating rooms.
+ */
 @NoArgsConstructor
 public class RoomBuilder {
 

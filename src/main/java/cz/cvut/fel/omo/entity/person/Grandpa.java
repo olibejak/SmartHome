@@ -152,7 +152,15 @@ public class Grandpa extends Person {
 
     @Override
     public String visitWashingMachine(WashingMachine washingMachine) {
-        return "";
+        if (washingMachine.getCurrentLoad() < washingMachine.getMaxLoad()) {
+            int availableSpace = (int) (washingMachine.getMaxLoad() - washingMachine.getCurrentLoad());
+            int maxClothes = Math.min(2, availableSpace);
+            washingMachine.addItem("Sweatpants", RandomUtils.getRandomNumber(1, maxClothes));
+            return "Grandpa " + this.name + " added sweatpants to Washing Machine " + washingMachine.getId();
+        }
+        else {
+            return "Grandpa " + this.name + " ignores full Washing Machine " + washingMachine.getId();
+        }
     }
 
     @Override

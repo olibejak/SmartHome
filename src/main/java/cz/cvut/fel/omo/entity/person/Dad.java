@@ -144,7 +144,15 @@ public class Dad extends Person {
 
     @Override
     public String visitWashingMachine(WashingMachine washingMachine) {
-        return "";
+        if (washingMachine.getCurrentLoad() < washingMachine.getMaxLoad()) {
+            int availableSpace = (int) (washingMachine.getMaxLoad() - washingMachine.getCurrentLoad());
+            int maxClothes = Math.min(3, availableSpace);
+            washingMachine.addItem("Pants", RandomUtils.getRandomNumber(1, maxClothes));
+            return "Dad " + this.name + " added pants to Washing Machine " + washingMachine.getId();
+        }
+        else {
+            return "Dad " + this.name + " ignores full Washing Machine " + washingMachine.getId();
+        }
     }
 
     @Override

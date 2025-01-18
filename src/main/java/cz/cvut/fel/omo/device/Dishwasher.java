@@ -32,6 +32,7 @@ public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
         logger.info(this + " :Washing dishes...");
         turnOn();
         this.isClean = true;
+        // todo generate event to empty the dishwasher
     }
 
     @Override

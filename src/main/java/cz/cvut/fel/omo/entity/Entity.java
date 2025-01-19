@@ -9,8 +9,11 @@ import cz.cvut.fel.omo.activity.equipment.SportEquipmentVisitor;
 import cz.cvut.fel.omo.activity.vehicle.Vehicle;
 import cz.cvut.fel.omo.activity.vehicle.VehicleVisitor;
 import cz.cvut.fel.omo.logger.GlobalLogger;
+import cz.cvut.fel.omo.utils.RandomUtils;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
 
 @Getter
 @Setter
@@ -28,8 +31,12 @@ public abstract class Entity implements PersonVisitor, PetVisitor, VehicleVisito
         this.logger = GlobalLogger.getInstance();
     }
 
-    public void goToRoom(int roomID) {
+    public void moveToRoom(int roomID) {
         this.roomID = roomID;
+    }
+
+    public void moveToRoomRandomly(ArrayList<Integer> roomIds) {
+        this.roomID = RandomUtils.getRandomElement(roomIds);
     }
 
     public void interactWith(Person person) {

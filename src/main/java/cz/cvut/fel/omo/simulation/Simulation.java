@@ -32,6 +32,7 @@ public class Simulation {
         this.eventQueue = eventQueue;
         this.cycleCount = 0;
         this.logger = GlobalLogger.getInstance();
+        // todo put family and pets in rooms randomly
     }
 
     public Simulation(House house, ArrayList<Person> family, ArrayList<Pet> pets, EventQueue eventQueue, int cycleCount) {
@@ -41,6 +42,7 @@ public class Simulation {
         this.eventQueue = eventQueue;
         this.cycleCount = cycleCount;
         this.logger = GlobalLogger.getInstance();
+        // todo put family and pets in rooms randomly
     }
 
     public void nextCycle() {
@@ -50,10 +52,13 @@ public class Simulation {
         // 1. family and pets react to global events
 
         // 2. family and pets actions
-        // - for each person and pet - two loops
-        for (Person person : family) {
-            logger.info(person.toString());
-        }
+//        for (Person person : family) {
+//            logger.info(person.toString());
+//        }
+//        for (Pet pet : pets) {
+//            logger.info(pet.toString());
+//        }
+
         //   2.1. find what people, pets, equipment, vehicles and events are in the current room
         //   - special class CurrentRoomPayload with all of the above?? - findCurrentRoomPayloadByRoomID()
         //   2.2. react to local events from CurrentRoomPayload
@@ -64,6 +69,15 @@ public class Simulation {
         //   3.1. increase consumption based on the current state
         // 4. family and pets movement
         // - random choice?? probability tables??
+        for (Person person : family) {
+            person.moveToRoomRandomly(house.getRoomIds());
+            logger.info(person.toString());
+        }
+        for (Pet pet : pets) {
+            pet.moveToRoomRandomly(house.getRoomIds());
+            logger.info(pet.toString());
+        }
+
     }
 
     public void nextCycles(int count) {

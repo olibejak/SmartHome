@@ -158,6 +158,13 @@ public class Grandma extends Person {
 
     @Override
     public String visitWindow(Window window) {
-        return "";
+        if (RandomUtils.isWithinPercentage(60)) {
+            window.openCurtain();
+            window.open();
+            return "Grandma " + this.name + " opened Window " + window.getId();
+        }
+        window.close();
+        window.openCurtain();
+        return "Grandma " + this.name + " opened the curtains of closed Window " + window.getId();
     }
 }

@@ -156,6 +156,13 @@ public class Mom extends Person {
 
     @Override
     public String visitWindow(Window window) {
-        return "";
+        if (RandomUtils.isWithinPercentage(50)) {
+            window.openCurtain();
+            window.open();
+            return "Mom " + this.name + " opened Window " + window.getId();
+        }
+        window.close();
+        window.openCurtain();
+        return "Mom " + this.name + " opened the curtains of closed Window " + window.getId();
     }
 }

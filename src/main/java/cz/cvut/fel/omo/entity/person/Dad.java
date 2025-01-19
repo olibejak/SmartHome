@@ -157,6 +157,13 @@ public class Dad extends Person {
 
     @Override
     public String visitWindow(Window window) {
-        return "";
+        if (RandomUtils.isWithinPercentage(40)) {
+            window.openCurtain();
+            window.open();
+            return "Dad " + this.name + " opened Window " + window.getId();
+        }
+        window.close();
+        window.closeCurtain();
+        return "Dad " + this.name + " closed the curtains of closed Window " + window.getId();
     }
 }

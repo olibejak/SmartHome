@@ -138,10 +138,11 @@ public class HouseBuilderFacade {
     }
 
     /**
-     * Creates a room object from a device DTO
-     * @param dto device DTO
-     * @param roomId ID of the room were the device is placed
-     * @return device
+     * Creates a room object from a DTO
+     * @param dto room object DTO
+     * @param roomId ID of the room were the object is placed
+     * @return room object instance
+     * @param <T> Room object type
      */
     private <T, D> T createRoomObject(Integer roomId, @NonNull D dto, @NonNull FactoryRegistry<T,D> factoryRegistry) {
         return factoryRegistry.createObject(dto, roomId);

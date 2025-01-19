@@ -42,6 +42,6 @@ public class Thermostat extends Device{
 
     @Override
     public String toString() {
-        return "Thermostat " + id;
+        return "Thermostat " + id + ": " + currentTemperature + "°C";
     }
 }

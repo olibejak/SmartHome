@@ -15,9 +15,9 @@ public class Television extends Device{
 
     private int channel;
 
-    public void changeChannel(int channel) {
+    public void setChannel(int channel) {
         this.channel = channel;
-        logger.info(this + " channel set to " + channel);
+        logger.info(this + " channel set to channel " + channel);
     }
 
     @Override

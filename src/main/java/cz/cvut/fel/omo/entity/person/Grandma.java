@@ -6,6 +6,7 @@ import cz.cvut.fel.omo.activity.vehicle.Bicycle;
 import cz.cvut.fel.omo.activity.vehicle.Car;
 import cz.cvut.fel.omo.device.*;
 import cz.cvut.fel.omo.entity.pet.*;
+import cz.cvut.fel.omo.utils.RandomUtils;
 
 public class Grandma extends Person {
     public Grandma(String name, int age, int roomID, boolean hasDriversLicense) {
@@ -96,41 +97,81 @@ public class Grandma extends Person {
 
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {
-        return "";
+        if (dishwasher.getCurrentLoad() < dishwasher.getMaxLoad()) {
+            int availableSpace = (int) (dishwasher.getMaxLoad() - dishwasher.getCurrentLoad());
+            int maxDishes = Math.min(2, availableSpace);
+            dishwasher.addItem("Plate", RandomUtils.getRandomNumber(1, maxDishes));
+            return "Grandma " + this.name + " added plates to " + dishwasher;
+        }
+        else {
+            return "Grandma " + this.name + " notices full " + dishwasher;
+        }
     }
 
     @Override
     public String visitFridge(Fridge fridge) {
-        return "";
+        if (!fridge.isEmpty()) {
+            String snack = fridge.removeFirstItem();
+            return "Grandma " + this.name + " got a " + snack + " from " + fridge;
+        }
+        return "Grandma " + this.name + " could not get anything from empty " + fridge;
     }
 
     @Override
     public String visitOven(Oven oven) {
-        return "";
+        oven.setSetting(Oven.RangeSettingType.DEFROST);
+        oven.setTemperature(180);
+        oven.turnOn();
+        return "Grandma " + this.name + " started defrosting a Chicken in " + oven;
     }
 
     @Override
     public String visitRecordPlayer(RecordPlayer recordPlayer) {
-        return "";
+        recordPlayer.turnOff();
+        return "Grandma " + this.name + " turned off the " + recordPlayer;
     }
 
     @Override
     public String visitTelevision(Television television) {
-        return "";
+        if (RandomUtils.isWithinPercentage(50)) {
+            television.turnOn();
+            television.setChannel(5);
+            return "Grandma " + this.name + " turned on the " + television + " and switched to channel 5";
+        } else {
+            television.turnOff();
+            return "Grandma " + this.name + " turned off the " + television;
+        }
     }
 
     @Override
     public String visitThermostat(Thermostat thermostat) {
-        return "";
+        thermostat.turnOn();
+        thermostat.setTemperature(thermostat.getCurrentTemperature() + 3);
+        return "Grandma " + this.name + " tries to turn up the temperature on " + thermostat;
     }
 
     @Override
     public String visitWashingMachine(WashingMachine washingMachine) {
-        return "";
+        if (washingMachine.getCurrentLoad() < washingMachine.getMaxLoad()) {
+            int availableSpace = (int) (washingMachine.getMaxLoad() - washingMachine.getCurrentLoad());
+            int maxClothes = Math.min(4, availableSpace);
+            washingMachine.addItem("Sweater", RandomUtils.getRandomNumber(1, maxClothes));
+            return "Grandma " + this.name + " added sweaters to " + washingMachine;
+        }
+        else {
+            return "Grandma " + this.name + " notices full " + washingMachine;
+        }
     }
 
     @Override
     public String visitWindow(Window window) {
-        return "";
+        if (RandomUtils.isWithinPercentage(60)) {
+            window.openCurtain();
+            window.open();
+            return "Grandma " + this.name + " opened Window " + window.getId();
+        }
+        window.close();
+        window.openCurtain();
+        return "Grandma " + this.name + " opened the curtains of closed Window " + window.getId();
     }
 }

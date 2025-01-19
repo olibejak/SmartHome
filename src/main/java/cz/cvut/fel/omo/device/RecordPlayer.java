@@ -24,7 +24,7 @@ public class RecordPlayer extends Device{
 
     @Override
     public String toString() {
-        return "Record player " + id;
+        return "Record player " + id + " with Record " + currentRecord.toString();
     }
 
     @Override
@@ -32,5 +32,10 @@ public class RecordPlayer extends Device{
         return DeviceDocumentationLoader.getDocumentation(DeviceType.RECORD_PLAYER);
     }
 
-    protected record Record(String name, String artist) {}
+    protected record Record(String name, String artist) {
+        @Override
+        public String toString() {
+            return name + " - " + artist;
+        }
+    }
 }

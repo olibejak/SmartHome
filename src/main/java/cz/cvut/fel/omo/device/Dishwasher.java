@@ -1,7 +1,6 @@
 package cz.cvut.fel.omo.device;
 
 import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
-import cz.cvut.fel.omo.BobTheBuilder.eventFactory.DeviceMalfunctionEvent;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
@@ -25,8 +24,10 @@ public class Dishwasher extends StorageDevice {
             logger.info(this + " :Cannot wash, dishwasher is already clean");
             return;
         }
-        logger.info(this + " :Washing dishes...");
+        turnOn();
         this.isClean = true;
+        logger.info(this + " : Dishwasher is clean - GENERATE EVENT");
+        // todo generate event to empty the dishwasher
     }
 
     @Override
@@ -41,18 +42,19 @@ public class Dishwasher extends StorageDevice {
 
     @Override
     public void addItem(String name, double load) {
-        if (this.currentLoad + load > this.maxLoad) {
-            logger.info(this + " :Cannot add " + name + ", dishwasher is full");
-            return;
-        }
         if (isClean) {
             logger.info(this + " :Cannot add " + name + ", dishwasher is clean");
             return;
         }
+        if (this.currentLoad + load > this.maxLoad) {
+            logger.info(this + " :Cannot add the whole load of " + name + ", dishwasher would be full");
+            return;
+        }
         items.add(new StorageItem(name, load));
         this.currentLoad += load;
-        if (currentLoad == maxLoad) {
-            eventQueue.addEvent(new DeviceMalfunctionEvent().createEvent(id, getRoomID()));
+        if (this.currentLoad == this.maxLoad) {
+            logger.info(this + " : Dishwasher is full - GENERATE EVENT");
+            // todo generate event
         }
     }
 
@@ -67,13 +69,14 @@ public class Dishwasher extends StorageDevice {
     public void removeItem(StorageItem item) {
         items.remove(item);
         this.currentLoad =- item.getLoad();
-        if (currentLoad == 0) {
+        if (currentLoad == 0 || currentLoad < 0) {
+            this.currentLoad = 0;
             isClean = false;
         }
     }
 
     @Override
     public String toString() {
-        return "DishWasher " + id;
+        return "Dishwasher " + id + ": " + items;
     }
 }

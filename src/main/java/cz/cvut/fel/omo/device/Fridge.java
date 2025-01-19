@@ -47,6 +47,23 @@ public class Fridge extends StorageDevice {
         logger.info(this + " :Food " + item.getName() + " removed");
     }
 
+    public String removeFirstItem() {
+        if (!items.isEmpty()) {
+            String firstItem = items.removeFirst().name;
+            if (items.isEmpty()) {
+                logger.info(this + " : Fridge is empty - GENERATE EVENT");
+                // todo generate event - empty fridge
+            }
+            return firstItem;
+        }
+        logger.info(this + " : Fridge is empty");
+        return "";
+    }
+
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
     public void setTemperature(double temperature) {
         if (temperature < minTemperature || temperature > maxTemperature) {
             logger.info(this + " :Temperature " + temperature + " out of range " +
@@ -63,6 +80,6 @@ public class Fridge extends StorageDevice {
 
     @Override
     public String toString() {
-        return "Fridge " + id;
+        return "Fridge " + id + ": " + items;
     }
 }

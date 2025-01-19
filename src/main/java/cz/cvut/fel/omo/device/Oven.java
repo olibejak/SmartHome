@@ -19,6 +19,12 @@ public class Oven extends Device{
     }
 
     @Override
+    public void turnOn() {
+        super.turnOn();
+        // todo generate event empty out the oven when finished
+    }
+
+    @Override
     public String accept(DeviceVisitor visitor) {
         return visitor.visitOven(this);
     }

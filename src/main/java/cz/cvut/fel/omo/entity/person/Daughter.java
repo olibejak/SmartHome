@@ -117,7 +117,10 @@ public class Daughter extends Person {
 
     @Override
     public String visitOven(Oven oven) {
-        return "";
+        oven.setSetting(Oven.RangeSettingType.CONVECTION);
+        oven.setTemperature(220);
+        oven.turnOn();
+        return "Daughter " + this.name + " started making a pizza in Oven " + oven.getId();
     }
 
     @Override

@@ -117,7 +117,10 @@ public class Dad extends Person {
 
     @Override
     public String visitOven(Oven oven) {
-        return "";
+        oven.setSetting(Oven.RangeSettingType.BROIL);
+        oven.setTemperature(220);
+        oven.turnOn();
+        return "Dad " + this.name + " started broiling beef in Oven " + oven.getId();
     }
 
     @Override

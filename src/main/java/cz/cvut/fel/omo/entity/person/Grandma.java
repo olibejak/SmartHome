@@ -119,7 +119,10 @@ public class Grandma extends Person {
 
     @Override
     public String visitOven(Oven oven) {
-        return "";
+        oven.setSetting(Oven.RangeSettingType.DEFROST);
+        oven.setTemperature(180);
+        oven.turnOn();
+        return "Grandma " + this.name + " started defrosting a chicken in Oven " + oven.getId();
     }
 
     @Override

@@ -99,10 +99,10 @@ public class Son extends Person {
             int availableSpace = (int) (dishwasher.getMaxLoad() - dishwasher.getCurrentLoad());
             int maxDishes = Math.min(2, availableSpace);
             dishwasher.addItem("Glass", RandomUtils.getRandomNumber(1, maxDishes));
-            return "Dad " + this.name + " added glasses to Dishwasher " + dishwasher.getId();
+            return "Son " + this.name + " added glasses to Dishwasher " + dishwasher.getId();
         }
         else {
-            return "Dad " + this.name + " ignores full Dishwasher " + dishwasher.getId();
+            return "Son " + this.name + " ignores full Dishwasher " + dishwasher.getId();
         }
     }
 
@@ -117,14 +117,14 @@ public class Son extends Person {
 
     @Override
     public String visitOven(Oven oven) {
-        return "";
+        return "Son " + this.name + " does not know how to operate Oven " + oven.getId();
     }
 
     @Override
     public String visitRecordPlayer(RecordPlayer recordPlayer) {
         recordPlayer.insertRecord("The Fox", "Ylvis");
         recordPlayer.turnOn();
-        return "Dad " + this.name + " turned on the Record Player " + recordPlayer.getId();
+        return "Son " + this.name + " turned on the Record Player " + recordPlayer.getId();
     }
 
     @Override
@@ -155,7 +155,7 @@ public class Son extends Person {
             return "Son " + this.name + " added socks to Washing Machine " + washingMachine.getId();
         }
         else {
-            return "Dad " + this.name + " ignores full Washing Machine " + washingMachine.getId();
+            return "Son " + this.name + " ignores full Washing Machine " + washingMachine.getId();
         }
     }
 

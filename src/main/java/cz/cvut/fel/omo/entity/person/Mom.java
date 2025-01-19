@@ -118,7 +118,10 @@ public class Mom extends Person {
 
     @Override
     public String visitOven(Oven oven) {
-        return "";
+        oven.setSetting(Oven.RangeSettingType.BAKE);
+        oven.setTemperature(200);
+        oven.turnOn();
+        return "Mom " + this.name + " started baking a cake in Oven " + oven.getId();
     }
 
     @Override

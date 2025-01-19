@@ -108,20 +108,20 @@ public class Grandpa extends Person {
             int availableSpace = (int) (dishwasher.getMaxLoad() - dishwasher.getCurrentLoad());
             int maxDishes = Math.min(2, availableSpace);
             dishwasher.addItem("Cutlery", RandomUtils.getRandomNumber(1, maxDishes));
-            return "Grandpa " + this.name + " added cutlery to Dishwasher " + dishwasher.getId();
+            return "Grandpa " + this.name + " added cutlery to " + dishwasher;
         }
         else {
-            return "Grandpa " + this.name + " ignores full Dishwasher " + dishwasher.getId();
+            return "Grandpa " + this.name + " ignores full " + dishwasher;
         }
     }
 
     @Override
     public String visitFridge(Fridge fridge) {
         if (!fridge.isEmpty()) {
-            String snack = fridge.getFirstItem();
-            return "Grandpa " + this.name + " got a " + snack + " from Fridge " + fridge.getId();
+            String snack = fridge.removeFirstItem();
+            return "Grandpa " + this.name + " got a " + snack + " from " + fridge;
         }
-        return "Grandpa " + this.name + " could not get anything from empty Fridge " + fridge.getId();
+        return "Grandpa " + this.name + " could not get anything from empty " + fridge;
     }
 
     @Override
@@ -129,32 +129,32 @@ public class Grandpa extends Person {
         oven.setSetting(Oven.RangeSettingType.WARM);
         oven.setTemperature(200);
         oven.turnOn();
-        return "Grandpa " + this.name + " started making a baked potatoes in Oven " + oven.getId();
+        return "Grandpa " + this.name + " started making Baked Potatoes in " + oven;
     }
 
     @Override
     public String visitRecordPlayer(RecordPlayer recordPlayer) {
         recordPlayer.turnOff();
-        return "Grandpa " + this.name + " turned off the Record Player " + recordPlayer.getId();
+        return "Grandpa " + this.name + " turned off the " + recordPlayer;
     }
 
     @Override
     public String visitTelevision(Television television) {
         if (RandomUtils.isWithinPercentage(80)) {
-            television.setChannel(6);
             television.turnOn();
-            return "Grandpa " + this.name + " turned on the TV " + television.getId();
+            television.setChannel(6);
+            return "Grandpa " + this.name + " turned on the " + television + " and switched to channel 6";
         } else {
             television.turnOff();
-            return "Grandpa " + this.name + " turned off the TV " + television.getId();
+            return "Grandpa " + this.name + " turned off the " + television;
         }
     }
 
     @Override
     public String visitThermostat(Thermostat thermostat) {
-        thermostat.setTemperature(thermostat.getCurrentTemperature() + 1);
         thermostat.turnOn();
-        return "Grandpa " + this.name + " tries to turn up the temperature on Thermostat " + thermostat.getId();
+        thermostat.setTemperature(thermostat.getCurrentTemperature() + 1);
+        return "Grandpa " + this.name + " tries to turn up the temperature on " + thermostat;
     }
 
     @Override
@@ -163,10 +163,10 @@ public class Grandpa extends Person {
             int availableSpace = (int) (washingMachine.getMaxLoad() - washingMachine.getCurrentLoad());
             int maxClothes = Math.min(2, availableSpace);
             washingMachine.addItem("Sweatpants", RandomUtils.getRandomNumber(1, maxClothes));
-            return "Grandpa " + this.name + " added sweatpants to Washing Machine " + washingMachine.getId();
+            return "Grandpa " + this.name + " added sweatpants to " + washingMachine;
         }
         else {
-            return "Grandpa " + this.name + " ignores full Washing Machine " + washingMachine.getId();
+            return "Grandpa " + this.name + " ignores full " + washingMachine;
         }
     }
 

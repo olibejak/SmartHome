@@ -53,9 +53,10 @@ public class WashingMachine extends StorageDevice<WashingMachine.Wash> {
         }
         items.add(new Wash(name, load));
         this.currentLoad += load;
-        logger.info(this + " wash " + name + " added");
+        logger.info(this + " " + name + " added");
         if (this.currentLoad == this.maxLoad) {
             // todo generate event
+            logger.info(this + " is full - GENERATE EVENT");
         }
     }
 
@@ -75,12 +76,17 @@ public class WashingMachine extends StorageDevice<WashingMachine.Wash> {
 
     @Override
     public String toString() {
-        return "Washing machine " + id;
+        return "Washing machine " + id + ": " + items;
     }
 
     public class Wash extends StorageItem {
         private Wash(String name, double load) {
             super(name, load);
+        }
+
+        @Override
+        public String toString() {
+            return name + ": " + load;
         }
     }
 }

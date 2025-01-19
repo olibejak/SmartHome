@@ -12,6 +12,7 @@ public class RecordPlayer extends Device{
 
     public RecordPlayer(int id, DeviceDocumentation documentation, Consumption consumption, int durability) {
         super(id, documentation, consumption, durability);
+        this.currentRecord = new Record("Whale Sounds", "Whales"); // default
     }
 
     @Override
@@ -25,7 +26,7 @@ public class RecordPlayer extends Device{
 
     @Override
     public String toString() {
-        return "Record player " + id;
+        return "Record player " + id + " with Record " + currentRecord.toString();
     }
 
     @AllArgsConstructor
@@ -33,5 +34,10 @@ public class RecordPlayer extends Device{
     protected class Record {
         private final String name;
         private final String artist;
+
+        @Override
+        public String toString() {
+            return name + " - " + artist;
+        }
     }
 }

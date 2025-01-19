@@ -8,8 +8,6 @@ import cz.cvut.fel.omo.activity.equipment.Skis;
 import cz.cvut.fel.omo.activity.equipment.Weights;
 import cz.cvut.fel.omo.utils.RandomUtils;
 
-import java.util.Optional;
-
 public class Mom extends Person {
     public Mom(String name, int age, int roomID, boolean hasDriversLicense) {
         super(name, age, roomID, hasDriversLicense);
@@ -100,20 +98,20 @@ public class Mom extends Person {
             int availableSpace = (int) (dishwasher.getMaxLoad() - dishwasher.getCurrentLoad());
             int maxDishes = Math.min(5, availableSpace);
             dishwasher.addItem("Bowl", RandomUtils.getRandomNumber(1, maxDishes));
-            return "Mom " + this.name + " added bowls to Dishwasher " + dishwasher.getId();
+            return "Mom " + this.name + " added bowls to " + dishwasher;
         }
         else {
-            return "Mom " + this.name + " notices full Dishwasher " + dishwasher.getId();
+            return "Mom " + this.name + " notices full " + dishwasher;
         }
     }
 
     @Override
     public String visitFridge(Fridge fridge) {
         if (!fridge.isEmpty()) {
-            String snack = fridge.getFirstItem();
-            return "Mom " + this.name + " got a " + snack + " from Fridge " + fridge.getId();
+            String snack = fridge.removeFirstItem();
+            return "Mom " + this.name + " got a " + snack + " from " + fridge;
         }
-        return "Mom " + this.name + " could not get anything from empty Fridge " + fridge.getId();
+        return "Mom " + this.name + " could not get anything from empty " + fridge;
     }
 
     @Override
@@ -121,33 +119,33 @@ public class Mom extends Person {
         oven.setSetting(Oven.RangeSettingType.BAKE);
         oven.setTemperature(200);
         oven.turnOn();
-        return "Mom " + this.name + " started baking a cake in Oven " + oven.getId();
+        return "Mom " + this.name + " started baking a Cake in " + oven;
     }
 
     @Override
     public String visitRecordPlayer(RecordPlayer recordPlayer) {
         recordPlayer.insertRecord("Mamma Mia", "ABBA");
         recordPlayer.turnOn();
-        return "Mom " + this.name + " turned on the Record Player " + recordPlayer.getId();
+        return "Mom " + this.name + " turned on the " + recordPlayer;
     }
 
     @Override
     public String visitTelevision(Television television) {
         if (RandomUtils.isWithinPercentage(70)) {
-            television.setChannel(1);
             television.turnOn();
-            return "Mom " + this.name + " turned on the TV " + television.getId();
+            television.setChannel(1);
+            return "Mom " + this.name + " turned on the " + television + " and switched to channel 1";
         } else {
             television.turnOff();
-            return "Mom " + this.name + " turned off the TV " + television.getId();
+            return "Mom " + this.name + " turned off the " + television;
         }
     }
 
     @Override
     public String visitThermostat(Thermostat thermostat) {
-        thermostat.setTemperature(thermostat.getCurrentTemperature() + 2);
         thermostat.turnOn();
-        return "Mom " + this.name + " tries to turn up the temperature on Thermostat " + thermostat.getId();
+        thermostat.setTemperature(thermostat.getCurrentTemperature() + 2);
+        return "Mom " + this.name + " tries to turn up the temperature on " + thermostat;
     }
 
     @Override
@@ -156,10 +154,10 @@ public class Mom extends Person {
             int availableSpace = (int) (washingMachine.getMaxLoad() - washingMachine.getCurrentLoad());
             int maxClothes = Math.min(5, availableSpace);
             washingMachine.addItem("Shirt", RandomUtils.getRandomNumber(1, maxClothes));
-            return "Mom " + this.name + " added shirts to Washing Machine " + washingMachine.getId();
+            return "Mom " + this.name + " added shirts to " + washingMachine;
         }
         else {
-            return "Mom " + this.name + " notices full Washing Machine " + washingMachine.getId();
+            return "Mom " + this.name + " notices full " + washingMachine;
         }
     }
 

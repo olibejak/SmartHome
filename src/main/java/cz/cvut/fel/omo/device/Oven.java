@@ -21,6 +21,7 @@ public class Oven extends Device{
     @Override
     public void turnOn() {
         super.turnOn();
+        logger.info(this + " : Oven is turned on - GENERATE EVENT");
         // todo generate event empty out the oven when finished
     }
 
@@ -45,7 +46,7 @@ public class Oven extends Device{
 
     @Override
     public String toString() {
-        return "Range " + id;
+        return "Oven " + id + " set to " + setting + ", " + currentTemperature + "°C";
     }
 
     public enum RangeSettingType {

@@ -20,7 +20,7 @@ public class Thermostat extends Device{
         super(id, documentation, consumption, durability);
         this.minTemperature = minTemperature;
         this.maxTemperature = maxTemperature;
-        this.currentTemperature = (maxTemperature - minTemperature) / 2;
+        this.currentTemperature = (maxTemperature + minTemperature) / 2;
     }
 
     public void setTemperature(double temperature) {
@@ -40,6 +40,6 @@ public class Thermostat extends Device{
 
     @Override
     public String toString() {
-        return "Thermostat " + id;
+        return "Thermostat " + id + ": " + currentTemperature + "°C";
     }
 }

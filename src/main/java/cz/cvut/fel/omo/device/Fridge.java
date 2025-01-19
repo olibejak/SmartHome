@@ -5,8 +5,6 @@ import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import lombok.Getter;
 
-import java.util.Optional;
-
 public class Fridge extends StorageDevice<Fridge.Food> {
 
     private final double minTemperature;
@@ -52,11 +50,16 @@ public class Fridge extends StorageDevice<Fridge.Food> {
         logger.info(this + " :Food " + item.getName() + " removed");
     }
 
-    public String getFirstItem() {
+    public String removeFirstItem() {
         if (!items.isEmpty()) {
-            return items.getFirst().name;
+            String firstItem = items.removeFirst().name;
+            if (items.isEmpty()) {
+                logger.info(this + " : Fridge is empty - GENERATE EVENT");
+                // todo generate event - empty fridge
+            }
+            return firstItem;
         }
-        // todo generate event - empty fridge
+        logger.info(this + " : Fridge is empty");
         return "";
     }
 
@@ -75,12 +78,17 @@ public class Fridge extends StorageDevice<Fridge.Food> {
 
     @Override
     public String toString() {
-        return "Fridge " + id;
+        return "Fridge " + id + ": " + items;
     }
 
     public class Food extends StorageItem {
         public Food(String name, double load) {
             super(name, load);
+        }
+
+        @Override
+        public String toString() {
+            return name + ": " + load;
         }
     }
 }

@@ -3,6 +3,7 @@ package cz.cvut.fel.omo.device;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
@@ -29,9 +30,9 @@ public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
             logger.info(this + " :Cannot wash, dishwasher is already clean");
             return;
         }
-        logger.info(this + " :Washing dishes...");
         turnOn();
         this.isClean = true;
+        logger.info(this + " : Dishwasher is clean - GENERATE EVENT");
         // todo generate event to empty the dishwasher
     }
 
@@ -48,6 +49,7 @@ public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
         items.add(new Dish(name, load));
         this.currentLoad += load;
         if (this.currentLoad == this.maxLoad) {
+            logger.info(this + " : Dishwasher is full - GENERATE EVENT");
             // todo generate event
         }
     }
@@ -71,12 +73,17 @@ public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
 
     @Override
     public String toString() {
-        return "Dishwasher " + id;
+        return "Dishwasher " + id + ": " + items;
     }
 
     public class Dish extends StorageItem {
         public Dish(String name, double load) {
             super(name, load);
+        }
+
+        @Override
+        public String toString() {
+            return name + ": " + load;
         }
     }
 }

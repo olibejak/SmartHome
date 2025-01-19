@@ -12,10 +12,6 @@ public enum RoomType {
     BATHROOM("Bathroom"),
     OUTSIDE("Outside");
 
-    /**
-     * -- GETTER --
-     *  Gets the human-readable name of the room type.
-     */
     private final String displayName;
 
     RoomType(String displayName) {

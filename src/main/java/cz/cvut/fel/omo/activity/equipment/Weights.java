@@ -18,4 +18,9 @@ public class Weights extends SportEquipment {
     public String accept(SportEquipmentVisitor visitor) {
         return visitor.visitWeights(this);
     }
+
+    @Override
+    public String reportConfiguration() {
+        return "Weights";
+    }
 }

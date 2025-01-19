@@ -22,4 +22,9 @@ public class Skis extends SportEquipment {
     public String accept(SportEquipmentVisitor visitor) {
         return visitor.visitSkis(this);
     }
+
+    @Override
+    public String reportConfiguration() {
+        return color + " Skis";
+    }
 }

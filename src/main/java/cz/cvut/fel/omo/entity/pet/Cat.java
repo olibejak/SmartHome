@@ -86,4 +86,9 @@ public class Cat extends Pet {
         car.setAvailable(false);
         return "Cat " + this.name + " hides beneath the " + car.getColor() + " car, watching the world quietly from the shadows.";
     }
+
+    @Override
+    public String toString() {
+        return "Cat " + name + ", " + age + " in Room #" + roomID;
+    }
 }

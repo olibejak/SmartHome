@@ -82,4 +82,9 @@ public class Hamster extends Pet {
     public String visitCar(Car car) {
         return "Hamster " + this.name + " cannot interact with the car.";
     }
+
+    @Override
+    public String toString() {
+        return "Hamster " + name + ", " + age + " in Room #" + roomID;
+    }
 }

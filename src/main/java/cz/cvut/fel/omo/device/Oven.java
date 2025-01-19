@@ -49,6 +49,11 @@ public class Oven extends Device{
     }
 
     @Override
+    public String reportConfiguration() {
+        return "Oven: " + id;
+    }
+
+    @Override
     public String toString() {
         return "Oven " + id + " set to " + setting + ", " + currentTemperature + "°C";
     }

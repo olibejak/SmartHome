@@ -49,6 +49,11 @@ public class Window extends Device {
     }
 
     @Override
+    public String reportConfiguration() {
+        return "Window: " + id;
+    }
+
+    @Override
     public String toString() {
         return "Window " + id;
     }

@@ -76,6 +76,11 @@ public class Dishwasher extends StorageDevice {
     }
 
     @Override
+    public String reportConfiguration() {
+        return "Dishwasher: " + id;
+    }
+
+    @Override
     public String toString() {
         return "Dishwasher " + id + ": " + items;
     }

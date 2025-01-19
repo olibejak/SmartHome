@@ -29,7 +29,6 @@ public abstract class Entity implements PersonVisitor, PetVisitor, VehicleVisito
     }
 
     public void goToRoom(int roomID) {
-        // TODO check if room exists
         this.roomID = roomID;
     }
 

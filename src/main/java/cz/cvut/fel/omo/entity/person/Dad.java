@@ -173,4 +173,9 @@ public class Dad extends Person {
         window.closeCurtain();
         return "Dad " + this.name + " closed the curtains of closed Window " + window.getId();
     }
+
+    @Override
+    public String toString() {
+        return "Dad " + name + ", " + age + " in Room #" + roomID;
+    }
 }

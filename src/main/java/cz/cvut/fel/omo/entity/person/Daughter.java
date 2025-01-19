@@ -173,4 +173,9 @@ public class Daughter extends Person {
         window.openCurtain();
         return "Daughter " + this.name + " opened the curtains of closed Window " + window.getId();
     }
+
+    @Override
+    public String toString() {
+        return "Daughter " + name + ", " + age + " in Room #" + roomID;
+    }
 }

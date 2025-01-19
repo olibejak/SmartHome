@@ -172,4 +172,9 @@ public class Mom extends Person {
         window.openCurtain();
         return "Mom " + this.name + " opened the curtains of closed Window " + window.getId();
     }
+
+    @Override
+    public String toString() {
+        return "Mom " + name + ", " + age + " in Room #" + roomID;
+    }
 }

@@ -17,4 +17,9 @@ public class Bicycle extends Vehicle {
     public String accept(VehicleVisitor visitor) {
         return visitor.visitBicycle(this);
     }
+
+    @Override
+    public String reportConfiguration() {
+        return "Bicycle: " + color + " " + model + " from " + yearOfManufacturing + " with " + gearCount + " gears";
+    }
 }

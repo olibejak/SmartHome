@@ -51,6 +51,9 @@ public class Simulation {
 
         // 2. family and pets actions
         // - for each person and pet - two loops
+        for (Person person : family) {
+            logger.info(person.toString());
+        }
         //   2.1. find what people, pets, equipment, vehicles and events are in the current room
         //   - special class CurrentRoomPayload with all of the above?? - findCurrentRoomPayloadByRoomID()
         //   2.2. react to local events from CurrentRoomPayload

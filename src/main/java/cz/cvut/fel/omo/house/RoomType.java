@@ -1,5 +1,8 @@
 package cz.cvut.fel.omo.house;
 
+import lombok.Getter;
+
+@Getter
 public enum RoomType {
     KITCHEN("Kitchen"),
     BEDROOM("Bedroom"),
@@ -9,18 +12,14 @@ public enum RoomType {
     BATHROOM("Bathroom"),
     OUTSIDE("Outside");
 
+    /**
+     * -- GETTER --
+     *  Gets the human-readable name of the room type.
+     */
     private final String displayName;
 
     RoomType(String displayName) {
         this.displayName = displayName;
-    }
-
-    /**
-     * Gets the human-readable name of the room type.
-     * @return The display name of the room.
-     */
-    public String getDisplayName() {
-        return displayName;
     }
 
     @Override

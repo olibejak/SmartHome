@@ -146,8 +146,8 @@ public class Main {
 //        Car car = new Car("Skoda", 2008, "White", EngineType.PETROL);
 
         // devices
-        DeviceDocumentation documentation = new DeviceDocumentation("blank", "blank", 10, "blank", true, "blank");
-        Consumption consumption = new Consumption(10, 10 ,10, 10);
+//        DeviceDocumentation documentation = new DeviceDocumentation("blank", "blank", 10, "blank", true, "blank");
+//        Consumption consumption = new Consumption(10, 10 ,10, 10);
 
 //        Dishwasher dishwasher = new Dishwasher(1, documentation, consumption, 100, 7);
 //        mom.interactWith(dishwasher);

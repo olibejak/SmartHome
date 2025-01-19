@@ -1,0 +1,38 @@
+{
+  "DISHWASHER":
+  {
+    "model": "model",
+    "manufacturer": "manufacturer",
+    "manualContent": "manual",
+    "isFixable": true,
+    "warrantyCertificate": "warranty"
+  },
+  "FRIDGE":
+  {
+
+  },
+  "OVEN":
+  {
+
+  },
+  "RECORD_PLAYER":
+  {
+
+  },
+  "TELEVISION":
+  {
+
+  },
+  "THERMOSTAT":
+  {
+
+  },
+  "WASHING_MACHINE":
+  {
+
+  },
+  "WINDOW":
+  {
+
+  }
+}

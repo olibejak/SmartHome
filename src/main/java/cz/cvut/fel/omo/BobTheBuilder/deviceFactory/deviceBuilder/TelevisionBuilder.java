@@ -13,7 +13,7 @@ public class TelevisionBuilder extends DeviceBuilder<TelevisionBuilder, Televisi
     }
 
     public TelevisionBuilder channel(int channel) {
-        device.changeChannel(channel);
+        device.setChannel(channel);
         return self();
     }
 

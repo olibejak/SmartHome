@@ -40,9 +40,9 @@ public class House implements ConfigurationReport {
 
     public String reportConfiguration() {
         StringBuilder configurationReport = new StringBuilder("House Configuration Report:\n");
-        configurationReport.append("\nFloor Configuration:\n");
+        configurationReport.append("\nFloor Configuration:");
         for (Floor floor : floors) {
-            configurationReport.append(floor.reportConfiguration()).append("\n");
+            configurationReport.append("\n").append(floor.reportConfiguration());
         }
         return configurationReport.toString();
     }

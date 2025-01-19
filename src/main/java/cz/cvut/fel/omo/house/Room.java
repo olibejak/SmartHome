@@ -14,7 +14,7 @@ public class Room implements ConfigurationReport {
     private final int id;
     private RoomType type;
     private final ArrayList<Device> devices = new ArrayList<>();
-    private final ArrayList<SportEquipment> SportEquipment = new ArrayList<>();
+    private final ArrayList<SportEquipment> sportEquipment = new ArrayList<>();
     private final ArrayList<Vehicle> vehicles = new ArrayList<>();
 
     public Room(int id) {
@@ -29,16 +29,45 @@ public class Room implements ConfigurationReport {
     @Override
     public String reportConfiguration() {
         StringBuilder configurationReport = new StringBuilder();
-        configurationReport.append("\t\t").append(type).append(" #").append(id).append("\n");
-        configurationReport.append("\t\t\tDevices:\n");
-        for (Device device : devices) {
-            configurationReport.append("\t\t\t\t").append(device.reportConfiguration()).append("\n");
+        configurationReport.append("\n").append("\t\t").append(type).append(" #").append(id);
+        if (!devices.isEmpty()) {
+            configurationReport.append(reportDeviceConfiguration());
         }
-//        for (Device device : devices) {
-//            configurationReport.append("\t\t\t\t").append(device.reportConfiguration()).append("\n");
-//        }
+        if (!sportEquipment.isEmpty()) {
+            configurationReport.append(reportSportEquipmentConfiguration());
+        }
+        if (!vehicles.isEmpty()) {
+            configurationReport.append(reportVehicleConfiguration());
+        }
         // todo equipment configuration
         // todo vehicle configuration
+        return configurationReport.toString();
+    }
+
+    private String reportDeviceConfiguration() {
+        StringBuilder configurationReport = new StringBuilder();
+        configurationReport.append("\n\t\t\tDevices:");
+        for (Device device : devices) {
+            configurationReport.append("\n\t\t\t\t").append(device.reportConfiguration());
+        }
+        return configurationReport.toString();
+    }
+
+    private String reportSportEquipmentConfiguration() {
+        StringBuilder configurationReport = new StringBuilder();
+        configurationReport.append("\n\t\t\tSport Equipment:");
+        for (SportEquipment equipment : sportEquipment) {
+            configurationReport.append("\n\t\t\t\t").append(equipment.reportConfiguration());
+        }
+        return configurationReport.toString();
+    }
+
+    private String reportVehicleConfiguration() {
+        StringBuilder configurationReport = new StringBuilder();
+        configurationReport.append("\n\t\t\tVehicles:");
+        for (Vehicle vehicle : vehicles) {
+            configurationReport.append("\n\t\t\t\t").append(vehicle.reportConfiguration());
+        }
         return configurationReport.toString();
     }
 }

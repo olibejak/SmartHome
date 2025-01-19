@@ -108,7 +108,11 @@ public class Dad extends Person {
 
     @Override
     public String visitFridge(Fridge fridge) {
-        return "";
+        if (!fridge.isEmpty()) {
+            String snack = fridge.getFirstItem();
+            return "Dad " + this.name + " got a " + snack + " from Fridge " + fridge.getId();
+        }
+        return "Dad " + this.name + " could not get anything from empty Fridge " + fridge.getId();
     }
 
     @Override

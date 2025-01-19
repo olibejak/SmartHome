@@ -5,6 +5,8 @@ import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import lombok.Getter;
 
+import java.util.Optional;
+
 public class Fridge extends StorageDevice<Fridge.Food> {
 
     private final double minTemperature;
@@ -48,6 +50,18 @@ public class Fridge extends StorageDevice<Fridge.Food> {
         items.remove(item);
         this.currentLoad -= item.getLoad();
         logger.info(this + " :Food " + item.getName() + " removed");
+    }
+
+    public String getFirstItem() {
+        if (!items.isEmpty()) {
+            return items.getFirst().name;
+        }
+        // todo generate event - empty fridge
+        return "";
+    }
+
+    public boolean isEmpty() {
+        return items.isEmpty();
     }
 
     public void setTemperature(double temperature) {

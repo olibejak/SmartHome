@@ -1,22 +1,21 @@
 package cz.cvut.fel.omo.device;
 
-import cz.cvut.fel.omo.device.util.Consumption;
+import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
+import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
+@Getter
+@NoArgsConstructor
 public class Oven extends Device{
 
     private RangeSettingType setting;
-    private final int maxTemperature;
-    private int currentTemperature;
-
-    public Oven(int id, DeviceDocumentation documentation, Consumption consumption, int durability,
-                RangeSettingType setting, int maxTemperature) {
-        super(id, documentation, consumption, durability);
-        this.setting = setting;
-        this.maxTemperature = maxTemperature;
-        this.currentTemperature = 0;
-    }
+    private double maxTemperature;
+    private double currentTemperature;
 
     @Override
     public void turnOn() {
@@ -42,6 +41,11 @@ public class Oven extends Device{
     public void setSetting(RangeSettingType setting) {
         this.setting = setting;
         logger.info(this + " :Setting to " + setting);
+    }
+
+    @Override
+    protected DeviceDocumentation loadDocumentation() {
+        return DeviceDocumentationLoader.getDocumentation(DeviceType.OVEN);
     }
 
     @Override

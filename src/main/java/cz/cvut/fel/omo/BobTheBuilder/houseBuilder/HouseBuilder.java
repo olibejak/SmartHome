@@ -5,6 +5,9 @@ import cz.cvut.fel.omo.house.House;
 
 import java.util.ArrayList;
 
+/**
+ * Builder for creating houses.
+ */
 public class HouseBuilder {
 
     private House house;

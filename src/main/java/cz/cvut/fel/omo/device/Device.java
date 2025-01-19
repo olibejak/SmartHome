@@ -5,29 +5,28 @@ import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
+import cz.cvut.fel.omo.event.eventManager.EventQueue;
 import cz.cvut.fel.omo.logger.GlobalLogger;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public abstract class Device {
 
-    protected GlobalLogger logger;
+    protected GlobalLogger logger = GlobalLogger.getInstance();
+    protected EventQueue eventQueue;
 
-    protected final int id;
+    protected UUID id;
     private DeviceState state;
-    private DeviceDocumentation documentation;
     private Consumption consumption;
+    private DeviceDocumentation documentation;
     private int durability;
-
-    public Device(int id, DeviceDocumentation documentation, Consumption consumption, int durability) {
-        this.id = id;
-        this.documentation = documentation;
-        this.consumption = consumption;
-        this.durability = durability;
-        this.logger = GlobalLogger.getInstance();
-    }
+    private int roomID;
 
     /**
      * Change state of the device
@@ -57,6 +56,8 @@ public abstract class Device {
 
     public abstract String accept(DeviceVisitor visitor);
 
+    protected abstract DeviceDocumentation loadDocumentation();
+
     public void setDurability(int durability) {
         if (durability <= 0) {
             this.durability = 0;
@@ -69,7 +70,13 @@ public abstract class Device {
     private void handleBreakage() {
         logger.info(this + " is broken");
         changeState(new OffDeviceState(this));
-
     }
 
+    public DeviceDocumentation getDocumentation() {
+        if (this.documentation == null) {
+            this.documentation = loadDocumentation();
+            logger.info("Looking for DOCUMENTATION for " + this + '\n' + this.documentation);
+        }
+        return this.documentation;
+    }
 }

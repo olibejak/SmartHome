@@ -9,7 +9,6 @@ public class DeviceDocumentation {
 
     private String model;
     private String manufacturer;
-    private int standardDurability;
     private String manualContent;
     private boolean isFixable;
     private String warrantyCertificate;

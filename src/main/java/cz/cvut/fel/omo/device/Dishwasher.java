@@ -1,25 +1,21 @@
 package cz.cvut.fel.omo.device;
 
-import cz.cvut.fel.omo.device.util.Consumption;
+import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
+import cz.cvut.fel.omo.BobTheBuilder.eventFactory.DeviceMalfunctionEvent;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
+import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
-public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
+@Setter
+@NoArgsConstructor
+public class Dishwasher extends StorageDevice {
 
     private boolean isClean;
-
-    public Dishwasher(int id, DeviceDocumentation documentation, Consumption consumption, int durability, int maxLoad) {
-        super(id, documentation, consumption, durability, maxLoad);
-        this.isClean = false;
-    }
-
-    @Override
-    public String accept(DeviceVisitor visitor) {
-        return visitor.visitDishwasher(this);
-    }
 
     public void wash() {
         if (items.isEmpty()) {
@@ -37,6 +33,16 @@ public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
     }
 
     @Override
+    public String accept(DeviceVisitor visitor) {
+        return visitor.visitDishwasher(this);
+    }
+
+    @Override
+    protected DeviceDocumentation loadDocumentation() {
+        return DeviceDocumentationLoader.getDocumentation(DeviceType.DISHWASHER);
+    }
+
+    @Override
     public void addItem(String name, double load) {
         if (isClean) {
             logger.info(this + " :Cannot add " + name + ", dishwasher is clean");
@@ -46,7 +52,7 @@ public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
             logger.info(this + " :Cannot add the whole load of " + name + ", dishwasher would be full");
             return;
         }
-        items.add(new Dish(name, load));
+        items.add(new StorageItem(name, load));
         this.currentLoad += load;
         if (this.currentLoad == this.maxLoad) {
             logger.info(this + " : Dishwasher is full - GENERATE EVENT");
@@ -62,7 +68,7 @@ public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
     }
 
     @Override
-    public void removeItem(Dish item) {
+    public void removeItem(StorageItem item) {
         items.remove(item);
         this.currentLoad =- item.getLoad();
         if (currentLoad == 0 || currentLoad < 0) {
@@ -74,16 +80,5 @@ public class Dishwasher extends StorageDevice<Dishwasher.Dish> {
     @Override
     public String toString() {
         return "Dishwasher " + id + ": " + items;
-    }
-
-    public class Dish extends StorageItem {
-        public Dish(String name, double load) {
-            super(name, load);
-        }
-
-        @Override
-        public String toString() {
-            return name + ": " + load;
-        }
     }
 }

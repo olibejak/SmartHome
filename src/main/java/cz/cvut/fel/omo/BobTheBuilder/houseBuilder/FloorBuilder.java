@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 
+/**
+ * Builder for creating floors.
+ */
 @NoArgsConstructor
 public class FloorBuilder {
 

@@ -1,5 +1,7 @@
 package cz.cvut.fel.omo.BobTheBuilder.houseBuilder;
 
+import cz.cvut.fel.omo.activity.equipment.SportEquipment;
+import cz.cvut.fel.omo.activity.vehicle.Vehicle;
 import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.house.Room;
 import cz.cvut.fel.omo.house.RoomType;
@@ -7,6 +9,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 
+/**
+ * Builder for creating rooms.
+ */
 @NoArgsConstructor
 public class RoomBuilder {
 
@@ -14,6 +19,16 @@ public class RoomBuilder {
 
     public RoomBuilder addDevices(ArrayList<Device> devices) {
         room.getDevices().addAll(devices);
+        return this;
+    }
+
+    public RoomBuilder addVehicles(ArrayList<Vehicle> vehicles) {
+        room.getVehicles().addAll(vehicles);
+        return this;
+    }
+
+    public RoomBuilder addSportEquipment(ArrayList<SportEquipment> equipment) {
+        room.getSportEquipment().addAll(equipment);
         return this;
     }
 
@@ -26,6 +41,7 @@ public class RoomBuilder {
         room.getDevices().add(device);
         return this;
     }
+
 
     public Room build() {
         return room;

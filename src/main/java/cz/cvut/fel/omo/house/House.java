@@ -73,6 +73,16 @@ public class House implements ConfigurationReport {
                 .orElse(new ArrayList<>());
     }
 
+    public void makeAllVehiclesAndEquipmentAvailable() {
+        floors.forEach(floor ->
+                floor.getRooms().forEach(room -> {
+                    room.getVehicles().forEach(vehicle -> vehicle.setAvailable(true));
+                    room.getSportEquipment().forEach(equipment -> equipment.setAvailable(true));
+                })
+        );
+    }
+
+
     @Override
     public String toString() {
         return "House{" + "floors=" + floors + '}';

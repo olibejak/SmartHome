@@ -78,15 +78,16 @@ public class Simulation {
                 logger.info("PERSON WITH PET INTERACTION:");
                 person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentPets()));
             }
+            // todo implement more sophistical choice of interaction between equipment/vehicle/device
             // interaction with sport equipment
             if (!currentRoomPayload.getCurrentEquipment().isEmpty()) {
                 logger.info("PERSON WITH SPORT EQUIPMENT INTERACTION:");
-                person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentEquipment()));
+                person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableEquipment()));
             }
             // interaction with vehicle
             if (!currentRoomPayload.getCurrentVehicles().isEmpty()) {
                 logger.info("PERSON WITH VEHICLE INTERACTION:");
-                person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentVehicles()));
+                person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableVehicles()));
             }
             // interaction with device
             if (!currentRoomPayload.getCurrentDevices().isEmpty()) {
@@ -117,18 +118,18 @@ public class Simulation {
             // interaction with sport equipment
             if (!currentRoomPayload.getCurrentEquipment().isEmpty()) {
                 logger.info("PET WITH SPORT EQUIPMENT INTERACTION:");
-                pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentEquipment()));
+                pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableEquipment()));
             }
             // interaction with vehicle
             if (!currentRoomPayload.getCurrentVehicles().isEmpty()) {
                 logger.info("PET WITH VEHICLE INTERACTION:");
-                pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentVehicles()));
+                pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableVehicles()));
             }
         }
         //   2.2. react to local events from CurrentRoomPayload
         //   2.3. interact with people and pets from CurrentRoomPayload - with just one or all ??
-        //   2.4. interact with sport equipment, vehicles or devices from CurrentRoomPayload - probably with just one
-        //   2.5. make all equipment and vehicles available again // todo
+        //   2.4. interact with sport equipment, vehicles or devices from CurrentRoomPayload
+        //   2.5. make all equipment and vehicles available again
 
         // 3. device actions // todo
         //   3.1. increase consumption based on the current state
@@ -143,6 +144,7 @@ public class Simulation {
             pet.moveToRoomRandomly(house.getRoomIds());
         }
 
+        house.makeAllVehiclesAndEquipmentAvailable();
     }
 
     public void nextCycles(int count) {

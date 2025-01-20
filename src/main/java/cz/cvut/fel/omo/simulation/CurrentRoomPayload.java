@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.simulation;
 
 import cz.cvut.fel.omo.activity.equipment.SportEquipment;
 import cz.cvut.fel.omo.activity.vehicle.Vehicle;
+import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.entity.person.Person;
 import cz.cvut.fel.omo.entity.pet.Pet;
 import cz.cvut.fel.omo.event.Event;
@@ -19,6 +20,7 @@ public class CurrentRoomPayload {
     private ArrayList<Pet> currentPets;
     private ArrayList<SportEquipment> currentEquipment;
     private ArrayList<Vehicle> currentVehicles;
+    private ArrayList<Device> currentDevices;
     private ArrayList<Event> currentEvents;
 
     // Person methods
@@ -107,6 +109,28 @@ public class CurrentRoomPayload {
 
     public boolean containsVehicle(Vehicle vehicle) {
         return currentVehicles != null && currentVehicles.contains(vehicle);
+    }
+
+    // Device methods
+    public void addDevice(Device device) {
+        if (currentDevices == null) {
+            currentDevices = new ArrayList<>();
+        }
+        currentDevices.add(device);
+    }
+
+    public void removeDevice(Device device) {
+        if (currentDevices != null) {
+            currentDevices.remove(device);
+        }
+    }
+
+    public int getNumberOfDevices() {
+        return currentDevices != null ? currentDevices.size() : 0;
+    }
+
+    public boolean containsDevice(Device device) {
+        return currentDevices != null && currentDevices.contains(device);
     }
 
     // Event methods

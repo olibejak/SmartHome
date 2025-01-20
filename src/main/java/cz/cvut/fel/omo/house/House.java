@@ -36,6 +36,16 @@ public class House implements ConfigurationReport {
         return roomIds;
     }
 
+    public RoomType getRoomTypeByRoomId(int roomId) {
+        return floors.stream()
+                .flatMap(floor -> floor.getRooms().stream())
+                .filter(room -> room.getId() == roomId)
+                .findFirst()
+                .map(Room::getType)
+                .orElse(null);
+    }
+
+
     public ArrayList<Device> getDevicesByRoomId(int roomId) {
         return floors.stream()
                 .flatMap(floor -> floor.getRooms().stream())

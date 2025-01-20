@@ -6,6 +6,7 @@ import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.entity.person.Person;
 import cz.cvut.fel.omo.entity.pet.Pet;
 import cz.cvut.fel.omo.event.Event;
+import cz.cvut.fel.omo.house.RoomType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 @Getter
 @Setter
 public class CurrentRoomPayload {
+    private int currentRoomId;
+    private RoomType currentRoomType;
     private ArrayList<Person> currentPeople;
     private ArrayList<Pet> currentPets;
     private ArrayList<SportEquipment> currentEquipment;
@@ -154,4 +157,19 @@ public class CurrentRoomPayload {
     public boolean containsEvent(Event event) {
         return currentEvents != null && currentEvents.contains(event);
     }
+
+    @Override
+    public String toString() {
+        return "CurrentRoomPayload:" +
+                "\n  Room ID: " + currentRoomId +
+                "\n  Room Type: " + (currentRoomType != null ? currentRoomType.toString() : "N/A") +
+                "\n  People: " + (currentPeople != null ? currentPeople.size() : 0) +
+                "\n  Pets: " + (currentPets != null ? currentPets.size() : 0) +
+                "\n  Equipment: " + (currentEquipment != null ? currentEquipment.size() : 0) +
+                "\n  Vehicles: " + (currentVehicles != null ? currentVehicles.size() : 0) +
+                "\n  Devices: " + (currentDevices != null ? currentDevices.size() : 0) +
+                "\n  Events: " + (currentEvents != null ? currentEvents.size() : 0) +
+                "\n";
+    }
+
 }

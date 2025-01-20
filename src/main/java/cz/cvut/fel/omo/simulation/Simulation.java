@@ -48,7 +48,7 @@ public class Simulation {
 
     public void nextCycle() {
         cycleCount++;
-        logger.info("Current cycle:" + cycleCount);
+        logger.info("CURRENT CYCLE: " + cycleCount);
 
         // todo separate into functions when finished
 
@@ -57,12 +57,12 @@ public class Simulation {
         // 2. family and pets actions - two loops
         //   2.1. find what people, pets, equipment, vehicles, devices and events are in the current room
         for (Person person : family) {
-            logger.info(person.toString());
+            logger.info("CURRENT PERSON: " + person.toString());
             CurrentRoomPayload currentRoomPayload = getCurrentRoomPayloadByRoomId(person.getRoomID());
             logger.info(currentRoomPayload.getRoomDetailsLog());
         }
         for (Pet pet : pets) {
-            logger.info(pet.toString());
+            logger.info("CURRENT PET: " + pet.toString());
             CurrentRoomPayload currentRoomPayload = getCurrentRoomPayloadByRoomId(pet.getRoomID());
             logger.info(currentRoomPayload.getRoomDetailsLog());
         }
@@ -74,13 +74,13 @@ public class Simulation {
         //   3.1. increase consumption based on the current state
 
         // 4. family and pets movement
+        logger.info("FAMILY MOVEMENT:");
         for (Person person : family) {
             person.moveToRoomRandomly(house.getRoomIds());
-            logger.info(person.toString());
         }
+        logger.info("PETS MOVEMENT:");
         for (Pet pet : pets) {
             pet.moveToRoomRandomly(house.getRoomIds());
-            logger.info(pet.toString());
         }
 
     }
@@ -93,10 +93,10 @@ public class Simulation {
 
     public void populateHouseRandomly() {
         for (Person person : family) {
-            person.moveToRoomRandomly(house.getRoomIds());
+            person.setInitialRoomRandomly(house.getRoomIds());
         }
         for (Pet pet : pets) {
-            pet.moveToRoomRandomly(house.getRoomIds());
+            pet.setInitialRoomRandomly(house.getRoomIds());
         }
     }
 

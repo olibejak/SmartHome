@@ -35,8 +35,14 @@ public abstract class Entity implements PersonVisitor, PetVisitor, VehicleVisito
         this.roomID = roomID;
     }
 
-    public void moveToRoomRandomly(ArrayList<Integer> roomIds) {
+    public void setInitialRoomRandomly(ArrayList<Integer> roomIds) {
         this.roomID = RandomUtils.getRandomElement(roomIds);
+    }
+
+    public void moveToRoomRandomly(ArrayList<Integer> roomIds) {
+        int currentRoomId = this.roomID;
+        this.roomID = RandomUtils.getRandomElement(roomIds);
+        logger.info(this + " moved from Room #" + currentRoomId + " to Room #" + this.roomID);
     }
 
     public void interactWith(Person person) {

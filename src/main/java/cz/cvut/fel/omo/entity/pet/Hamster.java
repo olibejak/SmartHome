@@ -5,10 +5,18 @@ import cz.cvut.fel.omo.activity.equipment.Weights;
 import cz.cvut.fel.omo.activity.vehicle.Bicycle;
 import cz.cvut.fel.omo.activity.vehicle.Car;
 import cz.cvut.fel.omo.entity.person.*;
+import cz.cvut.fel.omo.utils.RandomUtils;
+
+import java.util.ArrayList;
 
 public class Hamster extends Pet {
     public Hamster(String name, int age, int roomID) {
         super(name, age, roomID);
+    }
+
+    @Override
+    public void moveToRoomRandomly(ArrayList<Integer> roomIds) {
+        logger.info(this + " stayed in his cage in Room #" + roomID);
     }
 
     @Override

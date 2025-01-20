@@ -233,16 +233,16 @@ public class Main {
 
         House house = HouseBuilder.buildHouseFromJson("src/main/resources/house.json");
 
-        if(nonNull(house)) {
-//           System.out.println(house);
-//           System.out.println();
-           System.out.println(house.reportConfiguration());
-//           System.out.println(ConsumptionReport.getConsumptionReport(house));
-       }
+//        if(nonNull(house)) {
+////           System.out.println(house);
+////           System.out.println();
+//           System.out.println(house.reportConfiguration());
+////           System.out.println(ConsumptionReport.getConsumptionReport(house));
+//       }
 
         Simulation simulation = new Simulation(house, family, pets, eventQueue);
         simulation.nextCycle();
         System.out.println();
-        simulation.nextCycle();
+//        simulation.nextCycle();
     }
 }

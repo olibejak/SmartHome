@@ -67,29 +67,45 @@ public class Dad extends Person {
 
     @Override
     public String visitSkis(Skis skis) {
-        skis.setAvailable(false);
-        return "Dad " + this.name + " carves sharp turns down the slope on the " + skis.getColor() + " skis.";
+        if (skis.isAvailable()) {
+            skis.setAvailable(false);
+            return "Dad " + this.name + " carves sharp turns down the slope on the " + skis.getColor() + " skis.";
+        } else {
+            return "Dad " + this.name + " cannot currently interact with " + skis.getColor() + " skis.";
+        }
     }
 
     @Override
     public String visitWeights(Weights weights) {
-        weights.setAvailable(false);
-        return "Dad " + this.name + " challenges himself to lift the heavy weights, pushing his limits.";
+        if (weights.isAvailable()) {
+            weights.setAvailable(false);
+            return "Dad " + this.name + " challenges himself to lift the heavy weights, pushing his limits.";
+        } else {
+            return "Dad " + this.name + " cannot currently interact with weights.";
+        }
     }
 
     @Override
     public String visitBicycle(Bicycle bicycle) {
-        bicycle.setAvailable(false);
-        return "Dad " + this.name + " rides the " + bicycle.getColor() + " bicycle at full speed, feeling the wind rush past.";
+        if (bicycle.isAvailable()) {
+            bicycle.setAvailable(false);
+            return "Dad " + this.name + " rides the " + bicycle.getColor() + " bicycle at full speed, feeling the wind rush past.";
+        } else {
+            return "Dad " + this.name + " cannot currently interact with " + bicycle.getColor() + " bicycle.";
+        }
     }
 
     @Override
     public String visitCar(Car car) {
-        if (this.hasDriversLicense) {
-            car.setAvailable(false);
-            return "Dad " + this.name + " takes the " + car.getColor() + " car for a scenic drive through the countryside.";
+        if (car.isAvailable()) {
+            if (this.hasDriversLicense) {
+                car.setAvailable(false);
+                return "Dad " + this.name + " takes the " + car.getColor() + " car for a scenic drive through the countryside.";
+            }
+            return "Dad " + this.name + " cannot drive the car because he doesn't have a driver's license.";
+        } else {
+            return "Dad " + this.name + " cannot currently interact with " + car.getColor() + " car.";
         }
-        return "Dad " + this.name + " cannot drive the car because he doesn't have a driver's license.";
     }
 
 

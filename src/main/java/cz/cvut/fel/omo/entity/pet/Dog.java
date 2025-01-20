@@ -65,23 +65,39 @@ public class Dog extends Pet {
 
     @Override
     public String visitSkis(Skis skis) {
-        return "Dog " + this.name + " accidentally knocks over the " + skis.getColor() + " skis with its wagging tail.";
+        if (skis.isAvailable()) {
+            return "Dog " + this.name + " accidentally knocks over the " + skis.getColor() + " skis with its wagging tail.";
+        } else {
+            return "Dog " + this.name + " cannot currently interact with " + skis.getColor() + " skis.";
+        }
     }
 
     @Override
     public String visitWeights(Weights weights) {
-        weights.setAvailable(false);
-        return "Dog " + this.name + " nudges one of the weights and then rolls it across the floor.";
+        if (weights.isAvailable()) {
+            weights.setAvailable(false);
+            return "Dog " + this.name + " nudges one of the weights and then rolls it across the floor.";
+        } else {
+            return "Dog " + this.name + " cannot currently interact with weights.";
+        }
     }
 
     @Override
     public String visitBicycle(Bicycle bicycle) {
-        return "Dog " + this.name + " barks at the " + bicycle.getColor() + " bicycle, thinking it's a fun new toy.";
+        if (bicycle.isAvailable()) {
+            return "Dog " + this.name + " barks at the " + bicycle.getColor() + " bicycle, thinking it's a fun new toy.";
+        } else {
+            return "Dog " + this.name + " cannot currently interact with " + bicycle.getColor() + " bicycle.";
+        }
     }
 
     @Override
     public String visitCar(Car car) {
-        return "Dog " + this.name + " curls up and takes a nap beside the " + car.getColor() + " car.";
+        if (car.isAvailable()) {
+            return "Dog " + this.name + " curls up and takes a nap beside the " + car.getColor() + " car.";
+        } else {
+            return "Dog " + this.name + " cannot currently interact with " + car.getColor() + " car.";
+        }
     }
 
     @Override

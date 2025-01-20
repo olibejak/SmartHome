@@ -39,8 +39,6 @@ public class Room implements ConfigurationReport {
         if (!vehicles.isEmpty()) {
             configurationReport.append(reportVehicleConfiguration());
         }
-        // todo equipment configuration
-        // todo vehicle configuration
         return configurationReport.toString();
     }
 

@@ -67,38 +67,54 @@ public class Grandpa extends Person {
 
     @Override
     public String visitSkis(Skis skis) {
-        if (this.age > 80) {
-            return "Grandpa " + this.name + " smiles fondly, reminiscing about his younger days while holding the " + skis.getColor() + " skis.";
+        if (skis.isAvailable()) {
+            if (this.age > 80) {
+                return "Grandpa " + this.name + " smiles fondly, reminiscing about his younger days while holding the " + skis.getColor() + " skis.";
+            }
+            skis.setAvailable(false);
+            return "Grandpa " + this.name + " carefully checks the bindings of the " + skis.getColor() + " skis before taking a safe ride.";
+        } else {
+            return "Grandpa " + this.name + " cannot currently interact with " + skis.getColor() + " skis.";
         }
-        skis.setAvailable(false);
-        return "Grandpa " + this.name + " carefully checks the bindings of the " + skis.getColor() + " skis before taking a safe ride.";
     }
 
     @Override
     public String visitWeights(Weights weights) {
-        if (this.age > 80) {
-            return "Grandpa " + this.name + " decides to skip using the weights, remembering his limits.";
+        if (weights.isAvailable()) {
+            if (this.age > 80) {
+                return "Grandpa " + this.name + " decides to skip using the weights, remembering his limits.";
+            }
+            weights.setAvailable(false);
+            return "Grandpa " + this.name + " demonstrates his old-school lifting techniques with the weights, impressing everyone.";
+        } else {
+            return "Grandpa " + this.name + " cannot currently interact with weights.";
         }
-        weights.setAvailable(false);
-        return "Grandpa " + this.name + " demonstrates his old-school lifting techniques with the weights, impressing everyone.";
     }
 
     @Override
     public String visitBicycle(Bicycle bicycle) {
-        if (this.age > 80) {
-            return "Grandpa " + this.name + " decides not to ride the bicycle but tunes it up for someone else to enjoy.";
+        if (bicycle.isAvailable()) {
+            if (this.age > 80) {
+                return "Grandpa " + this.name + " decides not to ride the bicycle but tunes it up for someone else to enjoy.";
+            }
+            bicycle.setAvailable(false);
+            return "Grandpa " + this.name + " repairs and tunes the " + bicycle.getColor() + " bicycle before taking it for a leisurely spin.";
+        } else {
+            return "Grandpa " + this.name + " cannot currently interact with " + bicycle.getColor() + " bicycle.";
         }
-        bicycle.setAvailable(false);
-        return "Grandpa " + this.name + " repairs and tunes the " + bicycle.getColor() + " bicycle before taking it for a leisurely spin.";
     }
 
     @Override
     public String visitCar(Car car) {
-        if (this.hasDriversLicense) {
-            car.setAvailable(false);
-            return "Grandpa " + this.name + " checks the oil and tire pressure of the " + car.getColor() + " car before heading out for a comfortable drive.";
+        if (car.isAvailable()) {
+            if (this.hasDriversLicense) {
+                car.setAvailable(false);
+                return "Grandpa " + this.name + " checks the oil and tire pressure of the " + car.getColor() + " car before heading out for a comfortable drive.";
+            }
+            return "Grandpa " + this.name + " does not have a driver's license and cannot drive the car.";
+        } else {
+            return "Grandpa " + this.name + " cannot currently interact with " + car.getColor() + " car.";
         }
-        return "Grandpa " + this.name + " does not have a driver's license and cannot drive the car.";
     }
 
 

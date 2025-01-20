@@ -65,26 +65,42 @@ public class Cat extends Pet {
 
     @Override
     public String visitSkis(Skis skis) {
-        skis.setAvailable(false);
-        return "Cat " + this.name + " sits regally on the " + skis.getColor() + " skis, claiming them as its throne.";
+        if (skis.isAvailable()) {
+            skis.setAvailable(false);
+            return "Cat " + this.name + " sits regally on the " + skis.getColor() + " skis, claiming them as its throne.";
+        } else {
+            return "Dog " + this.name + " cannot currently interact with " + skis.getColor() + " skis.";
+        }
     }
 
     @Override
     public String visitWeights(Weights weights) {
-        weights.setAvailable(false);
-        return "Cat " + this.name + " curls up on the weights, making them its cozy resting spot.";
+        if (weights.isAvailable()) {
+            weights.setAvailable(false);
+            return "Cat " + this.name + " curls up on the weights, making them its cozy resting spot.";
+        } else {
+            return "Cat " + this.name + " cannot currently interact with weights.";
+        }
     }
 
     @Override
     public String visitBicycle(Bicycle bicycle) {
-        bicycle.setAvailable(false);
-        return "Cat " + this.name + " perches elegantly in the basket of the " + bicycle.getColor() + " bicycle, surveying the room.";
+        if (bicycle.isAvailable()) {
+            bicycle.setAvailable(false);
+            return "Cat " + this.name + " perches elegantly in the basket of the " + bicycle.getColor() + " bicycle, surveying the room.";
+        } else {
+            return "Cat " + this.name + " cannot currently interact with " + bicycle.getColor() + " bicycle.";
+        }
     }
 
     @Override
     public String visitCar(Car car) {
-        car.setAvailable(false);
-        return "Cat " + this.name + " hides beneath the " + car.getColor() + " car, watching the world quietly from the shadows.";
+        if (car.isAvailable()) {
+            car.setAvailable(false);
+            return "Cat " + this.name + " hides beneath the " + car.getColor() + " car, watching the world quietly from the shadows.";
+        } else {
+            return "Cat " + this.name + " cannot currently interact with " + car.getColor() + " car.";
+        }
     }
 
     @Override

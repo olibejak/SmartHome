@@ -67,32 +67,48 @@ public class Grandma extends Person {
 
     @Override
     public String visitSkis(Skis skis) {
-        if (this.age > 80) {
-            return "Grandma " + this.name + " reminisces about her adventurous youth while holding the " + skis.getColor() + " skis.";
+        if (skis.isAvailable()) {
+            if (this.age > 80) {
+                return "Grandma " + this.name + " reminisces about her adventurous youth while holding the " + skis.getColor() + " skis.";
+            }
+            skis.setAvailable(false);
+            return "Grandma " + this.name + " carefully glides down the slope on the " + skis.getColor() + " skis, enjoying the fresh air.";
+        } else {
+            return "Grandma " + this.name + " cannot currently interact with " + skis.getColor() + " skis.";
         }
-        skis.setAvailable(false);
-        return "Grandma " + this.name + " carefully glides down the slope on the " + skis.getColor() + " skis, enjoying the fresh air.";
     }
 
     @Override
     public String visitWeights(Weights weights) {
-        weights.setAvailable(false);
-        return "Grandma " + this.name + " selects the lightest weights for a gentle and mindful exercise session.";
+        if (weights.isAvailable()) {
+            weights.setAvailable(false);
+            return "Grandma " + this.name + " selects the lightest weights for a gentle and mindful exercise session.";
+        } else {
+            return "Grandma " + this.name + " cannot currently interact with weights.";
+        }
     }
 
     @Override
     public String visitBicycle(Bicycle bicycle) {
-        bicycle.setAvailable(false);
-        return "Grandma " + this.name + " enjoys a slow, peaceful ride on the " + bicycle.getColor() + " bicycle through the garden path.";
+        if (bicycle.isAvailable()) {
+            bicycle.setAvailable(false);
+            return "Grandma " + this.name + " enjoys a slow, peaceful ride on the " + bicycle.getColor() + " bicycle through the garden path.";
+        } else {
+            return "Grandma " + this.name + " cannot currently interact with " + bicycle.getColor() + " bicycle.";
+        }
     }
 
     @Override
     public String visitCar(Car car) {
-        if (this.hasDriversLicense) {
-            car.setAvailable(false);
-            return "Grandma " + this.name + " adjusts the seat and mirrors before taking the " + car.getColor() + " car for a short, comfortable drive.";
+        if (car.isAvailable()) {
+            if (this.hasDriversLicense) {
+                car.setAvailable(false);
+                return "Grandma " + this.name + " adjusts the seat and mirrors before taking the " + car.getColor() + " car for a short, comfortable drive.";
+            }
+            return "Grandma " + this.name + " does not have a driver's license and cannot drive the car.";
+        } else {
+            return "Grandma " + this.name + " cannot currently interact with " + car.getColor() + " car.";
         }
-        return "Grandma " + this.name + " does not have a driver's license and cannot drive the car.";
     }
 
     @Override

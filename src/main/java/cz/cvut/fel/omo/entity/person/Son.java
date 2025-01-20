@@ -67,29 +67,45 @@ public class Son extends Person {
 
     @Override
     public String visitSkis(Skis skis) {
-        skis.setAvailable(false);
-        return "Son " + this.name + " attempts a daring jump on the " + skis.getColor() + " skis, cheering as he lands safely.";
+        if (skis.isAvailable()) {
+            skis.setAvailable(false);
+            return "Son " + this.name + " attempts a daring jump on the " + skis.getColor() + " skis, cheering as he lands safely.";
+        } else {
+            return "Son " + this.name + " cannot currently interact with " + skis.getColor() + " skis.";
+        }
     }
 
     @Override
     public String visitWeights(Weights weights) {
-        weights.setAvailable(false);
-        return "Son " + this.name + " tests the weights, imagining himself as the strongest person in the family.";
+        if (weights.isAvailable()) {
+            weights.setAvailable(false);
+            return "Son " + this.name + " tests the weights, imagining himself as the strongest person in the family.";
+        } else {
+            return "Son " + this.name + " cannot currently interact with weights.";
+        }
     }
 
     @Override
     public String visitBicycle(Bicycle bicycle) {
-        bicycle.setAvailable(false);
-        return "Son " + this.name + " pops wheelies and shows off cool tricks on the " + bicycle.getColor() + " bicycle.";
+        if (bicycle.isAvailable()) {
+            bicycle.setAvailable(false);
+            return "Son " + this.name + " pops wheelies and shows off cool tricks on the " + bicycle.getColor() + " bicycle.";
+        } else {
+            return "Son " + this.name + " cannot currently interact with " + bicycle.getColor() + " bicycle.";
+        }
     }
 
     @Override
     public String visitCar(Car car) {
-        if (this.hasDriversLicense) {
-            car.setAvailable(false);
-            return "Son " + this.name + " drives the " + car.getColor() + " car to the store to pick up some snacks.";
+        if (car.isAvailable()) {
+            if (this.hasDriversLicense) {
+                car.setAvailable(false);
+                return "Son " + this.name + " drives the " + car.getColor() + " car to the store to pick up some snacks.";
+            }
+            return "Son " + this.name + " does not have a driver's license and cannot drive the car.";
+        } else {
+            return "Son " + this.name + " cannot currently interact with " + car.getColor() + " car.";
         }
-        return "Son " + this.name + " does not have a driver's license and cannot drive the car.";
     }
 
 

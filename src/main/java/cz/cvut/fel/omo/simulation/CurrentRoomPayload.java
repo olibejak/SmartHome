@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Getter
@@ -92,6 +93,15 @@ public class CurrentRoomPayload {
         return currentEquipment != null && currentEquipment.contains(equipment);
     }
 
+    public ArrayList<SportEquipment> getCurrentAvailableEquipment() {
+        if (currentEquipment == null) {
+            return new ArrayList<>();
+        }
+        return currentEquipment.stream()
+                .filter(SportEquipment::isAvailable)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
     // Vehicle methods
     public void addVehicle(Vehicle vehicle) {
         if (currentVehicles == null) {
@@ -112,6 +122,15 @@ public class CurrentRoomPayload {
 
     public boolean containsVehicle(Vehicle vehicle) {
         return currentVehicles != null && currentVehicles.contains(vehicle);
+    }
+
+    public ArrayList<Vehicle> getCurrentAvailableVehicles() {
+        if (currentVehicles == null) {
+            return new ArrayList<>();
+        }
+        return currentVehicles.stream()
+                .filter(Vehicle::isAvailable)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     // Device methods

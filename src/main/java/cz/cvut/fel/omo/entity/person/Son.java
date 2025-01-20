@@ -173,6 +173,6 @@ public class Son extends Person {
 
     @Override
     public String toString() {
-        return "Son " + name + ", " + age + " in Room #" + roomID;
+        return "Son " + name + " (" + age + ")";
     }
 }

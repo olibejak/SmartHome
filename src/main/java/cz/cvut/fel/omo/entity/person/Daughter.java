@@ -176,6 +176,6 @@ public class Daughter extends Person {
 
     @Override
     public String toString() {
-        return "Daughter " + name + ", " + age + " in Room #" + roomID;
+        return "Daughter " + name + " (" + age + ")";
     }
 }

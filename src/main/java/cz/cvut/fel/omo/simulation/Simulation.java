@@ -74,14 +74,14 @@ public class Simulation {
         //   3.1. increase consumption based on the current state
 
         // 4. family and pets movement
-//        for (Person person : family) {
-//            person.moveToRoomRandomly(house.getRoomIds());
-//            logger.info(person.toString());
-//        }
-//        for (Pet pet : pets) {
-//            pet.moveToRoomRandomly(house.getRoomIds());
-//            logger.info(pet.toString());
-//        }
+        for (Person person : family) {
+            person.moveToRoomRandomly(house.getRoomIds());
+            logger.info(person.toString());
+        }
+        for (Pet pet : pets) {
+            pet.moveToRoomRandomly(house.getRoomIds());
+            logger.info(pet.toString());
+        }
 
     }
 

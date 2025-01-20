@@ -89,6 +89,6 @@ public class Cat extends Pet {
 
     @Override
     public String toString() {
-        return "Cat " + name + ", " + age + " in Room #" + roomID;
+        return "Cat " + name + " (" + age + ")";
     }
 }

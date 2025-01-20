@@ -85,6 +85,6 @@ public class Hamster extends Pet {
 
     @Override
     public String toString() {
-        return "Hamster " + name + ", " + age + " in Room #" + roomID;
+        return "Hamster " + name + " (" + age + ")";
     }
 }

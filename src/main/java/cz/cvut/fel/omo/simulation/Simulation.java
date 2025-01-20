@@ -59,14 +59,13 @@ public class Simulation {
         for (Person person : family) {
             logger.info(person.toString());
             CurrentRoomPayload currentRoomPayload = getCurrentRoomPayloadByRoomId(person.getRoomID());
-            System.out.println(currentRoomPayload);
+            logger.info(currentRoomPayload.getRoomDetailsLog());
         }
         for (Pet pet : pets) {
             logger.info(pet.toString());
             CurrentRoomPayload currentRoomPayload = getCurrentRoomPayloadByRoomId(pet.getRoomID());
-            System.out.println(currentRoomPayload);
+            logger.info(currentRoomPayload.getRoomDetailsLog());
         }
-
         //   2.2. react to local events from CurrentRoomPayload
         //   2.3. interact with people and pets from CurrentRoomPayload - with just one or all ??
         //   2.4. interact with sport equipment, vehicles or devices from CurrentRoomPayload - probably with just one

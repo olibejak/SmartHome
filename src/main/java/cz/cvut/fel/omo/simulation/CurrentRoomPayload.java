@@ -158,6 +158,69 @@ public class CurrentRoomPayload {
         return currentEvents != null && currentEvents.contains(event);
     }
 
+    public String getRoomDetailsLog() {
+        StringBuilder log = new StringBuilder();
+
+        log.append("Room ID: ").append(currentRoomId).append(", ");
+        log.append("Room Type: ").append(currentRoomType != null ? currentRoomType.toString() : "N/A").append("\n");
+
+        if (currentPeople != null && !currentPeople.isEmpty()) {
+            log.append("  People: ");
+            currentPeople.forEach(person ->
+                    log.append(person.getClass().getSimpleName())
+                            .append(" - ").append(person.getName()).append(" (").append(person.getAge()).append("), ")
+            );
+            log.delete(log.length() - 2, log.length()).append("\n");
+        }
+
+        if (currentPets != null && !currentPets.isEmpty()) {
+            log.append("  Pets: ");
+            currentPets.forEach(pet ->
+                    log.append(pet.getClass().getSimpleName())
+                            .append(" - ").append(pet.getName()).append(" (").append(pet.getAge()).append("), ")
+            );
+            log.delete(log.length() - 2, log.length()).append("\n");
+        }
+
+        if (currentEquipment != null && !currentEquipment.isEmpty()) {
+            log.append("  Sport Equipment: ");
+            currentEquipment.forEach(equipment ->
+                    log.append(equipment.getClass().getSimpleName()).append(", ")
+            );
+            log.delete(log.length() - 2, log.length()).append("\n");
+        }
+
+        if (currentVehicles != null && !currentVehicles.isEmpty()) {
+            log.append("  Vehicles: ");
+            currentVehicles.forEach(vehicle ->
+                    log.append(vehicle.getClass().getSimpleName())
+                            .append(" - ").append(vehicle.getModel()).append(" (").append(vehicle.getYearOfManufacturing()).append("), ")
+            );
+            log.delete(log.length() - 2, log.length()).append("\n");
+        }
+
+        if (currentDevices != null && !currentDevices.isEmpty()) {
+            log.append("  Devices: ");
+            currentDevices.forEach(device ->
+                    log.append(device.getClass().getSimpleName())
+                            .append(" (ID: ").append(device.getId()).append("), ")
+            );
+            log.delete(log.length() - 2, log.length()).append("\n");
+        }
+
+        if (currentEvents != null && !currentEvents.isEmpty()) {
+            log.append("  Events: ");
+            currentEvents.forEach(event ->
+                    log.append(event.getClass().getSimpleName()).append(" - ").append(event.getType()).append(", ")
+            );
+            log.delete(log.length() - 2, log.length()).append("\n");
+        }
+
+        return log.toString().trim();
+    }
+
+
+
     @Override
     public String toString() {
         return "CurrentRoomPayload:" +

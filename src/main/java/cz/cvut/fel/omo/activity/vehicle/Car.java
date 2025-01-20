@@ -17,4 +17,9 @@ public class Car extends Vehicle {
     public String accept(VehicleVisitor visitor) {
         return visitor.visitCar(this);
     }
+
+    @Override
+    public String reportConfiguration() {
+        return "Car: " + color + " " + model + " from " + yearOfManufacturing + " with " + engineType + " engine";
+    }
 }

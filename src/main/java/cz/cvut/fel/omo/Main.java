@@ -100,20 +100,6 @@ public class Main {
 //            }
 //        }
 
-        // Entity interaction showcase
-//        Mom alice = new Mom("Alice", 35, 1, true);
-//        Mom sarah = new Mom("Sarah", 30, 1, true);
-//        Dog buddy = new Dog("Buddy", 3, 1);
-//        Dog max = new Dog("Max", 5, 1);
-
-//        alice.interactWith(alice);
-//        alice.interactWith(sarah);
-//        alice.interactWith(buddy);
-//
-//        buddy.interactWith(buddy);
-//        buddy.interactWith(max);
-//        buddy.interactWith(alice);
-
         // Family
         Mom mom = new Mom("Jane", 39, 1, true);
         Dad dad = new Dad("John", 41, 1, true);
@@ -130,14 +116,15 @@ public class Main {
         family.add(grandma);
         family.add(grandpa);
 
-//        Dog dog = new Dog("Max", 4, 1);
-//        Cat cat = new Cat("Coots", 3, 1);
-//        Hamster hamster = new Hamster("Jerry", 2, 1);
-//
-//        ArrayList<Pet> pets = new ArrayList<>();
-//        pets.add(dog);
-//        pets.add(cat);
-//        pets.add(hamster);
+        // Pets
+        Dog dog = new Dog("Max", 4, 1);
+        Cat cat = new Cat("Coots", 3, 1);
+        Hamster hamster = new Hamster("Jerry", 2, 1);
+
+        ArrayList<Pet> pets = new ArrayList<>();
+        pets.add(dog);
+        pets.add(cat);
+        pets.add(hamster);
 
 //        Skis skis = new Skis(true, 0, "Blue");
 //        Weights weights = new Weights(true, 0);
@@ -145,7 +132,7 @@ public class Main {
 //        Bicycle bicycle = new Bicycle("Wheels", 2012, "Red", 6);
 //        Car car = new Car("Skoda", 2008, "White", EngineType.PETROL);
 
-        // devices
+        // devices interactions
 //        DeviceDocumentation documentation = new DeviceDocumentation("blank", "blank", 10, "blank", true, "blank");
 //        Consumption consumption = new Consumption(10, 10 ,10, 10);
 
@@ -239,21 +226,23 @@ public class Main {
 //        dad.interactWith(bicycle);
 //        dad.interactWith(car);
 
-//        EventManager eventManager = new EventManager();
-//        EventQueue eventQueue = new EventQueue(eventManager);
-//
-//        HouseBuilderFacade HouseBuilder = new HouseBuilderFacade(eventQueue);
-//
-//        House house = HouseBuilder.buildHouseFromJson("src/main/resources/house.json");
+        EventManager eventManager = new EventManager();
+        EventQueue eventQueue = new EventQueue(eventManager);
 
-//        if(nonNull(house)) {
+        HouseBuilderFacade HouseBuilder = new HouseBuilderFacade(eventQueue);
+
+        House house = HouseBuilder.buildHouseFromJson("src/main/resources/house.json");
+
+        if(nonNull(house)) {
 //           System.out.println(house);
 //           System.out.println();
-////           System.out.println(house.reportConfiguration());
-////           System.out.println(ConsumptionReport.getConsumptionReport(house));
-//       }
+           System.out.println(house.reportConfiguration());
+//           System.out.println(ConsumptionReport.getConsumptionReport(house));
+       }
 
-//        Simulation simulation = new Simulation(house, family, pets, eventQueue);
-//        simulation.nextCycle();
+        Simulation simulation = new Simulation(house, family, pets, eventQueue);
+        simulation.nextCycle();
+        System.out.println();
+        simulation.nextCycle();
     }
 }

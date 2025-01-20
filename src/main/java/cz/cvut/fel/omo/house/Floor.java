@@ -23,9 +23,9 @@ public class Floor implements ConfigurationReport {
     }
 
     public String reportConfiguration() {
-        StringBuilder configurationReport = new StringBuilder("\t\t\tFloor #" + floorNumber + "\n");
+        StringBuilder configurationReport = new StringBuilder("\tFloor #" + floorNumber);
         for (Room room : rooms) {
-            configurationReport.append(room.reportConfiguration()).append("\n");
+            configurationReport.append(room.reportConfiguration());
         }
         return configurationReport.toString();
     }

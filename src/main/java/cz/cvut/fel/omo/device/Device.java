@@ -6,6 +6,7 @@ import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
+import cz.cvut.fel.omo.house.ConfigurationReport;
 import cz.cvut.fel.omo.logger.GlobalLogger;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @NoArgsConstructor
-public abstract class Device {
+public abstract class Device implements ConfigurationReport {
 
     protected GlobalLogger logger = GlobalLogger.getInstance();
     protected EventQueue eventQueue;

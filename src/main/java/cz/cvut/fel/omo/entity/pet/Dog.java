@@ -83,4 +83,9 @@ public class Dog extends Pet {
     public String visitCar(Car car) {
         return "Dog " + this.name + " curls up and takes a nap beside the " + car.getColor() + " car.";
     }
+
+    @Override
+    public String toString() {
+        return "Dog " + name + " (" + age + ")";
+    }
 }

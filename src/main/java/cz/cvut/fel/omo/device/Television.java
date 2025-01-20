@@ -31,6 +31,11 @@ public class Television extends Device{
     }
 
     @Override
+    public String reportConfiguration() {
+        return "Television: " + id;
+    }
+
+    @Override
     public String toString() {
         return "Television " + id;
     }

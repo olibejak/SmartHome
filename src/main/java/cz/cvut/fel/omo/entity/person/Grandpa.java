@@ -181,4 +181,9 @@ public class Grandpa extends Person {
         window.closeCurtain();
         return "Grandpa " + this.name + " closed the curtains of closed Window " + window.getId();
     }
+
+    @Override
+    public String toString() {
+        return "Grandpa " + name + " (" + age + ")";
+    }
 }

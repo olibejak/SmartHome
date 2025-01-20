@@ -170,4 +170,9 @@ public class Son extends Person {
         window.closeCurtain();
         return "Son " + this.name + " closed the curtains of closed Window " + window.getId();
     }
+
+    @Override
+    public String toString() {
+        return "Son " + name + " (" + age + ")";
+    }
 }

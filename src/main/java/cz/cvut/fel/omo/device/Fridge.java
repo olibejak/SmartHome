@@ -79,6 +79,11 @@ public class Fridge extends StorageDevice {
     }
 
     @Override
+    public String reportConfiguration() {
+        return "Fridge: " + id;
+    }
+
+    @Override
     public String toString() {
         return "Fridge " + id + ": " + items;
     }

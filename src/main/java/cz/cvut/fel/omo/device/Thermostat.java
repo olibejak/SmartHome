@@ -41,6 +41,11 @@ public class Thermostat extends Device{
     }
 
     @Override
+    public String reportConfiguration() {
+        return "Thermostat: " + id;
+    }
+
+    @Override
     public String toString() {
         return "Thermostat " + id + ": " + currentTemperature + "°C";
     }

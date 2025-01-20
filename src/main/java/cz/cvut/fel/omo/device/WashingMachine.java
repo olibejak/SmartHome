@@ -81,6 +81,11 @@ public class WashingMachine extends StorageDevice {
     }
 
     @Override
+    public String reportConfiguration() {
+        return "Washing Machine: " + id;
+    }
+
+    @Override
     public String toString() {
         return "Washing machine " + id + ": " + items;
     }

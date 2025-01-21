@@ -5,17 +5,21 @@ import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Setter
 @Getter
-@NoArgsConstructor
 public class Oven extends Device{
 
     private RangeSettingType setting;
     private double maxTemperature;
     private double currentTemperature;
+
+    public Oven(UUID id) {
+        super(id);
+    }
 
     @Override
     public void turnOn() {

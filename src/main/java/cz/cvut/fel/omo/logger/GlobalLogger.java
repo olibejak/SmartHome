@@ -45,7 +45,7 @@ public final class GlobalLogger {
 
     /**
      * Info log
-     * @param message
+     * @param message message to log
      */
     public void info(String message) {
         logger.info(message);
@@ -53,7 +53,7 @@ public final class GlobalLogger {
 
     /**
      * Error log
-     * @param message
+     * @param message message to log
      */
     public void error(String message) {
         logger.error(message);
@@ -61,10 +61,17 @@ public final class GlobalLogger {
 
     /**
      * Debug log
-     * @param message
+     * @param message message to log
      */
     public void debug(String message) {
         logger.debug(message);
     }
 
+    /**
+     * Warn log
+     * @param message message to log
+     */
+    public void warn(String message) {
+        logger.warn(message);
+    }
 }

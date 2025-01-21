@@ -5,15 +5,19 @@ import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Setter
 @Getter
-@NoArgsConstructor
 public class WashingMachine extends StorageDevice {
 
     private boolean isClean;
+
+    public WashingMachine(UUID id) {
+        super(id);
+    }
 
     @Override
     public void turnOn() {
@@ -72,7 +76,7 @@ public class WashingMachine extends StorageDevice {
     @Override
     public void removeItem(StorageItem item) {
         items.remove(item);
-        logger.info(this + " wash " + item.getName() + " removed");
+        logger.info(this + " wash " + item.name() + " removed");
     }
 
     @Override

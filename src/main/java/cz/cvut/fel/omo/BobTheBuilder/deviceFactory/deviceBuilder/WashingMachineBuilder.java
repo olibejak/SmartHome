@@ -2,6 +2,8 @@ package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
 
 import cz.cvut.fel.omo.device.WashingMachine;
 
+import java.util.UUID;
+
 /**
  * Builder for WashingMachine.
  * Part of the Builder design pattern.
@@ -19,12 +21,12 @@ public class WashingMachineBuilder extends StorageDeviceBuilder<WashingMachineBu
 
     @Override
     public WashingMachineBuilder self() {
-        return self();
+        return this;
     }
 
     @Override
     public WashingMachineBuilder reset() {
-        device = new WashingMachine();
+        device = new WashingMachine(UUID.randomUUID());
         return self();
     }
 

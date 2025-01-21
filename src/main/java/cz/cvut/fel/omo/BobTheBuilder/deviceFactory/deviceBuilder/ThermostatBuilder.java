@@ -2,6 +2,8 @@ package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
 
 import cz.cvut.fel.omo.device.Thermostat;
 
+import java.util.UUID;
+
 /**
  * Builder for Thermostat.
  * Part of the Builder design pattern.
@@ -39,7 +41,7 @@ public class ThermostatBuilder extends DeviceBuilder<ThermostatBuilder, Thermost
 
     @Override
     public ThermostatBuilder reset() {
-        device = new Thermostat();
+        device = new Thermostat(UUID.randomUUID());
         return self();
     }
 

@@ -2,6 +2,8 @@ package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
 
 import cz.cvut.fel.omo.device.Fridge;
 
+import java.util.UUID;
+
 /**
  * Builder for Fridge.
  * Part of the Builder design pattern.
@@ -34,7 +36,7 @@ public class FridgeBuilder extends StorageDeviceBuilder<FridgeBuilder, Fridge> {
 
     @Override
     public FridgeBuilder reset() {
-        device = new Fridge();
+        device = new Fridge(UUID.randomUUID());
         return self();
     }
 

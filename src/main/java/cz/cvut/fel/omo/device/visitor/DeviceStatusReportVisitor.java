@@ -2,6 +2,9 @@ package cz.cvut.fel.omo.device.visitor;
 
 import cz.cvut.fel.omo.device.*;
 
+/**
+ * Visitor for device status report.
+ */
 public class DeviceStatusReportVisitor implements DeviceVisitor {
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {

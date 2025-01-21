@@ -2,6 +2,8 @@ package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
 
 import cz.cvut.fel.omo.device.Oven;
 
+import java.util.UUID;
+
 /**
  * Builder for Oven.
  * Part of the Builder design pattern.
@@ -34,7 +36,7 @@ public class OvenBuilder extends DeviceBuilder<OvenBuilder, Oven> {
 
     @Override
     public OvenBuilder reset() {
-        device = new Oven();
+        device = new Oven(UUID.randomUUID());
         return self();
     }
 

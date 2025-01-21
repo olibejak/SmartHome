@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Getter
@@ -17,23 +18,18 @@ public class House implements ConfigurationReport {
     private final ArrayList<Floor> floors = new ArrayList<>();
 
     public ArrayList<Integer> getFloorNumbers() {
-        ArrayList<Integer> floorNumbers = new ArrayList<Integer>();
-        for (Floor floor : floors) {
-            floorNumbers.add(floor.getFloorNumber());
-        }
-        floorNumbers.sort(Comparator.comparingInt(n -> n));
-        return floorNumbers;
+        return floors.stream()
+                .map(Floor::getFloorNumber)
+                .sorted(Comparator.comparingInt(id -> id))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public ArrayList<Integer> getRoomIds() {
-        ArrayList<Integer> roomIds = new ArrayList<Integer>();
-        for (Floor floor : floors) {
-            for (Room room : floor.getRooms()) {
-                roomIds.add(room.getId());
-            }
-        }
-        roomIds.sort(Comparator.comparingInt(id -> id));
-        return roomIds;
+        return floors.stream()
+                .flatMap(floor -> floor.getRooms().stream())
+                .map(Room::getId)
+                .sorted(Comparator.comparingInt(id -> id))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public RoomType getRoomTypeByRoomId(int roomId) {

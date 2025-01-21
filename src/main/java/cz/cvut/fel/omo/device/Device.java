@@ -9,25 +9,27 @@ import cz.cvut.fel.omo.event.eventManager.EventQueue;
 import cz.cvut.fel.omo.house.ConfigurationReport;
 import cz.cvut.fel.omo.logger.GlobalLogger;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.UUID;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public abstract class Device implements ConfigurationReport {
 
     protected GlobalLogger logger = GlobalLogger.getInstance();
     protected EventQueue eventQueue;
 
-    protected UUID id;
+    protected final UUID id;
     private DeviceState state;
     private Consumption consumption;
     private DeviceDocumentation documentation;
     private int durability;
     private int roomID;
+
+    public Device(UUID id) {
+        this.id = id;
+    }
 
     /**
      * Change state of the device

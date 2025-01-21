@@ -2,6 +2,8 @@ package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
 
 import cz.cvut.fel.omo.device.Television;
 
+import java.util.UUID;
+
 /**
  * Builder for Television.
  * Part of the Builder design pattern.
@@ -24,7 +26,7 @@ public class TelevisionBuilder extends DeviceBuilder<TelevisionBuilder, Televisi
 
     @Override
     public TelevisionBuilder reset() {
-        device = new Television();
+        device = new Television(UUID.randomUUID());
         return self();
     }
 

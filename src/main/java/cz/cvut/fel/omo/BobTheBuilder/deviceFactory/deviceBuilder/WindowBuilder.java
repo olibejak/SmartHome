@@ -2,6 +2,8 @@ package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
 
 import cz.cvut.fel.omo.device.Window;
 
+import java.util.UUID;
+
 /**
  * Builder for Window.
  * Part of the Builder design pattern.
@@ -29,7 +31,7 @@ public class WindowBuilder extends DeviceBuilder<WindowBuilder, Window> {
 
     @Override
     public WindowBuilder reset() {
-        device = new Window();
+        device = new Window(UUID.randomUUID());
         return self();
     }
 

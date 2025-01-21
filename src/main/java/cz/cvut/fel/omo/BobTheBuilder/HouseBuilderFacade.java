@@ -15,6 +15,7 @@ import cz.cvut.fel.omo.house.House;
 import cz.cvut.fel.omo.house.Room;
 import cz.cvut.fel.omo.logger.GlobalLogger;
 import lombok.NonNull;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,8 +25,9 @@ import static cz.cvut.fel.omo.BobTheBuilder.HouseLoader.*;
 import static java.util.Objects.nonNull;
 
 /**
- * Facade for building a house using house, floor, room builders and device factory
+ * Facade for building a house using house, floor, room builders and room object factories.
  */
+@Log4j2
 public class HouseBuilderFacade {
 
     private final EventQueue eventQueue;
@@ -44,7 +46,8 @@ public class HouseBuilderFacade {
 
 
     /**
-     * Builds a house from a JSON file
+     * Builds a house from a JSON file.
+     * If the file is not found or is invalid, default house is built.
      * @param filePath path to the JSON file
      * @return house built from the JSON file
      */
@@ -58,9 +61,13 @@ public class HouseBuilderFacade {
             houseDTO = HouseLoader.getDefaultHouseDTO();
         }
 
-        return new HouseBuilder().reset()
+        House house = new HouseBuilder().reset()
                 .addFloors(buildFloors(houseDTO))
                 .build();
+
+        logger.info(house.reportConfiguration());
+
+        return house;
 
     }
 
@@ -70,7 +77,7 @@ public class HouseBuilderFacade {
      * @return list of floors
      */
     private ArrayList<Floor> buildFloors(@NonNull HouseDTO houseDTO) {
-        int floorNumber = -1;
+        int floorNumber = 0;
         ArrayList<Floor> floors = new ArrayList<>();
         for (FloorDTO floorDTO : houseDTO.getFloors()) {
             floors.add(
@@ -93,6 +100,10 @@ public class HouseBuilderFacade {
         ArrayList<Room> rooms = new ArrayList<>();
         for (RoomDTO roomDTO : floorDTO.getRooms()) {
             int roomId = ++baseRoomId;
+            if (roomId >= (floorNumber + 1) * 100) {
+                logger.warn("Maximum rooms on a floor reached, skipping rest of the rooms on the floor.");
+                break;
+            }
                 rooms.add(
                     new RoomBuilder().reset(roomId)
                             .setRoomType(roomDTO.getType())

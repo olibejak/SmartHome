@@ -13,7 +13,6 @@ import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
 
 import java.util.HashMap;
-import java.util.UUID;
 
 /**
  * Abstract class for creating devices.
@@ -48,7 +47,6 @@ public abstract class BaseDeviceFactory<T extends DeviceBuilder<T, D>, D extends
     protected T setupBuilder(T builder, int roomID, DeviceDTO deviceDTO, ConsumptionDTO consumptionDTO, EventQueue eventQueue) {
         replaceNullValues(deviceDTO);
         return builder
-                .id(UUID.randomUUID())
                 .consumption(createConsumption(consumptionDTO))
                 .roomID(roomID)
                 .state(stateStrategies.get(deviceDTO.getState()))

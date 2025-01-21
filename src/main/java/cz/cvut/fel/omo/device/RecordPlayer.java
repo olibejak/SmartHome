@@ -5,13 +5,17 @@ import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+
+import java.util.UUID;
 
 @Getter
-@NoArgsConstructor
 public class RecordPlayer extends Device{
 
     private Record currentRecord;
+
+    public RecordPlayer(UUID id) {
+        super(id);
+    }
 
     @Override
     public String accept(DeviceVisitor visitor) {

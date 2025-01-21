@@ -5,10 +5,10 @@ import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
+import java.util.UUID;
+
 @Getter
 @Setter
 public class Thermostat extends Device{
@@ -19,6 +19,10 @@ public class Thermostat extends Device{
     private double minTemperature;
     private double maxTemperature;
     private double currentTemperature;
+
+    public Thermostat(UUID id) {
+        super(id);
+    }
 
     public void setTemperature(double temperature) {
         if (temperature < minTemperature || temperature > maxTemperature) {

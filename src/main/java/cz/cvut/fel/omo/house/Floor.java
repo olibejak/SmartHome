@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 
-//@NoArgsConstructor(force = true)
 @Getter
 @Setter
 public class Floor implements ConfigurationReport {

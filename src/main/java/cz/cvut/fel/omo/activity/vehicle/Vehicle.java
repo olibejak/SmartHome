@@ -19,5 +19,10 @@ public abstract class Vehicle implements ConfigurationReport {
         this.isAvailable = true;
     }
 
+    /**
+     * Accept method for visitor pattern.
+     * @param visitor concrete visitor
+     * @return result of visiting
+     */
     public abstract String accept(VehicleVisitor visitor);
 }

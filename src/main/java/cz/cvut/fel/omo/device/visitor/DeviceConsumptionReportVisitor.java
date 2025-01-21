@@ -2,6 +2,9 @@ package cz.cvut.fel.omo.device.visitor;
 
 import cz.cvut.fel.omo.device.*;
 
+/**
+ * Visitor that collects current device consumption.
+ */
 public class DeviceConsumptionReportVisitor implements DeviceVisitor{
 
     @Override

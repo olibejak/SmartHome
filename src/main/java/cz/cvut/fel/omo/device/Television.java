@@ -5,15 +5,19 @@ import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Setter
 @Getter
-@NoArgsConstructor
 public class Television extends Device{
 
     private int channel;
+
+    public Television(UUID id) {
+        super(id);
+    }
 
     public void setChannel(int channel) {
         this.channel = channel;

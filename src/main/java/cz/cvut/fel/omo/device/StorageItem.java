@@ -1,14 +1,6 @@
 package cz.cvut.fel.omo.device;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@AllArgsConstructor
-@Getter
-public class StorageItem {
-
-    protected final String name;
-    protected final double load;
+public record StorageItem(String name, double load) {
 
     @Override
     public String toString() {

@@ -2,6 +2,8 @@ package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
 
 import cz.cvut.fel.omo.device.Dishwasher;
 
+import java.util.UUID;
+
 /**
  * Builder for Dishwasher.
  * Part of the Builder design pattern.
@@ -24,7 +26,7 @@ public class DishwasherBuilder extends StorageDeviceBuilder<DishwasherBuilder, D
 
     @Override
     public DishwasherBuilder reset() {
-        device = new Dishwasher();
+        device = new Dishwasher(UUID.randomUUID());
         return self();
     }
 

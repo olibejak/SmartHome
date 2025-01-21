@@ -2,7 +2,6 @@ package cz.cvut.fel.omo.device.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
-import cz.cvut.fel.omo.device.WashingMachine;
 import cz.cvut.fel.omo.logger.GlobalLogger;
 
 import java.io.IOException;
@@ -10,6 +9,10 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class for loading device documentation from a JSON file.
+ * If the documentation for a device type is not found, default values are used.
+ */
 public class DeviceDocumentationLoader {
     private static final Map<DeviceType, DeviceDocumentation> documentationMap;
     private static final GlobalLogger logger = GlobalLogger.getInstance();
@@ -32,16 +35,21 @@ public class DeviceDocumentationLoader {
         documentationMap = tempMap;
     }
 
+
+    /**
+     * Returns documentation for a device type.
+     * @param deviceType Device type
+     * @return Documentation
+     */
     public static DeviceDocumentation getDocumentation(DeviceType deviceType) {
         return documentationMap.getOrDefault(deviceType, getDefaultDocumentation(deviceType));
     }
 
-    public static void getDocumentation(WashingMachine washingMachine) {
-        washingMachine.setDocumentation(
-                documentationMap.getOrDefault(DeviceType.WASHING_MACHINE, getDefaultDocumentation(DeviceType.WASHING_MACHINE))
-        );
-    }
-
+    /**
+     * Returns default documentation for a device type.
+     * @param deviceType Device type
+     * @return Default documentation
+     */
     private static DeviceDocumentation getDefaultDocumentation(DeviceType deviceType) {
         logger.error("No documentation found for " + deviceType + ", using default values.");
         return new DeviceDocumentation(

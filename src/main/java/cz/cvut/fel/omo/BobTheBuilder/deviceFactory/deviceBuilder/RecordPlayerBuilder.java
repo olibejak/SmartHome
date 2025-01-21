@@ -2,6 +2,8 @@ package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder;
 
 import cz.cvut.fel.omo.device.RecordPlayer;
 
+import java.util.UUID;
+
 /**
  * Builder for RecordPlayer.
  * Part of the Builder design pattern.
@@ -24,7 +26,7 @@ public class RecordPlayerBuilder extends DeviceBuilder<RecordPlayerBuilder, Reco
 
     @Override
     public RecordPlayerBuilder reset() {
-        device = new RecordPlayer();
+        device = new RecordPlayer(UUID.randomUUID());
         return this;
     }
 

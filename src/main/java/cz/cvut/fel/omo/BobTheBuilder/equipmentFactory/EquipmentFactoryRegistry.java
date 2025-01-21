@@ -13,7 +13,14 @@ import java.util.Map;
  */
 public class EquipmentFactoryRegistry implements FactoryRegistry<SportEquipment, SportEquipmentDTO> {
 
-    private final Map<Class<? extends SportEquipmentDTO>, SportEquipmentFactory<? extends SportEquipment, ? extends SportEquipmentDTO>> equipmentFactories;
+    /**
+     * Map of equipment factories.
+     * Key: class of the equipment DTO
+     * Value: factory for the equipment
+     */
+    private final Map<
+            Class<? extends SportEquipmentDTO>,
+            SportEquipmentFactory<? extends SportEquipment, ? extends SportEquipmentDTO>> equipmentFactories;
     private final GlobalLogger logger = GlobalLogger.getInstance();
 
     public EquipmentFactoryRegistry() {

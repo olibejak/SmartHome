@@ -2,6 +2,10 @@ package cz.cvut.fel.omo.device.visitor;
 
 import cz.cvut.fel.omo.device.*;
 
+/**
+ * Interface for device visitors.
+ * Visitor pattern.
+ */
 public interface DeviceVisitor {
 
     String visitDishwasher(Dishwasher dishwasher);

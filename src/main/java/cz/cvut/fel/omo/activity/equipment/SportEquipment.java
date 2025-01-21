@@ -12,5 +12,10 @@ public abstract class SportEquipment implements ConfigurationReport {
     protected boolean isAvailable;
     protected int usageCount;
 
+    /**
+     * Accept method for visitor pattern.
+     * @param visitor concrete visitor
+     * @return result of visiting
+     */
     public abstract String accept(SportEquipmentVisitor visitor);
 }

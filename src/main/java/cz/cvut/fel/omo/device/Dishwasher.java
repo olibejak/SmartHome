@@ -5,15 +5,19 @@ import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class Dishwasher extends StorageDevice {
 
     private boolean isClean;
+
+    public Dishwasher(UUID id) {
+        super(id);
+    }
 
     public void wash() {
         if (items.isEmpty()) {
@@ -68,7 +72,7 @@ public class Dishwasher extends StorageDevice {
     @Override
     public void removeItem(StorageItem item) {
         items.remove(item);
-        this.currentLoad =- item.getLoad();
+        this.currentLoad =- item.load();
         if (currentLoad == 0 || currentLoad < 0) {
             this.currentLoad = 0;
             isClean = false;

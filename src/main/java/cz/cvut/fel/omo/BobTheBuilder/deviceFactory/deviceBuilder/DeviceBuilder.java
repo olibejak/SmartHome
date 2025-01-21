@@ -25,11 +25,6 @@ public abstract class DeviceBuilder<T extends DeviceBuilder<T,D>, D extends Devi
         return self();
     }
 
-    public T id(UUID id) {
-        device.setId(id);
-        return self();
-    }
-
     public T state(StateSetter stateSetter) {
         stateSetter.setState(device);
         return self();

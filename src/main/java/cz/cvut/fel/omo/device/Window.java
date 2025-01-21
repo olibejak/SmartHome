@@ -5,16 +5,20 @@ import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class Window extends Device {
 
     private boolean hasOpenedCurtain;
     private boolean isOpen;
+
+    public Window(UUID id) {
+        super(id);
+    }
 
     public void open() {
         if (!isOpen) {
@@ -43,9 +47,14 @@ public class Window extends Device {
     public void closeCurtain() {
         if (hasOpenedCurtain) {
             hasOpenedCurtain = false;
-            logger.info(this + " curtain is closed");
+            logger.debug(this + " curtain is closed");
         }
-        logger.info(this + " curtain is already closed");
+        logger.debug(this + " curtain is already closed");
+    }
+
+    @Override
+    public String reportConfiguration() {
+        return "Window: " + id;
     }
 
     @Override

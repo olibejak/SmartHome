@@ -25,6 +25,9 @@ public class EventQueue {
         events.add(event);
     }
 
+    /**
+     * Dispatch all events in the queue to the event manager.
+     */
     public synchronized void dispatchEvents() {
         while (!events.isEmpty()) {
             eventManager.dispatch(events.poll());

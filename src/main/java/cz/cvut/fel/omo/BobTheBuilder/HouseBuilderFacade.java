@@ -81,8 +81,8 @@ public class HouseBuilderFacade {
         ArrayList<Floor> floors = new ArrayList<>();
         for (FloorDTO floorDTO : houseDTO.getFloors()) {
             floors.add(
-                    new FloorBuilder().reset(floorNumber++)
-                    .addRooms(buildRooms(floorDTO, floorNumber))
+                    new FloorBuilder().reset(floorNumber)
+                    .addRooms(buildRooms(floorDTO, floorNumber++))
                     .build()
             );
         }

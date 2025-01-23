@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -80,12 +81,12 @@ public class Simulation {
             }
             // todo implement more sophistical choice of interaction between equipment/vehicle/device - 50/25/25
             // interaction with sport equipment
-            if (!currentRoomPayload.getCurrentEquipment().isEmpty()) {
+            if (!currentRoomPayload.getCurrentAvailableEquipment().isEmpty()) {
                 logger.info("PERSON WITH SPORT EQUIPMENT INTERACTION:");
                 person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableEquipment()));
             }
             // interaction with vehicle
-            if (!currentRoomPayload.getCurrentVehicles().isEmpty()) {
+            if (!currentRoomPayload.getCurrentAvailableVehicles().isEmpty()) {
                 logger.info("PERSON WITH VEHICLE INTERACTION:");
                 person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableVehicles()));
             }
@@ -116,12 +117,12 @@ public class Simulation {
                 pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentPets()));
             }
             // interaction with sport equipment
-            if (!currentRoomPayload.getCurrentEquipment().isEmpty()) {
+            if (!currentRoomPayload.getCurrentAvailableEquipment().isEmpty()) {
                 logger.info("PET WITH SPORT EQUIPMENT INTERACTION:");
                 pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableEquipment()));
             }
             // interaction with vehicle
-            if (!currentRoomPayload.getCurrentVehicles().isEmpty()) {
+            if (!currentRoomPayload.getCurrentAvailableVehicles().isEmpty()) {
                 logger.info("PET WITH VEHICLE INTERACTION:");
                 pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableVehicles()));
             }
@@ -146,6 +147,8 @@ public class Simulation {
         }
 
         house.makeAllVehiclesAndEquipmentAvailable();
+        shuffleFamily();
+        shufflePets();
     }
 
     public void nextCycles(int count) {
@@ -161,6 +164,14 @@ public class Simulation {
         for (Pet pet : pets) {
             pet.setInitialRoomRandomly(house.getRoomIds());
         }
+    }
+
+    public void shuffleFamily() {
+        Collections.shuffle(family);
+    }
+
+    public void shufflePets() {
+        Collections.shuffle(pets);
     }
 
     public ArrayList<Person> getFamilyByRoomId(int roomId) {

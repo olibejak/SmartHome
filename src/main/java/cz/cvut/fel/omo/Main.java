@@ -243,6 +243,8 @@ public class Main {
         Simulation simulation = new Simulation(house, family, pets, eventQueue);
         simulation.nextCycle();
         System.out.println();
+        simulation.nextCycle();
+        System.out.println();
 //        simulation.nextCycle();
     }
 }

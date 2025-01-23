@@ -78,6 +78,14 @@ public class House implements ConfigurationReport {
         );
     }
 
+    public void updateAllDevices() {
+        floors.forEach(floor ->
+                floor.getRooms().forEach(room ->
+                        room.getDevices().forEach(Device::update)
+                )
+        );
+    }
+
 
     @Override
     public String toString() {

@@ -231,7 +231,7 @@ public class Main {
 
         HouseBuilderFacade HouseBuilder = new HouseBuilderFacade(eventQueue);
 
-        House house = HouseBuilder.buildHouseFromJson("src/main/resources/house.json");
+        House house = HouseBuilder.buildHouseFromJson("src/main/resources/house_big.json");
 
 //        if(nonNull(house)) {
 ////           System.out.println(house);

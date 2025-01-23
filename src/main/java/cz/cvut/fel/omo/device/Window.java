@@ -59,8 +59,8 @@ public class Window extends Device {
 
     @Override
     public String toString() {
-//        return "Window " + id;
-        return "Window " + id + ", durability: " + getDurability();
+        return "Window " + id;
+//        return "Window " + id + ", durability: " + getDurability();
     }
 
     @Override

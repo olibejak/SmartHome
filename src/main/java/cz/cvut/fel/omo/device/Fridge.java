@@ -70,11 +70,11 @@ public class Fridge extends StorageDevice {
 
     public void setTemperature(double temperature) {
         if (temperature < minTemperature || temperature > maxTemperature) {
-            logger.info(this + " :Temperature " + temperature + " out of range " +
+            logger.debug(this + " :Temperature " + temperature + " out of range " +
                     minTemperature + " - " + maxTemperature);
         }
         this.currentTemperature = temperature;
-        logger.info(this + " :Setting temperature to " + temperature + "°C");
+        logger.debug(this + " :Setting temperature to " + temperature + "°C");
     }
 
     @Override

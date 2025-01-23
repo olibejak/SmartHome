@@ -78,7 +78,7 @@ public class Simulation {
                 logger.info("PERSON WITH PET INTERACTION:");
                 person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentPets()));
             }
-            // todo implement more sophistical choice of interaction between equipment/vehicle/device
+            // todo implement more sophistical choice of interaction between equipment/vehicle/device - 50/25/25
             // interaction with sport equipment
             if (!currentRoomPayload.getCurrentEquipment().isEmpty()) {
                 logger.info("PERSON WITH SPORT EQUIPMENT INTERACTION:");
@@ -133,6 +133,7 @@ public class Simulation {
 
         // 3. device actions // todo
         //   3.1. increase consumption based on the current state
+        // todo implement function in house that updates all devices
 
         // 4. family and pets movement
         logger.info("FAMILY MOVEMENT:");

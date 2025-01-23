@@ -182,11 +182,11 @@ public class Mom extends Person {
         if (RandomUtils.isWithinPercentage(50)) {
             window.openCurtain();
             window.open();
-            return "Mom " + this.name + " opened Window " + window.getId();
+            return "Mom " + this.name + " opened " + window;
         }
         window.close();
         window.openCurtain();
-        return "Mom " + this.name + " opened the curtains of closed Window " + window.getId();
+        return "Mom " + this.name + " opened the curtains of closed " + window;
     }
 
     @Override

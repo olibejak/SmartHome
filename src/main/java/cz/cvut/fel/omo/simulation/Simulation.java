@@ -131,9 +131,9 @@ public class Simulation {
         //   2.4. interact with sport equipment, vehicles or devices from CurrentRoomPayload
         //   2.5. make all equipment and vehicles available again
 
-        // 3. device actions // todo
+        // 3. device actions
         //   3.1. increase consumption based on the current state
-        // todo implement function in house that updates all devices
+        house.updateAllDevices();
 
         // 4. family and pets movement
         logger.info("FAMILY MOVEMENT:");

@@ -34,4 +34,8 @@ public class RandomUtils {
         return list.get(index);
     }
 
+    public static boolean coinFLip() {
+        return isWithinPercentage(50);
+    }
+
 }

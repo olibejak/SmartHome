@@ -35,16 +35,16 @@ public class Oven extends Device{
 
     public void setTemperature(int temperature) {
         if (temperature < 0 || temperature > maxTemperature) {
-            logger.info(this + " :Temperature " + temperature + " out of range 0 - " + maxTemperature);
+            logger.debug(this + " :Temperature " + temperature + " out of range 0 - " + maxTemperature);
             return;
         }
         this.currentTemperature = temperature;
-        logger.info(this + " :Setting temperature to " + temperature + "°C");
+        logger.debug(this + " :Setting temperature to " + temperature + "°C");
     }
 
     public void setSetting(RangeSettingType setting) {
         this.setting = setting;
-        logger.info(this + " :Setting to " + setting);
+        logger.debug(this + " :Setting to " + setting);
     }
 
     @Override

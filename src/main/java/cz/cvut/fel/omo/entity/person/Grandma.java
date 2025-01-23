@@ -184,11 +184,11 @@ public class Grandma extends Person {
         if (RandomUtils.isWithinPercentage(60)) {
             window.openCurtain();
             window.open();
-            return "Grandma " + this.name + " opened Window " + window.getId();
+            return "Grandma " + this.name + " opened " + window;
         }
         window.close();
         window.openCurtain();
-        return "Grandma " + this.name + " opened the curtains of closed Window " + window.getId();
+        return "Grandma " + this.name + " opened the curtains of closed " + window;
     }
 
     @Override

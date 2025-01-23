@@ -183,11 +183,11 @@ public class Daughter extends Person {
         if (RandomUtils.isWithinPercentage(40)) {
             window.openCurtain();
             window.open();
-            return "Daughter " + this.name + " opened Window " + window.getId();
+            return "Daughter " + this.name + " opened " + window;
         }
         window.close();
         window.openCurtain();
-        return "Daughter " + this.name + " opened the curtains of closed Window " + window.getId();
+        return "Daughter " + this.name + " opened the curtains of closed " + window;
     }
 
     @Override

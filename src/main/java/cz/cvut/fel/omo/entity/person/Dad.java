@@ -183,11 +183,11 @@ public class Dad extends Person {
         if (RandomUtils.isWithinPercentage(40)) {
             window.openCurtain();
             window.open();
-            return "Dad " + this.name + " opened Window " + window.getId();
+            return "Dad " + this.name + " opened " + window;
         }
         window.close();
         window.closeCurtain();
-        return "Dad " + this.name + " closed the curtains of closed Window " + window.getId();
+        return "Dad " + this.name + " closed the curtains of closed " + window;
     }
 
     @Override

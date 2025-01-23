@@ -231,16 +231,18 @@ public class Main {
 
         HouseBuilderFacade HouseBuilder = new HouseBuilderFacade(eventQueue);
 
-        House house = HouseBuilder.buildHouseFromJson("src/main/resources/house.json");
+        House house = HouseBuilder.buildHouseFromJson("src/main/resources/house_big.json");
 
 //        if(nonNull(house)) {
 ////           System.out.println(house);
 ////           System.out.println();
-//           System.out.println(house.reportConfiguration());
+////           System.out.println(house.reportConfiguration());
 ////           System.out.println(ConsumptionReport.getConsumptionReport(house));
 //       }
 
         Simulation simulation = new Simulation(house, family, pets, eventQueue);
+        simulation.nextCycle();
+        System.out.println();
         simulation.nextCycle();
         System.out.println();
 //        simulation.nextCycle();

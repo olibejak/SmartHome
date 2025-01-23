@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -78,21 +79,27 @@ public class Simulation {
                 logger.info("PERSON WITH PET INTERACTION:");
                 person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentPets()));
             }
-            // todo implement more sophistical choice of interaction between equipment/vehicle/device
+            // todo implement more sophistical choice of interaction between equipment/vehicle/device - 50/25/25
             // interaction with sport equipment
-            if (!currentRoomPayload.getCurrentEquipment().isEmpty()) {
-                logger.info("PERSON WITH SPORT EQUIPMENT INTERACTION:");
-                person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableEquipment()));
-            }
-            // interaction with vehicle
-            if (!currentRoomPayload.getCurrentVehicles().isEmpty()) {
-                logger.info("PERSON WITH VEHICLE INTERACTION:");
-                person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableVehicles()));
-            }
-            // interaction with device
-            if (!currentRoomPayload.getCurrentDevices().isEmpty()) {
-                logger.info("PERSON WITH DEVICE INTERACTION:");
-                person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentDevices()));
+            if (RandomUtils.coinFLip()) {
+                if (RandomUtils.coinFLip()) {
+                    if (!currentRoomPayload.getCurrentAvailableEquipment().isEmpty()) {
+                        logger.info("PERSON WITH SPORT EQUIPMENT INTERACTION:");
+                        person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableEquipment()));
+                    }
+                } else {
+                    // interaction with vehicle
+                    if (!currentRoomPayload.getCurrentAvailableVehicles().isEmpty()) {
+                        logger.info("PERSON WITH VEHICLE INTERACTION:");
+                        person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableVehicles()));
+                    }
+                }
+            } else {
+                // interaction with device
+                if (!currentRoomPayload.getCurrentDevices().isEmpty()) {
+                    logger.info("PERSON WITH DEVICE INTERACTION:");
+                    person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentDevices()));
+                }
             }
         }
 
@@ -115,15 +122,18 @@ public class Simulation {
                 logger.info("PET WITH PET INTERACTION:");
                 pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentPets()));
             }
-            // interaction with sport equipment
-            if (!currentRoomPayload.getCurrentEquipment().isEmpty()) {
-                logger.info("PET WITH SPORT EQUIPMENT INTERACTION:");
-                pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableEquipment()));
-            }
-            // interaction with vehicle
-            if (!currentRoomPayload.getCurrentVehicles().isEmpty()) {
-                logger.info("PET WITH VEHICLE INTERACTION:");
-                pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableVehicles()));
+            if (RandomUtils.coinFLip()) {
+                // interaction with sport equipment
+                if (!currentRoomPayload.getCurrentAvailableEquipment().isEmpty()) {
+                    logger.info("PET WITH SPORT EQUIPMENT INTERACTION:");
+                    pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableEquipment()));
+                }
+            } else {
+                // interaction with vehicle
+                if (!currentRoomPayload.getCurrentAvailableVehicles().isEmpty()) {
+                    logger.info("PET WITH VEHICLE INTERACTION:");
+                    pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableVehicles()));
+                }
             }
         }
         //   2.2. react to local events from CurrentRoomPayload
@@ -131,8 +141,9 @@ public class Simulation {
         //   2.4. interact with sport equipment, vehicles or devices from CurrentRoomPayload
         //   2.5. make all equipment and vehicles available again
 
-        // 3. device actions // todo
+        // 3. device actions
         //   3.1. increase consumption based on the current state
+        house.updateAllDevices();
 
         // 4. family and pets movement
         logger.info("FAMILY MOVEMENT:");
@@ -145,6 +156,8 @@ public class Simulation {
         }
 
         house.makeAllVehiclesAndEquipmentAvailable();
+        shuffleFamily(); // family shuffles for different interaction order
+        shufflePets(); // pets shuffle for different interaction order
     }
 
     public void nextCycles(int count) {
@@ -160,6 +173,14 @@ public class Simulation {
         for (Pet pet : pets) {
             pet.setInitialRoomRandomly(house.getRoomIds());
         }
+    }
+
+    public void shuffleFamily() {
+        Collections.shuffle(family);
+    }
+
+    public void shufflePets() {
+        Collections.shuffle(pets);
     }
 
     public ArrayList<Person> getFamilyByRoomId(int roomId) {

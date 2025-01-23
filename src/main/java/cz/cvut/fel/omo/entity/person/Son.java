@@ -180,11 +180,11 @@ public class Son extends Person {
         if (RandomUtils.isWithinPercentage(50)) {
             window.openCurtain();
             window.open();
-            return "Son " + this.name + " opened Window " + window.getId();
+            return "Son " + this.name + " opened " + window;
         }
         window.close();
         window.closeCurtain();
-        return "Son " + this.name + " closed the curtains of closed Window " + window.getId();
+        return "Son " + this.name + " closed the curtains of closed " + window;
     }
 
     @Override

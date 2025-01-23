@@ -147,8 +147,8 @@ public class Simulation {
         }
 
         house.makeAllVehiclesAndEquipmentAvailable();
-        shuffleFamily();
-        shufflePets();
+        shuffleFamily(); // family shuffles for different interaction order
+        shufflePets(); // pets shuffle for different interaction order
     }
 
     public void nextCycles(int count) {

@@ -26,12 +26,12 @@ public class Thermostat extends Device{
 
     public void setTemperature(double temperature) {
         if (temperature < minTemperature || temperature > maxTemperature) {
-            logger.info(this + " temperature " + temperature + " out of range " +
+            logger.debug(this + " temperature " + temperature + " out of range " +
                     minTemperature + " - " + maxTemperature);
             return;
         }
         this.currentTemperature = temperature;
-        logger.info(this + " temperature set to " + temperature + "°C");
+        logger.debug(this + " temperature set to " + temperature + "°C");
     }
 
     @Override

@@ -4,6 +4,7 @@ import cz.cvut.fel.omo.BobTheBuilder.DTO.ConsumptionDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceDTO;
 import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.device.util.Consumption;
+import cz.cvut.fel.omo.event.eventManager.EventManager;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
 
 /**
@@ -17,10 +18,10 @@ public interface DeviceFactory<D extends Device> {
      * Creates device instance based on data from json config file.
      * @param deviceDTO data for device creation
      * @param roomID id of the room where the device is placed - needed for easier event dispatch
-     * @param eventQueue queue for pushing events created by devices
+     * @param eventManager event queue distributor and for observer for event listeners
      * @return particular device object
      */
-     D createDevice(DeviceDTO deviceDTO, ConsumptionDTO consumptionDTO, int roomID, EventQueue eventQueue);
+     D createDevice(DeviceDTO deviceDTO, ConsumptionDTO consumptionDTO, int roomID, EventManager eventManager);
 
     /**
      * Creates consumption instance for device.

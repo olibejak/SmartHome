@@ -9,7 +9,7 @@ import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.FloorBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.HouseBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.RoomBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.vehicleFactory.VehicleFactoryRegistry;
-import cz.cvut.fel.omo.event.eventManager.EventQueue;
+import cz.cvut.fel.omo.event.eventManager.EventManager;
 import cz.cvut.fel.omo.house.Floor;
 import cz.cvut.fel.omo.house.House;
 import cz.cvut.fel.omo.house.Room;
@@ -30,15 +30,13 @@ import static java.util.Objects.nonNull;
 @Log4j2
 public class HouseBuilderFacade {
 
-    private final EventQueue eventQueue;
     private final DeviceFactoryRegistry deviceFactoryRegistry;
     private final EquipmentFactoryRegistry sportEquipmentFactoryRegistry;
     private final VehicleFactoryRegistry vehicleFactoryRegistry;
     private final GlobalLogger logger;
 
-    public HouseBuilderFacade(EventQueue eventQueue) {
-        this.eventQueue = eventQueue;
-        this.deviceFactoryRegistry = populateDeviceFactoryRegistry(new DeviceFactoryRegistry(eventQueue));
+    public HouseBuilderFacade(EventManager eventManager) {
+        this.deviceFactoryRegistry = populateDeviceFactoryRegistry(new DeviceFactoryRegistry(eventManager));
         this.sportEquipmentFactoryRegistry = populateSportEquipmentFactoryRegistry(new EquipmentFactoryRegistry());
         this.vehicleFactoryRegistry = populateVehicleFactoryRegistry(new VehicleFactoryRegistry());
         logger = GlobalLogger.getInstance();

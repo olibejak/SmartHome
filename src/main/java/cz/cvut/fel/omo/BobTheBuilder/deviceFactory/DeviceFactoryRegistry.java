@@ -7,6 +7,7 @@ import cz.cvut.fel.omo.BobTheBuilder.HouseLoader;
 import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.factoryMethod.DeviceFactory;
 import cz.cvut.fel.omo.BobTheBuilder.FactoryRegistry;
 import cz.cvut.fel.omo.device.Device;
+import cz.cvut.fel.omo.event.eventManager.EventManager;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
 import cz.cvut.fel.omo.logger.GlobalLogger;
 import lombok.NonNull;
@@ -24,10 +25,10 @@ public class DeviceFactoryRegistry implements FactoryRegistry<Device, DeviceDTO>
 
     private final Map<DeviceType, DeviceFactory<?>> factoryMethods;
     private final Map<DeviceType, ConsumptionDTO> deviceConsumptionConfig;
-    private final EventQueue eventQueue;
+    private final EventManager eventManager;
 
-    public DeviceFactoryRegistry(EventQueue eventQueue) {
-        this.eventQueue = eventQueue;
+    public DeviceFactoryRegistry(EventManager eventManager) {
+        this.eventManager = eventManager;
         factoryMethods = new HashMap<>();
         deviceConsumptionConfig = loadDeviceConsumptionConfig("src/main/resources/device_consumption.json");
     }
@@ -85,6 +86,6 @@ public class DeviceFactoryRegistry implements FactoryRegistry<Device, DeviceDTO>
         ConsumptionDTO consumptionDTO = deviceConsumptionConfig.getOrDefault(
                 dto.getType(), getDefaultConsumptionDTO()
         );
-        return factory.createDevice(dto, consumptionDTO, roomId, eventQueue);
+        return factory.createDevice(dto, consumptionDTO, roomId, eventManager);
     }
 }

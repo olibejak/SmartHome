@@ -4,6 +4,9 @@ import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
+import cz.cvut.fel.omo.event.Event;
+import cz.cvut.fel.omo.event.EventType;
+import cz.cvut.fel.omo.event.eventManager.EventListener;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +14,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class Window extends Device {
+public class Window extends Device implements EventListener {
 
     private boolean hasOpenedCurtain;
     private boolean isOpen;
@@ -71,5 +74,22 @@ public class Window extends Device {
     @Override
     protected DeviceDocumentation loadDocumentation() {
         return DeviceDocumentationLoader.getDocumentation(DeviceType.WINDOW);
+    }
+
+    @Override
+    public void handleEvent(Event event) {
+        if (event.getPayload().getRoomID() != null && event.getPayload().getRoomID() != this.getRoomID()) {
+            return;
+        }
+        if (event.getType() == EventType.RAIN) {
+            handleWindChange();
+        }
+    }
+
+    public void handleWindChange() {
+        if (isOpen) {
+            logger.info(this + " closing due to rain");
+            close();
+        }
     }
 }

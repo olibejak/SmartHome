@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.event.util;
 
+import cz.cvut.fel.omo.device.Device;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +23,7 @@ public class Payload {
     /**
      * Null if the event is not related to a specific device.
      */
-    UUID deviceID;
+    UUID device;
 
     public Payload(Integer roomID) {
         this.roomID = roomID;

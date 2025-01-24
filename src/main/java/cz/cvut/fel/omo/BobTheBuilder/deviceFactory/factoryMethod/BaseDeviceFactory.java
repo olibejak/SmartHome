@@ -10,6 +10,7 @@ import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder.stateSetter.Off
 import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder.stateSetter.StateSetter;
 import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.device.util.Consumption;
+import cz.cvut.fel.omo.event.eventManager.EventManager;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
 
 import java.util.HashMap;
@@ -32,7 +33,7 @@ public abstract class BaseDeviceFactory<T extends DeviceBuilder<T, D>, D extends
     }
 
     @Override
-    public abstract D createDevice(DeviceDTO deviceDTO, ConsumptionDTO consumptionDTO, int roomID, EventQueue eventQueue);
+    public abstract D createDevice(DeviceDTO deviceDTO, ConsumptionDTO consumptionDTO, int roomID, EventManager eventManager);
 
     /**
      * Sets up the builder with the given parameters.

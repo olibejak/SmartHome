@@ -4,6 +4,7 @@ import cz.cvut.fel.omo.BobTheBuilder.DTO.ConsumptionDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceDTO;
 import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder.FridgeBuilder;
 import cz.cvut.fel.omo.device.Fridge;
+import cz.cvut.fel.omo.event.eventManager.EventManager;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
 import lombok.NoArgsConstructor;
 
@@ -17,8 +18,8 @@ import java.util.ArrayList;
 public class FridgeFactory extends BaseDeviceFactory<FridgeBuilder, Fridge> {
 
     @Override
-    public Fridge createDevice(DeviceDTO deviceDTO, ConsumptionDTO consumptionDTO, int roomID, EventQueue eventQueue) {
-        return setupBuilder(new FridgeBuilder(), roomID, deviceDTO, consumptionDTO, eventQueue)
+    public Fridge createDevice(DeviceDTO deviceDTO, ConsumptionDTO consumptionDTO, int roomID, EventManager eventManager) {
+        return setupBuilder(new FridgeBuilder(), roomID, deviceDTO, consumptionDTO, eventManager.getEventQueue())
                 .minTemperature(0)
                 .maxTemperature(10)
                 .currentTemperature(5)

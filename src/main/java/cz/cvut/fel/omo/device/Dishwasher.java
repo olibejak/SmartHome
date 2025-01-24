@@ -1,9 +1,11 @@
 package cz.cvut.fel.omo.device;
 
 import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
+import cz.cvut.fel.omo.BobTheBuilder.eventFactory.EventFactory;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
+import cz.cvut.fel.omo.event.Event;
 import lombok.Getter;
 import lombok.Setter;
 

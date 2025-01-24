@@ -1,11 +1,11 @@
 package cz.cvut.fel.omo.device;
 
 import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
-import cz.cvut.fel.omo.BobTheBuilder.eventFactory.EventFactory;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
-import cz.cvut.fel.omo.event.Event;
+import cz.cvut.fel.omo.event.EventFactory;
+import cz.cvut.fel.omo.event.EventType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -60,7 +60,7 @@ public class Dishwasher extends StorageDevice {
         this.currentLoad += load;
         if (this.currentLoad == this.maxLoad) {
             logger.info(this + " : Dishwasher is full - GENERATE EVENT");
-            // todo generate event
+            eventQueue.addEvent(EventFactory.createEvent(EventType.DEVICE_FULL, getRoomID(), getId()));
         }
     }
 

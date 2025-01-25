@@ -3,8 +3,13 @@ package cz.cvut.fel.omo.entity.person;
 import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import cz.cvut.fel.omo.entity.Entity;
+import cz.cvut.fel.omo.event.Event;
+import cz.cvut.fel.omo.event.eventManager.EventListener;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Queue;
+import java.util.Stack;
 
 @Getter
 @Setter

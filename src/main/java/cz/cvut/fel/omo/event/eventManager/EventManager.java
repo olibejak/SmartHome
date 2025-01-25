@@ -2,9 +2,12 @@ package cz.cvut.fel.omo.event.eventManager;
 
 import cz.cvut.fel.omo.event.Event;
 import cz.cvut.fel.omo.event.EventType;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * Distributes events to listeners.
@@ -13,6 +16,8 @@ import java.util.HashMap;
 public class EventManager {
 
     private HashMap<EventType, ArrayList<EventListener>> listeners;
+    @Getter
+    private final EventQueue eventQueue = new EventQueue();
 
     /**
      * Add a listener to the event manager.

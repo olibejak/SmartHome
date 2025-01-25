@@ -14,24 +14,10 @@ import java.util.stream.Collectors;
 @Getter
 public class EventQueue {
 
-    private Queue<Event> events = new LinkedList<>();
-    private EventManager eventManager;
-
-    public EventQueue(EventManager eventManager) {
-        this.eventManager = eventManager;
-    }
+    protected Queue<Event> events = new LinkedList<>();
 
     public void addEvent(Event event) {
         events.add(event);
-    }
-
-    /**
-     * Dispatch all events in the queue to the event manager.
-     */
-    public synchronized void dispatchEvents() {
-        while (!events.isEmpty()) {
-            eventManager.dispatch(events.poll());
-        }
     }
 
     /**

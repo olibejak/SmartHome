@@ -1,6 +1,7 @@
 package cz.cvut.fel.omo.device;
 
 import cz.cvut.fel.omo.device.state.DeviceState;
+import cz.cvut.fel.omo.device.state.IdleDeviceState;
 import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
@@ -81,5 +82,18 @@ public abstract class Device implements ConfigurationReport {
             logger.info("Looking for DOCUMENTATION for " + this + '\n' + this.documentation);
         }
         return this.documentation;
+    }
+
+    public void repair() {
+        if (this.documentation == null) {
+            this.documentation = loadDocumentation();
+        }
+        if (documentation.isFixable()) {
+            logger.info(this + " is repaired");
+            changeState(new IdleDeviceState(this));
+        }
+        else {
+            logger.info(this + " is not repairable");
+        }
     }
 }

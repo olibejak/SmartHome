@@ -17,6 +17,7 @@ import cz.cvut.fel.omo.entity.pet.Cat;
 import cz.cvut.fel.omo.entity.pet.Dog;
 import cz.cvut.fel.omo.entity.pet.Hamster;
 import cz.cvut.fel.omo.entity.pet.Pet;
+import cz.cvut.fel.omo.event.EventType;
 import cz.cvut.fel.omo.event.eventManager.EventManager;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
 import cz.cvut.fel.omo.house.House;

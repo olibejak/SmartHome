@@ -4,17 +4,20 @@ import cz.cvut.fel.omo.BobTheBuilder.DTO.ConsumptionDTO;
 import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceDTO;
 import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder.ThermostatBuilder;
 import cz.cvut.fel.omo.device.Thermostat;
+import cz.cvut.fel.omo.event.EventType;
+import cz.cvut.fel.omo.event.eventManager.EventManager;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
 
 public class ThermostatFactory extends BaseDeviceFactory<ThermostatBuilder, Thermostat> {
 
     @Override
-    public Thermostat createDevice(DeviceDTO deviceDTO, ConsumptionDTO consumptionDTO, int roomID, EventQueue eventQueue) {
-        return setupBuilder(new ThermostatBuilder(), roomID, deviceDTO, consumptionDTO, eventQueue)
+    public Thermostat createDevice(DeviceDTO deviceDTO, ConsumptionDTO consumptionDTO, int roomID, EventManager eventManager) {
+        Thermostat thermostat = setupBuilder(new ThermostatBuilder(), roomID, deviceDTO, consumptionDTO, eventManager.getEventQueue())
                 .minTemperature(18)
                 .maxTemperature(26)
                 .currentTemperature(20)
                 .build();
-
+        eventManager.subscribe(EventType.TEMPERATURE_CHANGE, thermostat);
+        return thermostat;
     }
 }

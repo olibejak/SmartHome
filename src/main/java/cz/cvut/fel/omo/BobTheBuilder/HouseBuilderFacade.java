@@ -96,7 +96,7 @@ public class HouseBuilderFacade {
      * @return list of rooms
      */
     private ArrayList<Room> buildRooms(@NonNull FloorDTO floorDTO, int floorNumber) {
-        int baseRoomId = (floorNumber * 100) - 1;
+        int baseRoomId = (floorNumber * 100);
         ArrayList<Room> rooms = new ArrayList<>();
         for (RoomDTO roomDTO : floorDTO.getRooms()) {
             int roomId = ++baseRoomId;

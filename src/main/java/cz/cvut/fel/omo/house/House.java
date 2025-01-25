@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @NoArgsConstructor
@@ -99,6 +100,20 @@ public class House implements ConfigurationReport {
         return ConsumptionReport.getRoomConsumptionReport(this, roomId);
     }
 
+    public Optional<Room> getRoomByID(int id) {
+        return getFloors().stream()
+                .filter(floor -> floor.getFloorNumber() == id / 100)
+                .findFirst().stream()
+                .flatMap(floor -> floor.getRooms().stream())
+                .filter(room -> room.getId() == id)
+                .findFirst();
+    }
+
+    public Optional<Floor> getFloorByID(int id) {
+        return getFloors().stream()
+                .filter(floor -> floor.getFloorNumber() == id)
+                .findFirst();
+    }
 
     @Override
     public String toString() {

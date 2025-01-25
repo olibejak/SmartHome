@@ -29,6 +29,12 @@ public class ConsumptionReport {
                 .collect(Collectors.joining("\n"));
     }
 
+    /**
+     * Returns a string representation of the consumption report of a floor.
+     * @param house the house for which the consumption report is generated
+     * @param floorId the ID of the floor for which the consumption report is generated
+     * @return a string representation of the consumption report of a floor
+     */
     public static String getFloorConsumptionReport(House house, int floorId) {
         return house.getFloors().stream()
                 .filter(floor -> floor.getFloorNumber() == floorId)
@@ -38,6 +44,12 @@ public class ConsumptionReport {
                 .collect(Collectors.joining("\n"));
     }
 
+    /**
+     * Returns a string representation of the consumption report of a room.
+     * @param house the house for which the consumption report is generated
+     * @param roomId the ID of the room for which the consumption report is generated
+     * @return a string representation of the consumption report of a room
+     */
     public static String getRoomConsumptionReport(House house, int roomId) {
         return house.getFloors().stream()
                 .filter(floor -> floor.getFloorNumber() == roomId / 100)

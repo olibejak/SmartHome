@@ -5,8 +5,8 @@ import cz.cvut.fel.omo.entity.pet.Pet;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
 import cz.cvut.fel.omo.house.House;
 import cz.cvut.fel.omo.logger.GlobalLogger;
-import cz.cvut.fel.omo.simulation.input.ConfigurationInputHandler;
-import cz.cvut.fel.omo.simulation.input.ConsumptionInputHandler;
+import cz.cvut.fel.omo.simulation.command.CommandContext;
+import cz.cvut.fel.omo.simulation.command.InputHandler;
 import cz.cvut.fel.omo.utils.RandomUtils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,6 +14,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -221,42 +222,18 @@ public class Simulation implements Runnable{
 
     @Override
     public void run() {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            System.out.println(controls);
-            String input = scanner.nextLine().toUpperCase().trim();
-            switch (input.charAt(0) + "") {
-                case "A":
-                    logger.info(new ConfigurationInputHandler(input).handle(input).apply(house));
-                    break;
-                case "S":
-                    logger.info(new ConsumptionInputHandler(input).handle(input).apply(house));
-                    break;
-                case "D":
-                    nextCycle();
-                    break;
-                case "Q":
-                    System.out.println("Exiting input handler...");
-                    return;
-                default:
-                    System.out.println("Invalid command. Use A, B, or Q.");
-                    break;
+        InputHandler inputHandler = new InputHandler();
+        try (Scanner scanner = new Scanner(System.in)) {
+            CommandContext context = new CommandContext(house, this);
+
+            while (context.isRunning()) {
+                System.out.println("Enter a command:");
+                String input = scanner.nextLine().toUpperCase().trim();
+                inputHandler.handleInput(input, context);
             }
+        } catch (Exception e) {
+            logger.error("An error occurred while running the simulation: " + e);
         }
     }
-
-    private static final String controls =
-            """
-                A - House Configuration
-                S - Consumption Report
-                D - Next Cycle
-                Q - Quit
-                Usage:
-                A [F, R] [ID] - F for floor, R for room, ID for floor or room ID
-                S [F, R] [ID] - F for floor, R for room, ID for floor or room ID
-                D [number] - Number of cycles
-                """;
-
-
     // todo run method - next cycle every specified interval ??
 }

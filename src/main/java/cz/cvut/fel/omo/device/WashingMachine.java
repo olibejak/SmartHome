@@ -29,8 +29,8 @@ public class WashingMachine extends StorageDevice {
             logger.info(this + " Cannot start washing, washing machine is already clean");
             return;
         }
-        logger.info(this + " started washing ");
         super.turnOn();
+        logger.info(this + " started washing");
         this.isClean = true;
         // todo generate event to empty the washing machine
     }

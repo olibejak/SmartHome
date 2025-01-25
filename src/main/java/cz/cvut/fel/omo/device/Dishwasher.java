@@ -21,7 +21,8 @@ public class Dishwasher extends StorageDevice {
         super(id);
     }
 
-    public void wash() {
+    @Override
+    public void turnOn() {
         if (items.isEmpty()) {
             logger.info(this + " :Cannot wash, no dishes in dishwasher");
             return;
@@ -30,9 +31,9 @@ public class Dishwasher extends StorageDevice {
             logger.info(this + " :Cannot wash, dishwasher is already clean");
             return;
         }
-        turnOn();
+        super.turnOn();
+        logger.info(this + " started washing the dishes");
         this.isClean = true;
-        logger.info(this + " : Dishwasher is clean - GENERATE EVENT");
         // todo generate event to empty the dishwasher
     }
 

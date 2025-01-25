@@ -112,6 +112,12 @@ public class Grandma extends Person {
     }
 
     @Override
+    public boolean reactToBrokenDevice(Device device) {
+        logger.info("Grandma " + this.name + " is not able to fix " + device);
+        return false;
+    }
+
+    @Override
     public String visitDishwasher(Dishwasher dishwasher) {
         if (dishwasher.getCurrentLoad() < dishwasher.getMaxLoad()) {
             int availableSpace = (int) (dishwasher.getMaxLoad() - dishwasher.getCurrentLoad());

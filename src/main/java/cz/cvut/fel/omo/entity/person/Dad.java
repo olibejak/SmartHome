@@ -108,6 +108,17 @@ public class Dad extends Person {
         }
     }
 
+    @Override
+    public boolean reactToBrokenDevice(Device device) {
+        if (RandomUtils.isWithinPercentage(80)) {
+            device.repair();
+            logger.info("Dad " + this.name + " managed to fix " + device);
+            return true;
+        } else {
+            logger.info("Dad " + this.name + " was not able to fix " + device);
+            return false;
+        }
+    }
 
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {

@@ -117,6 +117,17 @@ public class Grandpa extends Person {
         }
     }
 
+    @Override
+    public boolean reactToBrokenDevice(Device device) {
+        if (RandomUtils.isWithinPercentage(70)) {
+            device.repair();
+            logger.info("Grandpa " + this.name + " managed to fix " + device);
+            return true;
+        } else {
+            logger.info("Grandpa " + this.name + " was not able to fix " + device);
+            return false;
+        }
+    }
 
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {

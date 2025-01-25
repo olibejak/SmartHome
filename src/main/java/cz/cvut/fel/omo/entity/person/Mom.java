@@ -109,6 +109,18 @@ public class Mom extends Person {
     }
 
     @Override
+    public boolean reactToBrokenDevice(Device device) {
+        if (RandomUtils.isWithinPercentage(30)) {
+            device.repair();
+            logger.info("Mom " + this.name + " managed to fix " + device);
+            return true;
+        } else {
+            logger.info("Mom " + this.name + " was not able to fix " + device);
+            return false;
+        }
+    }
+
+    @Override
     public String visitDishwasher(Dishwasher dishwasher) {
         if (dishwasher.getCurrentLoad() < dishwasher.getMaxLoad()) {
             int availableSpace = (int) (dishwasher.getMaxLoad() - dishwasher.getCurrentLoad());

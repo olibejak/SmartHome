@@ -108,6 +108,11 @@ public class Son extends Person {
         }
     }
 
+    @Override
+    public boolean reactToBrokenDevice(Device device) {
+        logger.info("Son " + this.name + " is not able to fix " + device);
+        return false;
+    }
 
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {

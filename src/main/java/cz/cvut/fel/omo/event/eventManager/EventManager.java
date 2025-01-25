@@ -15,7 +15,7 @@ import java.util.Queue;
  */
 public class EventManager {
 
-    private HashMap<EventType, ArrayList<EventListener>> listeners;
+    private final HashMap<EventType, ArrayList<EventListener>> listeners = new HashMap<>();
     @Getter
     private final EventQueue eventQueue = new EventQueue();
 

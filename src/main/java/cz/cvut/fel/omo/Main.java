@@ -59,9 +59,8 @@ public class Main {
         pets.add(hamster);
 
         EventManager eventManager = new EventManager();
-        EventQueue eventQueue = new EventQueue(eventManager);
 
-        HouseBuilderFacade HouseBuilder = new HouseBuilderFacade(eventQueue);
+        HouseBuilderFacade HouseBuilder = new HouseBuilderFacade(eventManager);
 
         House house = HouseBuilder.buildHouseFromJson("src/main/resources/house_big.json");
 
@@ -72,7 +71,7 @@ public class Main {
 ////           System.out.println(ConsumptionReport.getConsumptionReport(house));
 //       }
 
-        Simulation simulation = new Simulation(house, family, pets, eventQueue);
+        Simulation simulation = new Simulation(house, family, pets, eventManager.getEventQueue());
         simulation.run();
 //        simulation.nextCycle();
 //        System.out.println();

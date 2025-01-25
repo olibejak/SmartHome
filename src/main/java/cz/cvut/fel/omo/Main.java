@@ -32,8 +32,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class Main {
     public static void main(String[] args) {
 
-    EventManager eventManager = new EventManager();
-
         // Family
         Mom mom = new Mom("Jane", 39, 1, true);
         Dad dad = new Dad("John", 41, 1, true);
@@ -60,8 +58,10 @@ public class Main {
         pets.add(cat);
         pets.add(hamster);
 
+        EventManager eventManager = new EventManager();
+        EventQueue eventQueue = new EventQueue(eventManager);
 
-        HouseBuilderFacade HouseBuilder = new HouseBuilderFacade(eventManager);
+        HouseBuilderFacade HouseBuilder = new HouseBuilderFacade(eventQueue);
 
         House house = HouseBuilder.buildHouseFromJson("src/main/resources/house_big.json");
 
@@ -72,11 +72,12 @@ public class Main {
 ////           System.out.println(ConsumptionReport.getConsumptionReport(house));
 //       }
 
-        Simulation simulation = new Simulation(house, family, pets, eventManager.getEventQueue());
-        simulation.nextCycle();
-        System.out.println();
-        simulation.nextCycle();
-        System.out.println();
+        Simulation simulation = new Simulation(house, family, pets, eventQueue);
+        simulation.run();
+//        simulation.nextCycle();
+//        System.out.println();
+//        simulation.nextCycle();
+//        System.out.println();
 //        simulation.nextCycle();
     }
 }

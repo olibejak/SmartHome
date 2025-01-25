@@ -5,6 +5,8 @@ import cz.cvut.fel.omo.entity.pet.Pet;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
 import cz.cvut.fel.omo.house.House;
 import cz.cvut.fel.omo.logger.GlobalLogger;
+import cz.cvut.fel.omo.simulation.command.CommandContext;
+import cz.cvut.fel.omo.simulation.command.InputHandler;
 import cz.cvut.fel.omo.utils.RandomUtils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,12 +14,14 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Getter
 @Setter
-public class Simulation {
+public class Simulation implements Runnable{
     protected GlobalLogger logger;
 
     private House house;
@@ -216,7 +220,20 @@ public class Simulation {
         return payload;
     }
 
+    @Override
+    public void run() {
+        InputHandler inputHandler = new InputHandler();
+        try (Scanner scanner = new Scanner(System.in)) {
+            CommandContext context = new CommandContext(house, this);
 
-
+            while (context.isRunning()) {
+                System.out.println("Enter a command:");
+                String input = scanner.nextLine().toUpperCase().trim();
+                inputHandler.handleInput(input, context);
+            }
+        } catch (Exception e) {
+            logger.error("An error occurred while running the simulation: " + e);
+        }
+    }
     // todo run method - next cycle every specified interval ??
 }

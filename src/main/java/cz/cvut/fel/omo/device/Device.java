@@ -88,7 +88,7 @@ public abstract class Device implements ConfigurationReport {
         if (this.documentation == null) {
             this.documentation = loadDocumentation();
         }
-        if (documentation.isFixable()) {
+        if (documentation.getIsFixable()) {
             logger.info(this + " is repaired");
             changeState(new IdleDeviceState(this));
         }

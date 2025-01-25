@@ -23,12 +23,12 @@ public class DeviceDocumentationLoader {
 
         try {
             tempMap = objectMapper.readValue(
-                    Path.of("config/deviceDocumentation.json").toFile(),
-                    objectMapper.getTypeFactory().constructMapType(Map.class, String.class, DeviceDocumentation.class)
+                    Path.of("src/main/resources/device_documentation.json").toFile(),
+                    objectMapper.getTypeFactory().constructMapType(Map.class, DeviceType.class, DeviceDocumentation.class)
             );
             logger.info("Successfully loaded device documentation config.");
         } catch (IOException e) {
-            logger.error("Failed to load device documentation config from file: config/deviceDocumentation.json\n" + e.getMessage());
+            logger.error("Failed to load device documentation config from file: resources/device_consumption.json\n" + e.getMessage());
             tempMap = new HashMap<>();
         }
 
@@ -42,7 +42,12 @@ public class DeviceDocumentationLoader {
      * @return Documentation
      */
     public static DeviceDocumentation getDocumentation(DeviceType deviceType) {
-        return documentationMap.getOrDefault(deviceType, getDefaultDocumentation(deviceType));
+        if (documentationMap.get(deviceType) != null) {
+            return documentationMap.get(deviceType);
+
+        } else {
+            return getDefaultDocumentation(deviceType);
+        }
     }
 
     /**

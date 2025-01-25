@@ -64,6 +64,15 @@ public class Main {
 
         House house = HouseBuilder.buildHouseFromJson("src/main/resources/house_big.json");
 
+                if (nonNull(house)) {
+            // Iterate over all devices in the house and get documentation
+            house.getFloors().forEach(floor ->
+                    floor.getRooms().forEach(room ->
+                            room.getDevices().forEach(Device::getDocumentation)
+                    )
+            );
+        }
+
 //        if(nonNull(house)) {
 ////           System.out.println(house);
 ////           System.out.println();
@@ -72,7 +81,7 @@ public class Main {
 //       }
 
         Simulation simulation = new Simulation(house, family, pets, eventManager.getEventQueue());
-        simulation.run();
+//        simulation.run();
 //        simulation.nextCycle();
 //        System.out.println();
 //        simulation.nextCycle();

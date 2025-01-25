@@ -67,8 +67,9 @@ public abstract class Device implements ConfigurationReport {
             this.durability = 0;
             handleBreakage();
         }
-        else
-           this.durability = durability;
+        else {
+            this.durability = durability;
+        }
     }
 
     private void handleBreakage() {

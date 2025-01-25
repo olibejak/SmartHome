@@ -1,38 +1,58 @@
 {
-  "DISHWASHER":
-  {
-    "model": "model",
-    "manufacturer": "manufacturer",
-    "manualContent": "manual",
+  "DISHWASHER": {
+    "model": "Bosch Series 4",
+    "manufacturer": "Bosch",
+    "manualContent": "Refer to Bosch manual for proper usage.",
     "isFixable": true,
-    "warrantyCertificate": "warranty"
+    "warrantyCertificate": "2 years manufacturer warranty"
   },
-  "FRIDGE":
-  {
-
+  "FRIDGE": {
+    "model": "Samsung Family Hub",
+    "manufacturer": "Samsung",
+    "manualContent": "Keep doors closed for optimal cooling.",
+    "isFixable": true,
+    "warrantyCertificate": "3 years manufacturer warranty"
   },
-  "OVEN":
-  {
-
+  "OVEN": {
+    "model": "LG InstaView",
+    "manufacturer": "LG",
+    "manualContent": "Preheat before baking for best results.",
+    "isFixable": true,
+    "warrantyCertificate": "5 years limited warranty"
   },
-  "RECORD_PLAYER":
-  {
-
+  "RECORD_PLAYER": {
+    "model": "Audio-Technica AT-LP60X",
+    "manufacturer": "Audio-Technica",
+    "manualContent": "Handle vinyl records gently to avoid scratches.",
+    "isFixable": true,
+    "warrantyCertificate": "1 year manufacturer warranty"
   },
-  "TELEVISION":
-  {
-
+  "TELEVISION": {
+    "model": "Sony Bravia X90J",
+    "manufacturer": "Sony",
+    "manualContent": "Use remote control for smart features.",
+    "isFixable": true,
+    "warrantyCertificate": "2 years extended warranty"
   },
-  "THERMOSTAT":
-  {
-
+  "THERMOSTAT": {
+    "model": "Nest Learning Thermostat",
+    "manufacturer": "Google Nest",
+    "manualContent": "Adjust temperature using the mobile app.",
+    "isFixable": true,
+    "warrantyCertificate": "2 years limited warranty"
   },
-  "WASHING_MACHINE":
-  {
-
+  "WASHING_MACHINE": {
+    "model": "Whirlpool WTW5000DW",
+    "manufacturer": "Whirlpool",
+    "manualContent": "Avoid overloading for better washing performance.",
+    "isFixable": true,
+    "warrantyCertificate": "3 years manufacturer warranty"
   },
-  "WINDOW":
-  {
-
+  "WINDOW": {
+    "model": "Andersen 400 Series",
+    "manufacturer": "Andersen Windows",
+    "manualContent": "Clean with mild soap and water regularly.",
+    "isFixable": true,
+    "warrantyCertificate": "10 years limited warranty"
   }
 }

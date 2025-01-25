@@ -3,12 +3,14 @@ package cz.cvut.fel.omo.house;
 import cz.cvut.fel.omo.activity.equipment.SportEquipment;
 import cz.cvut.fel.omo.activity.vehicle.Vehicle;
 import cz.cvut.fel.omo.device.Device;
+import cz.cvut.fel.omo.house.report.ConsumptionReport;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @NoArgsConstructor
@@ -86,6 +88,32 @@ public class House implements ConfigurationReport {
         );
     }
 
+    public String reportConsumption() {
+        return ConsumptionReport.getConsumptionReport(this);
+    }
+
+    public String reportConsumptionByFloor(int floorId) {
+        return ConsumptionReport.getFloorConsumptionReport(this, floorId);
+    }
+
+    public String reportConsumptionByRoom(int roomId) {
+        return ConsumptionReport.getRoomConsumptionReport(this, roomId);
+    }
+
+    public Optional<Room> getRoomByID(int id) {
+        return getFloors().stream()
+                .filter(floor -> floor.getFloorNumber() == id / 100)
+                .findFirst().stream()
+                .flatMap(floor -> floor.getRooms().stream())
+                .filter(room -> room.getId() == id)
+                .findFirst();
+    }
+
+    public Optional<Floor> getFloorByID(int id) {
+        return getFloors().stream()
+                .filter(floor -> floor.getFloorNumber() == id)
+                .findFirst();
+    }
 
     @Override
     public String toString() {

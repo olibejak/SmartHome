@@ -11,6 +11,10 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+/**
+ * Dishwasher device class.
+ * For general information see {@link StorageDevice}.
+ */
 @Getter
 @Setter
 public class Dishwasher extends StorageDevice {

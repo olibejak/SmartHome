@@ -8,6 +8,10 @@ import lombok.Getter;
 
 import java.util.UUID;
 
+/**
+ * Record player device class.
+ * For general information see {@link Device}.
+ */
 @Getter
 public class RecordPlayer extends Device{
 

@@ -12,6 +12,10 @@ import java.util.UUID;
 
 import static cz.cvut.fel.omo.event.EventFactory.createEvent;
 
+/**
+ * Fridge device class.
+ * For general information see {@link StorageDevice}.
+ */
 @Setter
 @Getter
 public class Fridge extends StorageDevice {

@@ -12,6 +12,10 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+/**
+ * Thermostat device class.
+ * For general information see {@link Device}.
+ */
 @Getter
 @Setter
 public class Thermostat extends Device implements EventListener {
@@ -68,6 +72,9 @@ public class Thermostat extends Device implements EventListener {
         }
     }
 
+    /**
+     * Handle temperature change event by setting a random temperature between min and max temperature.
+     */
     public void handleTemperatureChange() {
         logger.info(this + " handling temperature change event.");
         double randomTemperature = minTemperature + (maxTemperature - minTemperature) * new java.util.Random().nextDouble();

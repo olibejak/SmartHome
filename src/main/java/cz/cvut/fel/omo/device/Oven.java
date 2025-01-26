@@ -12,6 +12,10 @@ import java.util.UUID;
 
 import static cz.cvut.fel.omo.event.EventFactory.createEvent;
 
+/**
+ * Oven device class.
+ * For general information see {@link Device}.
+ */
 @Setter
 @Getter
 public class Oven extends Device{

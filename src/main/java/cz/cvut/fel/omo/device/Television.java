@@ -9,6 +9,10 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+/**
+ * Television device class.
+ * For general information see {@link Device}.
+ */
 @Setter
 @Getter
 public class Television extends Device{
@@ -19,6 +23,10 @@ public class Television extends Device{
         super(id);
     }
 
+    /**
+     * Set the channel of the television.
+     * @param channel int representing the channel to be set
+     */
     public void setChannel(int channel) {
         this.channel = channel;
         logger.info(this + " channel set to channel " + channel);

@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.BobTheBuilder.DTO.equipmentDTO;
+package cz.cvut.fel.omo.DTO.vehicleDTO;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -10,18 +10,20 @@ import lombok.Setter;
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.PROPERTY,
-        property = "equipmentType"
+        property = "vehicleType"
 )
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = WeightsDTO.class, name = "WEIGHTS"),
-        @JsonSubTypes.Type(value = SkisDTO.class, name = "SKIS")
+        @JsonSubTypes.Type(value = BicycleDTO.class, name = "BICYCLE"),
+        @JsonSubTypes.Type(value = CarDTO.class, name = "CAR")
 })
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public abstract class SportEquipmentDTO {
+@AllArgsConstructor
+public abstract class VehicleDTO {
 
-    protected Boolean isAvailable;
-    protected Integer usageCount;
+    protected String model;
+    protected Integer yearOfManufacturing;
+    protected String color;
+
 }

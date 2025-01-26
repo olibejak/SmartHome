@@ -1,8 +1,8 @@
 package cz.cvut.fel.omo.BobTheBuilder;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.FloorDTO;
-import cz.cvut.fel.omo.BobTheBuilder.DTO.HouseDTO;
-import cz.cvut.fel.omo.BobTheBuilder.DTO.RoomDTO;
+import cz.cvut.fel.omo.DTO.FloorDTO;
+import cz.cvut.fel.omo.DTO.HouseDTO;
+import cz.cvut.fel.omo.DTO.RoomDTO;
 import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.*;
 import cz.cvut.fel.omo.BobTheBuilder.equipmentFactory.EquipmentFactoryRegistry;
 import cz.cvut.fel.omo.BobTheBuilder.houseBuilder.FloorBuilder;

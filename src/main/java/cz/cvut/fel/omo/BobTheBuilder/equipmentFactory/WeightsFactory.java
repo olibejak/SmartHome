@@ -1,6 +1,6 @@
 package cz.cvut.fel.omo.BobTheBuilder.equipmentFactory;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.equipmentDTO.WeightsDTO;
+import cz.cvut.fel.omo.DTO.equipmentDTO.WeightsDTO;
 import cz.cvut.fel.omo.activity.equipment.Weights;
 
 /**

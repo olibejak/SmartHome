@@ -1,7 +1,7 @@
-package cz.cvut.fel.omo.BobTheBuilder.DTO;
+package cz.cvut.fel.omo.DTO;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.equipmentDTO.SportEquipmentDTO;
-import cz.cvut.fel.omo.BobTheBuilder.DTO.vehicleDTO.VehicleDTO;
+import cz.cvut.fel.omo.DTO.equipmentDTO.SportEquipmentDTO;
+import cz.cvut.fel.omo.DTO.vehicleDTO.VehicleDTO;
 import cz.cvut.fel.omo.house.RoomType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

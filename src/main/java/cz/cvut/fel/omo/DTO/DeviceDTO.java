@@ -1,7 +1,7 @@
-package cz.cvut.fel.omo.BobTheBuilder.DTO;
+package cz.cvut.fel.omo.DTO;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
-import cz.cvut.fel.omo.BobTheBuilder.DTO.type.StateType;
+import cz.cvut.fel.omo.DTO.type.DeviceType;
+import cz.cvut.fel.omo.DTO.type.StateType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

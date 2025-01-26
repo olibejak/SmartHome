@@ -6,6 +6,7 @@ import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
 import cz.cvut.fel.omo.device.visitor.EmptyDeviceVisitor;
 import cz.cvut.fel.omo.device.visitor.FinishedDeviceVisitor;
+import cz.cvut.fel.omo.event.EventType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,7 +38,7 @@ public class WashingMachine extends StorageDevice {
         logger.info(this + " started washing");
         this.isClean = true;
         logger.debug(this + " is clean - GENERATE EVENT");
-        eventQueue.addEvent(createEvent(EventType.DEVICE_JOB_DONE, getRoomID(), getId()));
+        eventQueue.addEvent(createEvent(EventType.DEVICE_FINISHED, getRoomID(), getId()));
     }
 
     @Override

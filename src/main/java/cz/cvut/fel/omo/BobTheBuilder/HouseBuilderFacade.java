@@ -123,8 +123,8 @@ public class HouseBuilderFacade {
                     .build();
             eventManager.subscribe(DEVICE_EMPTY, room);
             eventManager.subscribe(DEVICE_FULL, room);
-            eventManager.subscribe(DEVICE_MALFUNCTION, room);
-            eventManager.subscribe(DEVICE_JOB_DONE, room);
+            eventManager.subscribe(DEVICE_BROKEN, room);
+            eventManager.subscribe(DEVICE_FINISHED, room);
             rooms.add(room);
         }
         return rooms;

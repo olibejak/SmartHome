@@ -37,7 +37,7 @@ public class Dishwasher extends StorageDevice {
         logger.info(this + " started washing the dishes");
         this.isClean = true;
         logger.info(this + " : Dishwasher is clean - GENERATE EVENT");
-        eventQueue.addEvent(EventFactory.createEvent(EventType.DEVICE_JOB_DONE, getRoomID(), getId()));
+        eventQueue.addEvent(EventFactory.createEvent(EventType.DEVICE_FINISHED, getRoomID(), getId()));
     }
 
     @Override

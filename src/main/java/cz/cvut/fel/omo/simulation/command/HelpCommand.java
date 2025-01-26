@@ -1,7 +1,13 @@
 package cz.cvut.fel.omo.simulation.command;
 
+/**
+ * {@link Command} that prints out the help message.
+ */
 public class HelpCommand implements Command {
 
+    /**
+     * Help message.
+     */
     private static final String controls =
             """
                 Options:

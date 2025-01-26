@@ -5,6 +5,9 @@ import cz.cvut.fel.omo.simulation.Simulation;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Context for command execution.
+ */
 public class CommandContext {
 
     @Setter
@@ -19,10 +22,17 @@ public class CommandContext {
         this.isRunning = true;
     }
 
+    /**
+     * Proceed to the next cycle.
+     */
     public void nextCycle() {
         simulation.nextCycle();
     }
 
+    /**
+     * Proceed to the next n cycles.
+     * @param num number of cycles to proceed
+     */
     public void nextCycle(int num) {
         simulation.nextCycles(num);
     }

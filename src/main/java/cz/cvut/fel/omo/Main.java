@@ -81,7 +81,7 @@ public class Main {
 //       }
 
         Simulation simulation = new Simulation(house, family, pets, eventManager.getEventQueue());
-//        simulation.run();
+        simulation.run();
 //        simulation.nextCycle();
 //        System.out.println();
 //        simulation.nextCycle();

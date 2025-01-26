@@ -2,6 +2,9 @@ package cz.cvut.fel.omo.simulation.command;
 
 import cz.cvut.fel.omo.exception.MyException;
 
+/**
+ * {@link Command} for displaying consumption of the house or its parts.
+ */
 public class DisplayConsumptionCommand implements Command {
 
     @Override

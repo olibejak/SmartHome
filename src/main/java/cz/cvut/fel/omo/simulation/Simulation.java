@@ -222,9 +222,14 @@ public class Simulation implements Runnable{
         return payload;
     }
 
+    /**
+     * Run the simulation.
+     * The simulation is controlled by the user input handled in {@link InputHandler}.
+     */
     @Override
     public void run() {
         InputHandler inputHandler = new InputHandler();
+        inputHandler.getHelp();
         try (Scanner scanner = new Scanner(System.in)) {
             CommandContext context = new CommandContext(house, this);
 

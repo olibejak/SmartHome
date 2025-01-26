@@ -4,6 +4,8 @@ import cz.cvut.fel.omo.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
+import cz.cvut.fel.omo.device.visitor.EmptyDeviceVisitor;
+import cz.cvut.fel.omo.device.visitor.FinishedDeviceVisitor;
 import cz.cvut.fel.omo.event.EventFactory;
 import cz.cvut.fel.omo.event.EventType;
 import lombok.Getter;
@@ -25,7 +27,8 @@ public class Dishwasher extends StorageDevice {
         super(id);
     }
 
-    public void wash() {
+    @Override
+    public void turnOn() {
         if (items.isEmpty()) {
             logger.info(this + " :Cannot wash, no dishes in dishwasher");
             return;
@@ -34,15 +37,21 @@ public class Dishwasher extends StorageDevice {
             logger.info(this + " :Cannot wash, dishwasher is already clean");
             return;
         }
-        turnOn();
+        super.turnOn();
+        logger.info(this + " started washing the dishes");
         this.isClean = true;
         logger.info(this + " : Dishwasher is clean - GENERATE EVENT");
-        eventQueue.addEvent(EventFactory.createEvent(EventType.DEVICE_JOB_DONE, getRoomID(), getId()));
+        eventQueue.addEvent(EventFactory.createEvent(EventType.DEVICE_FINISHED, getRoomID(), getId()));
     }
 
     @Override
-    public String accept(DeviceVisitor visitor) {
+    public String acceptDeviceVisitor(DeviceVisitor visitor) {
         return visitor.visitDishwasher(this);
+    }
+
+    @Override
+    public boolean acceptFinishedDeviceVisitor(FinishedDeviceVisitor visitor) {
+        return visitor.visitFinishedDishwasher(this);
     }
 
     @Override

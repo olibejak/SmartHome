@@ -15,7 +15,7 @@ public class DeviceInteractionVisitor implements DeviceVisitor {
             return dishwasher.getId() + " added plate";
         }
         else {
-            dishwasher.wash();
+            dishwasher.turnOn();
             return dishwasher.getId() + " washing dishes";
         }
     }

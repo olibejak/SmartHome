@@ -108,6 +108,21 @@ public class Dad extends Person {
         }
     }
 
+    @Override
+    public boolean reactToBrokenDevice(Device device) {
+        if (RandomUtils.isWithinPercentage(80)) {
+            if(device.repair()) {
+                logger.info("Dad " + this.name + " managed to fix " + device);
+                return true;
+            } else {
+                logger.info("Dad " + this.name + " was not able to fix " + device);
+                return false;
+            }
+        } else {
+            logger.info("Dad " + this.name + " did not attempt fix " + device);
+            return false;
+        }
+    }
 
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {
@@ -188,6 +203,26 @@ public class Dad extends Person {
         window.close();
         window.closeCurtain();
         return "Dad " + this.name + " closed the curtains of closed " + window;
+    }
+
+    @Override
+    public boolean visitEmptyFridge(Fridge fridge) {
+        logger.info("Dad " + this.name + " looks sadly at empty fridge " + fridge);
+        return false;
+    }
+
+    @Override
+    public boolean visitFinishedDishwasher(Dishwasher dishwasher) {
+        dishwasher.removeAllItems();
+        logger.info("Dad " + this.name + " took out all dishes from " + dishwasher);
+        return true;
+    }
+
+    @Override
+    public boolean visitFinishedWashingMachine(WashingMachine washingMachine) {
+        washingMachine.removeAllItems();
+        logger.info("Dad " + this.name + " took out all clothes from " + washingMachine);
+        return true;
     }
 
     @Override

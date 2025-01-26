@@ -109,6 +109,22 @@ public class Mom extends Person {
     }
 
     @Override
+    public boolean reactToBrokenDevice(Device device) {
+        if (RandomUtils.isWithinPercentage(30)) {
+            if(device.repair()) {
+                logger.info("Mom " + this.name + " managed to fix " + device);
+                return true;
+            } else {
+                logger.info("Mom " + this.name + " was not able to fix " + device);
+                return false;
+            }
+        } else {
+            logger.info("Mom " + this.name + " did not attempt fix " + device);
+            return false;
+        }
+    }
+
+    @Override
     public String visitDishwasher(Dishwasher dishwasher) {
         if (dishwasher.getCurrentLoad() < dishwasher.getMaxLoad()) {
             int availableSpace = (int) (dishwasher.getMaxLoad() - dishwasher.getCurrentLoad());
@@ -187,6 +203,32 @@ public class Mom extends Person {
         window.close();
         window.openCurtain();
         return "Mom " + this.name + " opened the curtains of closed " + window;
+    }
+
+    @Override
+    public boolean visitEmptyFridge(Fridge fridge) {
+        fridge.addItem("Cheese", 1);
+        fridge.addItem("Ham", 1);
+        fridge.addItem("Eggs", 2);
+        fridge.addItem("Cucumber", 1);
+        fridge.addItem("Bacon", 2);
+        fridge.addItem("Salad", 3);
+        logger.info("Mom " + this.name + " filled up " + fridge);
+        return true;
+    }
+
+    @Override
+    public boolean visitFinishedDishwasher(Dishwasher dishwasher) {
+        dishwasher.removeAllItems();
+        logger.info("Mom " + this.name + " took out all dishes from " + dishwasher);
+        return true;
+    }
+
+    @Override
+    public boolean visitFinishedWashingMachine(WashingMachine washingMachine) {
+        washingMachine.removeAllItems();
+        logger.info("Mom " + this.name + " took out all clothes from " + washingMachine);
+        return true;
     }
 
     @Override

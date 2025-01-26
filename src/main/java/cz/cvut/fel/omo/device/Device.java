@@ -6,6 +6,8 @@ import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
+import cz.cvut.fel.omo.device.visitor.EmptyDeviceVisitor;
+import cz.cvut.fel.omo.device.visitor.FinishedDeviceVisitor;
 import cz.cvut.fel.omo.event.EventType;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
 import cz.cvut.fel.omo.house.ConfigurationReport;
@@ -73,7 +75,19 @@ public abstract class Device implements ConfigurationReport {
      * @param visitor visitor
      * @return visitor result
      */
-    public abstract String accept(DeviceVisitor visitor);
+    public abstract String acceptDeviceVisitor(DeviceVisitor visitor);
+
+//    public abstract String acceptEmptyDeviceVisitor(EmptyDeviceVisitor visitor);
+
+    public boolean acceptEmptyDeviceVisitor(EmptyDeviceVisitor visitor) {
+        logger.info(this + " does not accept this visitor");
+        return false;
+    }
+
+    public boolean acceptFinishedDeviceVisitor(FinishedDeviceVisitor visitor) {
+        logger.info(this + " does not accept this visitor");
+        return false;
+    }
 
     /**
      * Lazy load documentation for the device.
@@ -91,8 +105,9 @@ public abstract class Device implements ConfigurationReport {
             this.durability = 0;
             handleBreakage();
         }
-        else
-           this.durability = durability;
+        else {
+            this.durability = durability;
+        }
     }
 
     /**
@@ -121,15 +136,17 @@ public abstract class Device implements ConfigurationReport {
     /**
      * Repair the device according to the documentation.
      */
-    public void repair() {
+    public boolean repair() {
         getDocumentation();
         if (documentation.getIsFixable()) {
             logger.info(this + " is repaired");
             changeState(new IdleDeviceState(this));
             setDurability(100);
+            return true;
         }
         else {
             logger.info(this + " is not repairable");
+            return false;
         }
     }
 }

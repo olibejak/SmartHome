@@ -4,6 +4,7 @@ import cz.cvut.fel.omo.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
+import cz.cvut.fel.omo.device.visitor.EmptyDeviceVisitor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,7 +34,7 @@ public class Television extends Device{
     }
 
     @Override
-    public String accept(DeviceVisitor visitor) {
+    public String acceptDeviceVisitor(DeviceVisitor visitor) {
         return visitor.visitTelevision(this);
     }
 

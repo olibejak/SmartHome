@@ -74,6 +74,8 @@ public class Simulation implements Runnable{
 
             logger.info("LOCAL EVENTS:");
             // todo reaction to local events
+            // if person.reactToEvent(event) --> detete from queue
+            // getRoomById.getEvents.remove(event)
 
             // interaction with person
             if (!currentRoomPayload.getCurrentPeople().isEmpty()) {
@@ -85,7 +87,6 @@ public class Simulation implements Runnable{
                 logger.info("PERSON WITH PET INTERACTION:");
                 person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentPets()));
             }
-            // todo implement more sophistical choice of interaction between equipment/vehicle/device - 50/25/25
             // interaction with sport equipment
             if (RandomUtils.coinFLip()) {
                 if (RandomUtils.coinFLip()) {
@@ -242,5 +243,4 @@ public class Simulation implements Runnable{
             logger.error("An error occurred while running the simulation: " + e);
         }
     }
-    // todo run method - next cycle every specified interval ??
 }

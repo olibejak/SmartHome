@@ -25,7 +25,7 @@ public class ConsumptionReport {
         return house.getFloors().stream()
                 .flatMap(floor -> floor.getRooms().stream())
                 .flatMap(room -> room.getDevices().stream())
-                .map(device -> device.accept(visitor))
+                .map(device -> device.acceptDeviceVisitor(visitor))
                 .collect(Collectors.joining("\n"));
     }
 
@@ -40,7 +40,7 @@ public class ConsumptionReport {
                 .filter(floor -> floor.getFloorNumber() == floorId)
                 .flatMap(floor -> floor.getRooms().stream())
                 .flatMap(room -> room.getDevices().stream())
-                .map(device -> device.accept(visitor))
+                .map(device -> device.acceptDeviceVisitor(visitor))
                 .collect(Collectors.joining("\n"));
     }
 
@@ -56,7 +56,7 @@ public class ConsumptionReport {
                 .flatMap(floor -> floor.getRooms().stream())
                 .filter(room -> room.getId() == roomId)
                 .flatMap(room -> room.getDevices().stream())
-                .map(device -> device.accept(visitor))
+                .map(device -> device.acceptDeviceVisitor(visitor))
                 .collect(Collectors.joining("\n"));
     }
 }

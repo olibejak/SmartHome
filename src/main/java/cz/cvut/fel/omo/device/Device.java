@@ -6,6 +6,8 @@ import cz.cvut.fel.omo.device.state.OffDeviceState;
 import cz.cvut.fel.omo.device.util.Consumption;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
+import cz.cvut.fel.omo.device.visitor.EmptyDeviceVisitor;
+import cz.cvut.fel.omo.device.visitor.FinishedDeviceVisitor;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
 import cz.cvut.fel.omo.house.ConfigurationReport;
 import cz.cvut.fel.omo.logger.GlobalLogger;
@@ -58,7 +60,20 @@ public abstract class Device implements ConfigurationReport {
         state.calculateDurability();
     }
 
-    public abstract String accept(DeviceVisitor visitor);
+    public abstract String acceptDeviceVisitor(DeviceVisitor visitor);
+
+//    public abstract String acceptEmptyDeviceVisitor(EmptyDeviceVisitor visitor);
+
+    public boolean acceptEmptyDeviceVisitor(EmptyDeviceVisitor visitor) {
+        logger.info(this + " does not accept this visitor");
+        return false;
+    }
+
+    public boolean acceptFinishedDeviceVisitor(FinishedDeviceVisitor visitor) {
+        logger.info(this + " does not accept this visitor");
+        return false;
+    }
+
 
     protected abstract DeviceDocumentation loadDocumentation();
 

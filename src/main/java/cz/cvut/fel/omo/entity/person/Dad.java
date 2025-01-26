@@ -206,6 +206,26 @@ public class Dad extends Person {
     }
 
     @Override
+    public boolean visitEmptyFridge(Fridge fridge) {
+        logger.info("Dad " + this.name + " looks sadly at empty fridge " + fridge);
+        return false;
+    }
+
+    @Override
+    public boolean visitFinishedDishwasher(Dishwasher dishwasher) {
+        dishwasher.removeAllItems();
+        logger.info("Dad " + this.name + " took out all dishes from " + dishwasher);
+        return true;
+    }
+
+    @Override
+    public boolean visitFinishedWashingMachine(WashingMachine washingMachine) {
+        washingMachine.removeAllItems();
+        logger.info("Dad " + this.name + " took out all clothes from " + washingMachine);
+        return true;
+    }
+
+    @Override
     public String toString() {
         return "Dad " + name + " (" + age + ")";
     }

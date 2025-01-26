@@ -206,6 +206,32 @@ public class Mom extends Person {
     }
 
     @Override
+    public boolean visitEmptyFridge(Fridge fridge) {
+        fridge.addItem("Cheese", 1);
+        fridge.addItem("Ham", 1);
+        fridge.addItem("Eggs", 2);
+        fridge.addItem("Cucumber", 1);
+        fridge.addItem("Bacon", 2);
+        fridge.addItem("Salad", 3);
+        logger.info("Mom " + this.name + " filled up " + fridge);
+        return true;
+    }
+
+    @Override
+    public boolean visitFinishedDishwasher(Dishwasher dishwasher) {
+        dishwasher.removeAllItems();
+        logger.info("Mom " + this.name + " took out all dishes from " + dishwasher);
+        return true;
+    }
+
+    @Override
+    public boolean visitFinishedWashingMachine(WashingMachine washingMachine) {
+        washingMachine.removeAllItems();
+        logger.info("Mom " + this.name + " took out all clothes from " + washingMachine);
+        return true;
+    }
+
+    @Override
     public String toString() {
         return "Mom " + name + " (" + age + ")";
     }

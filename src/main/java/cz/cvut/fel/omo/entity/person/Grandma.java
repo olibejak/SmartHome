@@ -198,6 +198,31 @@ public class Grandma extends Person {
     }
 
     @Override
+    public boolean visitEmptyFridge(Fridge fridge) {
+        fridge.addItem("Milk", 1);
+        fridge.addItem("Ham", 1);
+        fridge.addItem("Cucumber", 1);
+        fridge.addItem("Yogurt", 2);
+        fridge.addItem("Orange Juice", 2);
+        logger.info("Grandma " + this.name + " filled up " + fridge);
+        return true;
+    }
+
+    @Override
+    public boolean visitFinishedDishwasher(Dishwasher dishwasher) {
+        dishwasher.removeAllItems();
+        logger.info("Grandma " + this.name + " took out all dishes from " + dishwasher);
+        return true;
+    }
+
+    @Override
+    public boolean visitFinishedWashingMachine(WashingMachine washingMachine) {
+        washingMachine.removeAllItems();
+        logger.info("Grandma " + this.name + " took out all clothes from " + washingMachine);
+        return true;
+    }
+
+    @Override
     public String toString() {
         return "Grandma " + name + " (" + age + ")";
     }

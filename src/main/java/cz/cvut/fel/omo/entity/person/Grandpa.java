@@ -214,6 +214,26 @@ public class Grandpa extends Person {
     }
 
     @Override
+    public boolean visitEmptyFridge(Fridge fridge) {
+        logger.info("Grandpa " + this.name + " looks sadly at empty fridge " + fridge);
+        return false;
+    }
+
+    @Override
+    public boolean visitFinishedDishwasher(Dishwasher dishwasher) {
+        dishwasher.removeAllItems();
+        logger.info("Grandpa " + this.name + " took out all dishes from " + dishwasher);
+        return true;
+    }
+
+    @Override
+    public boolean visitFinishedWashingMachine(WashingMachine washingMachine) {
+        washingMachine.removeAllItems();
+        logger.info("Grandpa " + this.name + " took out all clothes from " + washingMachine);
+        return true;
+    }
+
+    @Override
     public String toString() {
         return "Grandpa " + name + " (" + age + ")";
     }

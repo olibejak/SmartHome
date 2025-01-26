@@ -196,6 +196,25 @@ public class Daughter extends Person {
     }
 
     @Override
+    public boolean visitEmptyFridge(Fridge fridge) {
+        logger.info("Daughter " + this.name + " looks sadly at empty fridge " + fridge);
+        return false;
+    }
+
+    @Override
+    public boolean visitFinishedDishwasher(Dishwasher dishwasher) {
+        logger.info("Daughter " + this.name + " did not take out dishes from " + dishwasher);
+        return false;
+    }
+
+    @Override
+    public boolean visitFinishedWashingMachine(WashingMachine washingMachine) {
+        logger.info("Daughter " + this.name + " did not take out clothes from " + washingMachine);
+        return false;
+    }
+
+
+    @Override
     public String toString() {
         return "Daughter " + name + " (" + age + ")";
     }

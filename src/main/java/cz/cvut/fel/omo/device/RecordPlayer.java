@@ -4,6 +4,7 @@ import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
+import cz.cvut.fel.omo.device.visitor.EmptyDeviceVisitor;
 import lombok.Getter;
 
 import java.util.UUID;
@@ -18,7 +19,7 @@ public class RecordPlayer extends Device{
     }
 
     @Override
-    public String accept(DeviceVisitor visitor) {
+    public String acceptDeviceVisitor(DeviceVisitor visitor) {
         return visitor.visitRecordPlayer(this);
     }
 

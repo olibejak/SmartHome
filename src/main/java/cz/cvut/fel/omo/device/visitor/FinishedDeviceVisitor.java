@@ -4,6 +4,6 @@ import cz.cvut.fel.omo.device.Dishwasher;
 import cz.cvut.fel.omo.device.WashingMachine;
 
 public interface FinishedDeviceVisitor {
-    String visitFinishedDishwasher(Dishwasher dishwasher);
-    String visitFinishedWashingMachine(WashingMachine washingMachine);
+    boolean visitFinishedDishwasher(Dishwasher dishwasher);
+    boolean visitFinishedWashingMachine(WashingMachine washingMachine);
 }

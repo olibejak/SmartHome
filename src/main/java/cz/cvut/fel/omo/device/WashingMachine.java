@@ -4,7 +4,6 @@ import cz.cvut.fel.omo.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
-import cz.cvut.fel.omo.device.visitor.EmptyDeviceVisitor;
 import cz.cvut.fel.omo.device.visitor.FinishedDeviceVisitor;
 import cz.cvut.fel.omo.event.EventType;
 import lombok.Getter;

@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.simulation;
 
+import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.entity.person.Person;
 import cz.cvut.fel.omo.entity.pet.Pet;
 import cz.cvut.fel.omo.event.Event;
@@ -69,10 +70,17 @@ public class Simulation implements Runnable{
             logger.info(currentRoomPayload.getRoomDetailsLog());
             currentRoomPayload.removePerson(person); // Person cannot interact with itself
 
-            logger.info("LOCAL EVENTS:");
-            // todo reaction to local events
-            // if person.reactToEvent(event) --> detete from queue
-            // getRoomById.getEvents.remove(event)
+            logger.info("LOCAL EVENTS: " + currentRoomPayload.getCurrentEvents().toString());
+            for (Event event : currentRoomPayload.getCurrentEvents()) {
+                logger.debug(event.toString());
+                Device tmpDevice = house.getDeviceByID(event.getPayload());
+                if (tmpDevice != null) {
+                    logger.debug("PERSON REACTS TO LOCAL EVENT:");
+                    if (person.reactToEvent(event.getType(), tmpDevice)) {
+                        house.getRoomByID(person.getRoomID()).ifPresent(room -> room.removeEvent(event));
+                    }
+                }
+            }
 
             // interaction with person
             if (!currentRoomPayload.getCurrentPeople().isEmpty()) {

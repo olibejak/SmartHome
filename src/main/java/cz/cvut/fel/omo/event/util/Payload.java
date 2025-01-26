@@ -23,14 +23,10 @@ public class Payload {
     /**
      * Null if the event is not related to a specific device.
      */
-    UUID device;
+    UUID deviceID;
 
     public Payload(Integer roomID) {
         this.roomID = roomID;
-    }
-
-    public Integer getRoomID() {
-        return roomID;
     }
 
     public static Builder builder() {

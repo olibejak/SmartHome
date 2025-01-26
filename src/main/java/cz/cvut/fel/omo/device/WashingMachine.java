@@ -4,10 +4,13 @@ import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
+import cz.cvut.fel.omo.event.EventType;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.UUID;
+
+import static cz.cvut.fel.omo.event.EventFactory.createEvent;
 
 @Setter
 @Getter
@@ -32,7 +35,8 @@ public class WashingMachine extends StorageDevice {
         logger.info(this + " started washing ");
         super.turnOn();
         this.isClean = true;
-        // todo generate event to empty the washing machine
+        logger.debug(this + " is clean - GENERATE EVENT");
+        eventQueue.addEvent(createEvent(EventType.DEVICE_JOB_DONE, getRoomID(), getId()));
     }
 
     @Override
@@ -60,8 +64,8 @@ public class WashingMachine extends StorageDevice {
         this.currentLoad += load;
         logger.info(this + " " + name + " added");
         if (this.currentLoad == this.maxLoad) {
-            // todo generate event
-            logger.info(this + " is full - GENERATE EVENT");
+            logger.debug(this + " is full - GENERATE EVENT");
+            eventQueue.addEvent(createEvent(EventType.DEVICE_FULL, getRoomID(), getId()));
         }
     }
 

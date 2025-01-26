@@ -108,6 +108,11 @@ public class Son extends Person {
         }
     }
 
+    @Override
+    public boolean reactToBrokenDevice(Device device) {
+        logger.info("Son " + this.name + " is not able to fix " + device);
+        return false;
+    }
 
     @Override
     public String visitDishwasher(Dishwasher dishwasher) {
@@ -185,6 +190,24 @@ public class Son extends Person {
         window.close();
         window.closeCurtain();
         return "Son " + this.name + " closed the curtains of closed " + window;
+    }
+
+    @Override
+    public boolean visitEmptyFridge(Fridge fridge) {
+        logger.info("Son " + this.name + " looks sadly at empty fridge " + fridge);
+        return false;
+    }
+
+    @Override
+    public boolean visitFinishedDishwasher(Dishwasher dishwasher) {
+        logger.info("Son " + this.name + " did not take out dishes from " + dishwasher);
+        return false;
+    }
+
+    @Override
+    public boolean visitFinishedWashingMachine(WashingMachine washingMachine) {
+        logger.info("Son " + this.name + " did not take out clothes from " + washingMachine);
+        return false;
     }
 
     @Override

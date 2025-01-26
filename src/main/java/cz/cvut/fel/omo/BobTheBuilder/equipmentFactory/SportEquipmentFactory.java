@@ -1,6 +1,6 @@
 package cz.cvut.fel.omo.BobTheBuilder.equipmentFactory;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.equipmentDTO.SportEquipmentDTO;
+import cz.cvut.fel.omo.DTO.equipmentDTO.SportEquipmentDTO;
 import cz.cvut.fel.omo.activity.equipment.SportEquipment;
 
 /**

@@ -1,14 +1,13 @@
 package cz.cvut.fel.omo.BobTheBuilder.deviceFactory;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.ConsumptionDTO;
-import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceDTO;
-import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
+import cz.cvut.fel.omo.DTO.ConsumptionDTO;
+import cz.cvut.fel.omo.DTO.DeviceDTO;
+import cz.cvut.fel.omo.DTO.type.DeviceType;
 import cz.cvut.fel.omo.BobTheBuilder.HouseLoader;
 import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.factoryMethod.DeviceFactory;
 import cz.cvut.fel.omo.BobTheBuilder.FactoryRegistry;
 import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.event.eventManager.EventManager;
-import cz.cvut.fel.omo.event.eventManager.EventQueue;
 import cz.cvut.fel.omo.logger.GlobalLogger;
 import lombok.NonNull;
 

@@ -1,5 +1,6 @@
-package cz.cvut.fel.omo.BobTheBuilder.DTO;
+package cz.cvut.fel.omo.DTO.vehicleDTO;
 
+import cz.cvut.fel.omo.activity.vehicle.EngineType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class FloorDTO {
+public class CarDTO extends VehicleDTO {
 
-    private RoomDTO[] rooms;
+    private EngineType engineType;
 }

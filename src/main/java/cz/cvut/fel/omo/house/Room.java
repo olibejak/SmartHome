@@ -81,4 +81,8 @@ public class Room implements ConfigurationReport, EventListener {
         }
         events.add(event);
     }
+
+    public void removeEvent(Event event) {
+        events.remove(event);
+    }
 }

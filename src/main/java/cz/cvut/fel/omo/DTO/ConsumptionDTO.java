@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.BobTheBuilder.DTO;
+package cz.cvut.fel.omo.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

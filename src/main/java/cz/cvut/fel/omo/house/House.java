@@ -3,6 +3,7 @@ package cz.cvut.fel.omo.house;
 import cz.cvut.fel.omo.activity.equipment.SportEquipment;
 import cz.cvut.fel.omo.activity.vehicle.Vehicle;
 import cz.cvut.fel.omo.device.Device;
+import cz.cvut.fel.omo.event.util.Payload;
 import cz.cvut.fel.omo.house.report.ConsumptionReport;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 @NoArgsConstructor
@@ -127,6 +129,19 @@ public class House implements ConfigurationReport {
             configurationReport.append("\n").append(floor.reportConfiguration());
         }
         return configurationReport.toString();
+    }
+
+    public Device getDeviceByID(Payload payload) {
+        AtomicReference<Device> result = new AtomicReference<>();
+        getRoomByID(payload.getRoomID()).ifPresent(room -> {
+            for (Device device : room.getDevices()) {
+                if (device.getId().equals(payload.getDeviceID())) {
+                    result.set(device);
+                    break;
+                }
+            }
+        });
+        return result.get();
     }
 }
 

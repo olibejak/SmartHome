@@ -1,11 +1,10 @@
 package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.factoryMethod;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.ConsumptionDTO;
-import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceDTO;
+import cz.cvut.fel.omo.DTO.ConsumptionDTO;
+import cz.cvut.fel.omo.DTO.DeviceDTO;
 import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder.DishwasherBuilder;
 import cz.cvut.fel.omo.device.Dishwasher;
 import cz.cvut.fel.omo.event.eventManager.EventManager;
-import cz.cvut.fel.omo.event.eventManager.EventQueue;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;

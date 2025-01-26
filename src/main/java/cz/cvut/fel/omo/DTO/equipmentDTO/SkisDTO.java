@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.BobTheBuilder.DTO.vehicleDTO;
+package cz.cvut.fel.omo.DTO.equipmentDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BicycleDTO extends VehicleDTO {
+public class SkisDTO extends SportEquipmentDTO {
 
-    private Integer gearCount;
+    private String color;
 }

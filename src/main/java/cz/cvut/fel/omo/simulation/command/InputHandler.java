@@ -1,13 +1,17 @@
 package cz.cvut.fel.omo.simulation.command;
 
-import cz.cvut.fel.omo.logger.GlobalLogger;
-
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Handles user input and executes the corresponding command.
+ */
 public class InputHandler {
     private final Map<String, Command> commandMap = new HashMap<>();
 
+    /**
+     * Initializes the command map with the available commands.
+     */
     public InputHandler() {
         commandMap.put("A", new DisplayConfigurationCommand());
         commandMap.put("S", new DisplayConsumptionCommand());
@@ -16,6 +20,19 @@ public class InputHandler {
         commandMap.put("H", new HelpCommand());
     }
 
+    /**
+     * Executes the help command.
+     */
+    public void getHelp() {
+        commandMap.get("H").execute(null, null);
+    }
+
+    /**
+     * Handles the user input and executes the corresponding command.
+     *
+     * @param input   the user input
+     * @param context the command context
+     */
     public void handleInput(String input, CommandContext context) {
         String[] inputParts = input.split(" ");
         String commandKey = inputParts[0]; // Get the first word

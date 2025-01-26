@@ -1,6 +1,6 @@
 package cz.cvut.fel.omo.device;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
+import cz.cvut.fel.omo.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
@@ -9,6 +9,10 @@ import lombok.Getter;
 
 import java.util.UUID;
 
+/**
+ * Record player device class.
+ * For general information see {@link Device}.
+ */
 @Getter
 public class RecordPlayer extends Device{
 

@@ -1,7 +1,7 @@
 package cz.cvut.fel.omo.BobTheBuilder.vehicleFactory;
 
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.vehicleDTO.CarDTO;
+import cz.cvut.fel.omo.DTO.vehicleDTO.CarDTO;
 import cz.cvut.fel.omo.activity.vehicle.Car;
 import cz.cvut.fel.omo.activity.vehicle.EngineType;
 

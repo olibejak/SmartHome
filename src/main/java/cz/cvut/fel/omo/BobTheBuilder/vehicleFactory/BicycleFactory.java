@@ -1,6 +1,6 @@
 package cz.cvut.fel.omo.BobTheBuilder.vehicleFactory;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.vehicleDTO.BicycleDTO;
+import cz.cvut.fel.omo.DTO.vehicleDTO.BicycleDTO;
 import cz.cvut.fel.omo.activity.vehicle.Bicycle;
 
 public class BicycleFactory extends VehicleFactory<Bicycle, BicycleDTO> {

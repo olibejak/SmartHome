@@ -3,47 +3,101 @@
     {
       "rooms": [
         {
-          "type": "LIVING_ROOM",
-          "devices": [
-            {
-              "type": "WINDOW",
-              "state": "IDLE",
-              "durability": 100
-            }
-          ],
-          "vehicles": [
-
-          ],
-          "equipment": [
-
-          ]
-        },
-        {
           "type": "KITCHEN",
           "devices": [
             {
+              "type": "DISHWASHER",
+              "state": "IDLE",
+              "durability": 100
+            },
+            {
+              "type": "FRIDGE",
+              "state": "IDLE",
+              "durability": 100
+            },
+            {
+              "type": "OVEN",
+              "state": "IDLE",
+              "durability": 100
+            },
+            {
+              "type": "THERMOSTAT",
+              "state": "IDLE",
+              "durability": 100
+            },
+            {
               "type": "WINDOW",
               "state": "IDLE",
               "durability": 100
             }
-          ]
+          ],
+          "vehicles": [],
+          "equipment": []
+        },
+        {
+          "type": "LIVING_ROOM",
+          "devices": [
+            {
+              "type": "TELEVISION",
+              "state": "IDLE",
+              "durability": 100
+            },
+            {
+              "type": "RECORD_PLAYER",
+              "state": "IDLE",
+              "durability": 100
+            },
+            {
+              "type": "THERMOSTAT",
+              "state": "IDLE",
+              "durability": 100
+            },
+            {
+              "type": "WINDOW",
+              "state": "IDLE",
+              "durability": 100
+            }
+          ],
+          "vehicles": [],
+          "equipment": []
+        },
+        {
+          "type": "TOILET",
+          "devices": [
+            {
+              "type": "THERMOSTAT",
+              "state": "IDLE",
+              "durability": 100
+            },
+            {
+              "type": "WINDOW",
+              "state": "IDLE",
+              "durability": 100
+            }
+          ],
+          "vehicles": [],
+          "equipment": []
         },
         {
           "type": "GARAGE",
-            "devices": [
-                {
-                "type": "WINDOW",
-                "state": "IDLE",
-                "durability": 100
-                }
-            ],
+          "devices": [
+            {
+              "type": "THERMOSTAT",
+              "state": "IDLE",
+              "durability": 100
+            },
+            {
+              "type": "WINDOW",
+              "state": "IDLE",
+              "durability": 100
+            }
+          ],
           "vehicles": [
             {
               "vehicleType": "BICYCLE",
               "model": "MountainBike",
               "yearOfManufacturing": 2021,
               "color": "Red",
-              "isAvailable": true,
               "gearCount": 18
             },
             {
@@ -51,8 +105,38 @@
               "model": "Sedan",
               "yearOfManufacturing": 2019,
               "color": "Blue",
-              "isAvailable": false,
               "engineType": "DIESEL"
+            }
+          ],
+          "equipment": [
+            {
+              "equipmentType": "WEIGHTS",
+              "isAvailable": true,
+              "usageCount": 0
+            }
+          ]
+        },
+        {
+          "type": "OUTSIDE",
+          "devices": [
+            {
+              "type": "THERMOSTAT",
+              "state": "IDLE",
+              "durability": 100
+            },
+            {
+              "type": "WINDOW",
+              "state": "IDLE",
+              "durability": 100
+            }
+          ],
+          "vehicles": [],
+          "equipment": [
+            {
+              "equipmentType": "SKIS",
+              "isAvailable": true,
+              "usageCount": 0,
+              "color": "White"
             }
           ]
         }
@@ -61,22 +145,52 @@
     {
       "rooms": [
         {
-          "type": "BEDROOM",
+          "type": "BATHROOM",
           "devices": [
+            {
+              "type": "WASHING_MACHINE",
+              "state": "IDLE",
+              "durability": 100
+            },
+            {
+              "type": "THERMOSTAT",
+              "state": "IDLE",
+              "durability": 100
+            },
             {
               "type": "WINDOW",
               "state": "IDLE",
               "durability": 100
             }
-          ]
+          ],
+          "vehicles": [],
+          "equipment": []
         },
         {
-          "type": "TOILET",
+          "type": "BEDROOM",
           "devices": [
+            {
+              "type": "TELEVISION",
+              "state": "IDLE",
+              "durability": 100
+            },
+            {
+              "type": "THERMOSTAT",
+              "state": "IDLE",
+              "durability": 100
+            },
             {
               "type": "WINDOW",
               "state": "IDLE",
               "durability": 100
+            }
+          ],
+          "vehicles": [],
+          "equipment": [
+            {
+              "equipmentType": "WEIGHTS",
+              "isAvailable": true,
+              "usageCount": 0
             }
           ]
         }

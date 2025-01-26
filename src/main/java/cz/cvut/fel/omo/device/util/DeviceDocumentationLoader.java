@@ -1,7 +1,7 @@
 package cz.cvut.fel.omo.device.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
+import cz.cvut.fel.omo.DTO.type.DeviceType;
 import cz.cvut.fel.omo.logger.GlobalLogger;
 
 import java.io.IOException;

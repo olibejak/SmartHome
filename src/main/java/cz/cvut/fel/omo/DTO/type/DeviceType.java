@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.BobTheBuilder.DTO.type;
+package cz.cvut.fel.omo.DTO.type;
 
 public enum DeviceType {
 

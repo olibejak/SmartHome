@@ -1,10 +1,9 @@
 package cz.cvut.fel.omo.device;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
+import cz.cvut.fel.omo.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
-import cz.cvut.fel.omo.device.visitor.EmptyDeviceVisitor;
 import cz.cvut.fel.omo.event.Event;
 import cz.cvut.fel.omo.event.EventType;
 import cz.cvut.fel.omo.event.eventManager.EventListener;
@@ -13,6 +12,10 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+/**
+ * Thermostat device class.
+ * For general information see {@link Device}.
+ */
 @Getter
 @Setter
 public class Thermostat extends Device implements EventListener {
@@ -35,7 +38,7 @@ public class Thermostat extends Device implements EventListener {
             return;
         }
         this.currentTemperature = temperature;
-        logger.debug(this + " temperature set to " + temperature + "°C");
+        logger.debug(this + " temperature set to " + String.format("%.1f", temperature) + "°C");
     }
 
     @Override
@@ -55,7 +58,7 @@ public class Thermostat extends Device implements EventListener {
 
     @Override
     public String toString() {
-        return "Thermostat " + id + ": " + currentTemperature + "°C";
+        return "Thermostat " + id + ": " + String.format("%.1f", currentTemperature) + "°C";
     }
 
     @Override
@@ -69,6 +72,9 @@ public class Thermostat extends Device implements EventListener {
         }
     }
 
+    /**
+     * Handle temperature change event by setting a random temperature between min and max temperature.
+     */
     public void handleTemperatureChange() {
         logger.info(this + " handling temperature change event.");
         double randomTemperature = minTemperature + (maxTemperature - minTemperature) * new java.util.Random().nextDouble();

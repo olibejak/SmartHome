@@ -1,8 +1,8 @@
 package cz.cvut.fel.omo.BobTheBuilder.deviceFactory.factoryMethod;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.ConsumptionDTO;
-import cz.cvut.fel.omo.BobTheBuilder.DTO.DeviceDTO;
-import cz.cvut.fel.omo.BobTheBuilder.DTO.type.StateType;
+import cz.cvut.fel.omo.DTO.ConsumptionDTO;
+import cz.cvut.fel.omo.DTO.DeviceDTO;
+import cz.cvut.fel.omo.DTO.type.StateType;
 import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder.DeviceBuilder;
 import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder.stateSetter.ActiveStateSetter;
 import cz.cvut.fel.omo.BobTheBuilder.deviceFactory.deviceBuilder.stateSetter.IdleStateSetter;

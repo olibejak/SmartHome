@@ -1,6 +1,6 @@
 package cz.cvut.fel.omo.device;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
+import cz.cvut.fel.omo.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
@@ -13,6 +13,10 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+/**
+ * Window device class.
+ * For general information see {@link Device}.
+ */
 @Getter
 @Setter
 public class Window extends Device implements EventListener {
@@ -24,6 +28,9 @@ public class Window extends Device implements EventListener {
         super(id);
     }
 
+    /**
+     * Open the window.
+     */
     public void open() {
         if (!isOpen) {
             isOpen = true;
@@ -32,6 +39,9 @@ public class Window extends Device implements EventListener {
         logger.debug(this + " window is already opened");
     }
 
+    /**
+     * Close the window.
+     */
     public void close() {
         if (isOpen) {
             isOpen = false;
@@ -40,6 +50,9 @@ public class Window extends Device implements EventListener {
         logger.debug(this + " window is already closed");
     }
 
+    /**
+     * Open the window's curtain.
+     */
     public void openCurtain() {
         if (!hasOpenedCurtain) {
             hasOpenedCurtain = true;
@@ -48,6 +61,9 @@ public class Window extends Device implements EventListener {
         logger.debug(this + " curtain is already opened");
     }
 
+    /**
+     * Close the window's curtain.
+     */
     public void closeCurtain() {
         if (hasOpenedCurtain) {
             hasOpenedCurtain = false;
@@ -87,6 +103,9 @@ public class Window extends Device implements EventListener {
         }
     }
 
+    /**
+     * Handle the change in wind event.
+     */
     public void handleWindChange() {
         if (isOpen) {
             logger.info(this + " closing due to rain");

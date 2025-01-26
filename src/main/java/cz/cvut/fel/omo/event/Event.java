@@ -19,4 +19,9 @@ public class Event {
      * @see Payload
      */
     private Payload payload;
+
+    @Override
+    public String toString() {
+        return "Event: " + type;
+    }
 }

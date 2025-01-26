@@ -52,4 +52,10 @@ public class EventManager {
             }
         }
     }
+
+    public void dispatchAll() {
+        while (!eventQueue.getEvents().isEmpty()) {
+            dispatch(eventQueue.getEvents().poll());
+        }
+    }
 }

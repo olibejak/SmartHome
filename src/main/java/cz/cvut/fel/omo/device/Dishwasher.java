@@ -1,6 +1,6 @@
 package cz.cvut.fel.omo.device;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
+import cz.cvut.fel.omo.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
@@ -13,6 +13,10 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+/**
+ * Dishwasher device class.
+ * For general information see {@link StorageDevice}.
+ */
 @Getter
 @Setter
 public class Dishwasher extends StorageDevice {

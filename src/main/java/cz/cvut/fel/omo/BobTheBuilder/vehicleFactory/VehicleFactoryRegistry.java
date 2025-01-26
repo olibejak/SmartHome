@@ -1,6 +1,6 @@
 package cz.cvut.fel.omo.BobTheBuilder.vehicleFactory;
 
-import cz.cvut.fel.omo.BobTheBuilder.DTO.vehicleDTO.VehicleDTO;
+import cz.cvut.fel.omo.DTO.vehicleDTO.VehicleDTO;
 import cz.cvut.fel.omo.BobTheBuilder.FactoryRegistry;
 import cz.cvut.fel.omo.activity.vehicle.Vehicle;
 import cz.cvut.fel.omo.logger.GlobalLogger;

@@ -1,4 +1,4 @@
-package main;
+package cz.cvut.fel.omo.main;
 
 import cz.cvut.fel.omo.entity.person.*;
 import cz.cvut.fel.omo.entity.pet.Cat;

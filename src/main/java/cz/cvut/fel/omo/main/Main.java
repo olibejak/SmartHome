@@ -1,4 +1,4 @@
-package main;
+package cz.cvut.fel.omo.main;
 
 import cz.cvut.fel.omo.BobTheBuilder.HouseBuilderFacade;
 import cz.cvut.fel.omo.event.eventManager.EventManager;

@@ -32,4 +32,3 @@ according to [ConsumptionDTO](https://gitlab.fel.cvut.cz/olibejak/smarthome/-/tr
 according to [DeviceDocumentation](https://gitlab.fel.cvut.cz/olibejak/smarthome/-/tree/main/src/main/java/cz/cvut/fel/omo/device/util/DeviceDocumentation.java).
 - While running the application, the user can interact with the application through the console.
   - Use the `h` command to see the list of available commands.
-you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.

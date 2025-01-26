@@ -185,10 +185,6 @@ public class CurrentRoomPayload {
 
         if (currentPeople != null && !currentPeople.isEmpty()) {
             log.append("  People: ");
-//            currentPeople.forEach(person ->
-//                    log.append(person.getClass().getSimpleName())
-//                            .append(" - ").append(person.getName()).append(" (").append(person.getAge()).append("), ")
-//            );
             currentPeople.forEach(person ->
                     log.append(person.toString()).append(", ")
             );
@@ -197,10 +193,6 @@ public class CurrentRoomPayload {
 
         if (currentPets != null && !currentPets.isEmpty()) {
             log.append("  Pets: ");
-//            currentPets.forEach(pet ->
-//                    log.append(pet.getClass().getSimpleName())
-//                            .append(" - ").append(pet.getName()).append(" (").append(pet.getAge()).append("), ")
-//            );
             currentPets.forEach(pet ->
                     log.append(pet.toString()).append(", ")
             );

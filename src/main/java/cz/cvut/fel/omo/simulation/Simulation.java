@@ -46,32 +46,31 @@ public class Simulation implements Runnable{
     }
 
     public void nextCycle() {
-        cycleCount++;
-        logger.info("CURRENT CYCLE: " + cycleCount);
-
         // todo separate into functions when finished - for each loop
+        cycleCount++;
+        logger.info("======================= START OF CYCLE: " + cycleCount + " =======================");
 
         // 1. family and pets react to global events
         Event globalEvent = GlobalEventGenerator.generateEvent();
         if (globalEvent != null) {
-            logger.info("NEW GLOBAL EVENT: " + globalEvent);
+            logger.info("============= NEW GLOBAL EVENT: " + globalEvent + " =============");
             eventManager.getEventQueue().addEvent(globalEvent);
         }
 
         // 1.1. Dispatch events
         eventManager.dispatchAll();
 
-        // 2. family and pets actions
-        //   2.1. find what people, pets, equipment, vehicles, devices and events are in the current room
-
-        for (Person person : family) { // todo maybe shuffle family each cycle?
-            logger.info("CURRENT PERSON: " + person.toString());
+        // 2. family actions
+        for (Person person : family) {
+            logger.info("============= CURRENT PERSON: " + person.toString() + " =============");
+            //   2.1. find what people, pets, equipment, vehicles, devices and events are in the current room
             CurrentRoomPayload currentRoomPayload = getCurrentRoomPayloadByRoomId(person.getRoomID());
-            logger.info(currentRoomPayload.getRoomDetailsLog());
+            logger.info("============= CURRENT ROOM LOG =============\n" + currentRoomPayload.getRoomDetailsLog());
             currentRoomPayload.removePerson(person); // Person cannot interact with itself
 
-            logger.info("LOCAL EVENTS: " + currentRoomPayload.getCurrentEvents().toString());
+            logger.info("============= LOCAL EVENTS: " + currentRoomPayload.getCurrentEvents().toString()+ " =============");
             for (Event event : currentRoomPayload.getCurrentEvents()) {
+                // todo implement correctly
                 logger.debug(event.toString());
                 Device tmpDevice = house.getDeviceByID(event.getPayload());
                 if (tmpDevice != null) {
@@ -82,39 +81,35 @@ public class Simulation implements Runnable{
                 }
             }
 
-            // interaction with person
             if (!currentRoomPayload.getCurrentPeople().isEmpty()) {
-                logger.info("PERSON WITH PERSON INTERACTION:");
+                logger.info("============= PERSON WITH PERSON INTERACTION =============");
                 person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentPeople()));
             }
-            // interaction with pet
             if (!currentRoomPayload.getCurrentPets().isEmpty()) {
-                logger.info("PERSON WITH PET INTERACTION:");
+                logger.info("============= PERSON WITH PET INTERACTION =============");
                 person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentPets()));
             }
-            // interaction with sport equipment
             if (RandomUtils.coinFLip()) {
                 if (RandomUtils.coinFLip()) {
                     if (!currentRoomPayload.getCurrentAvailableEquipment().isEmpty()) {
-                        logger.info("PERSON WITH SPORT EQUIPMENT INTERACTION:");
+                        logger.info("============= PERSON WITH SPORT EQUIPMENT INTERACTION =============");
                         person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableEquipment()));
                     }
                 } else {
-                    // interaction with vehicle
                     if (!currentRoomPayload.getCurrentAvailableVehicles().isEmpty()) {
-                        logger.info("PERSON WITH VEHICLE INTERACTION:");
+                        logger.info("============= PERSON WITH VEHICLE INTERACTION =============");
                         person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableVehicles()));
                     }
                 }
             } else {
-                // interaction with device
                 if (!currentRoomPayload.getCurrentDevices().isEmpty()) {
-                    logger.info("PERSON WITH DEVICE INTERACTION:");
+                    logger.info("============= PERSON WITH DEVICE INTERACTION =============");
                     person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentDevices()));
                 }
             }
         }
 
+        // 3. pet actions
         for (Pet pet : pets) {
             logger.info("CURRENT PET: " + pet.toString());
             CurrentRoomPayload currentRoomPayload = getCurrentRoomPayloadByRoomId(pet.getRoomID());
@@ -167,6 +162,8 @@ public class Simulation implements Runnable{
         house.makeAllVehiclesAndEquipmentAvailable();
         shuffleFamily(); // family shuffles for different interaction order
         shufflePets(); // pets shuffle for different interaction order
+
+        logger.info("======================= END OF CYCLE: " + cycleCount + " =======================\n\n");
     }
 
     public void nextCycles(int count) {

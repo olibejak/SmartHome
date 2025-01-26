@@ -100,7 +100,7 @@ public abstract class Device implements ConfigurationReport {
         return this.documentation;
     }
 
-    public void repair() {
+    public boolean repair() {
         getDocumentation(); 
         if (documentation.getIsFixable()) {
             logger.info(this + " is repaired");

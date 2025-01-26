@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 public abstract class Person extends Entity implements DeviceVisitor, EmptyDeviceVisitor, FinishedDeviceVisitor {
     protected boolean hasDriversLicense;
-    private EventStrategy eventStrategy;
+//    private EventStrategy eventStrategy;
 
     public Person(String name, int age, int roomID, boolean hasDriversLicense) {
         super(name, age, roomID);
@@ -29,6 +29,7 @@ public abstract class Person extends Entity implements DeviceVisitor, EmptyDevic
 
     public abstract boolean reactToBrokenDevice(Device device);
 
+    // returns true if event was handled
     public boolean reactToEvent(EventType eventType, Device device) {
         // TODO HashMap
 
@@ -37,7 +38,7 @@ public abstract class Person extends Entity implements DeviceVisitor, EmptyDevic
 //            setEventStrategy(new DeviceEmptyStrategy());
         }
         if (eventType == EventType.DEVICE_FULL) {
-            device.turnOn(); // test if it really works like this
+            device.turnOn();
             return true;
 //            setEventStrategy(new DeviceFullStrategy());
         }
@@ -50,9 +51,7 @@ public abstract class Person extends Entity implements DeviceVisitor, EmptyDevic
 //            setEventStrategy(new DeviceBrokenStrategy());
         }
 
-        // TODO error if other event type
-
-        return eventStrategy.reactToEvent(device);
+        return false;
     }
 
 //    // every device

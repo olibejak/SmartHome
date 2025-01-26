@@ -69,7 +69,7 @@ public class Thermostat extends Device implements EventListener {
     }
 
     public void handleTemperatureChange() {
-        logger.info(this + " handling temperature change event");
+        logger.info(this + " handling temperature change event.");
         double randomTemperature = minTemperature + (maxTemperature - minTemperature) * new java.util.Random().nextDouble();
         setTemperature(randomTemperature);
     }

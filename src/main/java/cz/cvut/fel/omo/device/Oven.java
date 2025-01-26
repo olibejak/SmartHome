@@ -4,10 +4,13 @@ import cz.cvut.fel.omo.BobTheBuilder.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
+import cz.cvut.fel.omo.event.EventType;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.UUID;
+
+import static cz.cvut.fel.omo.event.EventFactory.createEvent;
 
 @Setter
 @Getter
@@ -25,7 +28,7 @@ public class Oven extends Device{
     public void turnOn() {
         super.turnOn();
         logger.info(this + " : Oven is turned on - GENERATE EVENT");
-        // todo generate event empty out the oven when finished
+        createEvent(EventType.DEVICE_JOB_DONE, getRoomID(), getId());
     }
 
     @Override

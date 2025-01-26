@@ -14,7 +14,6 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -30,6 +29,8 @@ public class Simulation implements Runnable{
 
     private EventQueue eventQueue;
 
+    private GlobalEventGenerator globalEventGenerator;
+
     private int cycleCount;
 
     public Simulation(House house, ArrayList<Person> family, ArrayList<Pet> pets, EventQueue eventQueue) {
@@ -37,6 +38,7 @@ public class Simulation implements Runnable{
         this.family = family;
         this.pets = pets;
         this.eventQueue = eventQueue;
+        this.globalEventGenerator = new GlobalEventGenerator(eventQueue);
         this.cycleCount = 0;
         this.logger = GlobalLogger.getInstance();
         populateHouseRandomly();

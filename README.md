@@ -17,7 +17,7 @@ SmartHome uses Java 21 and Maven. Use the following commands to build and run:
 ```
 git clone https://gitlab.fel.cvut.cz/olibejak/smarthome.git
 mvn clean install
-mvn exec:java -Dexec.mainClass="cz.cvut.fel.omo.Main"
+mvn exec:java -Dexec.mainClass="cz.cvut.fel.omo.main.Main"
 ```
 
 ## Inputs

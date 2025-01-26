@@ -2,7 +2,8 @@ package cz.cvut.fel.omo.simulation;
 
 import cz.cvut.fel.omo.entity.person.Person;
 import cz.cvut.fel.omo.entity.pet.Pet;
-import cz.cvut.fel.omo.event.eventManager.EventQueue;
+import cz.cvut.fel.omo.event.Event;
+import cz.cvut.fel.omo.event.eventManager.EventManager;
 import cz.cvut.fel.omo.house.House;
 import cz.cvut.fel.omo.logger.GlobalLogger;
 import cz.cvut.fel.omo.simulation.command.CommandContext;
@@ -27,29 +28,18 @@ public class Simulation implements Runnable{
     private ArrayList<Person> family;
     private ArrayList<Pet> pets;
 
-    private EventQueue eventQueue;
+    private EventManager eventManager;
 
     private GlobalEventGenerator globalEventGenerator;
 
     private int cycleCount;
 
-    public Simulation(House house, ArrayList<Person> family, ArrayList<Pet> pets, EventQueue eventQueue) {
+    public Simulation(House house, ArrayList<Person> family, ArrayList<Pet> pets, EventManager eventManager) {
         this.house = house;
         this.family = family;
         this.pets = pets;
-        this.eventQueue = eventQueue;
-        this.globalEventGenerator = new GlobalEventGenerator(eventQueue);
+        this.eventManager = eventManager;
         this.cycleCount = 0;
-        this.logger = GlobalLogger.getInstance();
-        populateHouseRandomly();
-    }
-
-    public Simulation(House house, ArrayList<Person> family, ArrayList<Pet> pets, EventQueue eventQueue, int cycleCount) {
-        this.house = house;
-        this.family = family;
-        this.pets = pets;
-        this.eventQueue = eventQueue;
-        this.cycleCount = cycleCount;
         this.logger = GlobalLogger.getInstance();
         populateHouseRandomly();
     }
@@ -61,7 +51,14 @@ public class Simulation implements Runnable{
         // todo separate into functions when finished - for each loop
 
         // 1. family and pets react to global events
-        logger.info("GLOBAL EVENTS:"); // todo implement
+        Event globalEvent = GlobalEventGenerator.generateEvent();
+        if (globalEvent != null) {
+            logger.info("NEW GLOBAL EVENT: " + globalEvent);
+            eventManager.getEventQueue().addEvent(globalEvent);
+        }
+
+        // 1.1. Dispatch events
+        eventManager.dispatchAll();
 
         // 2. family and pets actions
         //   2.1. find what people, pets, equipment, vehicles, devices and events are in the current room
@@ -115,9 +112,6 @@ public class Simulation implements Runnable{
             CurrentRoomPayload currentRoomPayload = getCurrentRoomPayloadByRoomId(pet.getRoomID());
             logger.info(currentRoomPayload.getRoomDetailsLog());
             currentRoomPayload.removePet(pet); // Pet cannot interact with itself
-
-            logger.info("LOCAL EVENTS:");
-            // todo reaction to local events
 
             // interaction with person - random one
             if (!currentRoomPayload.getCurrentPeople().isEmpty()) {
@@ -218,7 +212,9 @@ public class Simulation implements Runnable{
         // Set devices in the room
         payload.setCurrentDevices(house.getDevicesByRoomId(roomId));
         // Set events in the room
-        payload.setCurrentEvents(eventQueue.getEventsByRoomId(roomId));
+        if (house.getRoomByID(roomId).isPresent()) {
+            payload.setCurrentEvents(new ArrayList<>(house.getRoomByID(roomId).get().getEvents()));
+        }
 
         return payload;
     }
@@ -240,7 +236,7 @@ public class Simulation implements Runnable{
                 inputHandler.handleInput(input, context);
             }
         } catch (Exception e) {
-            logger.error("An error occurred while running the simulation: " + e);
+            logger.error("An error occurred while running the simulation: " + e.getMessage());
         }
     }
 }

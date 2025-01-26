@@ -1,58 +1,50 @@
 {
-  "DISHWASHER":
-    {
-      "electricityIdleRate": 0.1,
-      "electricityActiveRate": 0.5,
-      "gasRate": 0.0,
-      "waterRate": 0.5
-    },
-  "FRIDGE":
-    {
-      "electricityIdleRate": 0.1,
-      "electricityActiveRate": 0.5,
-      "gasRate": 0.0,
-      "waterRate": 0.0
-    },
-  "OVEN":
-    {
-      "electricityIdleRate": 0.1,
-      "electricityActiveRate": 0.5,
-      "gasRate": 0.5,
-      "waterRate": 0.0
-    },
-  "RECORD_PLAYER":
-    {
-      "electricityIdleRate": 0.1,
-      "electricityActiveRate": 0.5,
-      "gasRate": 0.0,
-      "waterRate": 0.0
-    },
-  "TELEVISION":
-    {
-      "electricityIdleRate": 0.1,
-      "electricityActiveRate": 0.5,
-      "gasRate": 0.0,
-      "waterRate": 0.0
-    },
-  "THERMOSTAT":
-    {
-      "electricityIdleRate": 0.1,
-      "electricityActiveRate": 0.5,
-      "gasRate": 0.5,
-      "waterRate": 0.0
-    },
-  "WASHING_MACHINE":
-    {
-      "electricityIdleRate": 0.1,
-      "electricityActiveRate": 0.5,
-      "gasRate": 0.0,
-      "waterRate": 0.5
-    },
-  "WINDOW":
-    {
-      "electricityIdleRate": 0.1,
-      "electricityActiveRate": 0.5,
-      "gasRate": 0.0,
-      "waterRate": 0.0
-    }
+  "DISHWASHER": {
+    "electricityIdleRate": 0.05,
+    "electricityActiveRate": 1.0,
+    "gasRate": 0.0,
+    "waterRate": 1.0
+  },
+  "FRIDGE": {
+    "electricityIdleRate": 0.1,
+    "electricityActiveRate": 0.2,
+    "gasRate": 0.0,
+    "waterRate": 0.0
+  },
+  "OVEN": {
+    "electricityIdleRate": 0.05,
+    "electricityActiveRate": 1.5,
+    "gasRate": 1.0,
+    "waterRate": 0.0
+  },
+  "RECORD_PLAYER": {
+    "electricityIdleRate": 0.02,
+    "electricityActiveRate": 0.1,
+    "gasRate": 0.0,
+    "waterRate": 0.0
+  },
+  "TELEVISION": {
+    "electricityIdleRate": 0.05,
+    "electricityActiveRate": 0.2,
+    "gasRate": 0.0,
+    "waterRate": 0.0
+  },
+  "THERMOSTAT": {
+    "electricityIdleRate": 0.01,
+    "electricityActiveRate": 0.05,
+    "gasRate": 0.1,
+    "waterRate": 0.0
+  },
+  "WASHING_MACHINE": {
+    "electricityIdleRate": 0.05,
+    "electricityActiveRate": 1.0,
+    "gasRate": 0.0,
+    "waterRate": 1.5
+  },
+  "WINDOW": {
+    "electricityIdleRate": 0.1,
+    "electricityActiveRate": 0.1,
+    "gasRate": 0.0,
+    "waterRate": 0.0
+  }
 }

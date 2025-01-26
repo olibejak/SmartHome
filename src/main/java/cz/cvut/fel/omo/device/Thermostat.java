@@ -4,7 +4,6 @@ import cz.cvut.fel.omo.DTO.type.DeviceType;
 import cz.cvut.fel.omo.device.util.DeviceDocumentation;
 import cz.cvut.fel.omo.device.util.DeviceDocumentationLoader;
 import cz.cvut.fel.omo.device.visitor.DeviceVisitor;
-import cz.cvut.fel.omo.device.visitor.EmptyDeviceVisitor;
 import cz.cvut.fel.omo.event.Event;
 import cz.cvut.fel.omo.event.EventType;
 import cz.cvut.fel.omo.event.eventManager.EventListener;
@@ -39,7 +38,7 @@ public class Thermostat extends Device implements EventListener {
             return;
         }
         this.currentTemperature = temperature;
-        logger.debug(this + " temperature set to " + temperature + "°C");
+        logger.debug(this + " temperature set to " + String.format("%.1f", temperature) + "°C");
     }
 
     @Override
@@ -59,7 +58,7 @@ public class Thermostat extends Device implements EventListener {
 
     @Override
     public String toString() {
-        return "Thermostat " + id + ": " + currentTemperature + "°C";
+        return "Thermostat " + id + ": " + String.format("%.1f", currentTemperature) + "°C";
     }
 
     @Override

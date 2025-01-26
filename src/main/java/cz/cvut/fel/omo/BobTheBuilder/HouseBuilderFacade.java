@@ -66,7 +66,7 @@ public class HouseBuilderFacade {
                 .addFloors(buildFloors(houseDTO.getFloors()))
                 .build();
 
-        logger.info(house.reportConfiguration());
+        logger.debug(house.reportConfiguration());
 
         return house;
 

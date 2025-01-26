@@ -29,6 +29,10 @@ public class Payload {
         this.roomID = roomID;
     }
 
+    public Integer getRoomID() {
+        return roomID;
+    }
+
     public static Builder builder() {
         return new Builder();
     }

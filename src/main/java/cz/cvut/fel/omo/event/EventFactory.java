@@ -27,6 +27,6 @@ public class EventFactory {
     }
 
     public static Event createEvent(EventType type) {
-        return new Event(type, null);
+        return new Event(type, Payload.builder().build());
     }
 }

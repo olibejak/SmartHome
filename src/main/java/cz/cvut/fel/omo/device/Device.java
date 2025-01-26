@@ -117,7 +117,7 @@ public abstract class Device implements ConfigurationReport {
     private void handleBreakage() {
         logger.info(this + " is broken");
         changeState(new OffDeviceState(this));
-        createEvent(EventType.DEVICE_MALFUNCTION, roomID, id);
+        createEvent(EventType.DEVICE_BROKEN, roomID, id);
     }
 
     /**

@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.function.Function;
 
 import static cz.cvut.fel.omo.BobTheBuilder.HouseLoader.*;
+import static cz.cvut.fel.omo.event.EventType.*;
 import static java.util.Objects.nonNull;
 
 /**
@@ -30,12 +31,14 @@ import static java.util.Objects.nonNull;
 @Log4j2
 public class HouseBuilderFacade {
 
+    private final EventManager eventManager;
     private final DeviceFactoryRegistry deviceFactoryRegistry;
     private final EquipmentFactoryRegistry sportEquipmentFactoryRegistry;
     private final VehicleFactoryRegistry vehicleFactoryRegistry;
     private final GlobalLogger logger;
 
     public HouseBuilderFacade(EventManager eventManager) {
+        this.eventManager = eventManager;
         this.deviceFactoryRegistry = populateDeviceFactoryRegistry(new DeviceFactoryRegistry(eventManager));
         this.sportEquipmentFactoryRegistry = populateSportEquipmentFactoryRegistry(new EquipmentFactoryRegistry());
         this.vehicleFactoryRegistry = populateVehicleFactoryRegistry(new VehicleFactoryRegistry());
@@ -60,7 +63,7 @@ public class HouseBuilderFacade {
         }
 
         House house = new HouseBuilder().reset()
-                .addFloors(buildFloors(houseDTO))
+                .addFloors(buildFloors(houseDTO.getFloors()))
                 .build();
 
         logger.info(house.reportConfiguration());
@@ -70,17 +73,17 @@ public class HouseBuilderFacade {
     }
 
     /**
-     * Builds floors from a house DTO
-     * @param houseDTO house DTO
+     * Builds floors from floor DTOs
+     * @param floorDTOs array of floor DTOs
      * @return list of floors
      */
-    private ArrayList<Floor> buildFloors(@NonNull HouseDTO houseDTO) {
+    private ArrayList<Floor> buildFloors(@NonNull FloorDTO[] floorDTOs) {
         int floorNumber = 0;
         ArrayList<Floor> floors = new ArrayList<>();
-        for (FloorDTO floorDTO : houseDTO.getFloors()) {
+        for (FloorDTO floorDTO : floorDTOs) {
             floors.add(
                     new FloorBuilder().reset(floorNumber)
-                    .addRooms(buildRooms(floorDTO, floorNumber++))
+                    .addRooms(buildRooms(floorDTO.getRooms(), floorNumber++))
                     .build()
             );
         }
@@ -88,38 +91,41 @@ public class HouseBuilderFacade {
     }
 
     /**
-     * Builds rooms from a floor DTO
-     * @param floorDTO floor DTO
+     * Builds rooms from room DTOs
+     * @param roomDTOs array of room DTOs
      * @param floorNumber number of the floor
      * @return list of rooms
      */
-    private ArrayList<Room> buildRooms(@NonNull FloorDTO floorDTO, int floorNumber) {
+    private ArrayList<Room> buildRooms(@NonNull RoomDTO[] roomDTOs, int floorNumber) {
         int baseRoomId = (floorNumber * 100);
         ArrayList<Room> rooms = new ArrayList<>();
-        for (RoomDTO roomDTO : floorDTO.getRooms()) {
+        for (RoomDTO roomDTO : roomDTOs) {
             int roomId = ++baseRoomId;
             if (roomId >= (floorNumber + 1) * 100) {
                 logger.warn("Maximum rooms on a floor reached, skipping rest of the rooms on the floor.");
                 break;
             }
-                rooms.add(
-                    new RoomBuilder().reset(roomId)
-                            .setRoomType(roomDTO.getType())
-                            .addDevices(
-                                    buildItems(roomDTO.getDevices(),
+            Room room = new RoomBuilder().reset(roomId)
+                    .setRoomType(roomDTO.getType())
+                    .addDevices(
+                            buildItems(roomDTO.getDevices(),
                                     deviceDTO -> createRoomObject(roomId, deviceDTO, deviceFactoryRegistry)
-                                    ))
-                            .addVehicles(
-                                    buildItems(roomDTO.getVehicles(),
+                            ))
+                    .addVehicles(
+                            buildItems(roomDTO.getVehicles(),
                                     vehicleDTO -> createRoomObject(roomId, vehicleDTO, vehicleFactoryRegistry)
-                                    ))
-                            .addSportEquipment(
-                                    buildItems(
-                                            roomDTO.getEquipment(),
-                                            equipmentDTO -> createRoomObject(roomId, equipmentDTO, sportEquipmentFactoryRegistry)
-                                    ))
-                            .build()
-            );
+                            ))
+                    .addSportEquipment(
+                            buildItems(
+                                    roomDTO.getEquipment(),
+                                    equipmentDTO -> createRoomObject(roomId, equipmentDTO, sportEquipmentFactoryRegistry)
+                            ))
+                    .build();
+            eventManager.subscribe(DEVICE_EMPTY, room);
+            eventManager.subscribe(DEVICE_FULL, room);
+            eventManager.subscribe(DEVICE_MALFUNCTION, room);
+            eventManager.subscribe(DEVICE_JOB_DONE, room);
+            rooms.add(room);
         }
         return rooms;
     }

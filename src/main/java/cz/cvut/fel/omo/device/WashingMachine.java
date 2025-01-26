@@ -11,6 +11,8 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+import static cz.cvut.fel.omo.event.EventFactory.createEvent;
+
 @Setter
 @Getter
 public class WashingMachine extends StorageDevice {
@@ -34,7 +36,8 @@ public class WashingMachine extends StorageDevice {
         super.turnOn();
         logger.info(this + " started washing");
         this.isClean = true;
-        // todo generate event to empty the washing machine
+        logger.debug(this + " is clean - GENERATE EVENT");
+        eventQueue.addEvent(createEvent(EventType.DEVICE_JOB_DONE, getRoomID(), getId()));
     }
 
     @Override
@@ -67,8 +70,8 @@ public class WashingMachine extends StorageDevice {
         this.currentLoad += load;
         logger.info(this + " " + name + " added");
         if (this.currentLoad == this.maxLoad) {
-            // todo generate event
-            logger.info(this + " is full - GENERATE EVENT");
+            logger.debug(this + " is full - GENERATE EVENT");
+            eventQueue.addEvent(createEvent(EventType.DEVICE_FULL, getRoomID(), getId()));
         }
     }
 

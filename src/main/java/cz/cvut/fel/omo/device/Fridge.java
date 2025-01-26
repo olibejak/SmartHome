@@ -11,6 +11,8 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+import static cz.cvut.fel.omo.event.EventFactory.createEvent;
+
 @Setter
 @Getter
 public class Fridge extends StorageDevice {
@@ -49,6 +51,7 @@ public class Fridge extends StorageDevice {
         items.clear();
         this.currentLoad = 0;
         logger.info(this + " :All food removed");
+        createEvent(EventType.DEVICE_EMPTY, getRoomID(), getId());
     }
 
     @Override
@@ -56,19 +59,27 @@ public class Fridge extends StorageDevice {
         items.remove(item);
         this.currentLoad -= item.load();
         logger.info(this + " :Food " + item.name() + " removed");
+        emptyFridgeHandler();
     }
 
     public String removeFirstItem() {
         if (!items.isEmpty()) {
             String firstItem = items.removeFirst().name();
-            if (items.isEmpty()) {
-                logger.info(this + " : Fridge is empty - GENERATE EVENT");
-                // todo generate event - empty fridge
-            }
+            emptyFridgeHandler();
             return firstItem;
         }
         logger.info(this + " : Fridge is empty");
         return "";
+    }
+
+    /**
+     * Checks if fridge is empty and generates event if it is.
+     */
+    private void emptyFridgeHandler() {
+        if (items.isEmpty()) {
+            logger.info(this + " :Fridge is empty - GENERATE EVENT");
+            createEvent(EventType.DEVICE_EMPTY, getRoomID(), getId());
+        }
     }
 
     public boolean isEmpty() {

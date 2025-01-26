@@ -11,6 +11,8 @@ import lombok.Setter;
 
 import java.util.UUID;
 
+import static cz.cvut.fel.omo.event.EventFactory.createEvent;
+
 @Setter
 @Getter
 public class Oven extends Device{
@@ -27,7 +29,7 @@ public class Oven extends Device{
     public void turnOn() {
         super.turnOn();
         logger.info(this + " : Oven is turned on - GENERATE EVENT");
-        // todo generate event empty out the oven when finished
+        createEvent(EventType.DEVICE_JOB_DONE, getRoomID(), getId());
     }
 
     @Override

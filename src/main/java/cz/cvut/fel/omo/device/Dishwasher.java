@@ -36,7 +36,8 @@ public class Dishwasher extends StorageDevice {
         super.turnOn();
         logger.info(this + " started washing the dishes");
         this.isClean = true;
-        // todo generate event to empty the dishwasher
+        logger.info(this + " : Dishwasher is clean - GENERATE EVENT");
+        eventQueue.addEvent(EventFactory.createEvent(EventType.DEVICE_JOB_DONE, getRoomID(), getId()));
     }
 
     @Override

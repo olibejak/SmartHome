@@ -111,11 +111,15 @@ public class Dad extends Person {
     @Override
     public boolean reactToBrokenDevice(Device device) {
         if (RandomUtils.isWithinPercentage(80)) {
-            device.repair();
-            logger.info("Dad " + this.name + " managed to fix " + device);
-            return true;
+            if(device.repair()) {
+                logger.info("Dad " + this.name + " managed to fix " + device);
+                return true;
+            } else {
+                logger.info("Dad " + this.name + " was not able to fix " + device);
+                return false;
+            }
         } else {
-            logger.info("Dad " + this.name + " was not able to fix " + device);
+            logger.info("Dad " + this.name + " did not attempt fix " + device);
             return false;
         }
     }

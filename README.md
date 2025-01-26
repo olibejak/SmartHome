@@ -31,5 +31,5 @@ according to [ConsumptionDTO](https://gitlab.fel.cvut.cz/olibejak/smarthome/-/tr
 - Device documentation can be edited in [device_documentation.json](https://gitlab.fel.cvut.cz/olibejak/smarthome/-/tree/main/src/main/resources/device_documentation.json)
 according to [DeviceDocumentation](https://gitlab.fel.cvut.cz/olibejak/smarthome/-/tree/main/src/main/java/cz/cvut/fel/omo/device/util/DeviceDocumentation.java).
 - While running the application, the user can interact with the application through the console.
-- Entities (people, pets) are initialized in [EntityInitializer](https://gitlab.fel.cvut.cz/olibejak/smarthome/-/tree/main/src/main/java/cz/cvut/fel/omo/main/EntityInitializer.java).
+- Entities (people, pets) are initialized in [EntityInitialization](https://gitlab.fel.cvut.cz/olibejak/smarthome/-/tree/main/src/main/java/cz/cvut/fel/omo/main/EntityInitialization.java).
   - Use the `h` command to see the list of available commands.

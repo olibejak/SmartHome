@@ -14,7 +14,7 @@ public class WashingMachineFactory extends BaseDeviceFactory<WashingMachineBuild
     public WashingMachine createDevice(DeviceDTO deviceDTO, ConsumptionDTO consumptionDTO, int roomID, EventManager eventManager) {
         return setupBuilder(new WashingMachineBuilder(), roomID, deviceDTO, consumptionDTO, eventManager.getEventQueue())
                 .isClean(false)
-                .maxLoad(30)
+                .maxLoad(2) // change to 5
                 .currentLoad(0)
                 .items(new ArrayList<>())
                 .build();

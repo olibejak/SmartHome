@@ -20,7 +20,7 @@ public class DishwasherFactory extends BaseDeviceFactory<DishwasherBuilder, Dish
     public Dishwasher createDevice(DeviceDTO deviceDTO, ConsumptionDTO consumptionDTO, int roomID, EventManager eventManager) {
         return setupBuilder(new DishwasherBuilder(), roomID, deviceDTO, consumptionDTO, eventManager.getEventQueue())
                 .isClean(false)
-                .maxLoad(26)
+                .maxLoad(2) // change to 5
                 .currentLoad(0)
                 .items(new ArrayList<>())
                 .build();

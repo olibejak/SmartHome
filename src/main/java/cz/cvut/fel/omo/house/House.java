@@ -3,6 +3,7 @@ package cz.cvut.fel.omo.house;
 import cz.cvut.fel.omo.activity.equipment.SportEquipment;
 import cz.cvut.fel.omo.activity.vehicle.Vehicle;
 import cz.cvut.fel.omo.device.Device;
+import cz.cvut.fel.omo.event.Event;
 import cz.cvut.fel.omo.event.util.Payload;
 import cz.cvut.fel.omo.house.report.ConsumptionReport;
 import lombok.Getter;
@@ -117,18 +118,38 @@ public class House implements ConfigurationReport {
                 .findFirst();
     }
 
-    @Override
-    public String toString() {
-        return "House{" + "floors=" + floors + '}';
+    public ArrayList<Event> getAllLocalEvents() {
+        return floors.stream()
+                .flatMap(floor -> floor.getRooms().stream())
+                .flatMap(room -> room.getEvents().stream())
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public String reportConfiguration() {
-        StringBuilder configurationReport = new StringBuilder("House Configuration Report:\n");
-        configurationReport.append("\nFloor Configuration:");
-        for (Floor floor : floors) {
-            configurationReport.append("\n").append(floor.reportConfiguration());
-        }
-        return configurationReport.toString();
+    public ArrayList<Event> getEventsByRoomId(int roomId) {
+        return floors.stream()
+                .flatMap(floor -> floor.getRooms().stream())
+                .filter(room -> room.getId() == roomId)
+                .findFirst()
+                .map(Room::getEvents)
+                .map(ArrayList::new) // Convert to a mutable list
+                .orElse(new ArrayList<>());
+    }
+
+    public ArrayList<Event> getAllDeviceEvents() {
+        return floors.stream()
+                .flatMap(floor -> floor.getRooms().stream())
+                .flatMap(room -> room.getDevices().stream())
+                .flatMap(device -> device.getEventQueue().getEvents().stream())
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public ArrayList<Event> getDeviceEventsByRoomId(int roomId) {
+        return floors.stream()
+                .flatMap(floor -> floor.getRooms().stream())
+                .filter(room -> room.getId() == roomId)
+                .flatMap(room -> room.getDevices().stream())
+                .flatMap(device -> device.getEventQueue().getEvents().stream())
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public Device getDeviceByID(Payload payload) {
@@ -142,6 +163,20 @@ public class House implements ConfigurationReport {
             }
         });
         return result.get();
+    }
+
+    public String reportConfiguration() {
+        StringBuilder configurationReport = new StringBuilder("House Configuration Report:\n");
+        configurationReport.append("\nFloor Configuration:");
+        for (Floor floor : floors) {
+            configurationReport.append("\n").append(floor.reportConfiguration());
+        }
+        return configurationReport.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "House{" + "floors=" + floors + '}';
     }
 }
 

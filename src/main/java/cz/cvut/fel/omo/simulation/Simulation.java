@@ -50,6 +50,14 @@ public class Simulation implements Runnable{
         cycleCount++;
         logger.info("======================= START OF CYCLE: " + cycleCount + " =======================");
 
+        // todo remove after testing
+        logger.info("Current Local Events:");
+        for (Event event : house.getAllDeviceEvents()) {
+            logger.info(event.toString());
+        }
+        logger.info("");
+
+
         // 1. family and pets react to global events
         Event globalEvent = GlobalEventGenerator.generateEvent();
         if (globalEvent != null) {

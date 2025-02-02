@@ -129,7 +129,7 @@ public class Dad extends Person {
         if (dishwasher.getCurrentLoad() < dishwasher.getMaxLoad()) {
             int availableSpace = (int) (dishwasher.getMaxLoad() - dishwasher.getCurrentLoad());
             int maxDishes = Math.min(3, availableSpace);
-            dishwasher.addItem("Plate", RandomUtils.getRandomNumber(1, maxDishes));
+            dishwasher.addItem("Plate", RandomUtils.getRandomNumberInRange(1, maxDishes));
             return "Dad " + this.name + " added plates to " + dishwasher;
         }
         else {
@@ -185,7 +185,7 @@ public class Dad extends Person {
         if (washingMachine.getCurrentLoad() < washingMachine.getMaxLoad()) {
             int availableSpace = (int) (washingMachine.getMaxLoad() - washingMachine.getCurrentLoad());
             int maxClothes = Math.min(3, availableSpace);
-            washingMachine.addItem("Pants", RandomUtils.getRandomNumber(1, maxClothes));
+            washingMachine.addItem("Pants", RandomUtils.getRandomNumberInRange(1, maxClothes));
             return "Dad " + this.name + " added pants to " + washingMachine;
         }
         else {

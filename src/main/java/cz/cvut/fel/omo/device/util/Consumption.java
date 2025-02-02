@@ -2,6 +2,10 @@ package cz.cvut.fel.omo.device.util;
 
 import lombok.Getter;
 
+/**
+ * Represents the consumption of electricity, gas, and water for a device.
+ * This class tracks energy and resource usage based on device states.
+ */
 @Getter
 public class Consumption {
 

@@ -2,6 +2,7 @@ package cz.cvut.fel.omo.event.eventManager;
 
 import cz.cvut.fel.omo.event.Event;
 import cz.cvut.fel.omo.event.EventType;
+import cz.cvut.fel.omo.logger.GlobalLogger;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -55,7 +56,8 @@ public class EventManager {
 
     public void dispatchAll() {
         while (!eventQueue.getEvents().isEmpty()) {
-            dispatch(eventQueue.getEvents().poll());
+            Event event = eventQueue.getEvents().poll();
+            dispatch(event);
         }
     }
 }

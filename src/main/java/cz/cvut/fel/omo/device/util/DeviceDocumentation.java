@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Represents the documentation for a device, including its model, manufacturer, manual, and warranty information.
+ */
 @Getter
 @Setter
 @AllArgsConstructor

@@ -22,7 +22,7 @@ public class FridgeFactory extends BaseDeviceFactory<FridgeBuilder, Fridge> {
                 .minTemperature(0)
                 .maxTemperature(10)
                 .currentTemperature(5)
-                .maxLoad(26)
+                .maxLoad(2) // change later
                 .currentLoad(0)
                 .items(new ArrayList<>())
                 .build();

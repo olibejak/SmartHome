@@ -2,6 +2,10 @@ package cz.cvut.fel.omo.house;
 
 import lombok.Getter;
 
+/**
+ * Enum representing different types of rooms in the house.
+ */
+
 @Getter
 public enum RoomType {
     KITCHEN("Kitchen"),

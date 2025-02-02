@@ -1,4 +1,4 @@
-package cz.cvut.fel.omo.house;
+package cz.cvut.fel.omo.house.report;
 
 /**
  * Interface for classes that can report their configuration.

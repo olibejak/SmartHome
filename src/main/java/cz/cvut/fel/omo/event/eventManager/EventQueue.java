@@ -30,6 +30,6 @@ public class EventQueue {
         return events.stream()
                 .filter(event -> event.getPayload() != null && event.getPayload().getRoomID() != null)
                 .filter(event -> event.getPayload().getRoomID().equals(roomId))
-                .collect(Collectors.toCollection(ArrayList::new));  // Collect to an ArrayList
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }

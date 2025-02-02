@@ -5,6 +5,7 @@ import cz.cvut.fel.omo.activity.vehicle.Vehicle;
 import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.event.Event;
 import cz.cvut.fel.omo.event.eventManager.EventListener;
+import cz.cvut.fel.omo.house.report.ConfigurationReport;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * Represents a room in the house that can contain devices, sport equipment, and vehicles.
+ * Implements {@link EventListener} to handle room-specific events.
+ */
 @Getter
 @Setter
 public class Room implements ConfigurationReport, EventListener {
@@ -26,11 +31,14 @@ public class Room implements ConfigurationReport, EventListener {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Room{" + "id=" + id + ", type=" + type + '}';
+    public void removeEvent(Event event) {
+        events.remove(event);
     }
 
+    /**
+     * Generates a configuration report for the room, including devices, equipment, and vehicles.
+     * @return A formatted string containing the room's configuration.
+     */
     @Override
     public String reportConfiguration() {
         StringBuilder configurationReport = new StringBuilder();
@@ -47,6 +55,10 @@ public class Room implements ConfigurationReport, EventListener {
         return configurationReport.toString();
     }
 
+    /**
+     * Generates a configuration report for all devices in the room.
+     * @return A formatted string listing all devices.
+     */
     private String reportDeviceConfiguration() {
         StringBuilder configurationReport = new StringBuilder();
         configurationReport.append("\n\t\t\tDevices:");
@@ -56,6 +68,10 @@ public class Room implements ConfigurationReport, EventListener {
         return configurationReport.toString();
     }
 
+    /**
+     * Generates a configuration report for all sport equipment in the room.
+     * @return A formatted string listing all sport equipment.
+     */
     private String reportSportEquipmentConfiguration() {
         StringBuilder configurationReport = new StringBuilder();
         configurationReport.append("\n\t\t\tSport Equipment:");
@@ -65,6 +81,10 @@ public class Room implements ConfigurationReport, EventListener {
         return configurationReport.toString();
     }
 
+    /**
+     * Generates a configuration report for all vehicles in the room.
+     * @return A formatted string listing all vehicles.
+     */
     private String reportVehicleConfiguration() {
         StringBuilder configurationReport = new StringBuilder();
         configurationReport.append("\n\t\t\tVehicles:");
@@ -74,6 +94,11 @@ public class Room implements ConfigurationReport, EventListener {
         return configurationReport.toString();
     }
 
+    /**
+     * Handles an event and adds it to the room's event queue if it matches the room ID.
+     * @param event The event to be handled.
+     * Part of Observer design pattern.
+     */
     @Override
     public void handleEvent(Event event) {
         if (event.getPayload().getRoomID() != id) {
@@ -82,7 +107,8 @@ public class Room implements ConfigurationReport, EventListener {
         events.add(event);
     }
 
-    public void removeEvent(Event event) {
-        events.remove(event);
+    @Override
+    public String toString() {
+        return "Room{" + "id=" + id + ", type=" + type + '}';
     }
 }

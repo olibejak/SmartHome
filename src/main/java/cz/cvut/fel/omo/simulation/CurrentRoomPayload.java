@@ -14,6 +14,10 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * Represents the current state of a specific room in the house.
+ * Stores details about people, pets, equipment, vehicles, devices, and events within the room.
+ */
 @NoArgsConstructor
 @Getter
 @Setter
@@ -27,34 +31,10 @@ public class CurrentRoomPayload {
     private ArrayList<Device> currentDevices;
     private ArrayList<Event> currentEvents;
 
-    // Person methods
-    public void addPerson(Person person) {
-        if (currentPeople == null) {
-            currentPeople = new ArrayList<>();
-        }
-        currentPeople.add(person);
-    }
-
     public void removePerson(Person person) {
         if (currentPeople != null) {
             currentPeople.remove(person);
         }
-    }
-
-    public int getNumberOfPeople() {
-        return currentPeople != null ? currentPeople.size() : 0;
-    }
-
-    public boolean containsPerson(Person person) {
-        return currentPeople != null && currentPeople.contains(person);
-    }
-
-    // Pet methods
-    public void addPet(Pet pet) {
-        if (currentPets == null) {
-            currentPets = new ArrayList<>();
-        }
-        currentPets.add(pet);
     }
 
     public void removePet(Pet pet) {
@@ -63,36 +43,10 @@ public class CurrentRoomPayload {
         }
     }
 
-    public int getNumberOfPets() {
-        return currentPets != null ? currentPets.size() : 0;
-    }
-
-    public boolean containsPet(Pet pet) {
-        return currentPets != null && currentPets.contains(pet);
-    }
-
-    // Equipment methods
-    public void addEquipment(SportEquipment equipment) {
-        if (currentEquipment == null) {
-            currentEquipment = new ArrayList<>();
-        }
-        currentEquipment.add(equipment);
-    }
-
-    public void removeEquipment(SportEquipment equipment) {
-        if (currentEquipment != null) {
-            currentEquipment.remove(equipment);
-        }
-    }
-
-    public int getNumberOfEquipment() {
-        return currentEquipment != null ? currentEquipment.size() : 0;
-    }
-
-    public boolean containsEquipment(SportEquipment equipment) {
-        return currentEquipment != null && currentEquipment.contains(equipment);
-    }
-
+    /**
+     * Retrieves a list of all available sport equipment in the room.
+     * @return A list of available sport equipment.
+     */
     public ArrayList<SportEquipment> getCurrentAvailableEquipment() {
         if (currentEquipment == null) {
             return new ArrayList<>();
@@ -102,28 +56,10 @@ public class CurrentRoomPayload {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    // Vehicle methods
-    public void addVehicle(Vehicle vehicle) {
-        if (currentVehicles == null) {
-            currentVehicles = new ArrayList<>();
-        }
-        currentVehicles.add(vehicle);
-    }
-
-    public void removeVehicle(Vehicle vehicle) {
-        if (currentVehicles != null) {
-            currentVehicles.remove(vehicle);
-        }
-    }
-
-    public int getNumberOfVehicles() {
-        return currentVehicles != null ? currentVehicles.size() : 0;
-    }
-
-    public boolean containsVehicle(Vehicle vehicle) {
-        return currentVehicles != null && currentVehicles.contains(vehicle);
-    }
-
+    /**
+     * Retrieves a list of all available vehicles in the room.
+     * @return A list of available vehicles.
+     */
     public ArrayList<Vehicle> getCurrentAvailableVehicles() {
         if (currentVehicles == null) {
             return new ArrayList<>();
@@ -133,50 +69,11 @@ public class CurrentRoomPayload {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    // Device methods
-    public void addDevice(Device device) {
-        if (currentDevices == null) {
-            currentDevices = new ArrayList<>();
-        }
-        currentDevices.add(device);
-    }
-
-    public void removeDevice(Device device) {
-        if (currentDevices != null) {
-            currentDevices.remove(device);
-        }
-    }
-
-    public int getNumberOfDevices() {
-        return currentDevices != null ? currentDevices.size() : 0;
-    }
-
-    public boolean containsDevice(Device device) {
-        return currentDevices != null && currentDevices.contains(device);
-    }
-
-    // Event methods
-    public void addEvent(Event event) {
-        if (currentEvents == null) {
-            currentEvents = new ArrayList<>();
-        }
-        currentEvents.add(event);
-    }
-
-    public void removeEvent(Event event) {
-        if (currentEvents != null) {
-            currentEvents.remove(event);
-        }
-    }
-
-    public int getNumberOfEvents() {
-        return currentEvents != null ? currentEvents.size() : 0;
-    }
-
-    public boolean containsEvent(Event event) {
-        return currentEvents != null && currentEvents.contains(event);
-    }
-
+    /**
+     * Generates a formatted log with details about the current room.
+     * Includes information about people, pets, equipment, vehicles, devices, and events in the room.
+     * @return A formatted string containing room details.
+     */
     public String getRoomDetailsLog() {
         StringBuilder log = new StringBuilder();
 
@@ -185,10 +82,6 @@ public class CurrentRoomPayload {
 
         if (currentPeople != null && !currentPeople.isEmpty()) {
             log.append("  People: ");
-//            currentPeople.forEach(person ->
-//                    log.append(person.getClass().getSimpleName())
-//                            .append(" - ").append(person.getName()).append(" (").append(person.getAge()).append("), ")
-//            );
             currentPeople.forEach(person ->
                     log.append(person.toString()).append(", ")
             );
@@ -197,10 +90,6 @@ public class CurrentRoomPayload {
 
         if (currentPets != null && !currentPets.isEmpty()) {
             log.append("  Pets: ");
-//            currentPets.forEach(pet ->
-//                    log.append(pet.getClass().getSimpleName())
-//                            .append(" - ").append(pet.getName()).append(" (").append(pet.getAge()).append("), ")
-//            );
             currentPets.forEach(pet ->
                     log.append(pet.toString()).append(", ")
             );

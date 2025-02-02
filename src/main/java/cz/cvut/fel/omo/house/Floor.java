@@ -1,5 +1,6 @@
 package cz.cvut.fel.omo.house;
 
+import cz.cvut.fel.omo.house.report.ConfigurationReport;
 import lombok.Getter;
 import lombok.Setter;
 

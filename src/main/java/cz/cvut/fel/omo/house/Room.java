@@ -5,6 +5,7 @@ import cz.cvut.fel.omo.activity.vehicle.Vehicle;
 import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.event.Event;
 import cz.cvut.fel.omo.event.eventManager.EventListener;
+import cz.cvut.fel.omo.house.report.ConfigurationReport;
 import lombok.Getter;
 import lombok.Setter;
 

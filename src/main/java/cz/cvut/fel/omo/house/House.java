@@ -5,6 +5,7 @@ import cz.cvut.fel.omo.activity.vehicle.Vehicle;
 import cz.cvut.fel.omo.device.Device;
 import cz.cvut.fel.omo.event.Event;
 import cz.cvut.fel.omo.event.util.Payload;
+import cz.cvut.fel.omo.house.report.ConfigurationReport;
 import cz.cvut.fel.omo.house.report.ConsumptionReport;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

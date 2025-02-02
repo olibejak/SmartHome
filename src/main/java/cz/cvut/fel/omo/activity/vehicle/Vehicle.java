@@ -1,6 +1,6 @@
 package cz.cvut.fel.omo.activity.vehicle;
 
-import cz.cvut.fel.omo.house.ConfigurationReport;
+import cz.cvut.fel.omo.house.report.ConfigurationReport;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -10,7 +10,7 @@ import cz.cvut.fel.omo.device.visitor.EmptyDeviceVisitor;
 import cz.cvut.fel.omo.device.visitor.FinishedDeviceVisitor;
 import cz.cvut.fel.omo.event.EventType;
 import cz.cvut.fel.omo.event.eventManager.EventQueue;
-import cz.cvut.fel.omo.house.ConfigurationReport;
+import cz.cvut.fel.omo.house.report.ConfigurationReport;
 import cz.cvut.fel.omo.logger.GlobalLogger;
 import lombok.Getter;
 import lombok.Setter;

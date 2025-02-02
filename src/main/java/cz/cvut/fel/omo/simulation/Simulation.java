@@ -19,6 +19,10 @@ import java.util.Collections;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+/**
+ * The simulation class that controls the cycles of the smart home simulation.
+ * This class handles events, device updates, family and pet interactions, and house operations.
+ */
 @AllArgsConstructor
 @Getter
 @Setter
@@ -30,8 +34,6 @@ public class Simulation implements Runnable{
     private ArrayList<Pet> pets;
 
     private EventManager eventManager;
-
-    private GlobalEventGenerator globalEventGenerator;
 
     private int cycleCount;
 
@@ -45,70 +47,128 @@ public class Simulation implements Runnable{
         populateHouseRandomly();
     }
 
+    /**
+     * Runs a single cycle of the simulation.
+     * - Generates and dispatches events.
+     * - Handles family and pet actions.
+     * - Updates device consumption.
+     * - Moves family members and pets.
+     * - Makes vehicles and equipment available again.
+     * - Shuffles the order of family and pets for variety.
+     */
     public void nextCycle() {
-        // todo separate into functions when finished - for each loop
         cycleCount++;
         logger.info("======================= START OF CYCLE: " + cycleCount + " =======================");
 
-        // todo remove after testing
-        logger.info("Current Local Events:");
-        for (Event event : house.getAllDeviceEvents()) {
-            logger.info(event.toString());
-        }
-        logger.info("");
 
-
-        // 1. family and pets react to global events
-//        Event globalEvent = GlobalEventGenerator.generateEvent();
-//        if (globalEvent != null) {
-//            logger.info("============= NEW GLOBAL EVENT: " + globalEvent + " =============");
-//            eventManager.getEventQueue().addEvent(globalEvent);
-//        }
-//
-//        // 1.1. Dispatch events
-//        eventManager.dispatchAll();
+        // 1. house events
+        // 1.1. global event
+        generateGlobalEvent();
+        // 1.2. local events
+        logCurrentLocalEvents();
+        // 1.3. dispatch events
+        eventManager.dispatchAll();
 
         // 2. family actions
+        familyActions();
+        // 3. pet actions
+        petActions();
+
+        // 4. device actions - increase consumption based on the current device state
+        house.updateAllDevices();
+
+        // 5. family and pets movement
+        moveFamilyAndPets();
+
+        // 6. make all equipment and vehicles available again
+        house.makeAllVehiclesAndEquipmentAvailable();
+
+        // 7. shuffle family and pets for different interaction order next cycle
+        shuffleFamily();
+        shufflePets();
+
+        logger.info("======================= END OF CYCLE: " + cycleCount + " =======================\n\n");
+    }
+
+    /**
+     * Runs multiple cycles in sequence.
+     * @param count The number of cycles to run.
+     */
+    public void nextCycles(int count) {
+        for (int i = 0; i < count; i++) {
+            nextCycle();
+        }
+    }
+
+    private void generateGlobalEvent() {
+        Event globalEvent = GlobalEventGenerator.generateEvent();
+        if (globalEvent != null) {
+            logger.info("============= NEW GLOBAL EVENT: " + globalEvent + " =============");
+            eventManager.getEventQueue().addEvent(globalEvent);
+        }
+    }
+
+    private void logCurrentLocalEvents() {
+        ArrayList<Event> localEvents = house.getAllLocalEvents();
+        if (!localEvents.isEmpty()) {
+            logger.info("============= CURRENT LOCAL EVENTS =============");
+            for (Event event : localEvents) {
+                logger.info(event.toString());
+            }
+        }
+    }
+
+    /**
+     * Handles all family member actions during a cycle.
+     * - Reacts to local events.
+     * - Interacts with people, pets, devices, vehicles, and sport equipment.
+     */
+    private void familyActions() {
         for (Person person : family) {
             logger.info("============= CURRENT PERSON: " + person.toString() + " =============");
-            //   2.1. find what people, pets, equipment, vehicles, devices and events are in the current room
+            // 2.1. find people, pets, equipment, vehicles, devices and events in the current room
             CurrentRoomPayload currentRoomPayload = getCurrentRoomPayloadByRoomId(person.getRoomID());
             logger.info("============= CURRENT ROOM LOG =============\n" + currentRoomPayload.getRoomDetailsLog());
             currentRoomPayload.removePerson(person); // Person cannot interact with itself
 
-            logger.info("============= LOCAL EVENTS: " + currentRoomPayload.getCurrentEvents().toString()+ " =============");
-            for (Event event : currentRoomPayload.getCurrentEvents()) {
-                // todo implement correctly
-                logger.info(event.toString());
-                Device tmpDevice = house.getDeviceByID(event.getPayload());
-                if (tmpDevice != null) {
-                    logger.info("PERSON REACTS TO LOCAL EVENT:");
-                    if (person.reactToEvent(event.getType(), tmpDevice)) {
-                        house.getRoomByID(person.getRoomID()).ifPresent(room -> room.removeEvent(event));
+            // 2.2. react to local events from CurrentRoomPayload
+            if (!currentRoomPayload.getCurrentEvents().isEmpty()) {
+                logger.info("============= LOCAL EVENTS: " + currentRoomPayload.getCurrentEvents()+ " =============");
+                for (Event event : currentRoomPayload.getCurrentEvents()) {
+                    logger.info(event.toString());
+                    Device tmpDevice = house.getDeviceByID(event.getPayload());
+                    if (tmpDevice != null) {
+                        logger.info("============= PERSON REACTS TO LOCAL EVENT =============");
+                        if (person.reactToEvent(event.getType(), tmpDevice)) {
+                            house.getRoomByID(person.getRoomID()).ifPresent(room -> room.removeEvent(event));
+                        }
                     }
                 }
             }
 
-//            if (!currentRoomPayload.getCurrentPeople().isEmpty()) {
-//                logger.info("============= PERSON WITH PERSON INTERACTION =============");
-//                person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentPeople()));
-//            }
-//            if (!currentRoomPayload.getCurrentPets().isEmpty()) {
-//                logger.info("============= PERSON WITH PET INTERACTION =============");
-//                person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentPets()));
-//            }
+            // 2.3. interact with people and pets from CurrentRoomPayload
+            if (!currentRoomPayload.getCurrentPeople().isEmpty()) {
+                logger.info("============= PERSON WITH PERSON INTERACTION =============");
+                person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentPeople()));
+            }
+            if (!currentRoomPayload.getCurrentPets().isEmpty()) {
+                logger.info("============= PERSON WITH PET INTERACTION =============");
+                person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentPets()));
+            }
+
+            // 2.4. interact with sport equipment, vehicles or devices from CurrentRoomPayload
             if (RandomUtils.coinFLip()) {
-//                if (RandomUtils.coinFLip()) {
-//                    if (!currentRoomPayload.getCurrentAvailableEquipment().isEmpty()) {
-//                        logger.info("============= PERSON WITH SPORT EQUIPMENT INTERACTION =============");
-//                        person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableEquipment()));
-//                    }
-//                } else {
-//                    if (!currentRoomPayload.getCurrentAvailableVehicles().isEmpty()) {
-//                        logger.info("============= PERSON WITH VEHICLE INTERACTION =============");
-//                        person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableVehicles()));
-//                    }
-//                }
+                if (RandomUtils.coinFLip()) {
+                    if (!currentRoomPayload.getCurrentAvailableEquipment().isEmpty()) {
+                        logger.info("============= PERSON WITH SPORT EQUIPMENT INTERACTION =============");
+                        person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableEquipment()));
+                    }
+                } else {
+                    if (!currentRoomPayload.getCurrentAvailableVehicles().isEmpty()) {
+                        logger.info("============= PERSON WITH VEHICLE INTERACTION =============");
+                        person.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableVehicles()));
+                    }
+                }
             } else {
                 if (!currentRoomPayload.getCurrentDevices().isEmpty()) {
                     logger.info("============= PERSON WITH DEVICE INTERACTION =============");
@@ -116,76 +176,41 @@ public class Simulation implements Runnable{
                 }
             }
         }
-
-        // 3. pet actions
-//        for (Pet pet : pets) {
-//            logger.info("CURRENT PET: " + pet.toString());
-//            CurrentRoomPayload currentRoomPayload = getCurrentRoomPayloadByRoomId(pet.getRoomID());
-//            logger.info(currentRoomPayload.getRoomDetailsLog());
-//            currentRoomPayload.removePet(pet); // Pet cannot interact with itself
-//
-//            // interaction with person - random one
-//            if (!currentRoomPayload.getCurrentPeople().isEmpty()) {
-//                logger.info("PET WITH PERSON INTERACTION:");
-//                pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentPeople()));
-//            }
-//            // interaction with pet - random one
-//            if (!currentRoomPayload.getCurrentPets().isEmpty()) {
-//                logger.info("PET WITH PET INTERACTION:");
-//                pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentPets()));
-//            }
-//            if (RandomUtils.coinFLip()) {
-//                // interaction with sport equipment
-//                if (!currentRoomPayload.getCurrentAvailableEquipment().isEmpty()) {
-//                    logger.info("PET WITH SPORT EQUIPMENT INTERACTION:");
-//                    pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableEquipment()));
-//                }
-//            } else {
-//                // interaction with vehicle
-//                if (!currentRoomPayload.getCurrentAvailableVehicles().isEmpty()) {
-//                    logger.info("PET WITH VEHICLE INTERACTION:");
-//                    pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableVehicles()));
-//                }
-//            }
-//        }
-        //   2.2. react to local events from CurrentRoomPayload
-        //   2.3. interact with people and pets from CurrentRoomPayload - with just one or all ??
-        //   2.4. interact with sport equipment, vehicles or devices from CurrentRoomPayload
-        //   2.5. make all equipment and vehicles available again
-
-        // 3. device actions
-        //   3.1. increase consumption based on the current state
-        house.updateAllDevices();
-
-        // 4. family and pets movement
-        logger.info("FAMILY MOVEMENT:");
-        for (Person person : family) {
-            person.moveToRoomRandomly(house.getRoomIds());
-        }
-        logger.info("PETS MOVEMENT:");
-        for (Pet pet : pets) {
-            pet.moveToRoomRandomly(house.getRoomIds());
-        }
-
-        house.makeAllVehiclesAndEquipmentAvailable();
-        shuffleFamily(); // family shuffles for different interaction order
-        shufflePets(); // pets shuffle for different interaction order
-
-        logger.info("======================= END OF CYCLE: " + cycleCount + " =======================\n\n");
     }
 
-    public void nextCycles(int count) {
-        for (int i = 0; i < count; i++) {
-            nextCycle();
-        }
-    }
-
-    public void populateHouseRandomly() {
-        for (Person person : family) {
-            person.setInitialRoomRandomly(house.getRoomIds());
-        }
+    /**
+     * Handles all pet actions during a cycle.
+     * - Interacts with people, pets, equipment, and vehicles.
+     */
+    private void petActions() {
         for (Pet pet : pets) {
-            pet.setInitialRoomRandomly(house.getRoomIds());
+            logger.info("============= CURRENT PET: " + pet.toString() + "=============");
+            CurrentRoomPayload currentRoomPayload = getCurrentRoomPayloadByRoomId(pet.getRoomID());
+            logger.info(currentRoomPayload.getRoomDetailsLog());
+            currentRoomPayload.removePet(pet); // Pet cannot interact with itself
+
+            // 3.1. interact with people and pets from CurrentRoomPayload
+            if (!currentRoomPayload.getCurrentPeople().isEmpty()) {
+                logger.info("============= PET WITH PERSON INTERACTION =============");
+                pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentPeople()));
+            }
+            if (!currentRoomPayload.getCurrentPets().isEmpty()) {
+                logger.info("============= PET WITH PET INTERACTION =============");
+                pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentPets()));
+            }
+
+            // 3.2. interact with sport equipment or vehicle from CurrentRoomPayload
+            if (RandomUtils.coinFLip()) {
+                if (!currentRoomPayload.getCurrentAvailableEquipment().isEmpty()) {
+                    logger.info("============= PET WITH SPORT EQUIPMENT INTERACTION =============");
+                    pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableEquipment()));
+                }
+            } else {
+                if (!currentRoomPayload.getCurrentAvailableVehicles().isEmpty()) {
+                    logger.info("============= PET WITH VEHICLE INTERACTION =============");
+                    pet.interactWith(RandomUtils.getRandomElement(currentRoomPayload.getCurrentAvailableVehicles()));
+                }
+            }
         }
     }
 
@@ -197,16 +222,15 @@ public class Simulation implements Runnable{
         Collections.shuffle(pets);
     }
 
-    public ArrayList<Person> getFamilyByRoomId(int roomId) {
-        return family.stream()
-                .filter(person -> person.getRoomID() == roomId)
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    public ArrayList<Pet> getPetsByRoomId(int roomId) {
-        return pets.stream()
-                .filter(pet -> pet.getRoomID() == roomId)
-                .collect(Collectors.toCollection(ArrayList::new));
+    private void moveFamilyAndPets() {
+        logger.info("============= FAMILY MOVEMENT =============");
+        for (Person person : family) {
+            person.moveToRoomRandomly(house.getRoomIds());
+        }
+        logger.info("============= PETS MOVEMENT =============");
+        for (Pet pet : pets) {
+            pet.moveToRoomRandomly(house.getRoomIds());
+        }
     }
 
     public CurrentRoomPayload getCurrentRoomPayloadByRoomId(int roomId) {
@@ -225,11 +249,33 @@ public class Simulation implements Runnable{
         // Set devices in the room
         payload.setCurrentDevices(house.getDevicesByRoomId(roomId));
         // Set events in the room
-        if (house.getRoomByID(roomId).isPresent()) {
-            payload.setCurrentEvents(new ArrayList<>(house.getRoomByID(roomId).get().getEvents()));
-        }
+        payload.setCurrentEvents(house.getEventsByRoomId(roomId));
+//        if (house.getRoomByID(roomId).isPresent()) {
+//            payload.setCurrentEvents(new ArrayList<>(house.getRoomByID(roomId).get().getEvents()));
+//        }
 
         return payload;
+    }
+
+    public ArrayList<Person> getFamilyByRoomId(int roomId) {
+        return family.stream()
+                .filter(person -> person.getRoomID() == roomId)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public ArrayList<Pet> getPetsByRoomId(int roomId) {
+        return pets.stream()
+                .filter(pet -> pet.getRoomID() == roomId)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public void populateHouseRandomly() {
+        for (Person person : family) {
+            person.setInitialRoomRandomly(house.getRoomIds());
+        }
+        for (Pet pet : pets) {
+            pet.setInitialRoomRandomly(house.getRoomIds());
+        }
     }
 
     /**

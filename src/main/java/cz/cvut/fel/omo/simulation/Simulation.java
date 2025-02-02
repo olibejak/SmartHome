@@ -249,10 +249,7 @@ public class Simulation implements Runnable{
         // Set devices in the room
         payload.setCurrentDevices(house.getDevicesByRoomId(roomId));
         // Set events in the room
-        payload.setCurrentEvents(house.getEventsByRoomId(roomId));
-//        if (house.getRoomByID(roomId).isPresent()) {
-//            payload.setCurrentEvents(new ArrayList<>(house.getRoomByID(roomId).get().getEvents()));
-//        }
+        payload.setCurrentEvents(house.getLocalEventsByRoomId(roomId));
 
         return payload;
     }

@@ -59,7 +59,7 @@ public class HouseBuilderFacade {
             houseDTO = HouseLoader.loadHouseDTOFromJson(filePath);
         } catch (IOException e) {
             logger.error("Error while building house from JSON file: " + e.getMessage());
-            houseDTO = HouseLoader.getDefaultHouseDTO();
+            houseDTO = getDefaultHouseDTO();
         }
 
         House house = new HouseBuilder().reset()
@@ -70,6 +70,21 @@ public class HouseBuilderFacade {
 
         return house;
 
+    }
+
+    /**
+     * Gets a default houseDTO from a JSON file.
+     * @return default house
+     */
+    private HouseDTO getDefaultHouseDTO() {
+        try {
+            HouseDTO houseDTO = HouseLoader.loadHouseDTOFromJson("src/main/resources/default_house.json");
+            logger.debug("Default house loaded from JSON file.");
+            return houseDTO;
+        } catch (IOException e) {
+            logger.error("Error while building default house from JSON file: " + e.getMessage());
+            return new HouseDTO();
+        }
     }
 
     /**

@@ -2,6 +2,9 @@ package cz.cvut.fel.omo.simulation.command;
 
 import cz.cvut.fel.omo.exception.MyException;
 
+/**
+ * {@link Command} for quiting smart home.
+ */
 public class QuitCommand implements Command {
 
     @Override

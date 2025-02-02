@@ -2,6 +2,9 @@ package cz.cvut.fel.omo.simulation.command;
 
 import cz.cvut.fel.omo.exception.MyException;
 
+/**
+ * {@link Command} that executes simulation next cycle.
+ */
 public class NextCycleCommand implements Command {
 
     @Override

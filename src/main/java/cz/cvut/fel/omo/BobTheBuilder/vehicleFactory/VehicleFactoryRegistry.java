@@ -8,6 +8,9 @@ import cz.cvut.fel.omo.logger.GlobalLogger;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Registry for vehicle factories.
+ */
 public class VehicleFactoryRegistry implements FactoryRegistry<Vehicle, VehicleDTO> {
 
     private final Map<Class<? extends VehicleDTO>, VehicleFactory<? extends Vehicle, ? extends VehicleDTO>> vehicleFactories;

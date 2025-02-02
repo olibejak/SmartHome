@@ -3,6 +3,9 @@ package cz.cvut.fel.omo.BobTheBuilder.vehicleFactory;
 import cz.cvut.fel.omo.DTO.vehicleDTO.BicycleDTO;
 import cz.cvut.fel.omo.activity.vehicle.Bicycle;
 
+/**
+ * Factory for creating Bicycle objects.
+ */
 public class BicycleFactory extends VehicleFactory<Bicycle, BicycleDTO> {
 
     @Override

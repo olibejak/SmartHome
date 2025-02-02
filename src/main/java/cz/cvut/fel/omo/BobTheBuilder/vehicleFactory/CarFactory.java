@@ -1,10 +1,12 @@
 package cz.cvut.fel.omo.BobTheBuilder.vehicleFactory;
 
-
 import cz.cvut.fel.omo.DTO.vehicleDTO.CarDTO;
 import cz.cvut.fel.omo.activity.vehicle.Car;
 import cz.cvut.fel.omo.activity.vehicle.EngineType;
 
+/**
+ * Factory for creating Car objects.
+ */
 public class CarFactory extends VehicleFactory<Car, CarDTO> {
 
     @Override

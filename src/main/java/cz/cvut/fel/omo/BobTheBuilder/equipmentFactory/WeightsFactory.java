@@ -4,7 +4,7 @@ import cz.cvut.fel.omo.DTO.equipmentDTO.WeightsDTO;
 import cz.cvut.fel.omo.activity.equipment.Weights;
 
 /**
- * Factory for creating weights
+ * Factory for creating weights.
  */
 public class WeightsFactory implements SportEquipmentFactory<Weights, WeightsDTO> {
 

@@ -4,7 +4,7 @@ import cz.cvut.fel.omo.DTO.equipmentDTO.SkisDTO;
 import cz.cvut.fel.omo.activity.equipment.Skis;
 
 /**
- * Factory for creating skis
+ * Factory for creating skis.
  */
 public class SkisFactory implements SportEquipmentFactory<Skis, SkisDTO> {
 

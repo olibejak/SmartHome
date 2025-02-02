@@ -4,7 +4,7 @@ import cz.cvut.fel.omo.DTO.equipmentDTO.SportEquipmentDTO;
 import cz.cvut.fel.omo.activity.equipment.SportEquipment;
 
 /**
- * Factory for creating sport equipment
+ * Factory for creating sport equipment.
  */
 public interface SportEquipmentFactory<T extends SportEquipment, D extends SportEquipmentDTO> {
 
@@ -13,6 +13,6 @@ public interface SportEquipmentFactory<T extends SportEquipment, D extends Sport
      * @param dto DTO of the sport equipment
      * @return sport equipment object
      */
-    public abstract T createSportEquipment(D dto);
+    T createSportEquipment(D dto);
 
 }

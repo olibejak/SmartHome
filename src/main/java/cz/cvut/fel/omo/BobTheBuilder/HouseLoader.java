@@ -96,12 +96,4 @@ public class HouseLoader {
         return equipmentFactoryRegistry;
 
     }
-
-    /**
-     * Get default house DTO.
-     * @return default house DTO
-     */
-    public static HouseDTO getDefaultHouseDTO() {
-        return new HouseDTO();
-    }
 }

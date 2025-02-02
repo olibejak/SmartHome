@@ -5,6 +5,7 @@ Simulation of Entities interacting with a smart home system.<br>
 - [Description](#description)
 - [Usage](#usage)
 - [Inputs](#inputs)
+- [Simulation Cycle Flow](#simulation-cycle-flow)
 
 ## Description
 SmartHome is a simulation of a smart home system. The system is a composite of a house with rooms and devices. 

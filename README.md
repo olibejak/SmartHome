@@ -16,7 +16,7 @@ The user can interact with the system through the console.
 ## Usage
 SmartHome uses Java 21 and Maven. Use the following commands to build and run:
 ```
-git clone https://gitlab.fel.cvut.cz/olibejak/smarthome.git
+git clone https://github.com/olibejak/SmartHome.git
 mvn clean install
 mvn exec:java -Dexec.mainClass="cz.cvut.fel.omo.main.Main"
 ```
